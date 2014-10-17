@@ -1,1 +1,23 @@
-TEST
+<!DOCTYPE html>
+<html data-ng-app = 'generosity'>
+	<head>
+		<title> Generosity </title>
+	</head>
+	<body data-ng-controller = "UsersController as user" data-ng-init="user.createDummyUser()">
+		Hello there.
+		<br>
+		I am test user "{{user.username}}"
+		<br>
+		Real Name: {{user.realName}}
+		<br>
+		Available Hours: {{user.availableHours}}
+		<br>
+		Current City: {{user.currentCity}}
+		<br>
+		Current Location: {{user.currentLocation}}
+		<br>
+		<div class="css1">
+			Current Recipient: {{user.recipient}}
+		</div>
+	</body>
+</html>

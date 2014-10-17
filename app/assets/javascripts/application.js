@@ -16,4 +16,3 @@
 //= require angular
 //= require angular-mocks
 //= require_tree .
-
