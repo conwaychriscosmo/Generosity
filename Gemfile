@@ -33,6 +33,11 @@ gem "factory_girl_rails", "~> 4.0"
 gem "capybara"
 gem "database_cleaner"
 gem "selenium-webdriver"
+
+gem 'therubyracer', '>= 0.9.9'
+gem "less-rails"
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

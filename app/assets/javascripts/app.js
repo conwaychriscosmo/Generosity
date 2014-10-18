@@ -33,10 +33,9 @@ angular.module('generosity', [])
 	// 	return {
 	// 		restrict: 'E',
 	// 		scope: {
-	// 			name: '@',
-	// 			hobby: '@'
+
 	// 		},
-	// 		templateUrl: "example-module.html"
+	// 		templateUrl: "../../views/navbar.html.erb"
 	// 	};
 	// })
 	
