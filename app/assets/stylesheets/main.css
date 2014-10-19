@@ -1,0 +1,25 @@
+.navbar-default {
+	background-color: blue;
+	color: white;
+	/*position: fixed;*/
+}
+
+.navbar-brand {
+	color: white;
+}
+
+.navbar-nav {
+	color: white;
+}
+
+.dropdown-toggle {
+	color: white;
+}
+
+.dropdown-toggle :active :hover :focus{
+	background-color: red;
+}
+
+.dropdown-menu {
+	background-color: teal;
+}
