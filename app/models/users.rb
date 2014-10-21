@@ -9,13 +9,19 @@ class Users < ActiveRecord::Base
 	ERR_BAD_USERNAME = -3
 	ERR_USER_EXISTS = -2
 
+
 	validates :username, length: {maximum: MAX_USERNAME_LENGTH}
 	validates :password, length: {maximum: MAX_PASSWORD_LENGTH}
 	validates :username, uniqueness: true
 	validates :username, presence: true
 
-		def self.add(username, password)
-		new_user = User.new(username: username, password: password)
+	def self.errorCodes()
+		return {success: SUCCESS, badCredentials: ERR_BAD_CREDENTIALS, badPassword: ERR_BAD_PASSWORD,
+			badUsername: ERR_BAD_USERNAME, userExists: ERR_USER_EXISTS}
+	end
+
+	def self.add(username, password)
+		new_user = Users.new(username: username, password: password)
 		
 		if new_user.valid?
 			new_user.save
@@ -26,7 +32,7 @@ class Users < ActiveRecord::Base
 				return ERR_BAD_USERNAME
 			when new_user[:username].size > MAX_USERNAME_LENGTH
 				return ERR_BAD_USERNAME
-			when User.where(username: username).all.size == 1
+			when Users.where(username: username).all.size == 1
 				return ERR_USER_EXISTS
 			when new_user[:password].size > MAX_PASSWORD_LENGTH
 				return ERR_BAD_PASSWORD
@@ -44,6 +50,6 @@ class Users < ActiveRecord::Base
 	end
 
 	def self.runUnitTests()
-		return %x[rspec spec/models]
+		return %x[rspec spec/models/users_spec.rb]
 	end
 end
