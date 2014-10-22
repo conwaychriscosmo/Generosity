@@ -24,17 +24,18 @@ class GiftsController < ApplicationController
   # POST /gifts
   # POST /gifts.json
   def create
-    @gift = Gift.new(gift_params)
-
-    respond_to do |format|
-      if @gift.save
-        format.html { redirect_to @gift, notice: 'Gift was successfully created.' }
-        format.json { render :show, status: :created, location: @gift }
-      else
-        format.html { render :new }
-        format.json { render json: @gift.errors, status: :unprocessable_entity }
-      end
-    end
+    #@gift = Gift.new(gift_params)
+    output = Gift.create(gift_params[:name], gift_params[:url])
+    render json: output
+ #   respond_to do |format|
+  #    if @gift.save
+   #     format.html { redirect_to @gift, notice: 'Gift was successfully created.' }
+    #    format.json { render :show, status: :created, location: @gift }
+     # else
+      #  format.html { render :new }
+       # format.json { render json: @gift.errors, status: :unprocessable_entity }
+    #  end
+   # end
   end
 
   # PATCH/PUT /gifts/1
