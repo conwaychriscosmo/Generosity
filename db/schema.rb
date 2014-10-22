@@ -11,17 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141019215227) do
+ActiveRecord::Schema.define(version: 20141022050427) do
 
-  create_table "gifts", force: true do |t|
-    t.string   "name"
-    t.string   "url"
+  create_table "challenges", force: true do |t|
+    t.string   "Giver"
+    t.string   "Recipient"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "restaurants", force: true do |t|
+  create_table "gifts", force: true do |t|
     t.string   "name"
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
