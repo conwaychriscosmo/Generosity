@@ -1,5 +1,27 @@
 class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
+  
+  def match
+  #built for testing to cause matches
+    output = Challenge.match
+    render json: output
+  end
+
+  def complete
+  #called when a challenge is completed
+    output = Challenge.complete
+    render json: output
+  end
+
+  def accept
+  #called when a user accepts a challenge
+  #i think this is left for a future iteration
+  end
+
+  def reject
+  #called when a user rejects a challenge
+  #I think this is left for a future iteration
+  end
 
   # GET /challenges
   # GET /challenges.json
