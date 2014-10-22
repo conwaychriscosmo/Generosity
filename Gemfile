@@ -41,7 +41,7 @@ gem "less-rails"
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 group :production do
-  gem 'pg', '0.15.1'
+  gem 'pg', '0.17.1'
   gem 'rails_12factor', '0.0.2'
 end
 
