@@ -3,7 +3,7 @@ class Gift < ActiveRecord::Base
   validates :url, presence: true 
 
 
-  def self.create(name, url):
+  def self.create(name, url)
     @gift = Gift.new
     @gift.name = name
     @gift.url = url
