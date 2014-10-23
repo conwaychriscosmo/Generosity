@@ -3,8 +3,21 @@ class Challenge < ActiveRecord::Base
   #pick a random user from the database to match with username
     @challenge = Challenge.new
     @challenge.Giver = username
-    @recip_user = User.first(:order => "RANDOM()")
-    @challenge.Recipient = @recip_user.username
+    offset = rand(Users.count)
+    @rand_user = Users.offset(offset).first
+    #@recip_user = Users.first(:order => "RANDOM()")
+    @challenge.Recipient = @rand_user.username
+    #check to see if matched with self
+    if @challenge.Recipient == @challenge.Giver
+      #if matched with self and more than one user, try again, else error
+      if Users.count > 1
+        Challenge.match(username)
+        return
+      else
+        output = { errCode: -1 }
+        return output
+      end
+    end
     if @challenge.valid?
       @challenge.save
       output = { errCode: 1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }
