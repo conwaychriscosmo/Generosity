@@ -1,5 +1,5 @@
 class Gift < ActiveRecord::Base
-  validates :name, length: { maximum: 128 }, presence: true, format: { with: /\A[a-zA-Z]+\z, message: "names must be composed of letters" }
+  validates :name, length: { maximum: 128 }, presence: true
   validates :url, presence: true 
 
 
@@ -9,11 +9,12 @@ class Gift < ActiveRecord::Base
     @gift.url = url
     if @gift.name.nil?
       output = { errCode: -1 }
+    end
     if @gift.valid?
       @gift.save
       output = { errCode: 1, name: name, url: url }
     else
-      output = { errcode: -1 }
+      output = { errCode: -1 }
     end
     return output
   end
