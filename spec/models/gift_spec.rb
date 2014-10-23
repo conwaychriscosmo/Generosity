@@ -10,7 +10,7 @@ RSpec.describe Gift, :type => :model  do
 
     it "should output the gift name and url" do
       output = Gift.create('cat', 'google.com')
-      hsh = { errCode: 1, name: 'cat', url: 'google.com') }
+      hsh = { errCode: 1, name: 'cat', url: 'google.com' }
       expect(output).to eq hsh
     end
 
