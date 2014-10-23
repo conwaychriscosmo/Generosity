@@ -1,5 +1,5 @@
 class Gift < ActiveRecord::Base
-  validates :name, length: { maximum: 128 }, presence: true, format: { with: /\A[a-zA-Z]+\z, message: "names must be composed of letters" }
+  validates :name, length: { maximum: 128 }, presence: true, format: { with: /\A[a-zA-Z]+\z,/ message: "names must be composed of letters" }
   validates :url, presence: true 
 
 
@@ -17,4 +17,16 @@ class Gift < ActiveRecord::Base
     end
     return output
   end
+
+  #Destroys the gift from the database
+  def self.destroy()
+    if @gift.valid?
+      @gift.destroy
+      output = {errCode: 1}
+    else
+      output = {errCode: -1}
+    end
+    return output
+  end
+  
 end

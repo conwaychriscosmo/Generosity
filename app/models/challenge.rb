@@ -1,9 +1,11 @@
 class Challenge < ActiveRecord::Base
+
   def self.match(username)
   #pick a random user from the database to match with username
     @challenge = Challenge.new
     @challenge.Giver = username
     @recip_user = User.first(:order => "RANDOM()")
+    #should make sure it is not the user matched up with himself
     @challenge.Recipient = @recip_user.username
     if @challenge.valid?
       @challenge.save
@@ -14,7 +16,10 @@ class Challenge < ActiveRecord::Base
     return output
   end
 
-  def self.complete
+  def self.complete()
+    @challenge.delete
+    output = self.match(username)
+    return output
   #close the last challenge and start the next one by calling
   #match with the username of the currently logged in user
   end
