@@ -41,7 +41,7 @@ class Users < ActiveRecord::Base
 	end
 
 	def self.login(username, password)
-		user = User.where(username: username, password: password)
+		user = Users.where(username: username, password: password)
 		if user.size == 0
 			return ERR_BAD_CREDENTIALS
 		else
