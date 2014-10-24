@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   root 'user#welcome'
 
   get '/', to: 'user#welcome'
-
+  post '/users/updatehours' => 'users#editAvailableHours'
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
