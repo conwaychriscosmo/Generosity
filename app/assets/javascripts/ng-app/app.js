@@ -123,6 +123,26 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		};
 	})
 
+	.directive('testStatus', function() { //You do not need to account for the cases for which the rating is not a number.
+		return {
+			restrict: 'C',
+			scope: {
+			  message: '@'
+			},
+			link: function(scope, element, attrs) { //Note that this is a function of scope, NOT $scope!!
+				if(scope.message.search("PASS") > 0) {
+					element.css("color", "green");
+				}
+				else if(scope.message.search("FAIL") > 0) {
+					element.css("color", "red");
+				}
+				else {
+					element.css("color", "blue");
+				}
+			}
+		};
+	})
+
 	.controller('UserTestController', ['$scope', '$http', '$controller', function($scope, $http, $controller) {
 		var self = this;
 		// var expect = chai.expect;
@@ -133,15 +153,17 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		self.messages = [];
 
 		self.assert = function(condition, statement) {
+			testMessage = "Test #" + (self.totalTests+1);
 			if(condition) {
 				self.passedTests += 1;
+				testMessage = testMessage + " PASSED.";
 			}
 			else {
-				statement = "Test #" + (self.totalTests+1) + " FAILED: " + statement;
-				self.messages.push(statement);
-				console.log(statement);
+				testMessage = testMessage + " FAILED: " + statement;
+				console.log(testMessage);
 			}
 			self.totalTests += 1;
+			self.messages.push(testMessage);
 		}
 
 		self.runTests = function() {
@@ -150,12 +172,13 @@ angular.module('generosity', ['ngRoute', 'templates'])
 
 		self.testAttributes = function() {
 			var $scope = {};
-			self.messages.push("Running UsersController attribute tests...")
+			self.messages.push("Running UsersController attribute tests...");
 			var userTestController = $controller('UsersController', { $scope: $scope });
 			userTestController.username = "AlanChristopher";
 			self.assert(userTestController.username === "AlanChristopher", userTestController.username + " is not equal to 'AlanChristopher'.");
 			userTestController.createDummyUser();
 			self.assert(userTestController.currentCity === "Berkeley", userTestController.currentCity + " is not equal to 'Berkeley'.");
+
 		}
 
 	}]);
