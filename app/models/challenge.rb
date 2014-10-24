@@ -28,9 +28,24 @@ class Challenge < ActiveRecord::Base
     return output
   end
 
+  #returns the current challenge if there is one for this user
+  def getChallenge(username)
+    return Challenge.where(Giver: username)
+  end
+
   def self.complete()
-    @challenge.delete
-    output = self.match(username)
+
+    #updates the user fields
+    giverName = self.Giver
+    recipientName = self.Recipient
+    giver = Users.where(username: giverName)
+    recipient = Users.where(username: recipientName)
+    giver.total_gifts_given += 1
+    recipient.total_gifts_received += 1
+
+    #delete current challenge and set up a new one
+    self.destroy
+    output = self.match(giverName)
     return output
   #close the last challenge and start the next one by calling
   #match with the username of the currently logged in user
