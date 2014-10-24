@@ -10,12 +10,13 @@
 
 		<div ng-view></div>
 
-		Template: {{template}}
+		<% if Rails.env == "development" %>
+			Template: {{template}}
+		
 
 		<button data-ng-click="template=99">Run User Tests</button>
-		<div id="fa">
+		<%end%>
 		<users-form data-ng-show="template==5"></users-form>
-		</div>
 		<users-tests data-ng-if="template==99"></users-tests>
 
 	</body>

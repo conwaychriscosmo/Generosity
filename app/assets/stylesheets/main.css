@@ -2,10 +2,16 @@ head {
 	width: 100%;
 }
 
+.lighten{
+	background-color: white;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+}
+
 body{
 	background:url(http://i.imgur.com/lGjlXUF.gif)no-repeat;
 	background-size: cover;
-
 }
 
 .input-group-addon{
@@ -37,7 +43,7 @@ body{
 }
 
 .navbar-default {
-	opacity: .8;
+	opacity: .95;
 	padding-left: 30px;
 	padding-right: 30px;
 	background: -moz-linear-gradient(top, #093c5b 1%, #562601 100%); /* FF3.6+ */
