@@ -36,6 +36,8 @@ gem "capybara"
 gem "database_cleaner"
 gem "selenium-webdriver"
 
+gem 'angular-rails-templates'
+
 gem 'therubyracer', '>= 0.9.9'
 gem "less-rails"
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'

@@ -1,9 +1,9 @@
-angular.module('generosity', ['ngRoute'])
+angular.module('generosity', ['ngRoute', 'templates'])
 	.config(['$routeProvider',
 	  	function($routeProvider) {
 	    	$routeProvider.
-	      		when('/index', {
-	        		templateUrl: 'partials/welcome.html',
+	      		when('/', {
+	        		templateUrl: 'navbar.html',
 	        		controller: 'UsersController'
 	      		}).
 	      		// when('/phones/:phoneId', {
