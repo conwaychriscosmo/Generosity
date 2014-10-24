@@ -3,8 +3,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(username: params[:session][:username])
+    user = Users.find_by(username: params[:session][:username])
     if user && user.authenticate(params[:session][:password])
+    	login user
+    	redirect_to user
     else
       # Create an error message.
       flash.now[:danger] = 'Invalid email/password combination'

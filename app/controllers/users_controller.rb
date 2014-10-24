@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
 
     def new()
+    	render 'new'
     end
 
     # Add user USERNAME with password PASSWORD to database. Give them a challenge
@@ -10,6 +11,8 @@ class UsersController < ApplicationController
 		data = {}
 		data[:errCode] = code
 		if code == 1
+			user = Users.find_by(username: params[:username])
+			login(user)
 			challenge = Challenge.match(params[:username])
 			challengeCode = challenge[:errCode]
 			data[:challengeCode] = challengeCode
