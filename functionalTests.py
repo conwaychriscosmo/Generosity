@@ -73,9 +73,21 @@ class TestCommands(testLib.RestTestCase):
         self.makeRequest("/users/add", method="POST", data = { 'user_name' : 'user1', 'password' : 'password'} )
         respData = self.makeRequest("/users/login", method="POST", data = { 'user_name' : 'user1', 'password' : 'PASSWORD'})
         self.assertResponse(respData, count = None, errCode = testLib.RestTestCase.ERR_BAD_CREDENTIALS)    
+    
+    def testChallengeUserNotinDB(self):
+        respData = self.makeRequest("/challenge/create", method="POST", data = { 'username': 'user1' })
+        self.assertResponse(respData, errCode = -1)
 
-
-
+    def testChallenge1User(self):
+        self.makeRequest("/users/add", method="POST", data = { 'username' : 'user1', 'password' : 'password'} )
+        respData = self.makeRequest("/challenge/create", method="POST", data = { 'username': 'user1' })
+        self.assertResponse(respData, errCode = -1)
+    
+    def testChallenge2Users(self):
+        self.makeRequest("/users/add", method="POST", data = { 'username' : 'user1', 'password' : 'password'} )
+        self.makeRequest("/users/add", method="POST", data = { 'username': 'user2', 'password' : 'password'})
+        respData = self.makeRequest("/challenge/create", method="POST", data = { 'username': 'user1' })
+        self.assertResponse(respData, errCode = 1, Giver = 'user1', Recipient = 'user2')
 
 
 

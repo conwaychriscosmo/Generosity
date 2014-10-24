@@ -18,4 +18,16 @@ class Gift < ActiveRecord::Base
     end
     return output
   end
+
+  #Destroys the gift from the database
+  def self.destroy()
+    if @gift.valid?
+      @gift.destroy
+      output = {errCode: 1}
+    else
+      output = {errCode: -1}
+    end
+    return output
+  end
+  
 end
