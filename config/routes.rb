@@ -20,9 +20,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   get 'users/add', to: 'users#new'
-  post 'users/login', to: 'users#login'
   post 'users/add', to: 'users#add'
-  post 'users/logout', to: 'users#logout'
 
   post 'TEST/unitTests', to: 'users#runUnitTests'
 

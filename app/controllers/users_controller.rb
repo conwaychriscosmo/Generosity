@@ -1,19 +1,21 @@
 class UsersController < ApplicationController
 
 
-    def new()
-    	render 'new'
+    def show()
+    	render 'show'
     end
 
     # Add user USERNAME with password PASSWORD to database. Give them a challenge
 	def add()
-		code = Users.add(params[:username], params[:password])
+		username = params[:session][:username]
+		password = params[:session][:password]
+		code = Users.add(username, password)
 		data = {}
 		data[:errCode] = code
 		if code == 1
-			user = Users.find_by(username: params[:username])
+			user = Users.find_by(username: username)
 			login(user)
-			challenge = Challenge.match(params[:username])
+			challenge = Challenge.match(username)
 			challengeCode = challenge[:errCode]
 			data[:challengeCode] = challengeCode
 			if challengeCode == 1
@@ -21,16 +23,6 @@ class UsersController < ApplicationController
 			end
 		end
 		render json: data
-	end
-
-	def login()
-        code = User.login(params[:user_name], params[:password])
-	    data = {}
-	    data[:errCode] = code
-	    render json: data
-	end
-
-	def logout()
 	end
 
 	def runUnitTests()

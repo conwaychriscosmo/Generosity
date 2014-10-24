@@ -39,6 +39,7 @@ gem "selenium-webdriver"
 gem 'therubyracer', '>= 0.9.9'
 gem "less-rails"
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'bcrypt', '~> 3.1.7'
 
 group :production do
   gem 'pg', '0.17.1'
