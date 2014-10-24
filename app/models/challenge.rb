@@ -27,7 +27,17 @@ class Challenge < ActiveRecord::Base
     end
     return output
   end
+  
+  def self.current(username)
+    @challenge = Challenge.find_by(Giver: username)
+    output = { errCode: -1 }
+    if @challenge
+      output = { errCode: 1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }
+    end
+    return output
+  end
 
+ 
   def self.complete()
     @challenge.delete
     output = self.match(username)
