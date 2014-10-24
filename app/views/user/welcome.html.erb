@@ -12,7 +12,10 @@
 
 		Template: {{template}}
 
+		<button data-ng-click="template=99">Run User Tests</button>
+
 		<users-form data-ng-show="template==5"></users-form>
+		<users-tests data-ng-if="template==99"></users-tests>
 
 	</body>
 </html>

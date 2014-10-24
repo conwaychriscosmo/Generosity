@@ -1,4 +1,3 @@
-
 angular.module('generosity', ['ngRoute', 'templates'])
 	.config(['$routeProvider', '$locationProvider',
 	  	function($routeProvider, $locationProvider) {
@@ -90,6 +89,16 @@ angular.module('generosity', ['ngRoute', 'templates'])
 			templateUrl: "users-form.html"
 		};
 	})
+
+	.directive('usersTests', function() {
+		return {
+			restrict: 'E',
+			scope: {
+
+			},
+			templateUrl: "users-tests.html"
+		};
+	})
 	
 	// .directive('directiveA', function() {
 	// 	return {
@@ -112,4 +121,41 @@ angular.module('generosity', ['ngRoute', 'templates'])
       			element.css("font-size", "30px");
 			}
 		};
-	});
+	})
+
+	.controller('UserTestController', ['$scope', '$http', '$controller', function($scope, $http, $controller) {
+		var self = this;
+		// var expect = chai.expect;
+		// var expect = require('expect.js');
+
+		self.totalTests = 0;
+		self.passedTests = 0;
+		self.messages = [];
+
+		self.assert = function(condition, statement) {
+			if(condition) {
+				self.passedTests += 1;
+			}
+			else {
+				statement = "Test #" + (self.totalTests+1) + " FAILED: " + statement;
+				self.messages.push(statement);
+				console.log(statement);
+			}
+			self.totalTests += 1;
+		}
+
+		self.runTests = function() {
+			self.testAttributes();
+		}
+
+		self.testAttributes = function() {
+			var $scope = {};
+			self.messages.push("Running UsersController attribute tests...")
+			var userTestController = $controller('UsersController', { $scope: $scope });
+			userTestController.username = "AlanChristopher";
+			self.assert(userTestController.username === "AlanChristopher", userTestController.username + " is not equal to 'AlanChristopher'.");
+			userTestController.createDummyUser();
+			self.assert(userTestController.currentCity === "Berkeley", userTestController.currentCity + " is not equal to 'Berkeley'.");
+		}
+
+	}]);
