@@ -24,6 +24,11 @@ class Users < ActiveRecord::Base
 			badUsername: ERR_BAD_USERNAME, userExists: ERR_USER_EXISTS}
 	end
 
+	def self.editAvailableHours(username, newHours)
+		@user = User.findby(username: username)
+		@user.available_hours = newHours
+		if @user.save
+			
 	def self.add(username, password)
 		new_user = Users.new(username: username, password: password)
 		
