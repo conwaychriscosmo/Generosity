@@ -170,7 +170,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 			testMessage = "Test #" + (self.totalTests+1);
 			if(condition) {
 				self.passedTests += 1;
-				testMessage = testMessage + " PASSED.";
+				testMessage = testMessage + " PASSED: " + statement;
 			}
 			else {
 				testMessage = testMessage + " FAILED: " + statement;
@@ -193,15 +193,15 @@ angular.module('generosity', ['ngRoute', 'templates'])
 			self.messages.push("Running UsersController attribute tests...");
 			var userTestController = $controller('UsersController', { $scope: $scope });
 			userTestController.username = "CountNecula";
-			self.assert(userTestController.username === "CountNecula", userTestController.username + " is not equal to 'CountNecula'.");
+			self.assert(userTestController.username === "CountNecula", "Username is " + userTestController.username + ", and should be equal to 'CountNecula'.");
 			userTestController.createDummyUser();
-			self.assert(userTestController.username === "LordChristopher", userTestController.username + " is not equal to 'LordChristopher'.");
-			self.assert(userTestController.realName === "Lord Christopher", userTestController.realName + " is not equal to 'Lord Christopher'.");
-			self.assert(userTestController.password === "Team 61C", userTestController.password + " is not equal to 'Team 61C'.");
-			self.assert(userTestController.availableHours === "6 to 11 pm", userTestController.availableHours + " is not equal to '6 to 11 pm'.");
-			self.assert(userTestController.currentCity === "Berkeley", userTestController.currentCity + " is not equal to 'Berkeley'.");
-			self.assert(userTestController.currentLocation === "Nowhere", userTestController.currentLocation + " is not equal to 'Nowhere'.");
-			self.assert(userTestController.recipient === "He whose name shall not be spoken", userTestController.recipient + " is not equal to 'recipient'.");
+			self.assert(userTestController.username === "LordChristopher", "Username is " + userTestController.username + ", and should be equal to 'LordChristopher'.");
+			self.assert(userTestController.realName === "Lord Christopher", "Real name is " + userTestController.realName + ", and should be equal to 'Lord Christopher'.");
+			self.assert(userTestController.password === "Team 61C", "Password is " + userTestController.password + ", and should be equal to 'Team 61C'.");
+			self.assert(userTestController.availableHours === "6 to 11 pm", "Available hours are " + userTestController.availableHours + ", and should be equal to '6 to 11 pm'.");
+			self.assert(userTestController.currentCity === "Berkeley", "Current location is " + userTestController.currentCity + ", and should be equal to 'Berkeley'.");
+			self.assert(userTestController.currentLocation === "Nowhere", "Current location is " + userTestController.currentLocation + ", and should be not equal to 'Nowhere'.");
+			self.assert(userTestController.recipient === "He whose name shall not be spoken", "Recipient is " + userTestController.recipient + ", and should be equal to 'He whose name shall not be spoken'.");
 		}
 
 		self.testAPICalls = function() {
