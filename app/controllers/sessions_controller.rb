@@ -8,12 +8,10 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
     	login user
     	data[:errCode] = 1
-    	redirect_to '/'
     else
-      # Create an error message.
       data[:errCode] = -1
-      render json: data
     end
+    render json: data
   end
 
   def destroy
