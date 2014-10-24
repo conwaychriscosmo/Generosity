@@ -12,8 +12,8 @@ class Challenge < ActiveRecord::Base
     if @challenge.Recipient == @challenge.Giver
       #if matched with self and more than one user, try again, else error
       if Users.count > 1
-        Challenge.match(username)
-        return
+        output = Challenge.match(username)
+        return output
       else
         output = { errCode: -1 }
         return output
