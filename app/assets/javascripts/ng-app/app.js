@@ -25,15 +25,18 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		self.availableHours; //How should this be styled?
 		self.currentCity;
 		self.currentLocation;
-		// self.recipient; //Should probably be renamed
+		self.recipient; //Should probably be renamed
+
+		$scope.err;
 
 		self.addUser = function() {
 			$http.post('users/add', {username: self.username, password: self.password}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
-					errCode = data.errCode;
-					console.log(errCode);
+					var errCode = data.errCode;
+					$scope.err = data.errCode;
+					console.log("HYA" + self.errCode);
 					if(errCode == -2) {
 						alert("Error: This username already exists.");
 					}
@@ -46,17 +49,20 @@ angular.module('generosity', ['ngRoute', 'templates'])
 					else {
 						alert("User created.");						
 					}
+					$scope.$emit('errCode', errCode);
+					// return errCode;
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
 					alert("Error.");
 				});
+			return errCode;
 		}
 
 		self.createDummyUser = function() {
-			self.username = "AlanChristopher";
-			self.realName = "Alan Christopher";
+			self.username = "LordChristopher";
+			self.realName = "Lord Christopher";
 			self.password = "Team 61C";
 			self.availableHours = "6 to 11 pm";
 			self.currentCity = "Berkeley";
@@ -150,10 +156,11 @@ angular.module('generosity', ['ngRoute', 'templates'])
 
 		self.totalTests = 0;
 		self.passedTests = 0;
+		self.sectionTests = 0;
 		self.messages = [];
 
 		self.assert = function(condition, statement) {
-			testMessage = "Test #" + (self.totalTests+1);
+			testMessage = "Test #" + (self.sectionTests+1);
 			if(condition) {
 				self.passedTests += 1;
 				testMessage = testMessage + " PASSED.";
@@ -163,22 +170,52 @@ angular.module('generosity', ['ngRoute', 'templates'])
 				console.log(testMessage);
 			}
 			self.totalTests += 1;
+			self.sectionTests += 1;
 			self.messages.push(testMessage);
 		}
 
 		self.runTests = function() {
 			self.testAttributes();
+			// self.testAPICalls();
 		}
 
+		/*testAttributes() tests the UsersController's variables and variable-related methods.*/
 		self.testAttributes = function() {
 			var $scope = {};
+			self.sectionTests = 0;
 			self.messages.push("Running UsersController attribute tests...");
 			var userTestController = $controller('UsersController', { $scope: $scope });
-			userTestController.username = "AlanChristopher";
-			self.assert(userTestController.username === "AlanChristopher", userTestController.username + " is not equal to 'AlanChristopher'.");
+			userTestController.username = "CountNecula";
+			self.assert(userTestController.username === "CountNecula", userTestController.username + " is not equal to 'CountNecula'.");
 			userTestController.createDummyUser();
+			self.assert(userTestController.username === "LordChristopher", userTestController.username + " is not equal to 'LordChristopher'.");
+			self.assert(userTestController.realName === "Lord Christopher", userTestController.realName + " is not equal to 'Lord Christopher'.");
+			self.assert(userTestController.password === "Team 61C", userTestController.password + " is not equal to 'Team 61C'.");
+			self.assert(userTestController.availableHours === "6 to 11 pm", userTestController.availableHours + " is not equal to '6 to 11 pm'.");
 			self.assert(userTestController.currentCity === "Berkeley", userTestController.currentCity + " is not equal to 'Berkeley'.");
-
+			self.assert(userTestController.currentLocation === "Nowhere", userTestController.currentLocation + " is not equal to 'Nowhere'.");
+			self.assert(userTestController.recipient === "He whose name shall not be spoken", userTestController.recipient + " is not equal to 'recipient'.");
 		}
 
+		self.testAPICalls = function() {
+			var $scope = {};
+			self.sectionTests = 0;
+			self.messages.push("Running UsersController API call tests...");
+			var userTestController = $controller('UsersController', { $scope: $scope });
+			userTestController.createDummyUser();
+			var errCode = userTestController.addUser();
+			console.log("yolo");
+			// console.log(errCode);
+			/*Add code to delete this user beforehand.*/
+			self.assert(errCode === 1, "Error code is " + errCode + ", but it should have been 1 (successful creation).");
+			userTestController.addUser();
+			self.assert(errCode === -2, "Error code is " + errCode + ", but it should have been -2 (username already exists). Username is " + userTestController.username + ", but it should have been LordChristopher.");
+			userTestController.username = "";
+			userTestController.addUser();
+			self.assert(errCode === -3, "Error code is " + errCode + ", but it should have been -3 (bad username). Username is " + userTestController.username + ", but it should have been blank.");
+			userTestController.username = "Anaconda";
+			userTestController.password = null;
+			userTestController.addUser();
+			self.assert(errCode === -4, "Error code is " + errCode + ", but it should have been -4 (bad password). Password is " + userTestController.password + ", but it should have been blank.");
+		}
 	}]);
