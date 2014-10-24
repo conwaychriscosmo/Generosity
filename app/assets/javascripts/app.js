@@ -1,4 +1,20 @@
-angular.module('generosity', [])
+angular.module('generosity', ['ngRoute'])
+	.config(['$routeProvider',
+	  	function($routeProvider) {
+	    	$routeProvider.
+	      		when('/index', {
+	        		templateUrl: 'partials/welcome.html',
+	        		controller: 'UsersController'
+	      		}).
+	      		// when('/phones/:phoneId', {
+	        // 		templateUrl: 'partials/phone-detail.html',
+	        // 		controller: 'PhoneDetailCtrl'
+	      		// }).
+	      		otherwise({
+	        		redirectTo: '/404'
+	      		});
+	  }])
+
 	.controller('UsersController', ['$scope', function($scope) {
 		var self = this;
 
