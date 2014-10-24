@@ -12,9 +12,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'user#welcome'
-
+  post 'users/updatecity' => 'users#editCurrentCity'
   get '/', to: 'user#welcome'
-  post '/users/updatehours' => 'users#editAvailableHours'
+  post 'users/updatehours' => 'users#editAvailableHours'
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
