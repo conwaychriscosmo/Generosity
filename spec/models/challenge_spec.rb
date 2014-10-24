@@ -27,6 +27,7 @@ RSpec.describe Challenge, :type => :model  do
       expect(output).to eq hsh
     end
 
+<<<<<<< HEAD
     it "getChallenge" do
       Users.add('fred', 'iloveme')
       Users.add('george', 'notfromharrypotter')
@@ -47,6 +48,22 @@ RSpec.describe Challenge, :type => :model  do
       expect(challenge.Recipient).to eq 'michael'
     end
 
+=======
+    it "should return the giver and recipient based on giver username" do
+      Users.add('bill', 'hick')
+      Users.add('billy', 'mahers')
+      Users.add('will', 'free')
+      Challenge.match('bill')
+      output = Challenge.current('bill')
+      p "output is "
+      p output
+      p '*'*15
+      giverfromdb = Challenge.find_by(Giver: 'bill')
+      outgoal = { errCode: 1, Giver: giverfromdb.Giver, Recipient: giverfromdb.Recipient }
+      p outgoal
+      expect(output).to eq outgoal
+    end
+>>>>>>> 37bccaf3fcbeb49f39650c3ecfe5c654c4bac062
   end
 
   

@@ -27,12 +27,21 @@ class Challenge < ActiveRecord::Base
     end
     return output
   end
+  
+  def self.current(username)
+    @challenge = Challenge.find_by(Giver: username)
+    output = { errCode: -1 }
+    if @challenge
+      output = { errCode: 1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }
+    end
+    return output
+  end
 
   #returns the current challenge if there is one for this user
   def getChallenge(username)
     return Challenge.where(Giver: username)
   end
-
+ 
   def self.complete()
 
     #updates the user fields
