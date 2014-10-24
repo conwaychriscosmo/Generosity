@@ -1,6 +1,7 @@
+
 angular.module('generosity', ['ngRoute', 'templates'])
-	.config(['$routeProvider',
-	  	function($routeProvider) {
+	.config(['$routeProvider', '$locationProvider',
+	  	function($routeProvider, $locationProvider) {
 	    	$routeProvider.
 	      		when('/', {
 	        		templateUrl: "users-form.html",
@@ -13,6 +14,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	      		otherwise({
 	        		redirectTo: '/'
 	      		});
+	      	$locationProvider.html5Mode(true);
 	  }])
 
 	.controller('UsersController', ['$scope', '$http', function($scope, $http) {
@@ -75,10 +77,17 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	.directive('navbar', function() {
 		return {
 			restrict: 'E',
+			templateUrl: "navbar.html"
+		};
+	})
+
+	.directive('usersForm', function() {
+		return {
+			restrict: 'E',
 			scope: {
 
 			},
-			templateUrl: "navbar.html"
+			templateUrl: "users-form.html"
 		};
 	})
 	
