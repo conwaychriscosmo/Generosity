@@ -1,5 +1,5 @@
-<div class="container-fluid">
-	<nav class="navbar navbar-default" role="navigation">
+<div class="container-fluid" style="margin-top:-.2%">
+	<nav class="navbar navbar-default" role="navigation" style="width:110%; margin-left:-2%">
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
 		    <div class="navbar-header">
@@ -9,16 +9,16 @@
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
 		      	</button>
-		      <a class="navbar-brand" href="#" style="color: white;">Generosity Engine</a>
+		      <a class="navbar-brand" href="#" data-ng-click="template=0" style="color: white;">Generosity Engine</a>
 		    </div>
 
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		     	<ul class="nav navbar-nav">
-			        <li><a href="#" style="color: white;">Profile</a></li>
-			        <li><a href="#" style="color: white;">Challenge</a></li>
-			        <li><a href="#" style="color: white;">Map</a></li>
-			        <li><a href="#" style="color: white;">Shop</a></li>
+			        <li><a href="#profile" data-ng-click="template=1" style="color: white;">Profile</a></li>
+			        <li><a href="#challenge" data-ng-click="template=2" style="color: white;">Challenge</a></li>
+			        <li><a href="#map" data-ng-click="template=3" style="color: white;">Map</a></li>
+			        <li><a href="#shop" data-ng-click="template=4" style="color: white;">Shop</a></li>
 		      	</ul>
 		     	<form class="navbar-form navbar-left" role="search">
 		        	<div class="form-group">
@@ -26,20 +26,20 @@
 		        	</div>
 		        	<button type="submit" class="btn btn-default">Search</button>
 		     	</form>
-		     	<ul class="nav navbar-nav navbar-right">
-		     		<li class="dropdown">
+		     	<ul class="nav navbar-nav navbar-right" style="margin-right:4%">
+		     		<li class="dropdown" data-ng-show="false">
 			         	<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;">Dropdown <span class="caret"></span></a>
 			          	<ul class="dropdown-menu" role="menu">
-			            <li><a href="#">Action</a></li>
-			            <li><a href="#">Action</a></li>
-			            <li class="divider"></li>
-			            <li><a href="#">Options</a></li>
-			            <li><a href="#">Account Settings</a></li>
-			            <li class="divider"></li>
-			            <li><a href="#">Log out</a></li>
-			          </ul>
-			        </li>
-		     	</ul>
+				            <li><a href="#">Action</a></li>
+				            <li><a href="#">Action</a></li>
+				            <li class="divider"></li>
+				            <li><a href="#">Options</a></li>
+				            <li><a href="#">Account Settings</a></li>
+				            <li class="divider"></li>
+				            <li><a href="#">Log out</a></li>
+			        	</ul>
+			        	<li><a href="#user-form" data-ng-click="template=5" style="color: white">Sign up now!</a></li>
+			    </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 	</nav>	
