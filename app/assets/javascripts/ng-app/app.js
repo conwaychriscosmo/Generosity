@@ -16,7 +16,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	      	$locationProvider.html5Mode(true);
 	  }])
 
-	.controller('UsersController', ['$scope', '$http', function($scope, $http) {
+	.controller('UsersController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
 		var self = this;
 
 		self.username;
@@ -27,16 +27,18 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		self.currentLocation;
 		self.recipient; //Should probably be renamed
 
-		$scope.err;
+
+		$scope.err = 0;
 
 		self.addUser = function() {
+			var errCode;
 			$http.post('users/add', {username: self.username, password: self.password}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
 					var errCode = data.errCode;
-					$scope.err = data.errCode;
-					console.log("HYA" + self.errCode);
+					self.retrieveErrCode(errCode);
+					// console.log("HYA" + self.errCode);
 					if(errCode == -2) {
 						alert("Error: This username already exists.");
 					}
@@ -49,16 +51,21 @@ angular.module('generosity', ['ngRoute', 'templates'])
 					else {
 						alert("User created.");						
 					}
-					$scope.$emit('errCode', errCode);
-					// return errCode;
+					$rootScope.errCode = data.errCode;
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
 					alert("Error.");
 				});
-			return errCode;
+				console.log(self.username);
+			return $scope.errCode;
 		}
+
+		self.retrieveErrCode = function(code) {
+			$scope.err = code;
+			console.log("here");
+		};
 
 		self.createDummyUser = function() {
 			self.username = "LordChristopher";
@@ -160,7 +167,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		self.messages = [];
 
 		self.assert = function(condition, statement) {
-			testMessage = "Test #" + (self.sectionTests+1);
+			testMessage = "Test #" + (self.totalTests+1);
 			if(condition) {
 				self.passedTests += 1;
 				testMessage = testMessage + " PASSED.";
@@ -204,18 +211,19 @@ angular.module('generosity', ['ngRoute', 'templates'])
 			var userTestController = $controller('UsersController', { $scope: $scope });
 			userTestController.createDummyUser();
 			var errCode = userTestController.addUser();
-			console.log("yolo");
+			// console.log("yolo");
 			// console.log(errCode);
 			/*Add code to delete this user beforehand.*/
+			errCode = $scope.err;
 			self.assert(errCode === 1, "Error code is " + errCode + ", but it should have been 1 (successful creation).");
-			userTestController.addUser();
+			errCode = userTestController.addUser();
 			self.assert(errCode === -2, "Error code is " + errCode + ", but it should have been -2 (username already exists). Username is " + userTestController.username + ", but it should have been LordChristopher.");
 			userTestController.username = "";
-			userTestController.addUser();
+			errCode = userTestController.addUser();
 			self.assert(errCode === -3, "Error code is " + errCode + ", but it should have been -3 (bad username). Username is " + userTestController.username + ", but it should have been blank.");
 			userTestController.username = "Anaconda";
 			userTestController.password = null;
-			userTestController.addUser();
+			errCode = userTestController.addUser();
 			self.assert(errCode === -4, "Error code is " + errCode + ", but it should have been -4 (bad password). Password is " + userTestController.password + ", but it should have been blank.");
 		}
 	}]);
