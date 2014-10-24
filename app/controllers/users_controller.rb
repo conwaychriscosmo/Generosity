@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+    # Add user USERNAME with password PASSWORD to database. Give them a challenge
 	def add()
 		code = Users.add(params[:username], params[:password])
 		data = {}
