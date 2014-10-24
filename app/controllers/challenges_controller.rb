@@ -3,7 +3,7 @@ class ChallengesController < ApplicationController
   
   def match
   #built for testing to cause matches
-    output = Challenge.match
+    output = Challenge.match(username)
     render json: output
   end
 
@@ -11,6 +11,12 @@ class ChallengesController < ApplicationController
   #called when a challenge is completed
     output = Challenge.complete
     render json: output
+  end
+
+  def getCurrentChallenge
+    @username = params[:session][:username]
+    output = Challenge.current(@username)
+    return output
   end
 
   def accept
