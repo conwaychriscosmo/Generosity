@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   resources :challenges
 
   resources :gifts, :users
@@ -13,10 +15,13 @@ Rails.application.routes.draw do
 
   get '/', to: 'user#welcome'
 
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
+
+  get 'users/add', to: 'users#new'
   post 'users/login', to: 'users#login'
-
   post 'users/add', to: 'users#add'
-
   post 'users/logout', to: 'users#logout'
 
   post 'TEST/unitTests', to: 'users#runUnitTests'
