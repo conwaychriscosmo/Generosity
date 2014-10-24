@@ -1,9 +1,25 @@
 class UsersController < ApplicationController
 
 	def add()
+		code = Users.add(params[:username], params[:password])
+		data = {}
+		data[:errCode] = code
+		if code == 1
+			challenge = Challenge.match(params[:username])
+			challengeCode = challenge[:errCode]
+			data[:challengeCode] = challengeCode
+			if challengeCode == 1
+			    data[:recipient] = challenge[:Recipient]
+			end
+		end
+		render json: data
 	end
 
 	def login()
+        code = User.login(params[:user_name], params[:password])
+	    data = {}
+	    data[:errCode] = code
+	    render json: data
 	end
 
 	def logout()
