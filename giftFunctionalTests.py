@@ -27,31 +27,26 @@ class TestUnit(testLib.RestTestCase):
 class TestCommands(testLib.RestTestCase):
     """Test adding users, logins, etc."""
 
-    def assertResponse(self, respData, errCode = 1, Name = None , url = None):
+    def assertResponse(self, respData, errCode = 1, name = None , url = None):
         """
         Check that the response data dictionary matches the expected values
         """
         expected = { 'errCode' : errCode }
-        if Name is not None:
-            expected['Giver']  = Giver
+        if name is not None:
+            expected['name']  = name
         if url is not None:
-            expected['Recipient'] = Recipient
+            expected['url'] = url
         self.assertDictEqual(expected, respData)
     
     def testGifte(self):
-        respData = self.makeRequest("/gift/create", method="POST", data = { 'Name': 'user1', 'url' : 'hero.com' })
-        self.assertResponse(respData, errCode = 1)
+        respData = self.makeRequest("/gift/create", method="POST", data = { 'name': 'user1', 'url' : 'hero.com' })
+        self.assertResponse(respData, errCode = 1, name = 'user1', url = 'hero.com')
 
-    def testChallenge1User(self):
-        self.makeRequest("/users/add", method="POST", data = { 'username' : 'user1', 'password' : 'password'} )
+    def testDestroyGift(self):
+        self.makeRequest("/gift/destroy", method="POST", data = { 'username' : 'user1', 'password' : 'password'} )
         respData = self.makeRequest("/challenge/create", method="POST", data = { 'username': 'user1' })
         self.assertResponse(respData, errCode = -1)
     
-    def testChallenge2Users(self):
-        self.makeRequest("/users/add", method="POST", data = { 'username' : 'user1', 'password' : 'password'} )
-        self.makeRequest("/users/add", method="POST", data = { 'username': 'user2', 'password' : 'password'})
-        respData = self.makeRequest("/challenge/create", method="POST", data = { 'username': 'user1' })
-        self.assertResponse(respData, errCode = 1, Giver = 'user1', Recipient = 'user2')
 
 
 
