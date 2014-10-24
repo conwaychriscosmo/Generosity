@@ -53,6 +53,8 @@
 		<li><a href="#"> Index </a></li>
 		<div ng-view=""></div>
 
+		<button data-ng-click="user.addUser()">Add me to the database.</button>
+
 		Hello there.
 		<br>
 		I am test user "{{user.username}}"
@@ -68,5 +70,34 @@
 		<div class="css1">
 			Current Recipient: {{user.recipient}}
 		</div>
+
+		<form name="usersForm" data-ng-controller = "UsersController as user" style="margin-left: 3%" data-ng-submit="user.addUser()" novalidate>
+			<div class="input-group" style="margin-bottom:1%">
+			  	<span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none;">Username: </span>
+			  		<input type="text" class="form-control" placeholder="Username" data-ng-model="user.username" style="max-width: 20%;" required>
+			  	</span>
+			</div>
+			<div class="input-group" style="margin-bottom:1%">
+			  	<span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Password:  </span>
+			  		<input type="password" class="form-control" placeholder="Password" data-ng-model="user.password" style="max-width: 20%;" required>
+			  	</span>
+			</div>
+			<div class="input-group" style="margin-bottom:1%">
+			  	<span class="input-group-addon" style="background-color: transparent; padding-right:4.5em; border-style:none">Real Name: </span>
+			  		<input type="text" class="form-control" placeholder="Real Name" data-ng-model="user.realName" style="max-width: 20%;" required>
+			  	</span>
+			</div>
+			<div class="input-group" style="margin-bottom:1%">
+			  	<span class="input-group-addon" style="background-color: transparent; padding-right:2.5em; border-style:none">Available Hours:</span>
+			  		<input type="text" class="form-control" placeholder="6pm-6am" data-ng-model="user.availableHours" style="max-width: 20%;" required>
+			  	</span>
+			</div>
+			<div class="input-group" style="margin-bottom:1%">
+			  	<span class="input-group-addon" style="background-color: transparent; padding-right:4.3em; border-style:none">Current City:</span>
+			  		<input type="text" class="form-control" placeholder="Berkeley, California" data-ng-model="user.availableHours" style="max-width: 20%;" required>
+			  	</span>
+			</div>
+	      	<button class="btn btn-default" style="background-color: lightskyblue; margin-left: 1%">Create Account</button>
+	    </form>
 	</body>
 </html>

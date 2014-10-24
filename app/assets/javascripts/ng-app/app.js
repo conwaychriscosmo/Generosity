@@ -15,16 +15,43 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	      		});
 	  }])
 
-	.controller('UsersController', ['$scope', function($scope) {
+	.controller('UsersController', ['$scope', '$http', function($scope, $http) {
 		var self = this;
 
 		self.username;
 		self.realName;
 		self.password;
-		// self.availableHours; //How should this be styled?
+		self.availableHours; //How should this be styled?
 		self.currentCity;
 		self.currentLocation;
 		// self.recipient; //Should probably be renamed
+
+		self.addUser = function() {
+			$http.post('users/add', {username: self.username, password: self.password}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					errCode = data.errCode;
+					console.log(errCode);
+					if(errCode == -2) {
+						alert("Error: This username already exists.");
+					}
+					else if(errCode == -3) {
+						alert("Error: The username is empty, too long, or has invalid characters.");
+					}
+					else if(errCode == -4) {
+						alert("Error: The password is empty, too long, or has invalid characters.");
+					}
+					else {
+						alert("User created.");						
+					}
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					alert("Error.");
+				});
+		}
 
 		self.createDummyUser = function() {
 			self.username = "AlanChristopher";
