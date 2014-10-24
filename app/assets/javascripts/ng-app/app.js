@@ -16,7 +16,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	      	$locationProvider.html5Mode(true);
 	  }])
 
-	.controller('UsersController', ['$scope', '$http', function($scope, $http) {
+	.controller('UsersController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
 		var self = this;
 
 		self.username;
@@ -25,15 +25,20 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		self.availableHours; //How should this be styled?
 		self.currentCity;
 		self.currentLocation;
-		// self.recipient; //Should probably be renamed
+		self.recipient; //Should probably be renamed
+
+
+		$scope.err = 0;
 
 		self.addUser = function() {
+			var errCode;
 			$http.post('users/add', {username: self.username, password: self.password}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
-					errCode = data.errCode;
-					console.log(errCode);
+					var errCode = data.errCode;
+					self.retrieveErrCode(errCode);
+					// console.log("HYA" + self.errCode);
 					if(errCode == -2) {
 						alert("Error: This username already exists.");
 					}
@@ -46,17 +51,25 @@ angular.module('generosity', ['ngRoute', 'templates'])
 					else {
 						alert("User created.");						
 					}
+					$rootScope.errCode = data.errCode;
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
 					alert("Error.");
 				});
+				console.log(self.username);
+			return $scope.errCode;
 		}
 
+		self.retrieveErrCode = function(code) {
+			$scope.err = code;
+			console.log("here");
+		};
+
 		self.createDummyUser = function() {
-			self.username = "AlanChristopher";
-			self.realName = "Alan Christopher";
+			self.username = "LordChristopher";
+			self.realName = "Lord Christopher";
 			self.password = "Team 61C";
 			self.availableHours = "6 to 11 pm";
 			self.currentCity = "Berkeley";
@@ -150,35 +163,67 @@ angular.module('generosity', ['ngRoute', 'templates'])
 
 		self.totalTests = 0;
 		self.passedTests = 0;
+		self.sectionTests = 0;
 		self.messages = [];
 
 		self.assert = function(condition, statement) {
 			testMessage = "Test #" + (self.totalTests+1);
 			if(condition) {
 				self.passedTests += 1;
-				testMessage = testMessage + " PASSED.";
+				testMessage = testMessage + " PASSED: " + statement;
 			}
 			else {
 				testMessage = testMessage + " FAILED: " + statement;
 				console.log(testMessage);
 			}
 			self.totalTests += 1;
+			self.sectionTests += 1;
 			self.messages.push(testMessage);
 		}
 
 		self.runTests = function() {
 			self.testAttributes();
+			// self.testAPICalls();
 		}
 
+		/*testAttributes() tests the UsersController's variables and variable-related methods.*/
 		self.testAttributes = function() {
 			var $scope = {};
+			self.sectionTests = 0;
 			self.messages.push("Running UsersController attribute tests...");
 			var userTestController = $controller('UsersController', { $scope: $scope });
-			userTestController.username = "AlanChristopher";
-			self.assert(userTestController.username === "AlanChristopher", userTestController.username + " is not equal to 'AlanChristopher'.");
+			userTestController.username = "CountNecula";
+			self.assert(userTestController.username === "CountNecula", "Username is " + userTestController.username + ", and should be equal to 'CountNecula'.");
 			userTestController.createDummyUser();
-			self.assert(userTestController.currentCity === "Berkeley", userTestController.currentCity + " is not equal to 'Berkeley'.");
-
+			self.assert(userTestController.username === "LordChristopher", "Username is " + userTestController.username + ", and should be equal to 'LordChristopher'.");
+			self.assert(userTestController.realName === "Lord Christopher", "Real name is " + userTestController.realName + ", and should be equal to 'Lord Christopher'.");
+			self.assert(userTestController.password === "Team 61C", "Password is " + userTestController.password + ", and should be equal to 'Team 61C'.");
+			self.assert(userTestController.availableHours === "6 to 11 pm", "Available hours are " + userTestController.availableHours + ", and should be equal to '6 to 11 pm'.");
+			self.assert(userTestController.currentCity === "Berkeley", "Current location is " + userTestController.currentCity + ", and should be equal to 'Berkeley'.");
+			self.assert(userTestController.currentLocation === "Nowhere", "Current location is " + userTestController.currentLocation + ", and should be not equal to 'Nowhere'.");
+			self.assert(userTestController.recipient === "He whose name shall not be spoken", "Recipient is " + userTestController.recipient + ", and should be equal to 'He whose name shall not be spoken'.");
 		}
 
+		self.testAPICalls = function() {
+			var $scope = {};
+			self.sectionTests = 0;
+			self.messages.push("Running UsersController API call tests...");
+			var userTestController = $controller('UsersController', { $scope: $scope });
+			userTestController.createDummyUser();
+			var errCode = userTestController.addUser();
+			// console.log("yolo");
+			// console.log(errCode);
+			/*Add code to delete this user beforehand.*/
+			errCode = $scope.err;
+			self.assert(errCode === 1, "Error code is " + errCode + ", but it should have been 1 (successful creation).");
+			errCode = userTestController.addUser();
+			self.assert(errCode === -2, "Error code is " + errCode + ", but it should have been -2 (username already exists). Username is " + userTestController.username + ", but it should have been LordChristopher.");
+			userTestController.username = "";
+			errCode = userTestController.addUser();
+			self.assert(errCode === -3, "Error code is " + errCode + ", but it should have been -3 (bad username). Username is " + userTestController.username + ", but it should have been blank.");
+			userTestController.username = "Anaconda";
+			userTestController.password = null;
+			errCode = userTestController.addUser();
+			self.assert(errCode === -4, "Error code is " + errCode + ", but it should have been -4 (bad password). Password is " + userTestController.password + ", but it should have been blank.");
+		}
 	}]);

@@ -1,28 +1,66 @@
-<form name="usersForm" data-ng-controller = "UsersController as user" style="margin-left: 3%" data-ng-submit="user.addUser()" novalidate>
-<div class="input-group" style="margin-bottom:1%">
-    <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none;">Username: </span>
-      <input type="text" class="form-control" placeholder="Username" data-ng-model="user.username" style="max-width: 20%;" required>
-    </span>
+<form name="usersForm" data-ng-controller = "UsersController as user" style="margin-left: 3%;" data-ng-submit="user.addUser()" novalidate>
+<div class="form">
+  
+      <div class="input-group" style="margin-bottom:1%">
+        <table width="100%">
+          <tr>
+            <td width="200px;">
+              <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none;">Username: </span>
+            </td>
+            <td width="200px;">
+              <input type="text" class="form-control" placeholder="Username" data-ng-model="user.username" style="" required>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="input-group" style="margin-bottom:1%">
+        <table width="100%">
+          <tr>
+            <td width="200px;">
+              <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Password:  </span>
+            </td>
+            <td width="200px;">
+              <input type="password" class="form-control" placeholder="Password" data-ng-model="user.password" style="" required>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="input-group" style="margin-bottom:1%">
+        <table width="100%">
+          <tr>
+            <td width="200px;">
+              <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Real Name:  </span>
+            </td>
+            <td width="200px;">
+              <input type="text" class="form-control" placeholder="Real Name" data-ng-model="user.realName" style="" required>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="input-group" style="margin-bottom:1%">
+        <table width="100%">
+          <tr>
+            <td width="200px;">
+              <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Available Hours:  </span>
+            </td>
+            <td width="200px;">
+              <input type="text" class="form-control" placeholder="6pm-6am" data-ng-model="user.availableHours" style="" required>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="input-group" style="margin-bottom:1%">
+        <table width="100%">
+          <tr>
+            <td width="200px;">
+              <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Current City:  </span>
+            </td>
+            <td width="200px;">
+              <input type="text" class="form-control" placeholder="Berkeley, California" data-ng-model="user.currentCity" style="" required>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <button class="btn btn-default" style="margin-left:170px;margin-top:30px;">Create Account</button>
 </div>
-<div class="input-group" style="margin-bottom:1%">
-    <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Password:  </span>
-      <input type="password" class="form-control" placeholder="Password" data-ng-model="user.password" style="max-width: 20%;" required>
-    </span>
-</div>
-<div class="input-group" style="margin-bottom:1%">
-    <span class="input-group-addon" style="background-color: transparent; padding-right:4.5em; border-style:none">Real Name: </span>
-      <input type="text" class="form-control" placeholder="Real Name" data-ng-model="user.realName" style="max-width: 20%;" required>
-    </span>
-</div>
-<div class="input-group" style="margin-bottom:1%">
-    <span class="input-group-addon" style="background-color: transparent; padding-right:2.5em; border-style:none">Available Hours:</span>
-      <input type="text" class="form-control" placeholder="6pm-6am" data-ng-model="user.availableHours" style="max-width: 20%;" required>
-    </span>
-</div>
-<div class="input-group" style="margin-bottom:1%">
-    <span class="input-group-addon" style="background-color: transparent; padding-right:4.3em; border-style:none">Current City:</span>
-      <input type="text" class="form-control" placeholder="Berkeley, California" data-ng-model="user.availableHours" style="max-width: 20%;" required>
-    </span>
-</div>
-    <button class="btn btn-default" style="background-color: lightskyblue; margin-left: 1%">Create Account</button>
 </form>
