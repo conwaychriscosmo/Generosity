@@ -3,7 +3,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	  	function($routeProvider) {
 	    	$routeProvider.
 	      		when('/', {
-	        		templateUrl: 'navbar.html',
+	        		templateUrl: "users-form.html",
 	        		controller: 'UsersController'
 	      		}).
 	      		// when('/phones/:phoneId', {
@@ -11,7 +11,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	        // 		controller: 'PhoneDetailCtrl'
 	      		// }).
 	      		otherwise({
-	        		redirectTo: '/404'
+	        		redirectTo: '/'
 	      		});
 	  }])
 
@@ -72,15 +72,15 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		// };
 	}])
 	
-	// .directive('directiveE', function() {
-	// 	return {
-	// 		restrict: 'E',
-	// 		scope: {
+	.directive('navbar', function() {
+		return {
+			restrict: 'E',
+			scope: {
 
-	// 		},
-	// 		templateUrl: "../../views/navbar.html.erb"
-	// 	};
-	// })
+			},
+			templateUrl: "navbar.html"
+		};
+	})
 	
 	// .directive('directiveA', function() {
 	// 	return {
