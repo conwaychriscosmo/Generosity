@@ -1,6 +1,12 @@
 class GiftsController < ApplicationController
   before_action :set_gift, only: [:show, :edit, :update, :destroy]
- def runUnitTests
+
+  def resetFixture
+    output = Gift.resetFixture
+    render json: output
+  end
+
+  def runUnitTests
    output = Gift.runUnitTests()
    last_line = output.lines.last
    last_line_captured = /(?<totalTests>\d+) examples, (?<nrFailed>\d+) failures/.match(last_line)

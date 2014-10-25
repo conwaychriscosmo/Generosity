@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'sessions/new'
-
+  post 'TESTAPI/resetFixture' => 'gifts#resetFixture'
   resources :challenges
 
   resources :gifts, :users
