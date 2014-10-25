@@ -1,12 +1,44 @@
 class UsersController < ApplicationController
 
+
+    def show()
+    	render 'show'
+    end
+    #allow user to update current city from profile view
+    def editCurrentCity
+        username = params[:session][:username]
+        newCity = params[:newCity]
+        output = Users.editCurrentCity(username, newCity)
+	return output
+    end
+
+    def editLevel
+    
+    end
+
+    def editTotalGiftsGiven
+
+    end
+    #allow user to update available hours
+    def editAvailableHours
+        username = params[:session][:username]
+        newHours = params[:newHours]
+        output = Users.editAvailableHours(username, newHours)
+	return output
+    end
+
+  
     # Add user USERNAME with password PASSWORD to database. Give them a challenge
 	def add()
-		code = Users.add(params[:username], params[:password])
+		username = params[:session][:username]
+		password = params[:session][:password]
+		code = Users.add(username, password)
 		data = {}
 		data[:errCode] = code
 		if code == 1
-			challenge = Challenge.match(params[:username])
+			user = Users.find_by(username: username)
+			login(user)
+			challenge = Challenge.match(username)
 			challengeCode = challenge[:errCode]
 			data[:challengeCode] = challengeCode
 			if challengeCode == 1
@@ -14,16 +46,6 @@ class UsersController < ApplicationController
 			end
 		end
 		render json: data
-	end
-
-	def login()
-        code = User.login(params[:user_name], params[:password])
-	    data = {}
-	    data[:errCode] = code
-	    render json: data
-	end
-
-	def logout()
 	end
 
 	def runUnitTests()

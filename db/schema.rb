@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20141025014620) do
     t.integer  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_digest"
   end
 
 end
