@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'challenge/current' => 'challenges#current'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
+  post 'TEST/gifts/unitTests' => 'gifts#runUnitTests'
   # You can have the root of your site routed with "root"
   root 'user#welcome'
   post 'users/updatecity' => 'users#editCurrentCity'
