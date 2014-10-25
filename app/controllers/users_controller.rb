@@ -41,9 +41,6 @@ class UsersController < ApplicationController
 			challenge = Challenge.match(username)
 			challengeCode = challenge[:errCode]
 			data[:challengeCode] = challengeCode
-			if challengeCode == 1
-			    data[:recipient] = challenge[:Recipient]
-			end
 		end
 		render json: data
 	end

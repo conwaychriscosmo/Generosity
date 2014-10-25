@@ -5,7 +5,6 @@ class Users < ActiveRecord::Base
 	MAX_USERNAME_LENGTH = 128
 
 	SUCCESS = 1
-	ERR_BAD_CREDENTIALS = -1
 	ERR_BAD_PASSWORD = -4
 	ERR_BAD_USERNAME = -3
 	ERR_USER_EXISTS = -2
@@ -20,7 +19,7 @@ class Users < ActiveRecord::Base
 	has_secure_password
 
 	def self.errorCodes()
-		return {success: SUCCESS, badCredentials: ERR_BAD_CREDENTIALS, badPassword: ERR_BAD_PASSWORD,
+		return {success: SUCCESS, badPassword: ERR_BAD_PASSWORD,
 			badUsername: ERR_BAD_USERNAME, userExists: ERR_USER_EXISTS}
 	end
 
@@ -29,7 +28,7 @@ class Users < ActiveRecord::Base
 		@user.available_hours = newHours
 		output = { errCode: -1 }
 		if @user.save
-			output = { errCode: 1, available_hours: newHours }
+			output = { errCode: SUCCESS, available_hours: newHours }
 		return output
 		end
 	end
