@@ -6,20 +6,23 @@
 		<navbar></navbar>
 
 	</head>
+
 	<body data-ng-controller = "UsersController as user" data-ng-init="template=0">
+		<div class="main-content">
+			<div ng-view></div>
 
-		<div ng-view></div>
+			<% if Rails.env == "development" %>
+				Template: {{template}}
+			
+				<button data-ng-click="template=99" style="background-color:teal">Run Unit Tests</button>
+				<button data-ng-click="template=7" style="background-color:teal">Show Sample profile</button>
+			<%end%>
 
-		<% if Rails.env == "development" %>
-			Template: {{template}}
-		
-
-		<button data-ng-click="template=99" style="background-color:teal">Run Unit Tests</button>
-		<%end%>
-		<users-form data-ng-show="template==5"></users-form>
-		<login-form data-ng-show="template==6"></login-form>
-
-		<users-tests data-ng-if="template==99"></users-tests>
+			<users-form data-ng-show="template==5"></users-form>
+			<login-form data-ng-show="template==6"></login-form>
+			<profile data-ng-show="template==7"></profile>
+			<users-tests data-ng-if="template==99"></users-tests>
+		</div>
 
 	</body>
 </html>

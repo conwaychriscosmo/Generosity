@@ -2,6 +2,10 @@ head {
 	width: 100%;
 }
 
+#over {
+	z-index: 10;
+}
+
 .lighten{
 	background-color: white;
 	z-index: 1000;
@@ -12,6 +16,10 @@ head {
 body{
 	background:url(http://i.imgur.com/lGjlXUF.gif)no-repeat;
 	background-size: cover;
+}
+
+.main-content {
+	padding-top:5%;
 }
 
 .input-group-addon{
@@ -29,6 +37,32 @@ body{
 	margin-left: 27%;
 	/*height:300px;*/
 	width: 500px;
+	padding:30px;
+}
+
+.profile-pic {
+	opacity: 0.9;
+	box-shadow: rgba(0,0,0,0.2) 0px 2px 3px, inset rgba(0,0,0,0.2) 0px -1px 2px;
+	border-radius: 25px;
+	/*background: url(http://i.imgur.com/VJeDMMe.jpg) no-repeat fixed;*/
+	float: left;
+	word-wrap: break-word;
+	/*margin-left: 27%;*/
+	/*height:300px;*/
+	width: 40%;
+	padding:30px;	
+}
+
+.profile-info {
+	opacity: 0.9;
+	box-shadow: rgba(0,0,0,0.2) 0px 2px 3px, inset rgba(0,0,0,0.2) 0px -1px 2px;
+	border-radius: 25px;
+	/*background: url(http://i.imgur.com/VJeDMMe.jpg) no-repeat fixed;*/
+	float: right;
+	word-wrap: break-word;
+	/*margin-left: 27%;*/
+	/*height:300px;*/
+	width: 55%%;
 	padding:30px;
 }
 
@@ -52,6 +86,7 @@ body{
 	background: -o-linear-gradient(top, #093c5b 1%,#562601 100%); /* Opera 11.10+ */
 	background: -ms-linear-gradient(top, #093c5b 1%,#562601 100%); /* IE10+ */
 	color: white;
+	z-index: 100;
 	/*position: fixed;*/
 }
 

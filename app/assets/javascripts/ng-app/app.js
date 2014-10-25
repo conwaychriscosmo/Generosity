@@ -137,6 +137,16 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		};
 	})	
 
+	.directive('profile', function() {
+		return {
+			restrict: 'E',
+			scope: {
+
+			},
+			templateUrl: "profile.html" //Need to accomodate id afterwards
+		};
+	})	
+
 	.directive('usersTests', function() {
 		return {
 			restrict: 'E',
