@@ -28,7 +28,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		self.recipient; //Should probably be renamed
 
 
-		$scope.err = 0;
+		$scope.errCode = 0;
 
 		self.addUser = function() {
 			var errCode;
@@ -51,6 +51,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 					else {
 						alert("User created.");						
 					}
+					console.log(errCode);
 					$rootScope.errCode = data.errCode;
 				}).
 				error(function(data, status, headers, config) {

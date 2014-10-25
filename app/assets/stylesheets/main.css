@@ -33,7 +33,12 @@ body{
 }
 
 .test {
-	background-color: red;
+	opacity: 0.9;
+	box-shadow: rgba(0,0,0,0.2) 0px 2px 3px, inset rgba(0,0,0,0.2) 0px -1px 2px;
+	border-radius: 25px;
+	background: url(http://i.imgur.com/VJeDMMe.jpg) no-repeat fixed;
+	width: 100%;
+	padding:30px;
 }
 
 .*{
