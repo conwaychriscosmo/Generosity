@@ -2,11 +2,13 @@ class Gift < ActiveRecord::Base
   validates :name, length: { maximum: 128 }, presence: true
   validates :url, presence: true 
 
-
+  def self.runUnitTests()
+    return %x[rspec spec/models/users_spec.rb]
+  end
   def self.create(name, url)
     @gift = Gift.new
     @gift.name = name
-    @gift.url = url
+    @gi.url = url
     if @gift.name.nil?
       output = { errCode: -1 }
     end
