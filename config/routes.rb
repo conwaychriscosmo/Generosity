@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get 'users/add', to: 'users#new'
   post 'users/add', to: 'users#add'
 
-  post 'TEST/unitTests', to: 'users#runUnitTests'
+  post 'TEST/users/unitTests', to: 'users#runUnitTests'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
