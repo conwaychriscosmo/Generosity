@@ -7,7 +7,7 @@ import testLib
 class TestUnit(testLib.RestTestCase):
     """Issue a REST API request to run the unit tests, and analyze the result"""
     def testUnit(self):
-        respData = self.makeRequest("users/unitTests", method="POST")
+        respData = self.makeRequest("TEST/users/unitTests", method="POST")
         self.assertTrue('output' in respData)
         print ("Unit tests output:\n"+
                "\n***** ".join(respData['output'].split("\n")))
