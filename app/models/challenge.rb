@@ -6,6 +6,10 @@ class Challenge < ActiveRecord::Base
     @challenge.Giver = username
     offset = rand(Users.count)
     @rand_user = Users.offset(offset).first
+    if @rand_user.blank?
+      output = Challenge.match(username)
+      return output
+    end
     #@recip_user = Users.first(:order => "RANDOM()")
     @challenge.Recipient = @rand_user.username
     #check to see if matched with self
@@ -39,22 +43,27 @@ class Challenge < ActiveRecord::Base
 
   #returns the current challenge if there is one for this user
   def getChallenge(username)
-    return Challenge.where(Giver: username)
+    return Challenge.find_by(Giver: username)
   end
  
-  def self.complete()
-
+  def self.complete(username)
+    @challenge = Challenge.find_by(Giver: username)
     #updates the user fields
-    giverName = self.Giver
-    recipientName = self.Recipient
-    giver = Users.where(username: giverName)
-    recipient = Users.where(username: recipientName)
-    giver.total_gifts_given += 1
-    recipient.total_gifts_received += 1
-
+    giverName = @challenge.Giver
+    recipientName = @challenge.Recipient
+    giver = Users.find_by(username: giverName)
+    recipient = Users.find_by(username: recipientName)
+    if recipient.nil?
+      output = Challenge.match(username)
+      return output
+    end
+    giver.total_gifts_given = giver.total_gifts_given + 1
+    recipient.total_gifts_recieved = recipient.total_gifts_recieved + 1
+    giver.save
+    recipient.save
     #delete current challenge and set up a new one
-    self.destroy
-    output = self.match(giverName)
+    @challenge.destroy
+    output = Challenge.match(giverName)
     return output
   #close the last challenge and start the next one by calling
   #match with the username of the currently logged in user

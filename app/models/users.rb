@@ -25,7 +25,7 @@ class Users < ActiveRecord::Base
 	end
 
 	def self.editAvailableHours(username, newHours)
-		@user = Users.findby(username: username)
+		@user = Users.find_by(username: username)
 		@user.available_hours = newHours
 		output = { errCode: -1 }
 		if @user.save
@@ -36,7 +36,7 @@ class Users < ActiveRecord::Base
 
 	def self.editCurrentCity(username, newCity)
 		#updates current city
-		@user = Users.findby(username: username)
+		@user = Users.find_by(username: username)
 		@user.current_city = newCity
 		output = { errCode: -1 }
 		if @user.save
@@ -49,6 +49,8 @@ class Users < ActiveRecord::Base
 		new_user = Users.new(username: username, password: password)
 		
 		if new_user.valid?
+			new_user.total_gifts_given = 0
+			new_user.total_gifts_recieved = 0
 			new_user.save
 			return SUCCESS
 		else

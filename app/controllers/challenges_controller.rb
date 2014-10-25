@@ -9,14 +9,15 @@ class ChallengesController < ApplicationController
 
   def complete
   #called when a challenge is completed
-    output = Challenge.complete
+    @username = params[:session][:username]
+    output = Challenge.complete(@username)
     render json: output
   end
 
   def getCurrentChallenge
     @username = params[:session][:username]
     output = Challenge.current(@username)
-    return output
+    render json:  output
   end
 
   def accept
