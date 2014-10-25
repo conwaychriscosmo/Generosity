@@ -86,6 +86,27 @@ angular.module('generosity', ['ngRoute', 'templates'])
 
 		// };
 	}])
+
+	// .controller('SessionController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
+	// 	var self = this;
+
+	// 	self.userId;
+	// 	self.username;
+
+	// 	self.login = function() {
+	// 		$http.post('sessions/create', {username: self.username, password: self.password}).
+	// 			success(function(data, status, headers, config) {
+	// 			// this callback will be called asynchronously
+	// 			// when the response is available
+					
+	// 			}).
+	// 			error(function(data, status, headers, config) {
+	// 			// called asynchronously if an error occurs
+	// 			// or server returns response with an error status.
+	// 				alert("Error.");
+	// 			});
+	// 	}
+	// }])
 	
 	.directive('navbar', function() {
 		return {
@@ -103,6 +124,16 @@ angular.module('generosity', ['ngRoute', 'templates'])
 			templateUrl: "users-form.html"
 		};
 	})
+
+	.directive('loginForm', function() {
+		return {
+			restrict: 'E',
+			scope: {
+
+			},
+			templateUrl: "login-form.html"
+		};
+	})	
 
 	.directive('usersTests', function() {
 		return {

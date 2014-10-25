@@ -1,0 +1,30 @@
+<form name="usersForm" data-ng-controller = "UsersController as user" style="margin-left: 3%;" data-ng-submit="user.addUser()" novalidate>
+<div class="form">
+  
+      <div class="input-group" style="margin-bottom:1%">
+        <table width="100%">
+          <tr>
+            <td width="200px;">
+              <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none;">Username: </span>
+            </td>
+            <td width="200px;">
+              <input type="text" class="form-control" placeholder="Username" data-ng-model="user.username" style="" required>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="input-group" style="margin-bottom:1%">
+        <table width="100%">
+          <tr>
+            <td width="200px;">
+              <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Password:  </span>
+            </td>
+            <td width="200px;">
+              <input type="password" class="form-control" placeholder="Password" data-ng-model="user.password" style="" required>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <button class="btn btn-default" style="margin-left:170px;margin-top:30px;">Create Account</button>
+</div>
+</form>
