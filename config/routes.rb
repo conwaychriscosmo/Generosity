@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
+  match '/tracker', to: 'tracker#hunt', via:[:get, :post]
+
   # Example resource route with options:
   #   resources :products do
   #     member do
