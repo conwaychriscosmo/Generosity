@@ -87,26 +87,28 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		// };
 	}])
 
-	// .controller('SessionController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
-	// 	var self = this;
+	.controller('SessionController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
+		var self = this;
 
-	// 	self.userId;
-	// 	self.username;
+		self.userId;
+		self.username;
 
-	// 	self.login = function() {
-	// 		$http.post('sessions/create', {username: self.username, password: self.password}).
-	// 			success(function(data, status, headers, config) {
-	// 			// this callback will be called asynchronously
-	// 			// when the response is available
-					
-	// 			}).
-	// 			error(function(data, status, headers, config) {
-	// 			// called asynchronously if an error occurs
-	// 			// or server returns response with an error status.
-	// 				alert("Error.");
-	// 			});
-	// 	}
-	// }])
+		self.login = function(username, password) {
+			$http.post('login', {username: username, password: password}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					alert("Connected");
+					console.log("connected");
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					console.log("error");
+					alert("Error.");
+				});
+		}
+	}])
 	
 	.directive('navbar', function() {
 		return {
