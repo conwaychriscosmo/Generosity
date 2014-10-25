@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   resources :challenges
 
   resources :gifts, :users
@@ -12,14 +14,15 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'user#welcome'
-
+  post 'users/updatecity' => 'users#editCurrentCity'
   get '/', to: 'user#welcome'
+  post 'users/updatehours' => 'users#editAvailableHours'
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 
-  post 'users/login', to: 'users#login'
-
+  get 'users/add', to: 'users#new'
   post 'users/add', to: 'users#add'
-
-  post 'users/logout', to: 'users#logout'
 
   post 'TEST/unitTests', to: 'users#runUnitTests'
 
