@@ -34,11 +34,11 @@ RSpec.describe Users, :type => :model do
 
 	describe "error codes" do
 		it "should have correct error code for empty username" do
-		expect(Users.add('', '')).to eq errorCodes[:badUsername]
+		expect(Users.add('', 'a'*6)).to eq errorCodes[:badUsername]
 	    end
 
 	    it "should have correct error code for too long username" do
-	    	expect(Users.add('a'*129, '')).to eq errorCodes[:badUsername]
+	    	expect(Users.add('a'*129, 'a'*6)).to eq errorCodes[:badUsername]
 	    end
 
 	    it "should have correct error code for too long password" do
@@ -46,18 +46,12 @@ RSpec.describe Users, :type => :model do
 	    end
 
 	    it "should have correct error code for creating user with same username" do
-	    	Users.add('bob', '')
+	    	Users.add('bob', 'a'*6)
 	    	expect(Users.add('bob', 'alice')).to eq errorCodes[:userExists]
 	    end
 
-	    it "should have correct error code for incorrect password" do
-	    	Users.add('me', 'abc')
-	    	expect(Users.login('me', 'cba')).to eq errorCodes[:badCredentials]
-	    end
-
-	    it "should have correct error code for wrong username" do
-	    	Users.add('me', 'abc')
-	    	expect(Users.login('Me', 'abc')).to eq errorCodes[:badCredentials]
+	    it "should have correct error code for too short password" do
+	    	expect(Users.add('blah', 'abc')).to eq errorCodes[:badPassword]
 	    end
 	end
 
