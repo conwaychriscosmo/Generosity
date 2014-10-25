@@ -41,11 +41,6 @@ body{
 	padding:30px;
 }
 
-.*{
-	color: white;
-	margin: 0 auto;
-	font-family: 'Raleway', sans-serif;
-}
 
 .navbar-default {
 	opacity: .95;
