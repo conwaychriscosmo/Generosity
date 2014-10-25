@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.1.2'
-
+gem 'simplecov', :require => false, :group => :test
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 # Use sqlite3 as the database for Active Record

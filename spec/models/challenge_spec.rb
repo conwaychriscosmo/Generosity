@@ -28,6 +28,9 @@ RSpec.describe Challenge, :type => :model  do
     end
 
 #<<<<<<< HEAD
+#<<<<<<< HEAD
+#=======
+#>>>>>>> testcoverage
     it "getChallenge" do
       Users.add('fred', 'iloveme')
       Users.add('george', 'notfromharrypotter')
@@ -42,6 +45,7 @@ RSpec.describe Challenge, :type => :model  do
       Challenge.match('george')
       Users.add('michael', 'iloveme')
       Users.destroy_all(:username => 'fred')
+#<<<<<<< HEAD
       output = Challenge.complete('george')
       hsh = { errCode: 1, Giver: 'george', Recipient: 'michael' }
       challenge = Challenge.current('george')
@@ -49,7 +53,7 @@ RSpec.describe Challenge, :type => :model  do
     end
 
       
-#=======
+#>>>>>>> testcoverage
     it "should return the giver and recipient based on giver username" do
       Users.add('bill', 'hick')
       Users.add('billy', 'mahers')
@@ -64,7 +68,10 @@ RSpec.describe Challenge, :type => :model  do
       p outgoal
       expect(output).to eq outgoal
     end
+#<<<<<<< HEAD
 #>>>>>>> 37bccaf3fcbeb49f39650c3ecfe5c654c4bac062
+#=======
+#>>>>>>> testcoverage
   end
 
   
