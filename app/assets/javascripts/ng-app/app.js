@@ -26,6 +26,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		self.currentCity;
 		self.currentLocation;
 		self.recipient; //Should probably be renamed
+		self.description;
 
 
 		$scope.errCode = 0;
@@ -76,6 +77,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 			self.currentCity = "Berkeley";
 			self.currentLocation = "Nowhere";
 			self.recipient = "He whose name shall not be spoken";
+			self.description = "Why thank you for looking at my profile. Joseph will from now on use this page as a sort of bulletin for what's needed. The current wishlist is: -Working logins on the backend - currently, session creation results in a bad hash error. -More robust create() methods in backend controllers - preferably, ones that can just take in JSON objects and fill in all the non-empty parameters (and initialize empty parameters to some default value). -Backend edit() methods for all changeable fields.  -...Fixes for the Heroku issues."
 		};
 
 		// self.login = function(name, pw) {
@@ -141,7 +143,12 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		return {
 			restrict: 'E',
 			scope: {
-
+				username: '@',
+				realName: '@',
+				availableHours: '@',
+				currentCity: '@',
+				recipient: '@',
+				description: '@'
 			},
 			templateUrl: "profile.html" //Need to accomodate id afterwards
 		};
