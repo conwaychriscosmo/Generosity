@@ -27,28 +27,29 @@ RSpec.describe Challenge, :type => :model  do
       expect(output).to eq hsh
     end
 
-<<<<<<< HEAD
+#<<<<<<< HEAD
     it "getChallenge" do
       Users.add('fred', 'iloveme')
       Users.add('george', 'notfromharrypotter')
       output = Challenge.match('george')
-      challenge = Challenge.getChallenge('george')
-      expect(challenge.Giver).to eq 'george'
+      challenge = Challenge.current('george')
+      expect(challenge[:Giver]).to eq 'george'
     end
 
-    it "should complete"
+    it "should complete" do
       Users.add('fred', 'iloveme')
       Users.add('george', 'notfromharrypotter')
       Challenge.match('george')
       Users.add('michael', 'iloveme')
       Users.destroy_all(:username => 'fred')
-      output = challenge.complete()
+      output = Challenge.complete('george')
       hsh = { errCode: 1, Giver: 'george', Recipient: 'michael' }
-      challenge = Challenge.getChallenge('george')
-      expect(challenge.Recipient).to eq 'michael'
+      challenge = Challenge.current('george')
+      expect(challenge[:Giver]).to eq 'george'
     end
 
-=======
+      
+#=======
     it "should return the giver and recipient based on giver username" do
       Users.add('bill', 'hick')
       Users.add('billy', 'mahers')
@@ -63,7 +64,7 @@ RSpec.describe Challenge, :type => :model  do
       p outgoal
       expect(output).to eq outgoal
     end
->>>>>>> 37bccaf3fcbeb49f39650c3ecfe5c654c4bac062
+#>>>>>>> 37bccaf3fcbeb49f39650c3ecfe5c654c4bac062
   end
 
   

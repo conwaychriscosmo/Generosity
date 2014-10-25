@@ -30,8 +30,8 @@ class UsersController < ApplicationController
   
     # Add user USERNAME with password PASSWORD to database. Give them a challenge
 	def add()
-		username = params[:session][:username]
-		password = params[:session][:password]
+		username = params[:username]
+		password = params[:password]
 		code = Users.add(username, password)
 		data = {}
 		data[:errCode] = code

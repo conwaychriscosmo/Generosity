@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <style type="text/css">
+
+      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+    </style>
+    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZJutoonZK2nW2NP65j6A-_JNvop8ndco&libraries=geometry"></script>
+    <%= javascript_include_tag "new.js" %>
+
+
+    
+  </head>
+  <body>
+      <div>Target 1 is SF, Target 2 is Richmond</div>
+      <div id="output"></div>
+      <div id="heading"></div>
+      <input id="Target 1" type="button" value="Target 1" onclick="changeTargetOne();calcRoute();calcDistance();"/>
+      <input id="Target 2" type="button" value="Target 2" onclick="changeTargetTwo();calcRoute();calcDistance();"/>
+      <br/>
+      <div id="map-canvas"></div>
+  </body>
+</html>

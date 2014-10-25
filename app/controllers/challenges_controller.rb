@@ -1,6 +1,8 @@
 class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
   
+
+  
   def match
   #built for testing to cause matches
     output = Challenge.match(username)
@@ -9,14 +11,15 @@ class ChallengesController < ApplicationController
 
   def complete
   #called when a challenge is completed
-    output = Challenge.complete
+    @username = params[:session][:username]
+    output = Challenge.complete(@username)
     render json: output
   end
 
   def getCurrentChallenge
     @username = params[:session][:username]
     output = Challenge.current(@username)
-    return output
+    render json:  output
   end
 
   def accept
