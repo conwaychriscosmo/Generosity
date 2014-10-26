@@ -148,9 +148,24 @@ angular.module('generosity', ['ngRoute', 'templates'])
 				availableHours: '@',
 				currentCity: '@',
 				recipient: '@',
-				description: '@'
+				description: '@',
+				reputation: '@'
 			},
 			templateUrl: "profile.html" //Need to accomodate id afterwards
+		};
+	})	
+
+	.directive('gift', function() {
+		return {
+			restrict: 'E',
+			scope: {
+				name: '@',
+				giver: '@',
+				recipient: '@',
+				description: '@',
+				rating: '@'
+			},
+			templateUrl: "gift.html" //Need to accomodate id afterwards
 		};
 	})	
 

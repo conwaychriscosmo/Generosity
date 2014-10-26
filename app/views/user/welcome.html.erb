@@ -15,13 +15,17 @@
 				Template: {{template}}
 			
 				<button data-ng-click="template=99" style="background-color:teal">Run Unit Tests</button>
-				<button data-ng-click="template=7" style="background-color:teal">Show Sample profile</button>
+				<button data-ng-click="template=7" style="background-color:teal">Show Sample Profile</button>
+				<button data-ng-click="template=8" style="background-color:teal">Show Sample Gift</button>
 			<%end%>
 
 			<users-form data-ng-show="template==5"></users-form>
 			<login-form data-ng-show="template==6"></login-form>
 			<div data-ng-controller = "UsersController as testUser" data-ng-init="testUser.createDummyUser()">
 				<profile data-ng-show="template==7" username="{{testUser.username}}" real-name="{{testUser.realName}}" available-hours="{{testUser.availableHours}}" current-city="{{testUser.currentCity}}" recipient="Felicia Day" description="{{testUser.description}}"></profile>
+			</div>
+			<div>
+				<gift data-ng-show="template ==8" name="SMT x FE"></gift>
 			</div>
 			<users-tests data-ng-if="template==99"></users-tests>
 		</div>
