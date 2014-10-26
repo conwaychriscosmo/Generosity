@@ -89,6 +89,24 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		// };
 	}])
 
+	.controller('GiftsController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
+		var self = this;
+
+		self.name;
+		self.giver;
+		self.recipient;
+		self.description;
+		self.rating;
+
+		self.createDummyGift = function() {
+			self.name = "Shin Megami Tensei x Fire Emblem";
+			self.giver = "Atlus and Intelligent Systems";
+			self.recipient = "LordChristopher";
+			self.description = "Such hype. Must play. Wow."
+			self.rating = 5.0
+		};
+	}])
+
 	.controller('SessionController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
 		var self = this;
 
