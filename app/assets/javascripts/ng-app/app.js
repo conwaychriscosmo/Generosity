@@ -106,7 +106,6 @@ angular.module('generosity', ['ngRoute', 'templates'])
 				// this callback will be called asynchronously
 				// when the response is available
 					var errCode = data.errCode;
-					self.retrieveErrCode(errCode);
 					/*We need actual error codes for this.*/
 					if(errCode == -1) {
 						alert("Error: Invalid gift.");
@@ -170,6 +169,16 @@ angular.module('generosity', ['ngRoute', 'templates'])
 
 			},
 			templateUrl: "users-form.html"
+		};
+	})
+
+	.directive('giftForm', function() {
+		return {
+			restrict: 'E',
+			scope: {
+
+			},
+			templateUrl: "gift-form.html"
 		};
 	})
 
