@@ -16,7 +16,7 @@ class Gift < ActiveRecord::Base
   def self.create(name, url)
     @gift = Gift.new
     @gift.name = name
-    @gi.url = url
+    @gift.url = url
     if @gift.name.nil?
       output = { errCode: -1 }
     end

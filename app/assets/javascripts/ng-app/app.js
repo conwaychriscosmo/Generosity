@@ -97,13 +97,39 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		self.recipient;
 		self.description;
 		self.rating;
+		self.url;
+
+		self.addGift = function() {
+			var errCode;
+			$http.post('gifts/create', {name: self.name, url: self.url}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					var errCode = data.errCode;
+					self.retrieveErrCode(errCode);
+					/*We need actual error codes for this.*/
+					if(errCode == -1) {
+						alert("Error: Invalid gift.");
+					}
+					else {
+						alert("Gift created.");						
+					}
+					console.log(errCode);
+					// $rootScope.errCode = data.errCode;
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					alert("Error.");
+				});
+		}
 
 		self.createDummyGift = function() {
 			self.name = "Shin Megami Tensei x Fire Emblem";
 			self.giver = "Atlus and Intelligent Systems";
 			self.recipient = "LordChristopher";
-			self.description = "Such hype. Must play. Wow."
-			self.rating = 5.0
+			self.description = "Such hype. Must play. Wow.";
+			self.rating = 5.0;
 		};
 	}])
 
