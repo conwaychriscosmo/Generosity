@@ -229,6 +229,16 @@ angular.module('generosity', ['ngRoute', 'templates'])
 			templateUrl: "users-tests.html"
 		};
 	})
+
+	.directive('giftsTests', function() {
+		return {
+			restrict: 'E',
+			scope: {
+
+			},
+			templateUrl: "gifts-tests.html"
+		};
+	})
 	
 	// .directive('directiveA', function() {
 	// 	return {
