@@ -1,0 +1,9 @@
+<div data-ng-controller="GiftTestController as tester" class="test" data-ng-init="tester.runTests()">
+	<div data-ng-repeat="message in tester.messages" class="testStatus" message="{{message}}">
+		{{message}}
+	</div>
+	<br>
+	Tests Passed: {{tester.passedTests}}
+	<br>
+	Total Tests: {{tester.totalTests}}
+</div>

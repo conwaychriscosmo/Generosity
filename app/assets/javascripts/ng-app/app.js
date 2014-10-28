@@ -26,6 +26,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		self.currentCity;
 		self.currentLocation;
 		self.recipient; //Should probably be renamed
+		self.description;
 
 
 		$scope.errCode = 0;
@@ -37,8 +38,6 @@ angular.module('generosity', ['ngRoute', 'templates'])
 				// this callback will be called asynchronously
 				// when the response is available
 					var errCode = data.errCode;
-					self.retrieveErrCode(errCode);
-					// console.log("HYA" + self.errCode);
 					if(errCode == -2) {
 						alert("Error: This username already exists.");
 					}
@@ -59,7 +58,6 @@ angular.module('generosity', ['ngRoute', 'templates'])
 				// or server returns response with an error status.
 					alert("Error.");
 				});
-				console.log(self.username);
 			return $scope.errCode;
 		}
 
@@ -76,6 +74,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 			self.currentCity = "Berkeley";
 			self.currentLocation = "Nowhere";
 			self.recipient = "He whose name shall not be spoken";
+			self.description = "Why thank you for looking at my profile. Joseph will from now on use this page as a sort of bulletin for what's needed. The current wishlist is: -Working logins on the backend - currently, session creation results in a bad hash error. -More robust create() methods in backend controllers - preferably, ones that can just take in JSON objects and fill in all the non-empty parameters (and initialize empty parameters to some default value). -Backend edit() methods for all changeable fields.  -...Fixes for the Heroku issues."
 		};
 
 		// self.login = function(name, pw) {
@@ -87,26 +86,72 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		// };
 	}])
 
-	// .controller('SessionController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
-	// 	var self = this;
+	.controller('GiftsController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
+		var self = this;
 
-	// 	self.userId;
-	// 	self.username;
+		self.name;
+		self.giver;
+		self.recipient;
+		self.description;
+		self.rating;
+		self.url;
 
-	// 	self.login = function() {
-	// 		$http.post('sessions/create', {username: self.username, password: self.password}).
-	// 			success(function(data, status, headers, config) {
-	// 			// this callback will be called asynchronously
-	// 			// when the response is available
-					
-	// 			}).
-	// 			error(function(data, status, headers, config) {
-	// 			// called asynchronously if an error occurs
-	// 			// or server returns response with an error status.
-	// 				alert("Error.");
-	// 			});
-	// 	}
-	// }])
+		self.addGift = function() {
+			var errCode;
+			$http.post('gifts/create', {name: self.name, url: self.url}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					var errCode = data.errCode;
+					/*We need actual error codes for this.*/
+					if(errCode == -1) {
+						alert("Error: Invalid gift.");
+					}
+					else {
+						alert("Gift created.");						
+					}
+					console.log(errCode);
+					// $rootScope.errCode = data.errCode;
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					alert("Error.");
+				});
+		}
+
+		self.createDummyGift = function() {
+			self.name = "Shin Megami Tensei x Fire Emblem";
+			self.giver = "Atlus and Intelligent Systems";
+			self.recipient = "LordChristopher";
+			self.description = "Such hype. Must play. Wow.";
+			self.rating = 5.0;
+		};
+	}])
+
+	.controller('SessionController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
+		var self = this;
+
+		self.userId;
+		self.username;
+
+		self.login = function(username, password) {
+			$http.post('login', {username: username, password: password}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					alert("Connected");
+					errCode = data.errCode;
+					console.log(errCode);
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					console.log("error");
+					alert("Error.");
+				});
+		}
+	}])
 	
 	.directive('navbar', function() {
 		return {
@@ -125,6 +170,16 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		};
 	})
 
+	.directive('giftForm', function() {
+		return {
+			restrict: 'E',
+			scope: {
+
+			},
+			templateUrl: "gift-form.html"
+		};
+	})
+
 	.directive('loginForm', function() {
 		return {
 			restrict: 'E',
@@ -135,6 +190,36 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		};
 	})	
 
+	.directive('profile', function() {
+		return {
+			restrict: 'E',
+			scope: {
+				username: '@',
+				realName: '@',
+				availableHours: '@',
+				currentCity: '@',
+				recipient: '@',
+				description: '@',
+				reputation: '@'
+			},
+			templateUrl: "profile.html" //Need to accomodate id afterwards
+		};
+	})	
+
+	.directive('gift', function() {
+		return {
+			restrict: 'E',
+			scope: {
+				name: '@',
+				giver: '@',
+				recipient: '@',
+				description: '@',
+				rating: '@'
+			},
+			templateUrl: "gift.html" //Need to accomodate id afterwards
+		};
+	})	
+
 	.directive('usersTests', function() {
 		return {
 			restrict: 'E',
@@ -142,6 +227,16 @@ angular.module('generosity', ['ngRoute', 'templates'])
 
 			},
 			templateUrl: "users-tests.html"
+		};
+	})
+
+	.directive('giftsTests', function() {
+		return {
+			restrict: 'E',
+			scope: {
+
+			},
+			templateUrl: "gifts-tests.html"
 		};
 	})
 	

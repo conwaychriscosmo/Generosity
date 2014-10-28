@@ -6,20 +6,34 @@
 		<navbar></navbar>
 
 	</head>
+
 	<body data-ng-controller = "UsersController as user" data-ng-init="template=0">
+		<div class="main-content">
+			<div ng-view></div>
 
-		<div ng-view></div>
+			<% if Rails.env == "development" %>
+				Template: {{template}}
+			
+				<button data-ng-click="template=99" style="background-color:teal">Run Unit Tests</button>
+				<button data-ng-click="template=7" style="background-color:teal">Show Sample Profile</button>
+				<button data-ng-click="template=8" style="background-color:teal">Show Sample Gift</button>
+				<button data-ng-click="template=9" style="background-color:teal">Show Gift Form</button>
 
-		<% if Rails.env == "development" %>
-			Template: {{template}}
-		
+				<users-tests data-ng-if="template==99"></users-tests>
+				<gifts-tests data-ng-if="template==99"></gifts-tests>
 
-		<button data-ng-click="template=99" style="background-color:teal">Run Unit Tests</button>
-		<%end%>
-		<users-form data-ng-show="template==5"></users-form>
-		<login-form data-ng-show="template==6"></login-form>
+			<%end%>
 
-		<users-tests data-ng-if="template==99"></users-tests>
+			<users-form data-ng-show="template==5"></users-form>
+			<login-form data-ng-show="template==6"></login-form>
+			<gift-form data-ng-show="template==9"></gift-form>
+			<div data-ng-controller = "UsersController as testUser" data-ng-init="testUser.createDummyUser()">
+				<profile data-ng-show="template==7" username="{{testUser.username}}" real-name="{{testUser.realName}}" available-hours="{{testUser.availableHours}}" current-city="{{testUser.currentCity}}" recipient="Felicia Day" description="{{testUser.description}}"></profile>
+			</div>
+			<div data-ng-controller="GiftsController as testGift" data-ng-init="testGift.createDummyGift()">
+				<gift data-ng-show="template ==8" name="{{testGift.name}}" giver="{{testGift.giver}}" recipient="{{testGift.recipient}}" rating="{{testGift.rating}}" description="{{testGift.description}}"></gift>
+			</div>
+		</div>
 
 	</body>
 </html>

@@ -1,0 +1,42 @@
+<!--Still need to add something like data-ng-init="recipient=$parent.username."-->
+<form name="gifsForm" data-ng-controller = "GiftsController as gift" style="margin-left: 3%;" data-ng-submit="gift.addGift()" novalidate>
+<div class="form">
+      <div class="input-group" style="margin-bottom:1%">
+        <table width="100%">
+          <tr>
+            <td width="200px;">
+              <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none;">Gift name: </span>
+            </td>
+            <td width="200px;">
+              <input type="text" class="form-control" placeholder="Gift name" data-ng-model="gift.name" style="" required>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="input-group" style="margin-bottom:1%">
+        <table width="100%">
+          <tr>
+            <td width="200px;">
+              <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Image URL:  </span>
+            </td>
+            <td width="200px;">
+              <input type="text" class="form-control" placeholder="inst.eecs.berkeley.edu/obrien.jpg" data-ng-model="gift.url" style="" required>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="input-group" style="margin-bottom:1%">
+        <table width="100%">
+          <tr>
+            <td width="200px;">
+              <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Description:  </span>
+            </td>
+            <td width="200px;">
+              <input type="text" class="form-control" placeholder="Description" data-ng-model="gift.description" style="" required>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <button class="btn btn-default" style="margin-left:170px;margin-top:30px;">Create Gift</button>
+</div>
+</form>
