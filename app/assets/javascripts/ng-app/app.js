@@ -38,8 +38,6 @@ angular.module('generosity', ['ngRoute', 'templates'])
 				// this callback will be called asynchronously
 				// when the response is available
 					var errCode = data.errCode;
-					self.retrieveErrCode(errCode);
-					// console.log("HYA" + self.errCode);
 					if(errCode == -2) {
 						alert("Error: This username already exists.");
 					}
@@ -60,7 +58,6 @@ angular.module('generosity', ['ngRoute', 'templates'])
 				// or server returns response with an error status.
 					alert("Error.");
 				});
-				console.log(self.username);
 			return $scope.errCode;
 		}
 
@@ -144,7 +141,8 @@ angular.module('generosity', ['ngRoute', 'templates'])
 				// this callback will be called asynchronously
 				// when the response is available
 					alert("Connected");
-					console.log("connected");
+					errCode = data.errCode;
+					console.log(errCode);
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
@@ -229,6 +227,16 @@ angular.module('generosity', ['ngRoute', 'templates'])
 
 			},
 			templateUrl: "users-tests.html"
+		};
+	})
+
+	.directive('giftsTests', function() {
+		return {
+			restrict: 'E',
+			scope: {
+
+			},
+			templateUrl: "gifts-tests.html"
 		};
 	})
 	
