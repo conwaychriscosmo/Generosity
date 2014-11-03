@@ -2,7 +2,7 @@ class Gift < ActiveRecord::Base
   validates :name, length: { maximum: 128 }, presence: true
   validates :url, presence: true 
 
-  def restFixture
+  def resetFixture
     Users.delete_all
     Challenge.delete_all
     Gift.delete_all

@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html data-ng-app = 'generosity'>
+<html>
 	<head>
+	
+	<%= javascript_include_tag "front"%>
+
 		<title> Generosity </title>
 
-		<navbar></navbar>
+		
 
 	</head>
 
-	<body data-ng-controller = "UsersController as user" data-ng-init="template=0">
+	<body data-ng-app = 'generosity' data-ng-controller = "UsersController as user" data-ng-init="template=0">
+		<navbar></navbar>
 		<div class="main-content">
 			<div ng-view></div>
 
