@@ -38,7 +38,21 @@ class Gift < ActiveRecord::Base
     end
     return output
   end
-
+  
+  def self.review(review, gift_id, username)
+    @gift = Gift.find_by(id: gift_id)
+    output = { errCode: -1 }
+    if @gift.recipient == username
+      @gift.review = review
+      if @gift.save
+        output = { errCode: 1 }
+      end
+    else
+      review = "something is seriously wrong"
+      @gift.review = review
+    end
+    return output
+  end
 
   def self.runUnitTests()
     return %x[rspec spec/models/users_spec.rb]
