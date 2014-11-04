@@ -34,15 +34,19 @@ class GiftsController < ApplicationController
   def edit
   end
   
+  def review
+    output = Gift.review(params[:gift][:review],params[:gift][:id],params[:session][:username])
+    render json: output
+  end  
   #the recipient rates the gift
   def rate
-    output = Gift.rate(params[:gift][:rating],params[:sessions][:username])
+    output = Gift.rate(params[:gift][:rating],params[:gift][:id],params[:session][:username])
     render json: output
   end
   
   #the giver delivers the gift
   def deliver
-    output = Gift.deliver(params[:sessions][:username])
+    output = Gift.deliver(params[:gift][:id])
     render json: output
   end
   # POST /gifts
@@ -50,7 +54,7 @@ class GiftsController < ApplicationController
   def create
     #@gift = Gift.new(gift_params)
     #create(giftname, gifturl, username)
-    output = Gift.create(gift_params[:name], gift_params[:url], params[:sessions][:username])
+    output = Gift.create(gift_params[:name], gift_params[:url], params[:session][:username])
     render json: output
  #   respond_to do |format|
   #    if @gift.save

@@ -10,13 +10,48 @@ class Gift < ActiveRecord::Base
     return output
   end
 
+  def self.rate(rating, gift_id, username)
+    @gift = Gift.find_by(id: gift_id)
+    if @gift.recipient == username
+      @gift.rating = rating
+      if @gift.save
+        output = {errCode: 1}
+        return output
+      else
+        output = { errCode: -1 }
+      end
+    else
+      @gift.rating = -1.1
+      @gift.save
+      output = { errCode: -1 }
+    end
+    return output
+  end
+
+  def self.deliver(gift_id)
+    @gift = Gift.find_by(id: gift_id)
+    @gift.delivered = true
+    if @gift.save
+      output = { errCode: 1 }
+    else
+      output = { errCode: -1 }
+    end
+    return output
+  end
+
+
   def self.runUnitTests()
     return %x[rspec spec/models/users_spec.rb]
   end
-  def self.create(name, url)
+  def self.create(name, url, username)
     @gift = Gift.new
     @gift.name = name
     @gift.url = url
+    @gift.giver = username
+    @gift.delivered = false
+    @challenge = Challenge.find_by(giver: username)
+    rec = @challenge.recipient
+    @gift.recipient = rec    
     if @gift.name.nil?
       output = { errCode: -1 }
     end
