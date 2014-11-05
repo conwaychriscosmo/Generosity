@@ -1,9 +1,11 @@
 class Challenge < ActiveRecord::Base
-
+  @@id = 1
   def self.match(username)
   #pick a random user from the database to match with username
     @challenge = Challenge.new
     @challenge.Giver = username
+    @challenge.id = @@id
+    @@id = @@id + 1
     offset = rand(Users.count)
     @rand_user = Users.offset(offset).first
     if @rand_user.blank?
@@ -32,8 +34,8 @@ class Challenge < ActiveRecord::Base
     return output
   end
   
-  def self.current(username)
-    @challenge = Challenge.find_by(Giver: username)
+  def self.current(challenge_id)
+    @challenge = Challenge.find_by(id: challenge_id)
     output = { errCode: -1 }
     if @challenge
       output = { errCode: 1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }
@@ -42,9 +44,9 @@ class Challenge < ActiveRecord::Base
   end
 
   #returns the current challenge if there is one for this user
-  def getChallenge(username)
-    return Challenge.find_by(Giver: username)
-  end
+  #def getChallenge(username)
+  #  return Challenge.find_by(Giver: username)
+  #end
  
   def self.complete(username)
     @challenge = Challenge.find_by(Giver: username)
