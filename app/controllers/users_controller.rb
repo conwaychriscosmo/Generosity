@@ -5,26 +5,10 @@ class UsersController < ApplicationController
     	render 'show'
     end
     #allow user to update current city from profile view
-    def editCurrentCity
-        username = params[:session][:username]
-        newCity = params[:newCity]
-        output = Users.editCurrentCity(username, newCity)
-	return output
-    end
 
-    def editLevel
-    
-    end
-
-    def editTotalGiftsGiven
-
-    end
-    #allow user to update available hours
-    def editAvailableHours
-        username = params[:session][:username]
-        newHours = params[:newHours]
-        output = Users.editAvailableHours(username, newHours)
-	return output
+    def edit
+        errCode = Users.edit(params)
+        render json: {errCode: errCode}
     end
 
   

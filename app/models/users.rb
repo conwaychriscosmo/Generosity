@@ -8,6 +8,7 @@ class Users < ActiveRecord::Base
 	ERR_BAD_PASSWORD = -4
 	ERR_BAD_USERNAME = -3
 	ERR_USER_EXISTS = -2
+	ERR_ACTION_NOT_AUTHORIZED = -5
 
 
 	validates :username, length: {maximum: MAX_USERNAME_LENGTH}
@@ -22,29 +23,28 @@ class Users < ActiveRecord::Base
 
 	def self.errorCodes()
 		return {success: SUCCESS, badPassword: ERR_BAD_PASSWORD,
-			badUsername: ERR_BAD_USERNAME, userExists: ERR_USER_EXISTS}
+			badUsername: ERR_BAD_USERNAME, userExists: ERR_USER_EXISTS, failedEdit: ERR_ACTION_NOT_AUTHORIZED}
 	end
 
-	def self.editAvailableHours(username, newHours)
-		user = Users.find_by(username: username)
-		user.available_hours = newHours
-		output = { errCode: -1 }
-		if user.save
-			output = { errCode: SUCCESS, available_hours: newHours }
-		return output
-		end
-	end
 
-	def self.editCurrentCity(username, newCity)
-		#updates current city
-		user = Users.find_by(username: username)
-		user.current_city = newCity
-		output = { errCode: -1 }
-		if user.save
-			output = { errCode: 1, current_city: newCity }
-		end
-		return output
-	end
+    def self.edit(options)
+    	username = options[:session][:username]
+    	user = Users.find_by(username: username)
+    	if user
+    		user.profile_url = options[:profile_url] ||= user.profile_url
+    		user.current_city = options[:current_city] ||= user.current_city
+    		user.available_hours = options[:available_hours] ||= user.available_hours
+    		user.level = options[:level] ||= user.level
+    		user.total_gifts_given = options[:total_gifts_given] ||= user.total_gifts_given
+    		user.total_gifts_received = options[:total_gifts_received] ||= user.total_gifts_received
+    		user.score = options[:score] ||= user.score
+    		#Need to save/update user
+    		return SUCCESS
+    	else
+    		return ERR_ACTION_NOT_AUTHORIZED
+    	end
+    end
+
 	
 	def self.add(options)
 

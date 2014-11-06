@@ -93,5 +93,27 @@ RSpec.describe Users, :type => :model do
 	end
 
 
+	describe "Users edit options" do
+		it "should successfully edit profile_url" do
+			Users.add({username: 'greg', password: 'password'})
+			Users.editProfileURL('greg', 'hi.edu')
+			expect(Users.where(username: 'greg')[0].profile_url).to eq 'hi.org'
+		end
+
+		it "should successfully edit current_city"
+			Users.add({username: 'greg', password: 'password'})
+			Users.editCurrentCity('greg', 'Seattle')
+			expect(Users.where(username: 'greg')[0].current_city).to eq 'Seattle'
+		end
+
+		it "should successfully edit available_hours" do
+			Users.add({username: 'greg', password: 'password'})
+			Users.editAvailableHours('greg', '9 to 8')
+			expect(Users.where(username: 'greg')[0].available_hours).to eq '9 to 8'
+		end
+
+	end
+
+
 
 end
