@@ -8,8 +8,10 @@ RSpec.describe Gift, :type => :model  do
       Challenge.delete_all
       Users.delete_all
       Gift.delete_all
-      Users.add('george','PASSWORDZ69')
-      Users.add('greg','PASSWORDZ69')
+      us1 = { username: 'george', password: 'PASSWORDZ69'}
+      us2 = { username: 'greg', password: 'PASSWORDZ69'}
+      Users.add(us1)
+      Users.add(us2)
       Challenge.match('greg')
     end
 

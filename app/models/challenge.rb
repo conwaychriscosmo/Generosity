@@ -66,7 +66,7 @@ class Challenge < ActiveRecord::Base
       return output
     end
     giver.total_gifts_given = giver.total_gifts_given + 1
-    recipient.total_gifts_recieved = recipient.total_gifts_recieved + 1
+    recipient.total_gifts_received = recipient.total_gifts_received + 1
     giver.save
     recipient.save
     #delete current challenge and set up a new one
