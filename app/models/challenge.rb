@@ -1,5 +1,5 @@
 class Challenge < ActiveRecord::Base
-
+  @@id = 1
   def self.match(username)
   #pick a random user from the database to match with username
     @challenge = Challenge.new
@@ -24,6 +24,8 @@ class Challenge < ActiveRecord::Base
       end
     end
     if @challenge.valid?
+      @challenge.id = @@id
+      @@id = @@id + 1
       @challenge.save
       output = { errCode: 1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }
     else
@@ -32,9 +34,15 @@ class Challenge < ActiveRecord::Base
     return output
   end
   
-  def self.current(username)
-    @challenge = Challenge.find_by(Giver: username)
+  def self.current(challenge_id)
+    @challenge = Challenge.find_by(id: challenge_id)
     output = { errCode: -1 }
+    if @challenge.nil?
+      p 'challenge is nil'
+      p challenge_id
+      p '*'*50
+      return output
+    end
     if @challenge
       output = { errCode: 1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }
     end
@@ -42,9 +50,9 @@ class Challenge < ActiveRecord::Base
   end
 
   #returns the current challenge if there is one for this user
-  def getChallenge(username)
-    return Challenge.find_by(Giver: username)
-  end
+  #def getChallenge(username)
+  #  return Challenge.find_by(Giver: username)
+  #end
  
   def self.complete(username)
     @challenge = Challenge.find_by(Giver: username)
@@ -58,7 +66,7 @@ class Challenge < ActiveRecord::Base
       return output
     end
     giver.total_gifts_given = giver.total_gifts_given + 1
-    recipient.total_gifts_recieved = recipient.total_gifts_recieved + 1
+    recipient.total_gifts_received = recipient.total_gifts_received + 1
     giver.save
     recipient.save
     #delete current challenge and set up a new one
