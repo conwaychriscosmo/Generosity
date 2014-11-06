@@ -1,7 +1,5 @@
 class Users < ActiveRecord::Base
 
-    attr_accessor :profile_url, :current_city, :available_hours, :level, :total_gifts_given, :total_gifts_recieved, :score
-
 	MIN_PASSWORD_LENGTH = 6
 	MAX_PASSWORD_LENGTH = 128
 	MAX_USERNAME_LENGTH = 128
@@ -59,10 +57,10 @@ class Users < ActiveRecord::Base
 			new_user.available_hours = options[:available_hours] ||= "9am - 6pm"
 		    new_user.current_city = options[:current_city] ||= "Berkeley, CA"
 			new_user.total_gifts_given = options[:total_gifts_given] ||= 0
-			new_user.total_gifts_recieved = options[:total_gifts_recieved] ||= 0
+			new_user.total_gifts_received = options[:total_gifts_received] ||= 0
 			new_user.level = options[:level] ||= 1
 			new_user.score = options[:score] ||= 0
-			new_user.profile_url = options[:profile_url] ||= 'replace this with default profile_url'
+			new_user.profile_url = options[:profile_url] ||= 'https://www.dropbox.com/s/1gcac6w5zriwyse/QNxfVDF.png?dl=0'
 			new_user.save
 			return SUCCESS
 		else
