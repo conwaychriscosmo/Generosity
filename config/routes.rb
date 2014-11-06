@@ -20,7 +20,11 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-
+  #rate, review, deliver, and view  gifts
+  post 'gifts/:id/rate', to: 'gifts#rate'
+  post 'gifts/:id/review', to: 'gifts#review'
+  post 'gifts/:id/deliver', to: 'gifts#deliver'
+  get 'gifts/:id/view', to: 'gifts#view'
   get 'users/add', to: 'users#new'
   post 'users/add', to: 'users#add'
 
