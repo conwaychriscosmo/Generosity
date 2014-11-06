@@ -4,8 +4,6 @@ class Challenge < ActiveRecord::Base
   #pick a random user from the database to match with username
     @challenge = Challenge.new
     @challenge.Giver = username
-    @challenge.id = @@id
-    @@id = @@id + 1
     offset = rand(Users.count)
     @rand_user = Users.offset(offset).first
     if @rand_user.blank?
@@ -26,6 +24,8 @@ class Challenge < ActiveRecord::Base
       end
     end
     if @challenge.valid?
+      @challenge.id = @@id
+      @@id = @@id + 1
       @challenge.save
       output = { errCode: 1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }
     else
@@ -37,6 +37,12 @@ class Challenge < ActiveRecord::Base
   def self.current(challenge_id)
     @challenge = Challenge.find_by(id: challenge_id)
     output = { errCode: -1 }
+    if @challenge.nil?
+      p 'challenge is nil'
+      p challenge_id
+      p '*'*50
+      return output
+    end
     if @challenge
       output = { errCode: 1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }
     end

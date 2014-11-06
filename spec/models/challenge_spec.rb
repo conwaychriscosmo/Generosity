@@ -35,7 +35,7 @@ RSpec.describe Challenge, :type => :model  do
       Users.add('fred', 'iloveme')
       Users.add('george', 'notfromharrypotter')
       output = Challenge.match('george')
-      challenge = Challenge.current('george')
+      challenge = Challenge.current(1)
       expect(challenge[:Giver]).to eq 'george'
     end
 

@@ -34,7 +34,7 @@ class Gift < ActiveRecord::Base
     output = { errCode: -1 }
     if @gift.save
       comp = Challenge.complete(@gift.giver)
-      if comp['errCode'] == 1
+      if comp[:errCode] == 1
         output = { errCode: 1 }
       end
     end
@@ -44,6 +44,9 @@ class Gift < ActiveRecord::Base
   def self.review(review, gift_id, username)
     @gift = Gift.find_by(id: gift_id)
     output = { errCode: -1 }
+    if @gift.nil?
+      return output
+    end
     if @gift.recipient == username
       @gift.review = review
       if @gift.save
@@ -67,7 +70,20 @@ class Gift < ActiveRecord::Base
     @gift.giver = username
     @gift.delivered = false
     @challenge = Challenge.find_by(giver: username)
-    rec = @challenge.recipient
+    if @challenge.nil?
+      p 'challenge is nil :('
+      p'*'*50
+      output ={errCode: -1}
+      return output
+    end
+    if @challenge.Recipient.nil?
+      p @challenge
+      p 'challenge has no recipient'
+      p '*' *50
+      output = {errCode: -1}
+      return output
+    end
+    rec = @challenge.Recipient
     @gift.recipient = rec    
     if @gift.name.nil?
       output = { errCode: -1 }
