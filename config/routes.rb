@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get 'sessions/new'
-  post 'TESTAPI/resetFixture' => 'gifts#resetFixture'
   resources :challenges
 
   resources :gifts, :users
@@ -13,7 +12,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   post 'TEST/gifts/unitTests' => 'gifts#runUnitTests'
   # You can have the root of your site routed with "root"
-  root 'user#welcome'
+  root :to => 'user#welcome'
   post 'users/updatecity' => 'users#editCurrentCity'
   get '/', to: 'user#welcome'
   post 'users/updatehours' => 'users#editAvailableHours'

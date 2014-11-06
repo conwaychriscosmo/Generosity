@@ -34,26 +34,64 @@ RSpec.describe Users, :type => :model do
 
 	describe "error codes" do
 		it "should have correct error code for empty username" do
-		expect(Users.add('', 'a'*6)).to eq errorCodes[:badUsername]
+		    expect(Users.add({password: 'a'*6})).to eq errorCodes[:badUsername]
 	    end
 
 	    it "should have correct error code for too long username" do
-	    	expect(Users.add('a'*129, 'a'*6)).to eq errorCodes[:badUsername]
+	    	expect(Users.add({username: 'a'*129, password: 'a'*6})).to eq errorCodes[:badUsername]
 	    end
 
 	    it "should have correct error code for too long password" do
-	    	expect(Users.add('alice', 'a'*129)).to eq errorCodes[:badPassword]
+	    	expect(Users.add({username: 'alice',password: 'a'*129})).to eq errorCodes[:badPassword]
 	    end
 
 	    it "should have correct error code for creating user with same username" do
-	    	Users.add('bob', 'a'*6)
-	    	expect(Users.add('bob', 'alice')).to eq errorCodes[:userExists]
+	    	Users.add({username: 'bob', password: 'a'*6})
+	    	expect(Users.add({username: 'bob',password: 'b'*6})).to eq errorCodes[:userExists]
 	    end
 
 	    it "should have correct error code for too short password" do
-	    	expect(Users.add('blah', 'abc')).to eq errorCodes[:badPassword]
+	    	expect(Users.add({username: 'blah', password: 'abc'})).to eq errorCodes[:badPassword]
 	    end
 	end
+
+	describe "Users.add options" do
+		it "should allow us to set score" do
+			Users.add({username: 'greg', password: 'password', score: 20})
+			expect(Users.where(username: 'greg').score).to eq 20
+		end
+
+		it "should allow us to set level" do
+			Users.add({username: 'greg', password: 'password', level: 100})
+			expect(Users.where(username: 'greg').level).to eq 100
+		end
+
+		it "should allow us to set current_city" do
+			Users.add({username: 'greg', password: 'password', current_city: 'Seattle, WA'})
+			expect(Users.where(username: 'greg').current_city).to eq 'Seattle, WA'
+		end
+
+		it "should allow us to set available_hours" do
+			Users.add({username: 'greg', password: 'password', available_hours: '12am - 6am'})
+			expect(Users.where(username: 'greg').available_hours).to eq '12am - 6am'
+		end
+
+		it "should allow us to set total_gifts_given" do
+			Users.add({username: 'greg', password: 'password', total_gifts_given: 5})
+			expect(Users.where(username: 'greg').total_gifts_given).to eq 5
+		end
+
+		it "should allow us to set total_gifts_received" do
+			Users.add({username: 'greg', password: 'password', total_gifts_received: 6})
+			expect(Users.where(username: 'greg').total_gifts_received).to eq 6
+		end
+
+		it "should allow us to set profile picture url" do
+			Users.add({username: 'greg', password: 'password', profile_url: 'hi.org'})
+			expect(Users.where(username: 'greg').profile_url).to eq 'hi.org'
+		end
+	end
+
 
 
 end
