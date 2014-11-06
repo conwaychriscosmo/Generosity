@@ -22,6 +22,7 @@ RSpec.describe Challenge, :type => :model  do
         expect(output).to eq hsh
       end
 
+
       it "should throw an error given no users" do
         Users.add('greg', 'veryproper')
         output = Challenge.match('greg')
@@ -56,7 +57,15 @@ RSpec.describe Challenge, :type => :model  do
         expect(output).to eq hsh
       end
 
+      it "getChallenge" do
+        Users.add('fred', 'iloveme')
+        Users.add('george', 'notfromharrypotter')
+        output = Challenge.match('george')
+        challenge = Challenge.current(1)
+        expect(challenge[:Giver]).to eq 'george'
+      end
     end
+
 
     describe "current" do
 

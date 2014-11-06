@@ -1,6 +1,7 @@
 {
   "RSpec": {
     "coverage": {
+<<<<<<< HEAD
       "/Users/gregorymonson/Desktop/CS169/Generosity/spec/spec_helper.rb": [
         null,
         1,
@@ -9,6 +10,15 @@
         null,
         null,
         null,
+=======
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/spec/spec_helper.rb": [
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
         null,
         null,
         null,
@@ -21,10 +31,36 @@
         1,
         null,
         1,
+>>>>>>> improvegifts
         null,
         null,
         null,
         null,
+<<<<<<< HEAD
+=======
+        null,
+>>>>>>> improvegifts
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+<<<<<<< HEAD
+=======
+        null,
+        null,
+        null,
+>>>>>>> improvegifts
+        1,
+        null,
+        null,
+        null,
+        null,
+<<<<<<< HEAD
+=======
+        1,
+>>>>>>> improvegifts
         null,
         null,
         null,
@@ -35,22 +71,9 @@
         null,
         null,
         null,
+<<<<<<< HEAD
         1,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
+=======
         null,
         null,
         null,
@@ -64,50 +87,284 @@
         1,
         null
       ],
-      "/Users/gregorymonson/Desktop/CS169/Generosity/config/environment.rb": [
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/environment.rb": [
+>>>>>>> improvegifts
         null,
         1,
         null,
         null,
         1
       ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/application.rb": [
+        1,
+        null,
+<<<<<<< HEAD
+        1,
+=======
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/boot.rb": [
+        null,
+        1,
+        null,
+        1
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/environments/test.rb": [
+        1,
+        null,
+        null,
+>>>>>>> improvegifts
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+<<<<<<< HEAD
+=======
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+>>>>>>> improvegifts
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+<<<<<<< HEAD
+=======
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/initializers/assets.rb": [
+        null,
+        null,
+        null,
+        1,
+        1,
+>>>>>>> improvegifts
+        null,
+        null,
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/initializers/backtrace_silencers.rb": [
+        null,
+<<<<<<< HEAD
+        1,
+        null
+      ],
+      "/Users/gregorymonson/Desktop/CS169/Generosity/config/environment.rb": [
+=======
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/initializers/cookies_serializer.rb": [
+        null,
+        null,
+        1
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/initializers/filter_parameter_logging.rb": [
+        null,
+        null,
+        null,
+        1
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/initializers/inflections.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+>>>>>>> improvegifts
+        null,
+        1,
+        null,
+        null,
+<<<<<<< HEAD
+        1
+      ],
       "/Users/gregorymonson/Desktop/CS169/Generosity/config/application.rb": [
         1,
+=======
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/initializers/mime_types.rb": [
         null,
+        null,
+        null,
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/initializers/session_store.rb": [
+        null,
+        null,
+        1
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/initializers/wrap_parameters.rb": [
+>>>>>>> improvegifts
+        null,
+        null,
+        null,
+        null,
+<<<<<<< HEAD
+        1,
+=======
+        null,
+>>>>>>> improvegifts
+        null,
+        1,
         1,
         null,
         null,
         null,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
         null,
         null,
-        null,
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/spec/factories/challenges.rb": [
+        1,
+        1,
+        1,
         1,
         null,
         null,
+<<<<<<< HEAD
+        null,
+=======
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/spec/factories/gifts.rb": [
         null,
         null,
+        1,
+>>>>>>> improvegifts
+        1,
+        null,
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/spec/factories/restaurants.rb": [
         null,
         null,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/spec/factories/users.rb": [
+        null,
+        null,
+<<<<<<< HEAD
         null,
         null,
         null
       ],
       "/Users/gregorymonson/Desktop/CS169/Generosity/config/boot.rb": [
+=======
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/routes.rb": [
+        1,
+        1,
+        1,
+        1,
         null,
         1,
+        1,
+        1,
+        1,
+        1,
+        1,
+>>>>>>> improvegifts
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+<<<<<<< HEAD
+=======
+        1,
+        1,
+        1,
+>>>>>>> improvegifts
         null,
         1
       ],
       "/Users/gregorymonson/Desktop/CS169/Generosity/config/environments/test.rb": [
         1,
+<<<<<<< HEAD
+=======
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
         null,
         null,
         null,
@@ -119,23 +376,121 @@
         null,
         null,
         null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/helpers/challenges_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/helpers/gifts_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/helpers/sessions_helper.rb": [
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+>>>>>>> improvegifts
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+<<<<<<< HEAD
+=======
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/helpers/tracker_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/helpers/user_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/helpers/users_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/models/users.rb": [
+        1,
+>>>>>>> improvegifts
+        null,
+        null,
+        1,
+<<<<<<< HEAD
+=======
+        1,
+        1,
+        1,
+>>>>>>> improvegifts
+        null,
+        null,
+        1,
         1,
         null,
         null,
         1,
+<<<<<<< HEAD
         1,
+=======
         null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        null,
-        null,
-        1,
-        null,
-        null,
+        0,
+>>>>>>> improvegifts
         null,
         null,
         1,
@@ -144,6 +499,33 @@
         1,
         null,
         null,
+        null,
+        null,
+        1,
+<<<<<<< HEAD
+=======
+        11,
+        null,
+        11,
+        9,
+        9,
+        9,
+        9,
+>>>>>>> improvegifts
+        null,
+        null,
+        1,
+        null,
+<<<<<<< HEAD
+        null,
+=======
+        0,
+        null,
+        0,
+        null,
+        2,
+        2,
+>>>>>>> improvegifts
         null,
         null
       ],
@@ -157,6 +539,7 @@
         null,
         null
       ],
+<<<<<<< HEAD
       "/Users/gregorymonson/Desktop/CS169/Generosity/config/initializers/backtrace_silencers.rb": [
         null,
         null,
@@ -167,12 +550,43 @@
         null
       ],
       "/Users/gregorymonson/Desktop/CS169/Generosity/config/initializers/cookies_serializer.rb": [
+=======
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/models/challenge.rb": [
+        1,
+        1,
+        1,
+        null,
+        8,
+        8,
+        8,
+        8,
+        8,
+        0,
+        0,
+        null,
+        null,
+        8,
+        null,
+        8,
+        null,
+        3,
+        2,
+        2,
+>>>>>>> improvegifts
         null,
         null,
         1
       ],
       "/Users/gregorymonson/Desktop/CS169/Generosity/config/initializers/filter_parameter_logging.rb": [
         null,
+<<<<<<< HEAD
+=======
+        5,
+        5,
+        5,
+        5,
+        5,
+>>>>>>> improvegifts
         null,
         null,
         1
@@ -180,12 +594,38 @@
       "/Users/gregorymonson/Desktop/CS169/Generosity/config/initializers/inflections.rb": [
         null,
         null,
+<<<<<<< HEAD
+        null,
+=======
+        1,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+>>>>>>> improvegifts
+        null,
+        0,
+        0,
+        null,
+<<<<<<< HEAD
+        null,
+        null,
+        null,
+=======
+        0,
         null,
         null,
         null,
         null,
         null,
         null,
+        null,
+        1,
+        1,
+>>>>>>> improvegifts
         null,
         null,
         null,
@@ -210,6 +650,7 @@
         null,
         null,
         null,
+<<<<<<< HEAD
         null,
         null,
         null,
@@ -365,10 +806,36 @@
         1,
         0,
         null,
+=======
+        null
+      ],
+      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/models/gift.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
         null,
         null,
         1,
         0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+>>>>>>> improvegifts
+        null,
+        null,
+        0,
+<<<<<<< HEAD
         null,
         null
       ],
@@ -410,23 +877,7 @@
         1,
         null,
         1,
-        null,
-        null,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        null,
-        null,
-        null,
-        1,
-        null,
-        0,
-        0,
-        0,
+=======
         0,
         0,
         null,
@@ -434,6 +885,54 @@
         null,
         null,
         1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        0,
+>>>>>>> improvegifts
+        null,
+        null,
+        1,
+        0,
+        0,
+<<<<<<< HEAD
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        1,
+=======
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+>>>>>>> improvegifts
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        0,
+        null,
+<<<<<<< HEAD
+        1,
         null,
         13,
         13,
@@ -452,31 +951,80 @@
         8,
         null,
         null,
+=======
+        null,
+        1,
+        0,
+>>>>>>> improvegifts
         null,
         2,
         null,
         1,
+<<<<<<< HEAD
         null,
         2,
         5,
         null,
         null,
+=======
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+>>>>>>> improvegifts
         null,
         null,
-        1,
         0,
         null,
         0,
         null,
         null,
+<<<<<<< HEAD
+=======
         null,
         1,
+        0,
+        0,
+        0,
+        null,
+        0,
+>>>>>>> improvegifts
+        null,
         0,
         null,
         null,
         null
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1415249010
+=======
+    "timestamp": 1415253023
+>>>>>>> improvegifts
   }
 }

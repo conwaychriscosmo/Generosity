@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20141106043755) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +29,11 @@ ActiveRecord::Schema.define(version: 20141106043755) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "giver"
+    t.string   "recipient"
+    t.float    "rating"
+    t.text     "review"
+    t.boolean  "delivered"
   end
 
   create_table "users", force: true do |t|
