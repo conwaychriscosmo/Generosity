@@ -5,7 +5,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	      		when('/', {
 
 	      		}).
-	      		when('/profile', {
+	      		when('/profile/:id', {
 	        		templateUrl: "profile.html",
 	        		controller: 'UsersController as profiledUser'
 	      		}).
@@ -35,9 +35,10 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	      		});
 	  }])
 
-	.controller('UsersController', ['$scope', '$http', '$rootScope', '$location', function($scope, $http, $rootScope, $location) {
+	.controller('UsersController', ['$scope', '$http', '$rootScope', '$location', '$routeParams', function($scope, $http, $rootScope, $location, $routeParams) {
 		var self = this;
 
+		self.id;
 		self.username;
 		self.realName;
 		self.password;
@@ -49,8 +50,14 @@ angular.module('generosity', ['ngRoute', 'templates'])
 
 		self.errCode = 0;
 
+		self.getUserFromUrlParams = function() {
+			self.id = $routeParams.id;
+			// console.log(self.id);
+			self.getUserById(self.id);
+		}
+
 		self.getUserById = function(targetId) {
-			console.log(targetId);
+			// console.log(targetId);
 			$http.post('users/search', {id: targetId}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
@@ -78,7 +85,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 				then(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
-					alert("Done.");
+					// alert("Done.");
 					console.log("Done.");
 					return;
 				});
@@ -125,7 +132,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 				then(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
-					alert("Done.");
+					// alert("Done.");
 					console.log("Done.");
 					return;
 				});
