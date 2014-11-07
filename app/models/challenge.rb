@@ -54,21 +54,30 @@ class Challenge < ActiveRecord::Base
   #  return Challenge.find_by(Giver: username)
   #end
   #if a giver deletes their account, the recipient should be given a new giver in challenges, that is what rematch does
-  def self.rematch(chall)
+  def self.rematch(chall,attempts)
+    if attempts > 50
+      output = {errCode: -2}
+      return output
+    end
     @challenge = Challenge.new
     @challenge.Recipient = chall.Recipient
     offset = rand(Users.count)
     @rand_user = Users.offset(offset).first
     if @rand_user.blank?
-      output = Challenge.rematch(username)
+      output = Challenge.rematch(chall, attempts+1)
       return output
     end
-    @challenge.Giver = @rand_user.username
+    goat = Challenge.find_by(Giver: @rand_user.username)
+    if goat.nil?
+      @challenge.Giver = @rand_user.username
+    else
+      return Challenge.rematch(chall, attempts+1)
+    end
     #check to see if matched with self
     if @challenge.Recipient == @challenge.Giver
       #if matched with self and more than one user, try again, else error
       if Users.count > 1
-        output = Challenge.rematch(chall)
+        output = Challenge.rematch(chall, attempts+1)
         return output
       else
         output = { errCode: -2 }
@@ -100,7 +109,7 @@ class Challenge < ActiveRecord::Base
       return output
     end
     if giver.nil?
-      output = Challenge.rematch(@challenge)
+      output = Challenge.rematch(@challenge,0)
       return output
     end
     given = giver.total_gifts_given
