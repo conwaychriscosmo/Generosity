@@ -16,6 +16,6 @@
 //= require turbolinks
 //= require angular
 //= require angular-mocks
-//= require route
+//= require angular-route
 //= require angular-rails-templates
 //= require_tree ../templates

@@ -1,6 +1,6 @@
 angular.module('generosity', ['ngRoute', 'templates'])
-	.config(['$routeProvider', '$locationProvider',
-	  	function($routeProvider, $locationProvider) {
+	.config(['$routeProvider', 
+	  	function($routeProvider) {
 	    	$routeProvider.
 	      		when('/', {
 	        		templateUrl: "users-form.html",
@@ -13,7 +13,6 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	      		otherwise({
 	        		redirectTo: '/'
 	      		});
-	      	$locationProvider.html5Mode(true);
 	  }])
 
 	.controller('UsersController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
