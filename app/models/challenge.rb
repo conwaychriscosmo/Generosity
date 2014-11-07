@@ -105,14 +105,11 @@ class Challenge < ActiveRecord::Base
     end
     given = giver.total_gifts_given
     given = given + 1
-    giver.total_gifts_given = given
+    giver.update_columns(total_gifts_given: given)
     received = recipient.total_gifts_received
     received = received + 1
-    recipient.total_gifts_received = received
-    giver.save
-    recipient.save
+    recipient.update_columns(total_gifts_received: received)
     #delete current challenge and set up a new one
-    @challenge.destroy
     output = Challenge.match(giverName)
     return output
   #close the last challenge and start the next one by calling
