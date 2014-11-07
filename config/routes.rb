@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   post 'gifts/:id/rate', to: 'gifts#rate'
   post 'gifts/:id/review', to: 'gifts#review'
   post 'gifts/:id/deliver', to: 'gifts#deliver'
+  post 'gifts/:id/delete', to: 'gifts#delete'
+  post 'challenge/:id/delete', to: 'challenges#delete'
   get 'gifts/:id/view', to: 'gifts#view'
   get 'users/add', to: 'users#new'
   post 'users/add', to: 'users#add'

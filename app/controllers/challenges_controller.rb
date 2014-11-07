@@ -9,6 +9,11 @@ class ChallengesController < ApplicationController
     render json: output
   end
 
+  def delete
+    output = Challenge.delete(:id)
+    render json: output
+  end
+
   def complete
   #called when a challenge is completed
     @username = params[:session][:username]
