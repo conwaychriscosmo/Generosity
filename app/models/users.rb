@@ -39,6 +39,7 @@ class Users < ActiveRecord::Base
     		user.total_gifts_received = options[:total_gifts_received] ||= user.total_gifts_received
     		user.score = options[:score] ||= user.score
     		#Need to save/update user
+    		user.save(:validate => false)
     		return SUCCESS
     	else
     		return ERR_ACTION_NOT_AUTHORIZED
