@@ -26,7 +26,12 @@ class UsersController < ApplicationController
 	end
 
     def search()
-        users = Users.search(params.except[:session])
+        userInfo = params[:user]
+        sanitizedUserInfo = params.except[:session] 
+        # puts params
+        # puts userInfo
+        # puts sanitizedUserInfo
+        users = Users.search(userInfo)
         render json: {users: users}
     end
 

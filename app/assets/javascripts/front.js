@@ -63,7 +63,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 					// 	console.log("Error: User not found.");
 					// 	return;
 					// }
-					var foundUser = usersList[4];
+					var foundUser = usersList[0];
 					console.log(foundUser["username"]);
 					self.username = foundUser["username"];
 					self.realName = foundUser["real_name"];

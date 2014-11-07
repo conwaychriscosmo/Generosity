@@ -84,7 +84,8 @@ class Users < ActiveRecord::Base
 	end
 
 	def self.search(options)
-		return Users.where(options)
+		puts options[:id]
+		return Users.where({id: options[:id]})
 	end
 
 
