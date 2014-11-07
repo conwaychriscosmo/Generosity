@@ -3,8 +3,20 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	  	function($routeProvider) {
 	    	$routeProvider.
 	      		when('/', {
-	        		templateUrl: "users-form.html",
+
+	      		}).
+	      		when('/profile', {
+	        		templateUrl: "profile.html",
 	        		controller: 'UsersController'
+	      		}).
+	      		when('/challenge', {
+
+	      		}).
+	      		when('/map', {
+
+	      		}).	      		
+	      		when('/shop', {
+
 	      		}).
 	      		// when('/phones/:phoneId', {
 	        // 		templateUrl: 'partials/phone-detail.html',
