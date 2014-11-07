@@ -7,7 +7,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	      		}).
 	      		when('/profile', {
 	        		templateUrl: "profile.html",
-	        		controller: 'UsersController'
+	        		controller: 'UsersController as profiledUser'
 	      		}).
 	      		when('/challenge', {
 
@@ -49,6 +49,40 @@ angular.module('generosity', ['ngRoute', 'templates'])
 
 		self.errCode = 0;
 
+		self.getUserById = function(targetId) {
+			console.log(targetId);
+			$http.post('users/search', {id: targetId}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					// self.errCode = data.errCode;
+					var usersList = data["users"];
+					console.log(usersList);
+					// if(usersList.length != 1) {
+					// 	alert("Error: User not found.");
+					// 	console.log("Error: User not found.");
+					// 	return;
+					// }
+					var foundUser = usersList[4];
+					console.log(foundUser["username"]);
+					self.username = foundUser["username"];
+					self.realName = foundUser["real_name"];
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					self.errCode = -5;
+					alert("Error.");
+					console.log("Error.");
+				}).
+				then(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					alert("Done.");
+					console.log("Done.");
+					return;
+				});
+		}
 
 		self.addUser = function() {
 			// alert("YO DAWG"); //Only called once even when things go awry

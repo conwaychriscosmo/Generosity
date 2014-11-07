@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get 'users/add', to: 'users#new'
   post 'users/add', to: 'users#add'
   post 'users/edit', to: 'users#edit'
-  get 'users/search', to: 'users#search'
+  post 'users/search', to: 'users#search'
 
   post 'TEST/users/unitTests', to: 'users#runUnitTests'
 

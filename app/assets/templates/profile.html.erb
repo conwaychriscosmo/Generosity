@@ -1,12 +1,12 @@
-<div class="container-fluid" style="margin-top:-.2%">
+<div class="container-fluid" style="margin-top:-.2%" data-ng-init="profiledUser.getUserById(23)">
 	<span class="profile-pic">
 		<img src="http://cdn02.animenewsnetwork.com/thumbnails/max500x600/encyc/A15757-989316051.1386311773.jpg"></img>	
 		<div>
-			{{username}}
+			{{profiledUser.username}}
 		</div>
 	</span>
 	<span class="profile-info">
-		<span class="tag">Real name: </span>{{realName}}
+		<span class="tag">Real name: </span>{{profiledUser.realName}}
 		<br>
 		<span class="tag">Best timeframe: </span>{{availableHours}}
 		<br>
