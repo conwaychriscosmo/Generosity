@@ -35,23 +35,23 @@ class GiftsController < ApplicationController
   end
 
   def delete
-    output = Gift.delete(params[:gift][:id])
+    output = Gift.delete(params[:id])
     render json: output
   end
 
   def review
-    output = Gift.review(params[:gift][:review],params[:gift][:id],params[:session][:username])
+    output = Gift.review(params[:gift][:review],params[:id],params[:session][:username])
     render json: output
   end  
   #the recipient rates the gift
   def rate
-    output = Gift.rate(params[:gift][:rating],params[:gift][:id],params[:session][:username])
+    output = Gift.rate(params[:gift][:rating],params[:id],params[:session][:username])
     render json: output
   end
   
   #the giver delivers the gift
   def deliver
-    output = Gift.deliver(params[:gift][:id])
+    output = Gift.deliver(params[:id])
     render json: output
   end
   # POST /gifts
