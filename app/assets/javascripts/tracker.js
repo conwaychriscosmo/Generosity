@@ -1,7 +1,7 @@
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
-var pos = "berkeley, ca";
-var tempEnd = "san francisco, ca";
+var pos = "berkeley, ca"; // Default in case geolocation doesn't work
+var goal = "san francisco, ca";
 var markersArray = [];
 var bounds = new google.maps.LatLngBounds();
 var geocoder;
@@ -19,7 +19,7 @@ function initialize() {
       mapOptions);
   geocoder = new google.maps.Geocoder();
   if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(function(position) {
+    navigator.geolocation.getCurrentPosition(function(position) {
       pos = new google.maps.LatLng(position.coords.latitude,
                                    position.coords.longitude);
       var infowindow = new google.maps.InfoWindow({
@@ -27,34 +27,39 @@ function initialize() {
         position: pos,
         content: 'You are here'
       });
-    map.setCenter(pos);
+      map.setCenter(pos);
+      directionsDisplay.setMap(map);
+      directionsDisplay.setPanel(document.getElementById());
+      calcRoute();
+      calcDistance();
     }, function() {
-    handleNoGeoLocation(true);
+      handleNoGeoLocation(true);
     });
   }
   else {
     handleNoGeoLocation(false);
   }
-  directionsDisplay.setMap(map);
-  // Uncomment the line below to use step-by-step directions
-  //directionsDisplay.setPanel(document.getElementById());
-  calcRoute();
-  calcDistance();
 }
 
 function changeTargetOne() {
-  tempEnd = "san francisco, ca";
+  goal = "san francisco, ca";
 }
 
 function changeTargetTwo() {
-  tempEnd = "richmond, ca";
+  goal = "richmond, ca";
 }
 
 function calcRoute() {
-  var start = pos;
-  var end = tempEnd;
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      pos = new google.maps.LatLng(position.coords.latitude,
+                                   position.coords.longitude);
+    }, function() {
+      handleNoGeoLocation(true);
+    });
+  }
   var request = {
-    origin: start,
+    origin: pos,
     destination: end,
     travelMode: google.maps.TravelMode.WALKING,
     avoidHighways: true,
@@ -72,7 +77,7 @@ function calcDistance() {
   service.getDistanceMatrix(
       {
         origins: [pos],
-        destinations: [tempEnd],
+        destinations: [goal],
         travelMode: google.maps.TravelMode.WALKING,
         unitSystem: google.maps.UnitSystem.METRIC,
         avoidHighways: true,
