@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 		data = {}
 		data[:errCode] = code
 		if code == 1
+            username = params[:username]
 			user = Users.find_by(username: username)
 			login(user)
 			challenge = Challenge.match(username)

@@ -39,15 +39,19 @@ angular.module('generosity', ['ngRoute', 'templates'])
 					self.errCode = data.errCode;
 					if(self.errCode == -2) {
 						alert("Error: This username already exists.");
+						console.log("Error: This username already exists.");
 					}
 					else if(self.errCode == -3) {
 						alert("Error: The username is empty, too long, or has invalid characters.");
+						console.log("Error: The username is empty, too long, or has invalid characters.");
 					}
 					else if(self.errCode == -4) {
 						alert("Error: The password is empty, too long, or has invalid characters.");
+						console.log("Error: The password is empty, too long, or has invalid characters.");
 					}
 					else {
-						alert("User created.");						
+						alert("User created.");
+						console.log("User created.");						
 					}
 					console.log(self.errCode);
 				}).
@@ -56,11 +60,14 @@ angular.module('generosity', ['ngRoute', 'templates'])
 				// or server returns response with an error status.
 					self.errCode = -5;
 					alert("Error.");
+					console.log("Error.");
 				}).
 				then(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
 					alert("Done.");
+					console.log("Done.");
+					return;
 				});
 		}
 

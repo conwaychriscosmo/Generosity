@@ -25,7 +25,7 @@ angular.module('generosity').controller('UserTestController', ['$scope', '$http'
 
 		self.runTests = function() {
 			self.testAttributes();
-			self.testAPICalls();
+			// self.testAPICalls();
 		}
 
 		/*testAttributes() tests the UsersController's variables and variable-related methods.*/
@@ -57,15 +57,15 @@ angular.module('generosity').controller('UserTestController', ['$scope', '$http'
 			// console.log(errCode);
 			/*Add code to delete this user beforehand.*/
 			// errCode = $scope.err;
-			self.assert(userTestController.errCode === 1, "Error code is " + userTestController.errCode + ", but it should have been 1 (successful creation).");
-			userTestController.addUser();
-			self.assert(userTestController.errCode === -2, "Error code is " + userTestController.errCode + ", but it should have been -2 (username already exists). Username is " + userTestController.username + ", but it should have been LordChristopher.");
-			userTestController.username = "";
-			userTestController.addUser();
-			self.assert(userTestController.errCode === -3, "Error code is " + userTestController.errCode + ", but it should have been -3 (bad username). Username is " + userTestController.username + ", but it should have been blank.");
-			userTestController.username = "Anaconda";
-			userTestController.password = null;
-			userTestController.addUser();
-			self.assert(userTestController.errCode === -4, "Error code is " + userTestController.errCode + ", but it should have been -4 (bad password). Password is " + userTestController.password + ", but it should have been blank.");
+			setTimeout(self.assert(userTestController.errCode === 1, "Error code is " + userTestController.errCode + ", but it should have been 1 (successful creation)."), 10000);
+			setTimeout(userTestController.addUser(), 4000);
+			setTimeout(self.assert(userTestController.errCode === -2, "Error code is " + userTestController.errCode + ", but it should have been -2 (username already exists). Username is " + userTestController.username + ", but it should have been LordChristopher."), 4000);
+			setTimeout(userTestController.username = "", 4000);
+			setTimeout(userTestController.addUser(), 4000);
+			setTimeout(self.assert(userTestController.errCode === -3, "Error code is " + userTestController.errCode + ", but it should have been -3 (bad username). Username is " + userTestController.username + ", but it should have been blank."), 4000);
+			// setTimeout(userTestController.username = "Anaconda", 4000);
+			// setTimeout(userTestController.password = null, 4000);
+			// setTimeout(userTestController.addUser(), 4000);
+			// setTimeout(self.assert(userTestController.errCode === -4, "Error code is " + userTestController.errCode + ", but it should have been -4 (bad password). Password is " + userTestController.password + ", but it should have been blank."), 4000);
 		}
 	}]);
