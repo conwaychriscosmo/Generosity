@@ -90,6 +90,7 @@ class Challenge < ActiveRecord::Base
   def self.complete(username)
     @challenge = Challenge.find_by(Giver: username)
     #updates the user fields
+    Challenge.destroy_all(:Giver => username)
     giverName = @challenge.Giver
     recipientName = @challenge.Recipient
     giver = Users.find_by(username: giverName)
