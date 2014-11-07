@@ -3,17 +3,22 @@ class Users < ActiveRecord::Base
 	MIN_PASSWORD_LENGTH = 6
 	MAX_PASSWORD_LENGTH = 128
 	MAX_USERNAME_LENGTH = 128
+	MAX_REAL_NAME_LENGTH = 128
 
 	SUCCESS = 1
 	ERR_BAD_PASSWORD = -4
 	ERR_BAD_USERNAME = -3
 	ERR_USER_EXISTS = -2
 	ERR_ACTION_NOT_AUTHORIZED = -5
+	ERR_REAL_NAME = -6
 
 
 	validates :username, length: {maximum: MAX_USERNAME_LENGTH}
 	validates :username, uniqueness: true
 	validates :username, presence: true
+
+	validates :real_name, presence: true
+	validates :real_name, length: {maximum: MAX_REAL_NAME_LENGTH}
 
 	has_secure_password
 	validates :password, length: {maximum: MAX_PASSWORD_LENGTH}
@@ -22,8 +27,8 @@ class Users < ActiveRecord::Base
 
 
 	def self.errorCodes()
-		return {success: SUCCESS, badPassword: ERR_BAD_PASSWORD,
-			badUsername: ERR_BAD_USERNAME, userExists: ERR_USER_EXISTS, failedEdit: ERR_ACTION_NOT_AUTHORIZED}
+		return {success: SUCCESS, badPassword: ERR_BAD_PASSWORD, badUsername: ERR_BAD_USERNAME,
+			userExists: ERR_USER_EXISTS, failedEdit: ERR_ACTION_NOT_AUTHORIZED, badRealName: ERR_REAL_NAME}
 	end
 
 
@@ -51,9 +56,9 @@ class Users < ActiveRecord::Base
 
         username = options[:username]
         password = options[:password]
-		puts "YOLOLOLOLOLOLOLOLOLOLOLO500"
+        real_name = options[:real_name]
 
-		new_user = Users.new(username: options[:username], password: options[:password])
+		new_user = Users.new(username: username, password: password, real_name: real_name)
 		if new_user.valid?
 			new_user.available_hours = options[:available_hours] ||= "9am - 6pm"
 		    new_user.current_city = options[:current_city] ||= "Berkeley, CA"
@@ -70,6 +75,8 @@ class Users < ActiveRecord::Base
 				return ERR_BAD_USERNAME
 			when Users.where(username: username).all.size == 1
 				return ERR_USER_EXISTS
+			when !new_user[:real_name].present? || new_user[:real_name].size > MAX_REAL_NAME_LENGTH
+				return ERR_REAL_NAME
 			when !new_user[:password].present? || new_user[:password].size > MAX_PASSWORD_LENGTH || new_user[:password].size < MIN_PASSWORD_LENGTH
 				return ERR_BAD_PASSWORD
 			end
