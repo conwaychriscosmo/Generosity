@@ -1,7 +1,9 @@
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
+var DIST_THRESH = 2000;
 var pos = "berkeley, ca"; // Default in case geolocation doesn't work
 var goal = "san francisco, ca";
+var dist = 1000;
 var markersArray = [];
 var bounds = new google.maps.LatLngBounds();
 var geocoder;
@@ -27,11 +29,10 @@ function initialize() {
         position: pos,
         content: 'You are here'
       });
-      map.setCenter(pos);
       directionsDisplay.setMap(map);
-      directionsDisplay.setPanel(document.getElementById());
+      directionsDisplay.setPanel(document.getElementById('directions-panel'));
       calcRoute();
-      calcDistance();
+      map.setCenter(pos);
     }, function() {
       handleNoGeoLocation(true);
     });
@@ -46,7 +47,13 @@ function changeTargetOne() {
 }
 
 function changeTargetTwo() {
-  goal = "richmond, ca";
+  goal = "uc berkeley";
+}
+
+function calcAll() {
+  calcRoute();
+  calcDistance();
+  checkDist();
 }
 
 function calcRoute() {
@@ -60,7 +67,7 @@ function calcRoute() {
   }
   var request = {
     origin: pos,
-    destination: end,
+    destination: goal,
     travelMode: google.maps.TravelMode.WALKING,
     avoidHighways: true,
     avoidTolls: false
@@ -69,43 +76,41 @@ function calcRoute() {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
     }
+    calcDistance();
   });
 }
 
 function calcDistance() {
   var service = new google.maps.DistanceMatrixService();
-  service.getDistanceMatrix(
-      {
-        origins: [pos],
-        destinations: [goal],
-        travelMode: google.maps.TravelMode.WALKING,
-        unitSystem: google.maps.UnitSystem.METRIC,
-        avoidHighways: true,
-        avoidTolls: false
-      }, callback);
-}
-
-function callback(response, status) {
-  if (status != google.maps.DistanceMatrixStatus.OK) {
-    alert('Error was: ' + status);
-  } else {
-    var origins = response.originAddresses;
-    var destinations = response.destinationAddresses;
-    var outputDiv = document.getElementById('output');
-    outputDiv.innerHTML = '';
-    deleteOverlays();
-
-    for (var i = 0; i < origins.length; i++) {
-      var results = response.rows[i].elements;
-      //addMarker(origins[i], false);
-      for (var j = 0; j < results.length; j++) {
-        //addMarker(destinations[j], true);
-        outputDiv.innerHTML += origins[i] + ' to ' + destinations[j]
-            + ': ' + results[j].distance.text + ' in '
-            + results[j].duration.text + '<br>';
+  service.getDistanceMatrix({
+    origins: [pos],
+    destinations: [goal],
+    travelMode: google.maps.TravelMode.WALKING,
+    unitSystem: google.maps.UnitSystem.METRIC,
+    avoidHighways: true,
+    avoidTolls: false
+  }, function(response, status) {
+    if (status != google.maps.DistanceMatrixStatus.OK) {
+      alert('Error was: ' + status);
+    } else {
+      var origins = response.originAddresses;
+      var destinations = response.destinationAddresses;
+      var outputDiv = document.getElementById('output');
+      outputDiv.innerHTML = '';
+      deleteOverlays();
+      for (var i = 0; i < origins.length; i++) {
+        var results = response.rows[i].elements;
+        for (var j = 0; j < results.length; j++) {
+          outputDiv.innerHTML += origins[i] + ' to ' + destinations[j]
+              + ': ' + results[j].distance.text + ' in '
+              + results[j].duration.text + '<br>';
+          dist = results[j].distance.value;
+          console.log(results[j]);
+          checkDist();
+        }
       }
     }
-  }
+  });
 }
 
 function addMarker(location, isDestination) {
@@ -119,12 +124,12 @@ function addMarker(location, isDestination) {
     if (status == google.maps.GeocoderStatus.OK) {
       bounds.extend(results[0].geometry.location);
       map.fitBounds(bounds);
-      var marker = new google.maps.Marker({
+      /*var marker = new google.maps.Marker({
         map: map,
         position: results[0].geometry.location,
         icon: icon
       });
-      markersArray.push(marker);
+      markersArray.push(marker);*/
     } else {
       alert('Geocode was not successful for the following reason: '
         + status);
@@ -137,6 +142,17 @@ function deleteOverlays() {
     markersArray[i].setMap(null);
   }
   markersArray = [];
+}
+
+function checkDist() {
+  console.log(dist);
+  if (dist > DIST_THRESH) {
+    document.getElementById('map-canvas').style.display = 'none';
+    document.getElementById('directions-panel').style.width = '100%';
+  } else {
+    document.getElementById('map-canvas').style.display = 'block';
+    document.getElementById('directions-panel').style.width = '40%';
+  }
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);

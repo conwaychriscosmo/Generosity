@@ -7,6 +7,7 @@
       height: 100%;
       margin: 0;
       padding: 0;
+      color: #aaa;
     }
 
     #map-canvas, #directions-panel {
@@ -15,25 +16,28 @@
 
     #map-canvas {
       width: 60%;
+      display: block;
       position: absolute;
       float: left;
+      color: black;
     }
 
     #directions-panel {
       width: 40%;
       position: relative;
       float: right;
+      background-color: #fff;
     }
     </style>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZJutoonZK2nW2NP65j6A-_JNvop8ndco&libraries=geometry"></script>
-    <%= javascript_include_tag "new.js" %>
+    <%= javascript_include_tag "tracker.js" %>
   </head>
   <body>
-      <div>Target 1 is SF, Target 2 is Richmond</div>
+      <div>Target 1 is SF, Target 2 is UC Berkeley</div>
       <div id="output"></div>
       <div id="heading"></div>
-      <input id="Target 1" type="button" value="Target 1" onclick="changeTargetOne();calcRoute();calcDistance();"/>
-      <input id="Target 2" type="button" value="Target 2" onclick="changeTargetTwo();calcRoute();calcDistance();"/>
+      <input id="Target 1" type="button" value="Target 1" onclick="changeTargetOne();calcAll();"/>
+      <input id="Target 2" type="button" value="Target 2" onclick="changeTargetTwo();calcAll();"/>
       <br/>
       <div id="map-canvas"></div>
       <div id="directions-panel"></div>
