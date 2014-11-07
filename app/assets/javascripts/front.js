@@ -1,6 +1,6 @@
 angular.module('generosity', ['ngRoute', 'templates'])
-	.config(['$routeProvider', 
-	  	function($routeProvider) {
+	.config(['$routeProvider', '$locationProvider',
+	  	function($routeProvider, $locationProvider) {
 	    	$routeProvider.
 	      		when('/', {
 
@@ -35,7 +35,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	      		});
 	  }])
 
-	.controller('UsersController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
+	.controller('UsersController', ['$scope', '$http', '$rootScope', '$location', function($scope, $http, $rootScope, $location) {
 		var self = this;
 
 		self.username;
@@ -77,6 +77,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 					else {
 						alert("User created.");
 						console.log("User created.");						
+						$location.path('/profile');
 					}
 					console.log(self.errCode);
 				}).
