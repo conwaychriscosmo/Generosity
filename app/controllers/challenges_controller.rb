@@ -10,7 +10,7 @@ class ChallengesController < ApplicationController
   end
 
   def delete
-    output = Challenge.delete(:id)
+    output = Challenge.delete(params[:id])
     render json: output
   end
 
@@ -23,7 +23,7 @@ class ChallengesController < ApplicationController
 
   def getCurrentChallenge
     @username = params[:session][:username]
-    output = Challenge.current(@username)
+    output = Challenge.current(params[:id])
     render json:  output
   end
 
