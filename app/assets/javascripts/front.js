@@ -47,6 +47,8 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		self.currentLocation;
 		self.recipient; //Should probably be renamed
 		self.description;
+		self.reputation;
+		self.profileUrl;
 
 		self.errCode = 0;
 
@@ -65,15 +67,22 @@ angular.module('generosity', ['ngRoute', 'templates'])
 					// self.errCode = data.errCode;
 					var usersList = data["users"];
 					console.log(usersList);
-					// if(usersList.length != 1) {
-					// 	alert("Error: User not found.");
-					// 	console.log("Error: User not found.");
-					// 	return;
-					// }
+					if(usersList.length != 1) {
+						alert("Error: User not found.");
+						console.log("Error: User not found.");
+						$location.path('/');
+						return;
+					}
 					var foundUser = usersList[0];
 					console.log(foundUser["username"]);
 					self.username = foundUser["username"];
 					self.realName = foundUser["real_name"];
+					self.availableHours = foundUser["available_hours"];
+					self.currentCity = foundUser["current_city"];
+					self.currentLocation = foundUser["current_location"];
+					self.reputation = foundUser["score"];
+					// self.description = foundUser["description"];
+					self.profileUrl = foundUser["profile_url"];
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
