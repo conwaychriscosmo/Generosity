@@ -24,7 +24,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	      		}).
 	      		when('/login-form', {
 	        		templateUrl: "login-form.html",
-	        		controller: 'SessionController as session'
+	        		controller: 'UsersController as loginUser'
 	      		}).
 	      		// when('/phones/:phoneId', {
 	        // 		templateUrl: 'partials/phone-detail.html',
@@ -87,7 +87,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
-					self.errCode = -5;
+					self.errCode = -99;
 					alert("Error.");
 					console.log("Error.");
 				}).
@@ -135,7 +135,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
-					self.errCode = -5;
+					self.errCode = -99;
 					alert("Error.");
 					console.log("Error.");
 				}).
@@ -170,9 +170,38 @@ angular.module('generosity', ['ngRoute', 'templates'])
 
 		self.makeIter(5);
 
-		// self.login = function(name, pw) {
-
-		// };
+		self.login = function(name, pw) {
+			$http.post('login', {username: name, password: pw}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					// self.errCode = data.errCode;
+					self.errCode = data.errCode;
+					if(self.errCode == -1) {
+						alert("Login failed.");
+						console.log("Login failed.");
+					}
+					else {
+						alert("Login succeeded.");
+						console.log("Login succeeded.");
+						self.password = "";
+					}
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					self.errCode = -99;
+					alert("Error.");
+					console.log("Error.");
+				}).
+				then(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					// alert("Done.");
+					console.log("Done.");
+					return;
+				});
+		};
 
 		// self.logout = function() {
 
@@ -220,30 +249,6 @@ angular.module('generosity', ['ngRoute', 'templates'])
 			self.description = "Such hype. Must play. Wow.";
 			self.rating = 5.0;
 		};
-	}])
-
-	.controller('SessionController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
-		var self = this;
-
-		self.userId;
-		self.username;
-
-		self.login = function(username, password) {
-			$http.post('login', {username: username, password: password}).
-				success(function(data, status, headers, config) {
-				// this callback will be called asynchronously
-				// when the response is available
-					alert("Connected");
-					errCode = data.errCode;
-					console.log(errCode);
-				}).
-				error(function(data, status, headers, config) {
-				// called asynchronously if an error occurs
-				// or server returns response with an error status.
-					console.log("error");
-					alert("Error.");
-				});
-		}
 	}])
 	
 	.directive('navbar', function() {
