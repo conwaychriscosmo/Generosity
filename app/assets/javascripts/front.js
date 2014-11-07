@@ -262,22 +262,6 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		};
 	})
 
-	.directive('profile', function() {
-		return {
-			restrict: 'E',
-			scope: {
-				username: '@',
-				realName: '@',
-				availableHours: '@',
-				currentCity: '@',
-				recipient: '@',
-				description: '@',
-				reputation: '@'
-			},
-			templateUrl: "profile.html" //Need to accomodate id afterwards
-		};
-	})	
-
 	.directive('gift', function() {
 		return {
 			restrict: 'E',
