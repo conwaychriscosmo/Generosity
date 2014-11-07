@@ -29,36 +29,39 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		self.description;
 
 
-		$scope.errCode = 0;
+		self.errCode = 0;
 
 		self.addUser = function() {
-			var errCode;
 			$http.post('users/add', {username: self.username, password: self.password}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
-					var errCode = data.errCode;
-					if(errCode == -2) {
+					self.errCode = data.errCode;
+					if(self.errCode == -2) {
 						alert("Error: This username already exists.");
 					}
-					else if(errCode == -3) {
+					else if(self.errCode == -3) {
 						alert("Error: The username is empty, too long, or has invalid characters.");
 					}
-					else if(errCode == -4) {
+					else if(self.errCode == -4) {
 						alert("Error: The password is empty, too long, or has invalid characters.");
 					}
 					else {
 						alert("User created.");						
 					}
-					console.log(errCode);
-					$rootScope.errCode = data.errCode;
+					console.log(self.errCode);
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
+					self.errCode = -5;
 					alert("Error.");
+				}).
+				then(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					alert("Done.");
 				});
-			return $scope.errCode;
 		}
 
 		self.retrieveErrCode = function(code) {
