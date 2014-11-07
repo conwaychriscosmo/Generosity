@@ -43,6 +43,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		self.errCode = 0;
 
 		self.addUser = function() {
+			alert("YO DAWG"); //Only called once even when things go awry
 			$http.post('users/add', {username: self.username, password: self.password}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
@@ -81,11 +82,6 @@ angular.module('generosity', ['ngRoute', 'templates'])
 					return;
 				});
 		}
-
-		self.retrieveErrCode = function(code) {
-			$scope.err = code;
-			console.log("here");
-		};
 
 		self.createDummyUser = function() {
 			self.username = "LordChristopher";

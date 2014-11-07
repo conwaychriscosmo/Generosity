@@ -51,9 +51,9 @@ class Users < ActiveRecord::Base
 
         username = options[:username]
         password = options[:password]
+		puts "YOLOLOLOLOLOLOLOLOLOLOLO500"
 
 		new_user = Users.new(username: options[:username], password: options[:password])
-
 		if new_user.valid?
 			new_user.available_hours = options[:available_hours] ||= "9am - 6pm"
 		    new_user.current_city = options[:current_city] ||= "Berkeley, CA"
