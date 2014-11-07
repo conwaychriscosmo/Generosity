@@ -4,16 +4,13 @@ class UsersController < ApplicationController
     def show()
     	render 'show'
     end
-    #allow user to update current city from profile view
 
     def edit
         errCode = Users.edit(params)
         render json: {errCode: errCode}
     end
 
-  
-    # Add user USERNAME with password PASSWORD to database. Give them a challenge
-	def add()
+  	def add()
 		code = Users.add(params)
 		data = {}
 		data[:errCode] = code
@@ -27,6 +24,11 @@ class UsersController < ApplicationController
 		end
 		render json: data
 	end
+
+    def search()
+        users = Users.search(params.except[:session])
+        render json: {users: users}
+    end
 
 	def runUnitTests()
     output = User.runUnitTests()

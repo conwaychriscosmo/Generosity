@@ -83,6 +83,10 @@ class Users < ActiveRecord::Base
 		end
 	end
 
+	def self.search(options)
+		return Users.where(options)
+	end
+
 
 	def Users.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

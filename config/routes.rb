@@ -26,9 +26,11 @@ Rails.application.routes.draw do
   post 'gifts/:id/delete', to: 'gifts#delete'
   post 'challenge/:id/delete', to: 'challenges#delete'
   get 'gifts/:id/view', to: 'gifts#view'
+
   get 'users/add', to: 'users#new'
   post 'users/add', to: 'users#add'
   post 'users/edit', to: 'users#edit'
+  get 'users/search', to: 'users#search'
 
   post 'TEST/users/unitTests', to: 'users#runUnitTests'
 
