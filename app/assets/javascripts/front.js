@@ -52,7 +52,8 @@ angular.module('generosity', ['ngRoute', 'templates'])
 
 		self.addUser = function() {
 			// alert("YO DAWG"); //Only called once even when things go awry
-			$http.post('users/add', {username: self.username, password: self.password}).
+			$http.post('users/add', {username: self.username, password: self.password, real_name: self.realName, 
+				available_hours: self.availableHours, current_city: self.currentCity, current_location: self.currentLocation}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
@@ -68,6 +69,10 @@ angular.module('generosity', ['ngRoute', 'templates'])
 					else if(self.errCode == -4) {
 						alert("Error: The password is empty, too long, or has invalid characters.");
 						console.log("Error: The password is empty, too long, or has invalid characters.");
+					}
+					else if(self.errCode == -6) {
+						alert("Error: The real name is empty, too long, or has invalid characters.");
+						console.log("Error: The real name is empty, too long, or has invalid characters.");
 					}
 					else {
 						alert("User created.");
