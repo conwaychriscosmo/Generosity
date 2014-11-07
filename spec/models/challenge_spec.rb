@@ -59,8 +59,8 @@ RSpec.describe Challenge, :type => :model  do
       end
 
       it "getChallenge" do
-        Users.add('fred', 'iloveme')
-        Users.add('george', 'notfromharrypotter')
+        Users.add({ username: 'fred', password: 'iloveme' })
+        Users.add({ username: 'george', password: 'notfromharrypotter' })
         output = Challenge.match('george')
         challenge = Challenge.current(Challenge.find_by(Giver: 'george').id)
         expect(challenge[:Giver]).to eq 'george'
@@ -117,7 +117,7 @@ RSpec.describe Challenge, :type => :model  do
         Challenge.match('george') #George -> Fred
         Users.add({username: 'michael', password: 'iloveme'})
         output = Challenge.complete('george') 
-        challenge = Challenge.current('george')
+        challenge = Challenge.current(Challenge.find_by(Giver: 'george').id)
         expect(challenge[:Giver]).to eq 'george'
         expect(challenge[:Recipient]).to eq('michael').or eq('fred')
       end
@@ -129,7 +129,7 @@ RSpec.describe Challenge, :type => :model  do
         Users.add({username: 'michael', password: 'iloveme'})
         Users.destroy_all(:username => 'fred')
         output = Challenge.complete('george') 
-        challenge = Challenge.current('george')
+        challenge = Challenge.current(Challenge.find_by(Giver: 'george').id)
         expect(challenge[:Giver]).to eq 'george'
         expect(challenge[:Recipient]).to eq('michael')
       end
@@ -140,18 +140,20 @@ RSpec.describe Challenge, :type => :model  do
         Challenge.match('george') #George -> Fred
         Users.add({username: 'michael', password: 'iloveme'})
         Users.destroy_all(:username => 'george')
-        output = Challenge.complete('george') 
+        output = Challenge.complete('george')
+        output1 = { errCode: output[:errCode] }
         hsh = { errCode: -1 }
-        expect(output).to eq(hsh)
+        expect(output1).to eq(hsh)
       end
 
       it "should update the amount of gifts given for the Giver" do
         Users.add({username: 'fred', password: 'iloveme'})
         Users.add({username: 'george', password: 'iloveme'})
         Challenge.match('george') #George -> Fred
-        Challenge.complete('george') 
-        user = Users.find_by(username: 'george')
+        out = Challenge.complete('george')
+        p out
         giftsGiven = 1
+        user = Users.find_by(username: 'george')
         expect(user.total_gifts_given).to eq(giftsGiven)
       end
 

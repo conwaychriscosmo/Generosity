@@ -14,27 +14,27 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2014-11-06T11:28:04-08:00">2014-11-06T11:28:04-08:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-11-06T16:02:46-08:00">2014-11-06T16:02:46-08:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">65.48%</span></span>
+    (<span class="covered_percent"><span class="red">66.24%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         3.46
+         3.36
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>28</b> files in total.
-    <b>281</b> relevant lines. 
-    <span class="green"><b>184</b> lines covered</span> and
-    <span class="red"><b>97</b> lines missed </span>
+    <b>311</b> relevant lines. 
+    <span class="green"><b>206</b> lines covered</span> and
+    <span class="red"><b>105</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -122,12 +122,12 @@
       
       <tr>
         <td class="strong"><a href="#683ee3fabb23c02661c235bb53d160d3506519c2" class="src_link" title="app/models/challenge.rb">app/models/challenge.rb</a></td>
-        <td class="green strong">94.34 %</td>
-        <td>89</td>
-        <td>53</td>
-        <td>50</td>
-        <td>3</td>
-        <td>8.5</td>
+        <td class="yellow strong">86.75 %</td>
+        <td>130</td>
+        <td>83</td>
+        <td>72</td>
+        <td>11</td>
+        <td>6.0</td>
       </tr>
       
       <tr>
@@ -147,7 +147,7 @@
         <td>53</td>
         <td>33</td>
         <td>20</td>
-        <td>8.0</td>
+        <td>8.5</td>
       </tr>
       
       <tr>
@@ -679,11 +679,11 @@
         <div class="source_table" id="683ee3fabb23c02661c235bb53d160d3506519c2">
   <div class="header">
     <h3>app/models/challenge.rb</h3>
-    <h4><span class="green">94.34 %</span> covered</h4>
+    <h4><span class="yellow">86.75 %</span> covered</h4>
     <div>
-      <b>53</b> relevant lines. 
-      <span class="green"><b>50</b> lines covered</span> and
-      <span class="red"><b>3</b> lines missed.</span>
+      <b>83</b> relevant lines. 
+      <span class="green"><b>72</b> lines covered</span> and
+      <span class="red"><b>11</b> lines missed.</span>
     </div>
   </div>
   
@@ -714,32 +714,32 @@
           <code class="ruby">  #pick a random user from the database to match with username</code>
         </li>
       
-        <li class="covered" data-hits="30" data-linenumber="5">
-          <span class="hits">30</span>
+        <li class="covered" data-hits="31" data-linenumber="5">
+          <span class="hits">31</span>
           
           <code class="ruby">    @challenge = Challenge.new</code>
         </li>
       
-        <li class="covered" data-hits="30" data-linenumber="6">
-          <span class="hits">30</span>
+        <li class="covered" data-hits="31" data-linenumber="6">
+          <span class="hits">31</span>
           
           <code class="ruby">    @challenge.Giver = username</code>
         </li>
       
-        <li class="covered" data-hits="30" data-linenumber="7">
-          <span class="hits">30</span>
+        <li class="covered" data-hits="31" data-linenumber="7">
+          <span class="hits">31</span>
           
           <code class="ruby">    offset = rand(Users.count)</code>
         </li>
       
-        <li class="covered" data-hits="30" data-linenumber="8">
-          <span class="hits">30</span>
+        <li class="covered" data-hits="31" data-linenumber="8">
+          <span class="hits">31</span>
           
           <code class="ruby">    @rand_user = Users.offset(offset).first</code>
         </li>
       
-        <li class="covered" data-hits="30" data-linenumber="9">
-          <span class="hits">30</span>
+        <li class="covered" data-hits="31" data-linenumber="9">
+          <span class="hits">31</span>
           
           <code class="ruby">    if @rand_user.blank?</code>
         </li>
@@ -768,8 +768,8 @@
           <code class="ruby">    #@recip_user = Users.first(:order =&gt; &quot;RANDOM()&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="30" data-linenumber="14">
-          <span class="hits">30</span>
+        <li class="covered" data-hits="31" data-linenumber="14">
+          <span class="hits">31</span>
           
           <code class="ruby">    @challenge.Recipient = @rand_user.username</code>
         </li>
@@ -780,8 +780,8 @@
           <code class="ruby">    #check to see if matched with self</code>
         </li>
       
-        <li class="covered" data-hits="30" data-linenumber="16">
-          <span class="hits">30</span>
+        <li class="covered" data-hits="31" data-linenumber="16">
+          <span class="hits">31</span>
           
           <code class="ruby">    if @challenge.Recipient == @challenge.Giver</code>
         </li>
@@ -840,32 +840,32 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="26">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="18" data-linenumber="26">
+          <span class="hits">18</span>
           
           <code class="ruby">    if @challenge.valid?</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="27">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="18" data-linenumber="27">
+          <span class="hits">18</span>
           
           <code class="ruby">      @challenge.id = @@id</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="28">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="18" data-linenumber="28">
+          <span class="hits">18</span>
           
           <code class="ruby">      @@id = @@id + 1</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="29">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="18" data-linenumber="29">
+          <span class="hits">18</span>
           
           <code class="ruby">      @challenge.save</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="30">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="18" data-linenumber="30">
+          <span class="hits">18</span>
           
           <code class="ruby">      output = { errCode: 1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }</code>
         </li>
@@ -888,8 +888,8 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="34">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="18" data-linenumber="34">
+          <span class="hits">18</span>
           
           <code class="ruby">    return output</code>
         </li>
@@ -912,44 +912,44 @@
           <code class="ruby">  def self.current(challenge_id)</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="38">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="7" data-linenumber="38">
+          <span class="hits">7</span>
           
           <code class="ruby">    @challenge = Challenge.find_by(id: challenge_id)</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="39">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="7" data-linenumber="39">
+          <span class="hits">7</span>
           
           <code class="ruby">    output = { errCode: -1 }</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="40">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="7" data-linenumber="40">
+          <span class="hits">7</span>
           
           <code class="ruby">    if @challenge.nil?</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="41">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="2" data-linenumber="41">
+          <span class="hits">2</span>
           
           <code class="ruby">      p &#39;challenge is nil&#39;</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="42">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="2" data-linenumber="42">
+          <span class="hits">2</span>
           
           <code class="ruby">      p challenge_id</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="43">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="2" data-linenumber="43">
+          <span class="hits">2</span>
           
           <code class="ruby">      p &#39;*&#39;*50</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="44">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="2" data-linenumber="44">
+          <span class="hits">2</span>
           
           <code class="ruby">      return output</code>
         </li>
@@ -960,14 +960,14 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="46">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="5" data-linenumber="46">
+          <span class="hits">5</span>
           
           <code class="ruby">    if @challenge</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="47">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="5" data-linenumber="47">
+          <span class="hits">5</span>
           
           <code class="ruby">      output = { errCode: 1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }</code>
         </li>
@@ -978,8 +978,8 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="49">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="5" data-linenumber="49">
+          <span class="hits">5</span>
           
           <code class="ruby">    return output</code>
         </li>
@@ -1023,193 +1023,193 @@
         <li class="never" data-hits="" data-linenumber="56">
           
           
-          <code class="ruby"> </code>
+          <code class="ruby">  #if a giver deletes their account, the recipient should be given a new giver in challenges, that is what rematch does</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="57">
           <span class="hits">1</span>
           
-          <code class="ruby">  def self.complete(username)</code>
+          <code class="ruby">  def self.rematch(chall)</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="58">
-          <span class="hits">5</span>
-          
-          <code class="ruby">    @challenge = Challenge.find_by(Giver: username)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="59">
-          
-          
-          <code class="ruby">    #updates the user fields</code>
-        </li>
-      
-        <li class="covered" data-hits="5" data-linenumber="60">
-          <span class="hits">5</span>
-          
-          <code class="ruby">    giverName = @challenge.Giver</code>
-        </li>
-      
-        <li class="covered" data-hits="5" data-linenumber="61">
-          <span class="hits">5</span>
-          
-          <code class="ruby">    recipientName = @challenge.Recipient</code>
-        </li>
-      
-        <li class="covered" data-hits="5" data-linenumber="62">
-          <span class="hits">5</span>
-          
-          <code class="ruby">    giver = Users.find_by(username: giverName)</code>
-        </li>
-      
-        <li class="covered" data-hits="5" data-linenumber="63">
-          <span class="hits">5</span>
-          
-          <code class="ruby">    recipient = Users.find_by(username: recipientName)</code>
-        </li>
-      
-        <li class="covered" data-hits="5" data-linenumber="64">
-          <span class="hits">5</span>
-          
-          <code class="ruby">    if recipient.nil?</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="65">
+        <li class="covered" data-hits="1" data-linenumber="58">
           <span class="hits">1</span>
           
-          <code class="ruby">      output = Challenge.match(username)</code>
+          <code class="ruby">    @challenge = Challenge.new</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="66">
+        <li class="covered" data-hits="1" data-linenumber="59">
           <span class="hits">1</span>
+          
+          <code class="ruby">    @challenge.Recipient = chall.Recipient</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="60">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    offset = rand(Users.count)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="61">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @rand_user = Users.offset(offset).first</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="62">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    if @rand_user.blank?</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="63">
+          
+          
+          <code class="ruby">      output = Challenge.rematch(username)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="64">
+          
           
           <code class="ruby">      return output</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="67">
+        <li class="never" data-hits="" data-linenumber="65">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="68">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="1" data-linenumber="66">
+          <span class="hits">1</span>
           
-          <code class="ruby">    giver.total_gifts_given = giver.total_gifts_given + 1</code>
+          <code class="ruby">    @challenge.Giver = @rand_user.username</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="69">
-          <span class="hits">3</span>
+        <li class="never" data-hits="" data-linenumber="67">
           
-          <code class="ruby">    recipient.total_gifts_received = recipient.total_gifts_received + 1</code>
+          
+          <code class="ruby">    #check to see if matched with self</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="70">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="1" data-linenumber="68">
+          <span class="hits">1</span>
           
-          <code class="ruby">    giver.save</code>
+          <code class="ruby">    if @challenge.Recipient == @challenge.Giver</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="71">
-          <span class="hits">3</span>
+        <li class="never" data-hits="" data-linenumber="69">
           
-          <code class="ruby">    recipient.save</code>
+          
+          <code class="ruby">      #if matched with self and more than one user, try again, else error</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="72">
+        <li class="missed" data-hits="0" data-linenumber="70">
           
           
-          <code class="ruby">    #delete current challenge and set up a new one</code>
+          <code class="ruby">      if Users.count &gt; 1</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="73">
-          <span class="hits">3</span>
+        <li class="missed" data-hits="0" data-linenumber="71">
           
-          <code class="ruby">    @challenge.destroy</code>
+          
+          <code class="ruby">        output = Challenge.rematch(chall)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="74">
-          <span class="hits">3</span>
+        <li class="missed" data-hits="0" data-linenumber="72">
           
-          <code class="ruby">    output = Challenge.match(giverName)</code>
+          
+          <code class="ruby">        return output</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="75">
-          <span class="hits">3</span>
+        <li class="never" data-hits="" data-linenumber="73">
           
-          <code class="ruby">    return output</code>
+          
+          <code class="ruby">      else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="74">
+          
+          
+          <code class="ruby">        output = { errCode: -2 }</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="75">
+          
+          
+          <code class="ruby">        return output</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="76">
           
           
-          <code class="ruby">  #close the last challenge and start the next one by calling</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="77">
           
           
-          <code class="ruby">  #match with the username of the currently logged in user</code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="78">
+        <li class="covered" data-hits="1" data-linenumber="78">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">    if @challenge.valid?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="79">
+        <li class="covered" data-hits="1" data-linenumber="79">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">      @challenge.id = @@id</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="80">
           <span class="hits">1</span>
           
-          <code class="ruby">  def self.reject</code>
+          <code class="ruby">      @@id = @@id + 1</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="81">
+        <li class="covered" data-hits="1" data-linenumber="81">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  #cancel the proposed challenge and get a new one</code>
+          <code class="ruby">      @challenge.save</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="82">
+        <li class="covered" data-hits="1" data-linenumber="82">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  #I think this is left for future iterations</code>
+          <code class="ruby">      chall.destroy</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="83">
+        <li class="covered" data-hits="1" data-linenumber="83">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">      output = { errCode: -1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="84">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="85">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="85">
           
-          <code class="ruby">  def self.accept</code>
+          
+          <code class="ruby">      output = { errCode: -2 }</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="86">
           
           
-          <code class="ruby">  #accept the challenge</code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="87">
+        <li class="covered" data-hits="1" data-linenumber="87">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  #I think this is left for future iterations</code>
+          <code class="ruby">    return output</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="88">
@@ -1219,6 +1219,252 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="89">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="90">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.complete(username)</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="91">
+          <span class="hits">5</span>
+          
+          <code class="ruby">    @challenge = Challenge.find_by(Giver: username)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="92">
+          
+          
+          <code class="ruby">    #updates the user fields</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="93">
+          <span class="hits">5</span>
+          
+          <code class="ruby">    giverName = @challenge.Giver</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="94">
+          <span class="hits">5</span>
+          
+          <code class="ruby">    recipientName = @challenge.Recipient</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="95">
+          <span class="hits">5</span>
+          
+          <code class="ruby">    giver = Users.find_by(username: giverName)</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="96">
+          <span class="hits">5</span>
+          
+          <code class="ruby">    recipient = Users.find_by(username: recipientName)</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="97">
+          <span class="hits">5</span>
+          
+          <code class="ruby">    if recipient.nil?</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="98">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      output = Challenge.match(username)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="99">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      return output</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="100">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="101">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    if giver.nil?</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="102">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      output = Challenge.rematch(@challenge)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="103">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      return output</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="104">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="105">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    given = giver.total_gifts_given</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="106">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    given = given + 1</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="107">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    giver.total_gifts_given = given</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="108">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    received = recipient.total_gifts_received</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="109">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    received = received + 1</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="110">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    recipient.total_gifts_received = received</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="111">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    giver.save</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="112">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    recipient.save</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="113">
+          
+          
+          <code class="ruby">    #delete current challenge and set up a new one</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="114">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    @challenge.destroy</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="115">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    output = Challenge.match(giverName)</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="116">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    return output</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="117">
+          
+          
+          <code class="ruby">  #close the last challenge and start the next one by calling</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="118">
+          
+          
+          <code class="ruby">  #match with the username of the currently logged in user</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="119">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="120">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="121">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.reject</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="122">
+          
+          
+          <code class="ruby">  #cancel the proposed challenge and get a new one</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="123">
+          
+          
+          <code class="ruby">  #I think this is left for future iterations</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="124">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="125">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="126">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.accept</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="127">
+          
+          
+          <code class="ruby">  #accept the challenge</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="128">
+          
+          
+          <code class="ruby">  #I think this is left for future iterations</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="129">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="130">
           
           
           <code class="ruby">end</code>
@@ -2238,14 +2484,14 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="31" data-linenumber="51">
-          <span class="hits">31</span>
+        <li class="covered" data-hits="33" data-linenumber="51">
+          <span class="hits">33</span>
           
           <code class="ruby">        username = options[:username]</code>
         </li>
       
-        <li class="covered" data-hits="31" data-linenumber="52">
-          <span class="hits">31</span>
+        <li class="covered" data-hits="33" data-linenumber="52">
+          <span class="hits">33</span>
           
           <code class="ruby">        password = options[:password]</code>
         </li>
@@ -2256,8 +2502,8 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="31" data-linenumber="54">
-          <span class="hits">31</span>
+        <li class="covered" data-hits="33" data-linenumber="54">
+          <span class="hits">33</span>
           
           <code class="ruby">		new_user = Users.new(username: options[:username], password: options[:password])</code>
         </li>
@@ -2268,62 +2514,62 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="31" data-linenumber="56">
-          <span class="hits">31</span>
+        <li class="covered" data-hits="33" data-linenumber="56">
+          <span class="hits">33</span>
           
           <code class="ruby">		if new_user.valid?</code>
         </li>
       
-        <li class="covered" data-hits="31" data-linenumber="57">
-          <span class="hits">31</span>
+        <li class="covered" data-hits="33" data-linenumber="57">
+          <span class="hits">33</span>
           
           <code class="ruby">			new_user.available_hours = options[:available_hours] ||= &quot;9am - 6pm&quot;</code>
         </li>
       
-        <li class="covered" data-hits="31" data-linenumber="58">
-          <span class="hits">31</span>
+        <li class="covered" data-hits="33" data-linenumber="58">
+          <span class="hits">33</span>
           
           <code class="ruby">		    new_user.current_city = options[:current_city] ||= &quot;Berkeley, CA&quot;</code>
         </li>
       
-        <li class="covered" data-hits="31" data-linenumber="59">
-          <span class="hits">31</span>
+        <li class="covered" data-hits="33" data-linenumber="59">
+          <span class="hits">33</span>
           
           <code class="ruby">			new_user.total_gifts_given = options[:total_gifts_given] ||= 0</code>
         </li>
       
-        <li class="covered" data-hits="31" data-linenumber="60">
-          <span class="hits">31</span>
+        <li class="covered" data-hits="33" data-linenumber="60">
+          <span class="hits">33</span>
           
           <code class="ruby">			new_user.total_gifts_received = options[:total_gifts_received] ||= 0</code>
         </li>
       
-        <li class="covered" data-hits="31" data-linenumber="61">
-          <span class="hits">31</span>
+        <li class="covered" data-hits="33" data-linenumber="61">
+          <span class="hits">33</span>
           
           <code class="ruby">			new_user.level = options[:level] ||= 1</code>
         </li>
       
-        <li class="covered" data-hits="31" data-linenumber="62">
-          <span class="hits">31</span>
+        <li class="covered" data-hits="33" data-linenumber="62">
+          <span class="hits">33</span>
           
           <code class="ruby">			new_user.score = options[:score] ||= 0</code>
         </li>
       
-        <li class="covered" data-hits="31" data-linenumber="63">
-          <span class="hits">31</span>
+        <li class="covered" data-hits="33" data-linenumber="63">
+          <span class="hits">33</span>
           
           <code class="ruby">			new_user.profile_url = options[:profile_url] ||= &#39;https://www.dropbox.com/s/1gcac6w5zriwyse/QNxfVDF.png?dl=0&#39;</code>
         </li>
       
-        <li class="covered" data-hits="31" data-linenumber="64">
-          <span class="hits">31</span>
+        <li class="covered" data-hits="33" data-linenumber="64">
+          <span class="hits">33</span>
           
           <code class="ruby">			new_user.save</code>
         </li>
       
-        <li class="covered" data-hits="31" data-linenumber="65">
-          <span class="hits">31</span>
+        <li class="covered" data-hits="33" data-linenumber="65">
+          <span class="hits">33</span>
           
           <code class="ruby">			return SUCCESS</code>
         </li>
