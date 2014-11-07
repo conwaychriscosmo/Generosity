@@ -18,6 +18,14 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	      		when('/shop', {
 
 	      		}).
+	      		when('/users-form', {
+	        		templateUrl: "users-form.html",
+	        		controller: 'UsersController as newUser'
+	      		}).
+	      		when('/login-form', {
+	        		templateUrl: "login-form.html",
+	        		controller: 'SessionController as session'
+	      		}).
 	      		// when('/phones/:phoneId', {
 	        // 		templateUrl: 'partials/phone-detail.html',
 	        // 		controller: 'PhoneDetailCtrl'
@@ -43,7 +51,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		self.errCode = 0;
 
 		self.addUser = function() {
-			alert("YO DAWG"); //Only called once even when things go awry
+			// alert("YO DAWG"); //Only called once even when things go awry
 			$http.post('users/add', {username: self.username, password: self.password}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
@@ -177,16 +185,6 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		};
 	})
 
-	.directive('usersForm', function() {
-		return {
-			restrict: 'E',
-			scope: {
-
-			},
-			templateUrl: "users-form.html"
-		};
-	})
-
 	.directive('giftForm', function() {
 		return {
 			restrict: 'E',
@@ -196,16 +194,6 @@ angular.module('generosity', ['ngRoute', 'templates'])
 			templateUrl: "gift-form.html"
 		};
 	})
-
-	.directive('loginForm', function() {
-		return {
-			restrict: 'E',
-			scope: {
-
-			},
-			templateUrl: "login-form.html"
-		};
-	})	
 
 	.directive('profile', function() {
 		return {
