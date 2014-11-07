@@ -13,10 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20141106043755) do
 
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "challenges", force: true do |t|
     t.string   "Giver"
     t.string   "Recipient"
@@ -41,7 +37,7 @@ ActiveRecord::Schema.define(version: 20141106043755) do
     t.string   "profile_url"
     t.boolean  "is_available"
     t.string   "current_city"
-    t.text     "available_hours",      default: [], array: true
+    t.text     "available_hours",      default: "--- []\n"
     t.integer  "level"
     t.integer  "total_gifts_given"
     t.integer  "score"

@@ -33,7 +33,12 @@ class Challenge < ActiveRecord::Base
     end
     return output
   end
-  
+
+  def delete(challenge_id)
+    Challenge.destroy_all(id: challenge_id)
+    output = {errCode: 1}
+    return output
+  end
   def self.current(challenge_id)
     @challenge = Challenge.find_by(id: challenge_id)
     output = { errCode: -1 }
@@ -53,10 +58,53 @@ class Challenge < ActiveRecord::Base
   #def getChallenge(username)
   #  return Challenge.find_by(Giver: username)
   #end
- 
+  #if a giver deletes their account, the recipient should be given a new giver in challenges, that is what rematch does
+  def self.rematch(chall,attempts)
+    if attempts > 50
+      output = {errCode: -2}
+      return output
+    end
+    @challenge = Challenge.new
+    @challenge.Recipient = chall.Recipient
+    offset = rand(Users.count)
+    @rand_user = Users.offset(offset).first
+    if @rand_user.blank?
+      output = Challenge.rematch(chall, attempts+1)
+      return output
+    end
+    goat = Challenge.find_by(Giver: @rand_user.username)
+    if goat.nil?
+      @challenge.Giver = @rand_user.username
+    else
+      return Challenge.rematch(chall, attempts+1)
+    end
+    #check to see if matched with self
+    if @challenge.Recipient == @challenge.Giver
+      #if matched with self and more than one user, try again, else error
+      if Users.count > 1
+        output = Challenge.rematch(chall, attempts+1)
+        return output
+      else
+        output = { errCode: -2 }
+        return output
+      end
+    end
+    if @challenge.valid?
+      @challenge.id = @@id
+      @@id = @@id + 1
+      @challenge.save
+      chall.destroy
+      output = { errCode: -1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }
+    else
+      output = { errCode: -2 }
+    end
+    return output
+  end
+
   def self.complete(username)
     @challenge = Challenge.find_by(Giver: username)
     #updates the user fields
+    Challenge.destroy_all(:Giver => username)
     giverName = @challenge.Giver
     recipientName = @challenge.Recipient
     giver = Users.find_by(username: giverName)
@@ -65,12 +113,17 @@ class Challenge < ActiveRecord::Base
       output = Challenge.match(username)
       return output
     end
-    giver.total_gifts_given = giver.total_gifts_given + 1
-    recipient.total_gifts_received = recipient.total_gifts_received + 1
-    giver.save
-    recipient.save
+    if giver.nil?
+      output = Challenge.rematch(@challenge,0)
+      return output
+    end
+    given = giver.total_gifts_given
+    given = given + 1
+    giver.update_columns(total_gifts_given: given)
+    received = recipient.total_gifts_received
+    received = received + 1
+    recipient.update_columns(total_gifts_received: received)
     #delete current challenge and set up a new one
-    @challenge.destroy
     output = Challenge.match(giverName)
     return output
   #close the last challenge and start the next one by calling

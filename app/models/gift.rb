@@ -40,7 +40,12 @@ class Gift < ActiveRecord::Base
     end
     return output
   end
-  
+
+  def delete(gift_id)
+    Gift.destroy_all(id: gift_id)
+    output = {errCode: 1}
+    return output
+  end
   def self.review(review, gift_id, username)
     @gift = Gift.find_by(id: gift_id)
     output = { errCode: -1 }

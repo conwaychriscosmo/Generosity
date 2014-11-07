@@ -33,7 +33,12 @@ class GiftsController < ApplicationController
   # GET /gifts/1/edit
   def edit
   end
-  
+
+  def delete
+    output = Gift.delete(params[:gift][:id])
+    render json: output
+  end
+
   def review
     output = Gift.review(params[:gift][:review],params[:gift][:id],params[:session][:username])
     render json: output
