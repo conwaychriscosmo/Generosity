@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
     	login user
     	data[:errCode] = 1
+      session[:user_id] = user.id
     else
       data[:errCode] = -1
     end
