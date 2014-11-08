@@ -13,7 +13,9 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	      			templateUrl: "challenge.html"
 	      		}).
 	      		when('/map', {
-	      			templateUrl: "map.html"
+	      			redirectTo: function() {
+        				window.location = "/tracker";
+    					}
 	      		}).	      		
 	      		when('/shop', {
 	      			templateUrl: "shop.html"
