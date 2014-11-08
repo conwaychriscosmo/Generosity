@@ -112,44 +112,51 @@ RSpec.describe Users, :type => :model do
 	describe "Users edit options" do
 		it "should successfully edit profile_url" do
 			Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-			Users.edit({session: {username: 'greg', password: 'password'}, profile_url: 'hi.edu'})
-			expect(Users.find_by(username: 'greg').profile_url).to eq 'hi.edu'
+			user = Users.find_by(username: 'greg')
+			Users.edit(user, {profile_url: 'hi.edu'})
+			expect(user.profile_url).to eq 'hi.edu'
 		end
 
 		it "should successfully edit current_city" do
 			Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-			Users.edit({session: {username: 'greg', password: 'password'}, current_city: 'Seattle'})
-			expect(Users.find_by(username: 'greg').current_city).to eq 'Seattle'
+			user = Users.find_by(username: 'greg')
+			Users.edit(user, {current_city: 'Seattle'})
+			expect(user.current_city).to eq 'Seattle'
 		end
 
 		it "should successfully edit available_hours" do
 			Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-			Users.edit({session: {username: 'greg', password: 'password'}, available_hours: '9 to 8'})
-			expect(Users.find_by(username: 'greg').available_hours).to eq '9 to 8'
+			user = Users.find_by(username: 'greg')
+			Users.edit(user, {available_hours: '9 to 8'})
+			expect(user.available_hours).to eq '9 to 8'
 		end
 
 		it "should successfully edit level" do
 			Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-			Users.edit({session: {username: 'greg', password: 'password'}, level: 5})
-			expect(Users.find_by(username: 'greg').level).to eq 5
+			user = Users.find_by(username: 'greg')
+			Users.edit(user, {level: 5})
+			expect(user.level).to eq 5
 		end
 
 		it "should successfully edit total_gifts_received" do
 			Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-			Users.edit({session: {username: 'greg', password: 'password'}, total_gifts_received: 11})
-			expect(Users.find_by(username: 'greg').total_gifts_received).to eq 11
+			user = Users.find_by(username: 'greg')
+			Users.edit(user, {total_gifts_received: 11})
+			expect(user.total_gifts_received).to eq 11
 		end
 
 		it "should successfully edit total_gifts_given" do
 			Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-			Users.edit({session: {username: 'greg', password: 'password'}, total_gifts_given: 11})
-			expect(Users.find_by(username: 'greg').total_gifts_given).to eq 11
+			user = Users.find_by(username: 'greg')
+			Users.edit(user, {total_gifts_given: 11})
+			expect(user.total_gifts_given).to eq 11
 		end
 
 		it "should successfully edit score" do
 			Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-			Users.edit({session: {username: 'greg', password: 'password'}, score: 500})
-			expect(Users.find_by(username: 'greg').score).to eq 500
+			user = Users.find_by(username: 'greg')
+			Users.edit(user, {score: 500})
+			expect(user.score).to eq 500
 		end
 
 
