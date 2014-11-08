@@ -15,7 +15,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	      		when('/map', {
 	      			redirectTo: function() {
         				window.location = "/tracker";
-    
+    					}
 	      		}).	      		
 	      		when('/shop', {
 	      			templateUrl: "shop.html"

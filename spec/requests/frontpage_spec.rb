@@ -23,14 +23,14 @@ describe 'home page' do
 
   it 'validates for long username.', :js => true do
   	click_link('Sign up now!')
-  	fill_in "Username", with: "a"*100
+  	fill_in "Username", with: "a"*101
   	click_button('Create Account')
   	puts page.driver.browser.switch_to.alert.text.should eq("Error: The username is empty, too long, or has invalid characters.")
   end
 
   it 'validates for no password.', :js => true do
   	click_link('Sign up now!')
-  	fill_in "Username", with: "Fucker Dan"
+  	fill_in "Username", with: "Nucker Dan"
   	click_button('Create Account')
   	puts page.driver.browser.switch_to.alert.text.should eq("Error: The password is empty, too long, or has invalid characters.")
   end
