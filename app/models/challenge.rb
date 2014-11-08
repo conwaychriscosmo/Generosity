@@ -2,11 +2,15 @@ class Challenge < ActiveRecord::Base
   @@id = 1
   def self.match(username)
   #pick a random user from the database to match with username
+    if Users.count == 1
+      output= {errCode: 1, Giver: 'None', Recipient: 'None'}
+      return output
+    end
     @challenge = Challenge.new
     @challenge.Giver = username
     offset = rand(Users.count)
     @rand_user = Users.offset(offset).first
-    if @rand_user.blank?
+    if @rand_user.blank? and Users.count>1
       output = Challenge.match(username)
       return output
     end
@@ -25,6 +29,9 @@ class Challenge < ActiveRecord::Base
     end
     if @challenge.valid?
       @challenge.id = @@id
+      p 'the id is'
+      p @challenge.id
+      p '*'*50
       @@id = @@id + 1
       @challenge.save
       output = { errCode: 1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }

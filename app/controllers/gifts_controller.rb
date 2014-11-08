@@ -40,12 +40,16 @@ class GiftsController < ApplicationController
   end
 
   def review
-    output = Gift.review(params[:gift][:review],params[:id],params[:session][:username])
+    @id = session[:user_id]
+    @user = Users.find_by(id: @id)
+    output = Gift.review(params[:gift][:review],params[:id],@user.username)
     render json: output
   end  
   #the recipient rates the gift
   def rate
-    output = Gift.rate(params[:gift][:rating],params[:id],params[:session][:username])
+    @id = session[:user_id]
+    @user = Users.find_by(id: @id)
+    output = Gift.rate(params[:gift][:rating],params[:id],@user.username)
     render json: output
   end
   
@@ -59,7 +63,10 @@ class GiftsController < ApplicationController
   def create
     #@gift = Gift.new(gift_params)
     #create(giftname, gifturl, username)
-    output = Gift.create(gift_params[:name], gift_params[:url], params[:session][:username])
+    @id = session[:user_id]
+    @user = Users.find_by(id: @id)
+    p @id
+    output = Gift.create(gift_params[:name], gift_params[:url], @user.username)
     render json: output
  #   respond_to do |format|
   #    if @gift.save
