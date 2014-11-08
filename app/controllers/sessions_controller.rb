@@ -11,7 +11,6 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
     	login user
     	data[:errCode] = 1
-      session[:user_id] = user.id
     else
       data[:errCode] = -1
     end
@@ -20,6 +19,7 @@ class SessionsController < ApplicationController
 
   def destroy
   	logout
-    redirect_to root_url
+    #redirect_to root_url
+    render json: {errCode: 1}
   end
 end

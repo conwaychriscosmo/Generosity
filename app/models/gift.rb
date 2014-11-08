@@ -74,7 +74,7 @@ class Gift < ActiveRecord::Base
     @gift.url = url
     @gift.giver = username
     @gift.delivered = false
-    @challenge = Challenge.find_by(giver: username)
+    @challenge = Challenge.find_by(Giver: username)
     if @challenge.nil?
       p 'challenge is nil :('
       p'*'*50
@@ -94,6 +94,7 @@ class Gift < ActiveRecord::Base
       output = { errCode: -1 }
     end
     if @gift.valid?
+      #@gift.id = @@id
       if @gift.save
         @@id = @@id + 1
         output = { errCode: 1, name: name, url: url }
