@@ -70,7 +70,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 					var usersList = data["users"];
 					console.log(usersList);
 					if(usersList.length != 1) {
-						alert("Error: User not found.");
+						// alert("Error: User not found.");
 						console.log("Error: User not found.");
 						$location.path('/');
 						return;
@@ -90,7 +90,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
 					self.errCode = -99;
-					alert("Error.");
+					// alert("Error.");
 					console.log("Error.");
 				}).
 				then(function(data, status, headers, config) {
@@ -112,23 +112,23 @@ angular.module('generosity', ['ngRoute', 'templates'])
 				// when the response is available
 					self.errCode = data.errCode;
 					if(self.errCode == -2) {
-						alert("Error: This username already exists.");
+						// alert("Error: This username already exists.");
 						console.log("Error: This username already exists.");
 					}
 					else if(self.errCode == -3) {
-						alert("Error: The username is empty, too long, or has invalid characters.");
+						// alert("Error: The username is empty, too long, or has invalid characters.");
 						console.log("Error: The username is empty, too long, or has invalid characters.");
 					}
 					else if(self.errCode == -4) {
-						alert("Error: The password is empty, too long, or has invalid characters.");
+						// alert("Error: The password is empty, too long, or has invalid characters.");
 						console.log("Error: The password is empty, too long, or has invalid characters.");
 					}
 					else if(self.errCode == -6) {
-						alert("Error: The real name is empty, too long, or has invalid characters.");
+						// alert("Error: The real name is empty, too long, or has invalid characters.");
 						console.log("Error: The real name is empty, too long, or has invalid characters.");
 					}
 					else {
-						alert("User created.");
+						// alert("User created.");
 						console.log("User created.");						
 						$location.path('/profile');
 					}
@@ -138,7 +138,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
 					self.errCode = -99;
-					alert("Error.");
+					// alert("Error.");
 					console.log("Error.");
 				}).
 				then(function(data, status, headers, config) {

@@ -16,7 +16,7 @@
 		<navbar></navbar>
 		<div class="main-content">
 
-			<% if Rails.env == "production" %>
+			<% if Rails.env == "development" %>
 				Template: {{template}}
 			
 				<button data-ng-click="template=99" style="background-color:teal">Run Unit Tests</button>
