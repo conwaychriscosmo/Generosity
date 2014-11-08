@@ -62,33 +62,22 @@ angular.module('generosity').controller('UserTestController', ['$scope', '$http'
 			// errCode = $scope.err;
 			setTimeout(function() {
 				self.assert(userTestController.errCode === 1, "Error code is " + userTestController.errCode + ", but it should have been 1 (successful creation).");
-			}, 1000);
-			setTimeout(function() {
 				userTestController.addUser();
-			}, 1100);
+			}, 2000);
 			setTimeout(function() {
 				self.assert(userTestController.errCode === -2, "Error code is " + userTestController.errCode + ", and it should be -2 (username already exists). Username is " + userTestController.username + ", and it should be LordChristopher.");
-			}, 2100);
-			setTimeout(function() {
 				userTestController.username = "";
-			}, 2200);
-			setTimeout(function() {
 				userTestController.addUser();
-			}, 2300);
+			}, 4000);
 			setTimeout(function() {
 				self.assert(userTestController.errCode === -3, "Error code is " + userTestController.errCode + ", and it should have been -3 (bad username). Username is " + userTestController.username + ", and it should be blank.");
-			}, 3300);
-			setTimeout(function() {
 				userTestController.username = "Anaconda";
-			}, 3400);
-			setTimeout(function() {
 				userTestController.password = null;
-			}, 3500);
-			setTimeout(function() {
 				userTestController.addUser();
-			}, 3600);
+			}, 7000);
 			setTimeout(function() {
+				console.log("YOLO");
 				self.assert(userTestController.errCode === -4, "Error code is " + userTestController.errCode + ", and it should be -4 (bad password). Password is " + userTestController.password + ", but it should be blank.");
-			}, 4600);
+			}, 10000);
 		}
 	}]);
