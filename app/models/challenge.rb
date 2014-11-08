@@ -25,6 +25,9 @@ class Challenge < ActiveRecord::Base
     end
     if @challenge.valid?
       @challenge.id = @@id
+      p 'the id is'
+      p @challenge.id
+      p '*'*50
       @@id = @@id + 1
       @challenge.save
       output = { errCode: 1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }

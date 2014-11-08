@@ -5,7 +5,9 @@ class ChallengesController < ApplicationController
   
   def match
   #built for testing to cause matches
-    output = Challenge.match(username)
+    @id = session[:user_id]
+    @user = Users.find_by(id: @id)
+    output = Challenge.match(@user.username)
     render json: output
   end
 
@@ -16,13 +18,14 @@ class ChallengesController < ApplicationController
 
   def complete
   #called when a challenge is completed
-    @username = params[:session][:username]
-    output = Challenge.complete(@username)
+    @id = session[:user_id]
+    @user = Users.find_by(id: @id)
+    output = Challenge.complete(@user.username)
     render json: output
   end
 
   def getCurrentChallenge
-    @username = params[:session][:username]
+    #@username = params[:session][:username]
     output = Challenge.current(params[:id])
     render json:  output
   end
