@@ -17,7 +17,7 @@ class Users < ActiveRecord::Base
 	validates :username, uniqueness: true
 	validates :username, presence: true
 
-	validates :real_name, presence: true
+	#validates :real_name, presence: true
 	validates :real_name, length: {maximum: MAX_REAL_NAME_LENGTH}
 
 	has_secure_password
