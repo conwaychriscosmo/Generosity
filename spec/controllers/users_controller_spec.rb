@@ -23,138 +23,25 @@ describe UsersController do
   # This should return the minimal set of attributes required to create a valid
   # Gift. As you add validations to Gift, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { {  } }
+  let(:valid_attributes) { { "username" => "username", "password" => "password", "real_name" => "greg" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # GiftsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all gifts as @gifts" do
-      gift = Gift.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:gifts).should eq([gift])
-    end
-  end
 
-  describe "GET show" do
-    it "assigns the requested gift as @gift" do
-      gift = Gift.create! valid_attributes
-      get :show, {:id => gift.to_param}, valid_session
-      assigns(:gift).should eq(gift)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new gift as @gift" do
-      get :new, {}, valid_session
-      assigns(:gift).should be_a_new(Gift)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested gift as @gift" do
-      gift = Gift.create! valid_attributes
-      get :edit, {:id => gift.to_param}, valid_session
-      assigns(:gift).should eq(gift)
-    end
-  end
-
-  describe "POST create" do
+  describe "POST users/add" do
     describe "with valid params" do
-      it "creates a new Gift" do
+      it "creates a new user" do
         expect {
-          post :create, {:gift => valid_attributes}, valid_session
-        }.to change(Gift, :count).by(1)
+          post :create, {:user => valid_attributes}, valid_session
+        }.to change(Users, :count).by(1)
       end
 
-      it "assigns a newly created gift as @gift" do
-        post :create, {:gift => valid_attributes}, valid_session
-        assigns(:gift).should be_a(Gift)
-        assigns(:gift).should be_persisted
-      end
-
-      it "redirects to the created gift" do
-        post :create, {:gift => valid_attributes}, valid_session
-        response.should redirect_to(Gift.last)
-      end
     end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved gift as @gift" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Gift.any_instance.stub(:save).and_return(false)
-        post :create, {:gift => {  }}, valid_session
-        assigns(:gift).should be_a_new(Gift)
-      end
 
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Gift.any_instance.stub(:save).and_return(false)
-        post :create, {:gift => {  }}, valid_session
-        response.should render_template("new")
-      end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested gift" do
-        gift = Gift.create! valid_attributes
-        # Assuming there are no other gifts in the database, this
-        # specifies that the Gift created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Gift.any_instance.should_receive(:update).with({ "these" => "params" })
-        put :update, {:id => gift.to_param, :gift => { "these" => "params" }}, valid_session
-      end
-
-      it "assigns the requested gift as @gift" do
-        gift = Gift.create! valid_attributes
-        put :update, {:id => gift.to_param, :gift => valid_attributes}, valid_session
-        assigns(:gift).should eq(gift)
-      end
-
-      it "redirects to the gift" do
-        gift = Gift.create! valid_attributes
-        put :update, {:id => gift.to_param, :gift => valid_attributes}, valid_session
-        response.should redirect_to(gift)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the gift as @gift" do
-        gift = Gift.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Gift.any_instance.stub(:save).and_return(false)
-        put :update, {:id => gift.to_param, :gift => {  }}, valid_session
-        assigns(:gift).should eq(gift)
-      end
-
-      it "re-renders the 'edit' template" do
-        gift = Gift.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Gift.any_instance.stub(:save).and_return(false)
-        put :update, {:id => gift.to_param, :gift => {  }}, valid_session
-        response.should render_template("edit")
-      end
-    end
-  end
-
-  describe "DELETE destroy" do
-    it "destroys the requested gift" do
-      gift = Gift.create! valid_attributes
-      expect {
-        delete :destroy, {:id => gift.to_param}, valid_session
-      }.to change(Gift, :count).by(-1)
-    end
-
-    it "redirects to the gifts list" do
-      gift = Gift.create! valid_attributes
-      delete :destroy, {:id => gift.to_param}, valid_session
-      response.should redirect_to(gifts_url)
-    end
   end
 
 end

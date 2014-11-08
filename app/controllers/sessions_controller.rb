@@ -3,9 +3,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # puts "below"
-    # puts params
-    # puts "above"
     user = Users.find_by(username: params[:username])
     data = {}
     if user && user.authenticate(params[:password])

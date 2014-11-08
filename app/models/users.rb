@@ -33,8 +33,6 @@ class Users < ActiveRecord::Base
 
 
     def self.edit(user, options)
-    	# username = options[:session][:username]
-    	# user = Users.find_by(username: username)
     	if user
     		user.profile_url = options[:profile_url] ||= user.profile_url
     		user.current_city = options[:current_city] ||= user.current_city
@@ -43,7 +41,7 @@ class Users < ActiveRecord::Base
     		user.total_gifts_given = options[:total_gifts_given] ||= user.total_gifts_given
     		user.total_gifts_received = options[:total_gifts_received] ||= user.total_gifts_received
     		user.score = options[:score] ||= user.score
-    		#Need to save/update user
+
     		user.save(:validate => false)
     		return SUCCESS
     	else
@@ -84,7 +82,6 @@ class Users < ActiveRecord::Base
 	end
 
 	def self.search(options)
-		puts options[:id]
 		return Users.where({id: options[:id]})
 	end
 
