@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
     # puts "below"
     # puts params
     # puts "above"
-    user = Users.find_by(username: params[:session][:username])
+    user = Users.find_by(username: params[:username])
     data = {}
-    if user && user.authenticate(params[:session][:password])
+    if user && user.authenticate(params[:password])
     	login user
     	data[:errCode] = 1
     else

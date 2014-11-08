@@ -1,3 +1,4 @@
 greg:
   username: gregorym
+  real_name: Greg
   password_digest: <%= User.digest('password') %>

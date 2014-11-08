@@ -32,9 +32,9 @@ class Users < ActiveRecord::Base
 	end
 
 
-    def self.edit(options)
-    	username = options[:session][:username]
-    	user = Users.find_by(username: username)
+    def self.edit(user, options)
+    	# username = options[:session][:username]
+    	# user = Users.find_by(username: username)
     	if user
     		user.profile_url = options[:profile_url] ||= user.profile_url
     		user.current_city = options[:current_city] ||= user.current_city

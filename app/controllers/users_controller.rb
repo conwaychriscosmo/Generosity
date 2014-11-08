@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     end
 
     def edit
-        errCode = Users.edit(params)
+        errCode = Users.edit(current_user, params)
         render json: {errCode: errCode}
     end
 
