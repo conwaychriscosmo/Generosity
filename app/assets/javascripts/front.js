@@ -10,13 +10,13 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	        		controller: 'UsersController as profiledUser'
 	      		}).
 	      		when('/challenge', {
-
+	      			templateUrl: "challenge.html"
 	      		}).
 	      		when('/map', {
-
+	      			templateUrl: "map.html"
 	      		}).	      		
 	      		when('/shop', {
-
+	      			templateUrl: "shop.html"
 	      		}).
 	      		when('/users-form', {
 	        		templateUrl: "users-form.html",
