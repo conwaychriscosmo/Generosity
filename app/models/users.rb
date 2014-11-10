@@ -54,10 +54,11 @@ class Users < ActiveRecord::Base
 
         username = options[:username]
         password = options[:password]
-        real_name = options[:real_name]
+        # real_name = options[:real_name]
 
-		new_user = Users.new(username: username, password: password, real_name: real_name)
+		new_user = Users.new(username: username, password: password)
 		if new_user.valid?
+			new_user.real_name = options[:real_name] ||= "Anonymous"
 			new_user.available_hours = options[:available_hours] ||= "9am - 6pm"
 		    new_user.current_city = options[:current_city] ||= "Berkeley, CA"
 			new_user.total_gifts_given = options[:total_gifts_given] ||= 0
