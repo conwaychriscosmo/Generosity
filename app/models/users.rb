@@ -74,8 +74,8 @@ class Users < ActiveRecord::Base
 				return ERR_BAD_USERNAME
 			when Users.where(username: username).all.size == 1
 				return ERR_USER_EXISTS
-			when !new_user[:real_name].present? || new_user[:real_name].size > MAX_REAL_NAME_LENGTH
-				return ERR_REAL_NAME
+			# when !new_user[:real_name].present? || new_user[:real_name].size > MAX_REAL_NAME_LENGTH
+			# 	return ERR_REAL_NAME
 			when !new_user[:password].present? || new_user[:password].size > MAX_PASSWORD_LENGTH || new_user[:password].size < MIN_PASSWORD_LENGTH
 				return ERR_BAD_PASSWORD
 			end

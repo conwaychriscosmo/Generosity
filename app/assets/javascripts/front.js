@@ -218,7 +218,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		self.recipient;
 		self.description;
 		self.rating;
-		self.url;
+		self.imageUrl;
 
 		self.addGift = function() {
 			var errCode;
