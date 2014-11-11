@@ -28,10 +28,10 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	        		templateUrl: "login-form.html",
 	        		controller: 'UsersController as loginUser'
 	      		}).
-	      		// when('/phones/:phoneId', {
-	        // 		templateUrl: 'partials/phone-detail.html',
-	        // 		controller: 'PhoneDetailCtrl'
-	      		// }).
+	      		when('/gifts-form', {
+	        		templateUrl: "gift-form.html",
+	        		controller: 'GiftsController as newGift'
+	      		}).
 	      		otherwise({
 	        		redirectTo: '/'
 	      		});
@@ -257,16 +257,6 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		return {
 			restrict: 'E',
 			templateUrl: "navbar.html"
-		};
-	})
-
-	.directive('giftForm', function() {
-		return {
-			restrict: 'E',
-			scope: {
-
-			},
-			templateUrl: "gift-form.html"
 		};
 	})
 
