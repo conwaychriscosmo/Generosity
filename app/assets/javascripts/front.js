@@ -9,6 +9,10 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	        		templateUrl: "profile.html",
 	        		controller: 'UsersController as profiledUser'
 	      		}).
+	      		when('/gift/:id', {
+	        		templateUrl: "gift.html",
+	        		controller: 'GiftsController as profiledGift'
+	      		}).
 	      		when('/challenge', {
 	      			templateUrl: "challenge.html"
 	      		}).
@@ -250,6 +254,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 			self.recipient = "LordChristopher";
 			self.description = "Such hype. Must play. Wow.";
 			self.rating = 5.0;
+			self.imageUrl="http://i1290.photobucket.com/albums/b531/orangepikmin333/shittypaintjob_zpscbf470a8.jpg";
 		};
 	}])
 	
@@ -259,20 +264,6 @@ angular.module('generosity', ['ngRoute', 'templates'])
 			templateUrl: "navbar.html"
 		};
 	})
-
-	.directive('gift', function() {
-		return {
-			restrict: 'E',
-			scope: {
-				name: '@',
-				giver: '@',
-				recipient: '@',
-				description: '@',
-				rating: '@'
-			},
-			templateUrl: "gift.html" //Need to accomodate id afterwards
-		};
-	})	
 
 	.directive('usersTests', function() {
 		return {
