@@ -66,6 +66,10 @@ angular.module('generosity', ['ngRoute', 'templates'])
 
 		self.getUserById = function(targetId) {
 			// console.log(targetId);
+			if(targetId == 0) { //Use a user spoof
+				self.createDummyUser();
+				return;
+			}
 			$http.post('users/search', {id: targetId}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
@@ -162,7 +166,9 @@ angular.module('generosity', ['ngRoute', 'templates'])
 			self.currentCity = "Berkeley";
 			self.currentLocation = "Nowhere";
 			self.recipient = "He whose name shall not be spoken";
-			self.description = "Why thank you for looking at my profile. Joseph will from now on use this page as a sort of bulletin for what's needed. The current wishlist is: -Working logins on the backend - currently, session creation results in a bad hash error. -More robust create() methods in backend controllers - preferably, ones that can just take in JSON objects and fill in all the non-empty parameters (and initialize empty parameters to some default value). -Backend edit() methods for all changeable fields.  -...Fixes for the Heroku issues."
+			self.reputation = 13;
+			self.description = "Paul is the biggest troll.";
+			self.profileUrl = "http://static.tumblr.com/isuwdsr/EBVlzsy8r/chris_redfield_avatar_by_ryann1220-d36hj2c.jpg";
 		};
 
 		self.makeIter = function(l) {
@@ -214,7 +220,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		// };
 	}])
 
-	.controller('GiftsController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
+	.controller('GiftsController', ['$scope', '$http', '$rootScope', '$routeParams', function($scope, $http, $rootScope, $routeParams) {
 		var self = this;
 
 		self.name;
@@ -246,6 +252,58 @@ angular.module('generosity', ['ngRoute', 'templates'])
 				// or server returns response with an error status.
 					alert("Error.");
 				});
+		};
+
+		self.getGiftFromUrlParams = function() {
+			self.id = $routeParams.id;
+			// console.log(self.id);
+			self.getGiftById(self.id);
+		}
+
+		self.getGiftById = function(targetId) {
+			// console.log(targetId);
+			if(targetId == 0) { //Use a user spoof
+				self.createDummyGift();
+				return;
+			}
+			// $http.post('users/search', {id: targetId}).
+			// 	success(function(data, status, headers, config) {
+			// 	// this callback will be called asynchronously
+			// 	// when the response is available
+			// 		// self.errCode = data.errCode;
+			// 		var usersList = data["users"];
+			// 		console.log(usersList);
+			// 		if(usersList.length != 1) {
+			// 			// alert("Error: User not found.");
+			// 			console.log("Error: User not found.");
+			// 			$location.path('/');
+			// 			return;
+			// 		}
+			// 		var foundUser = usersList[0];
+			// 		console.log(foundUser["username"]);
+			// 		self.username = foundUser["username"];
+			// 		self.realName = foundUser["real_name"];
+			// 		self.availableHours = foundUser["available_hours"];
+			// 		self.currentCity = foundUser["current_city"];
+			// 		self.currentLocation = foundUser["current_location"];
+			// 		self.reputation = foundUser["score"];
+			// 		// self.description = foundUser["description"];
+			// 		self.profileUrl = foundUser["profile_url"];
+			// 	}).
+			// 	error(function(data, status, headers, config) {
+			// 	// called asynchronously if an error occurs
+			// 	// or server returns response with an error status.
+			// 		self.errCode = -99;
+			// 		// alert("Error.");
+			// 		console.log("Error.");
+			// 	}).
+			// 	then(function(data, status, headers, config) {
+			// 	// called asynchronously if an error occurs
+			// 	// or server returns response with an error status.
+			// 		// alert("Done.");
+			// 		console.log("Done.");
+			// 		return;
+			// 	});
 		}
 
 		self.createDummyGift = function() {
