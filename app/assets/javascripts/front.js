@@ -36,6 +36,9 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	        		templateUrl: "gift-form.html",
 	        		controller: 'GiftsController as newGift'
 	      		}).
+	      		when('/about', {
+	      			templateUrl: "about.html"
+	      		}).
 	      		otherwise({
 	        		redirectTo: '/'
 	      		});
@@ -320,6 +323,13 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		return {
 			restrict: 'E',
 			templateUrl: "navbar.html"
+		};
+	})
+
+	.directive('footbar', function() {
+		return {
+			restrict: 'E',
+			templateUrl: "footbar.html"
 		};
 	})
 
