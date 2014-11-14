@@ -1,0 +1,29 @@
+<div class="container-fluid" style="margin-top:-.2%">
+	<h1>This is our front page!</h1>
+	<br>
+	<p>The formating is at the moment tentative, but we will probably use this page
+		to give an overview of the app, as well as post updates and in development 
+		list tasks for the current iteration.</p>
+
+	<% if Rails.env == "development" %>
+		<p>Tasks for the current iteration: </p>
+		<br>
+		<p>Backend:</p>
+		<li>Set up deletion methods (both single and all) for all models.</li>
+		<li>Add error codes to gifts and challenges.</li>
+		<br>
+		<p>Frontend:</p>
+		<li>Get cookies to work.</li>
+		<li>Set up the rest of the frontend tests.</li>
+		<li>Make the remaining partials (gifts list, etc.)</li>
+		<br>
+		<p>General:</p>
+		<li>Phonegap.</li>
+		<br>
+		<p>Grab bag for whoever's free:</p>
+		<li>Set up frontend challenges controller (whoever knows exactly what challenges are meant to be).</li>
+	<%end%>
+
+	<br><br><br><br>
+	<p>Current version: 0.2.1 (Iteration 3 started)</p>
+</div>

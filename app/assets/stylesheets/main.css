@@ -2,6 +2,10 @@ head {
 	width: 100%;
 }
 
+li {
+	font-size: 13px;
+}
+
 #over {
 	z-index: 10;
 }

@@ -3,7 +3,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	  	function($routeProvider, $locationProvider) {
 	    	$routeProvider.
 	      		when('/', {
-
+	      			templateUrl: "index.html"
 	      		}).
 	      		when('/profile/:id', {
 	        		templateUrl: "profile.html",
@@ -343,36 +343,13 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		};
 	})
 	
-	// .directive('directiveA', function() {
-	// 	return {
-	// 		restrict: 'A',
-	// 		scope: {
-	// 			name: '@',
-	// 			hobby: '@'
-	// 		},
-	// 		templateUrl: "example-module.html"
-	// 	};
-	// }) //Only put a semi-colon on the last directory of the module
-	
-	.directive('css1', function() {
-		return {
-			restrict: 'C',
-			link: function(scope, element, attrs) {
-      			element.css("width", 400),
-      			element.css("font-style", "oblique");
-      			element.css("color", "green");
-      			element.css("font-size", "30px");
-			}
-		};
-	})
-
-	.directive('testStatus', function() { //You do not need to account for the cases for which the rating is not a number.
+	.directive('testStatus', function() {
 		return {
 			restrict: 'C',
 			scope: {
 			  message: '@'
 			},
-			link: function(scope, element, attrs) { //Note that this is a function of scope, NOT $scope!!
+			link: function(scope, element, attrs) { 
 				if(scope.message.search("PASS") > 0) {
 					element.css("color", "green");
 				}
