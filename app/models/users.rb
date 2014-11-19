@@ -97,8 +97,10 @@ class Users < ActiveRecord::Base
 		end
 	end
 
-	def self.delete_all_entries()
-		Users.delete_all()
+	def self.resetFixture()
+		Users.delete_all
+		Challenge.delete_all
+		Gift.delete_all
 		return SUCCESS
 	end
 

@@ -45,9 +45,9 @@ class UsersController < ApplicationController
         render json: {errCode: errCode}
     end
 
-    def delete_all()
+    def resetFixture()
         if TESTING
-            errCode = Users.delete_all_entries()
+            errCode = Users.resetFixture
         else
             errCode = Users.errorCodes()[:notTestingMode]
         end
