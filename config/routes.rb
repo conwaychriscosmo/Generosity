@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   post 'users/add', to: 'users#add'
   post 'users/edit', to: 'users#edit'
   post 'users/search', to: 'users#search'
+  post 'users/delete', to: 'users#delete'
+  post 'users/delete_all', to: 'users#delete_all'
 
   post 'TEST/users/unitTests', to: 'users#runUnitTests'
 

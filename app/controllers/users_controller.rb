@@ -35,6 +35,25 @@ class UsersController < ApplicationController
         render json: {users: users}
     end
 
+
+    def delete()
+        if TESTING
+            errCode = Users.delete_user(params[:username])
+        else
+            errCode = Users.errorCodes()[:notTestingMode]
+        end
+        render json: {errCode: errCode}
+    end
+
+    def delete_all()
+        if TESTING
+            errCode = Users.delete_all_entries()
+        else
+            errCode = Users.errorCodes()[:notTestingMode]
+        end
+        render json: {errCode: errCode}
+    end
+
 	def runUnitTests()
     output = User.runUnitTests()
     last_line = output.lines.last

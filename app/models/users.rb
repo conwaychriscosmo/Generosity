@@ -11,6 +11,8 @@ class Users < ActiveRecord::Base
 	ERR_USER_EXISTS = -2
 	ERR_ACTION_NOT_AUTHORIZED = -5
 	ERR_REAL_NAME = -6
+	ERR_USER_DOES_NOT_EXIST = -7
+	ERR_NOT_TESTING = -8
 
 
 	validates :username, length: {maximum: MAX_USERNAME_LENGTH}
@@ -28,7 +30,8 @@ class Users < ActiveRecord::Base
 
 	def self.errorCodes()
 		return {success: SUCCESS, badPassword: ERR_BAD_PASSWORD, badUsername: ERR_BAD_USERNAME,
-			userExists: ERR_USER_EXISTS, failedEdit: ERR_ACTION_NOT_AUTHORIZED, badRealName: ERR_REAL_NAME}
+			userExists: ERR_USER_EXISTS, failedEdit: ERR_ACTION_NOT_AUTHORIZED, badRealName: ERR_REAL_NAME,
+			userDoesNotExist: ERR_USER_DOES_NOT_EXIST, notTestingMode: ERR_NOT_TESTING}
 	end
 
 
@@ -84,6 +87,19 @@ class Users < ActiveRecord::Base
 
 	def self.search(options)
 		return Users.where({id: options[:id]})
+	end
+
+	def self.delete_user(username)
+		if Users.delete(Users.find_by(username: username)) != 0
+			return SUCCESS
+		else
+			return ERR_USER_DOES_NOT_EXIST
+		end
+	end
+
+	def self.delete_all_entries()
+		Users.delete_all()
+		return SUCCESS
 	end
 
 
