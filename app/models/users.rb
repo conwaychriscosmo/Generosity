@@ -52,6 +52,12 @@ class Users < ActiveRecord::Base
     	end
     end
 
+    def self.set_current_location(user, location)
+    	if user
+    		user.current_location = location
+    		user.save(:validate => false)
+    end
+
 	
 	def self.add(options)
 
