@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107093149) do
+ActiveRecord::Schema.define(version: 20141120072709) do
 
   create_table "challenges", force: true do |t|
     t.string   "Giver"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20141107093149) do
     t.string   "password_digest"
     t.integer  "total_gifts_received"
     t.string   "real_name"
+    t.string   "current_location"
   end
 
 end
