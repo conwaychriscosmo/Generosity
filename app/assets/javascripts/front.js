@@ -44,7 +44,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 	      		});
 	  }])
 
-	.controller('UsersController', ['$scope', '$http', '$rootScope', '$location', '$routeParams', '$cookieStore', '$route', function($scope, $http, $rootScope, $location, $routeParams, $cookieStore, $route) {
+	.controller('UsersController', ['$scope', '$http', '$rootScope', '$location', '$routeParams', '$cookieStore', function($scope, $http, $rootScope, $location, $routeParams, $cookieStore) {
 		var self = this;
 
 		$scope.id;			//Top secret! Don't use these variables without the dictator's permission!
@@ -83,7 +83,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 
 		self.getUserById = function(targetId) {
 			// console.log(targetId);
-			if(targetId == 0) { //Use a user spoof
+			if(targetId == -13) { //Use a user spoof
 				self.createDummyUser();
 				return;
 			}
@@ -294,6 +294,10 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 			$rootScope.id = 0;
 			$rootScope.username = 0;
 			console.log("Logged out.");
+		};
+
+		self.deleteAll = function() {
+
 		};
 	}])
 
