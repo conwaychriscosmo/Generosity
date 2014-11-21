@@ -44,7 +44,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 	      		});
 	  }])
 
-	.controller('UsersController', ['$scope', '$http', '$rootScope', '$location', '$routeParams', '$cookieStore', function($scope, $http, $rootScope, $location, $routeParams, $cookieStore) {
+	.controller('UsersController', ['$scope', '$http', '$rootScope', '$location', '$routeParams', '$cookieStore', '$route', function($scope, $http, $rootScope, $location, $routeParams, $cookieStore, $route) {
 		var self = this;
 
 		$scope.id;			//Top secret! Don't use these variables without the dictator's permission!
@@ -155,14 +155,15 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.makeCookie(self.id, self.name);
 					console.log(self.id);
 
-					self.sessionCookie = $cookieStore.get('session');
+					sessionCookie = $cookieStore.get('session');
 					// $rootScope.getUserFromCookie();
-					$rootScope.id = self.id;
-					$rootScope.username = self.username;
-					console.log(self.sessionCookie);
+					$rootScope.id = sessionCookie["id"];
+					$rootScope.username = sessionCookie["username"];
+					console.log(sessionCookie);
 					if(purpose === 'login') {
 						rUrl = '/profile/' + $rootScope.id;
 						console.log(rUrl);
+						console.log($rootScope.id);
 						$location.path(rUrl);
 					}
 				}).
@@ -290,8 +291,9 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 
 		self.logout = function() {
 			$cookieStore.remove('session');
-			$scope.id = undefined;
-			$scope.username = undefined;
+			$rootScope.id = 0;
+			$rootScope.username = 0;
+			console.log("Logged out.");
 		};
 	}])
 
