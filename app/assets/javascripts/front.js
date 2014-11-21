@@ -1,4 +1,4 @@
-angular.module('generosity', ['ngRoute', 'templates'])
+angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 	.config(['$routeProvider', '$locationProvider',
 	  	function($routeProvider, $locationProvider) {
 	    	$routeProvider.
@@ -44,7 +44,7 @@ angular.module('generosity', ['ngRoute', 'templates'])
 	      		});
 	  }])
 
-	.controller('UsersController', ['$scope', '$http', '$rootScope', '$location', '$routeParams', function($scope, $http, $rootScope, $location, $routeParams) {
+	.controller('UsersController', ['$scope', '$http', '$rootScope', '$location', '$routeParams', '$cookieStore', function($scope, $http, $rootScope, $location, $routeParams, $cookieStore) {
 		var self = this;
 
 		self.id;
@@ -58,8 +58,15 @@ angular.module('generosity', ['ngRoute', 'templates'])
 		self.description;
 		self.reputation;
 		self.profileUrl;
+		self.sessionCookie;
 
 		self.errCode = 0;
+
+		self.getUserFromCookie = function() {
+			$cookieStore.put('session', '_GenerosityEngine_session');
+			self.sessionCookie = $cookieStore.get('session');
+			console.log(self.sessionCookie);
+		}
 
 		self.getUserFromUrlParams = function() {
 			self.id = $routeParams.id;

@@ -17,5 +17,6 @@
 //= require angular
 //= require angular-mocks
 //= require angular-route
+//= require angular-cookies
 //= require angular-rails-templates
 //= require_tree ../templates
