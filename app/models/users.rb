@@ -56,6 +56,7 @@ class Users < ActiveRecord::Base
     	if user
     		user.current_location = location
     		user.save(:validate => false)
+    	end
     end
 
 	
