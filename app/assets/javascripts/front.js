@@ -47,6 +47,9 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 	.controller('UsersController', ['$scope', '$http', '$rootScope', '$location', '$routeParams', '$cookieStore', function($scope, $http, $rootScope, $location, $routeParams, $cookieStore) {
 		var self = this;
 
+		$scope.id;			//Top secret! Don't use these variables without the dictator's permission!
+		$scope.username;
+
 		self.id;
 		self.username;
 		self.realName;
@@ -63,12 +66,13 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 
 		self.getUserFromCookie = function() {
 			var sessionCookie = $cookieStore.get('session');
+			console.log("YOLO");
 			if(!sessionCookie) {
 				return;
 			}
 			// console.log(self.sessionCookie);
-			self.id = sessionCookie["id"];
-			self.username = sessionCookie["username"];
+			$scope.id = sessionCookie["id"];
+			$scope.username = sessionCookie["username"];
 		}
 
 		self.getUserFromUrlParams = function() {
@@ -123,7 +127,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				});
 		}
 
-		self.getUserByUsername = function(targetUsername) {
+		self.getUserByUsername = function(targetUsername, purpose) {
 			// console.log(targetUsername);
 			$http.post('users/search', {username: targetUsername}).
 				success(function(data, status, headers, config) {
@@ -146,7 +150,15 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					myCookie["username"] = self.username;
 					$cookieStore.put('session', myCookie);
 					self.sessionCookie = $cookieStore.get('session');
+					// $rootScope.getUserFromCookie();
+					$rootScope.id = self.id;
+					$rootScope.username = self.username;
 					console.log(self.sessionCookie);
+					if(purpose === 'login') {
+						rUrl = '/profile/' + $rootScope.id;
+						console.log(rUrl);
+						$location.path(rUrl);
+					}
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
@@ -251,7 +263,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 						alert("Login succeeded.");
 						console.log("Login succeeded.");
 						self.password = "";
-						self.getUserByUsername(self.username);
+						self.getUserByUsername(self.username, 'login');
 					}
 				}).
 				error(function(data, status, headers, config) {

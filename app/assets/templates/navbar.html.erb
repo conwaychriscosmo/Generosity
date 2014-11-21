@@ -38,11 +38,12 @@
 				            <li class="divider"></li>
 				            <li><a href="#">Log out</a></li>
 			        	</ul>
-			        	<li data-ng-hide="user.id"><a href="#login-form" data-ng-click="template=6" style="color: white">Log in</a></li>
-			        	<li data-ng-hide="user.id"><a href="#users-form" data-ng-click="template=5" style="color: white">Sign up now!</a></li>
-			        	<li data-ng-show="user.id"><a href="#profile/{{user.id}}" data-ng-click="template=1" style="color: white">Welcome, {{user.username}}.</a></li>
-			        	<li><a style="color: white"> | </a></li>
-			        	<li data-ng-show="user.id"><a href="#logout" style="color: white">Logout</a></li>
+			        	<li data-ng-hide="id"><a href="#login-form" data-ng-click="template=6" style="color: white">Log in</a></li>
+			        	<li data-ng-hide="id"><a style="color: white"> | </a></li>
+			        	<li data-ng-hide="id"><a href="#users-form" data-ng-click="template=5" style="color: white">Sign up now!</a></li>
+			        	<li data-ng-show="id"><a href="#profile/{{user.id}}" data-ng-click="template=1" style="color: white">Welcome, {{username}}.</a></li>
+			        	<li data-ng-show="id"><a style="color: white"> | </a></li>
+			        	<li data-ng-show="id"><a href="#logout" style="color: white">Logout</a></li>
 			    </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
