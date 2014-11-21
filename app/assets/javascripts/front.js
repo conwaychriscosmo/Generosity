@@ -262,11 +262,11 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					// self.errCode = data.errCode;
 					self.errCode = data.errCode;
 					if(self.errCode == -1) {
-						alert("Login failed.");
+						// alert("Login failed.");
 						console.log("Login failed.");
 					}
 					else {
-						alert("Login succeeded.");
+						// alert("Login succeeded.");
 						console.log("Login succeeded.");
 						self.password = "";
 						self.loadUserData(self.username, 'login');
@@ -288,9 +288,11 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				});
 		};
 
-		// self.logout = function() {
-
-		// };
+		self.logout = function() {
+			$cookieStore.remove('session');
+			$scope.id = undefined;
+			$scope.username = undefined;
+		};
 	}])
 
 	.controller('GiftsController', ['$scope', '$http', '$rootScope', '$routeParams', function($scope, $http, $rootScope, $routeParams) {

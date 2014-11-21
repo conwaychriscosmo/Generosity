@@ -43,7 +43,7 @@
 			        	<li data-ng-hide="id"><a href="#users-form" data-ng-click="template=5" style="color: white">Sign up now!</a></li>
 			        	<li data-ng-show="id"><a href="#profile/{{user.id}}" data-ng-click="template=1" style="color: white">Welcome, {{username}}.</a></li>
 			        	<li data-ng-show="id"><a style="color: white"> | </a></li>
-			        	<li data-ng-show="id"><a href="#logout" style="color: white">Logout</a></li>
+			        	<li data-ng-show="id"><a href="#" style="color: white" data-ng-click="user.logout()">Logout</a></li>
 			    </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
