@@ -127,7 +127,14 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				});
 		}
 
-		self.getUserByUsername = function(targetUsername, purpose) {
+		self.makeCookie = function(uId, uName) {
+			var myCookie = {};
+			myCookie["id"] = self.id;
+			myCookie["username"] = self.username;
+			$cookieStore.put('session', myCookie);
+		}
+
+		self.loadUserData = function(targetUsername, purpose) {
 			// console.log(targetUsername);
 			$http.post('users/search', {username: targetUsername}).
 				success(function(data, status, headers, config) {
@@ -144,11 +151,10 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					}
 					var foundUser = usersList[0];
 					self.id = foundUser["id"];
-					var myCookie = {};
+					self.username = foundUser["username"]; //Technically redundant
+					self.makeCookie(self.id, self.name);
 					console.log(self.id);
-					myCookie["id"] = self.id;
-					myCookie["username"] = self.username;
-					$cookieStore.put('session', myCookie);
+
 					self.sessionCookie = $cookieStore.get('session');
 					// $rootScope.getUserFromCookie();
 					$rootScope.id = self.id;
@@ -203,8 +209,8 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					}
 					else {
 						// alert("User created.");
-						console.log("User created.");						
-						$location.path('/profile');
+						console.log("User created.");	
+						self.loadUserData(self.username, 'login');
 					}
 					console.log(self.errCode);
 				}).
@@ -263,7 +269,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 						alert("Login succeeded.");
 						console.log("Login succeeded.");
 						self.password = "";
-						self.getUserByUsername(self.username, 'login');
+						self.loadUserData(self.username, 'login');
 					}
 				}).
 				error(function(data, status, headers, config) {
