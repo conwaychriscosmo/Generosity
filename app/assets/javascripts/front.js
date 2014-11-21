@@ -58,14 +58,17 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		self.description;
 		self.reputation;
 		self.profileUrl;
-		self.sessionCookie;
 
 		self.errCode = 0;
 
 		self.getUserFromCookie = function() {
-			$cookieStore.put('session', '_GenerosityEngine_session');
-			self.sessionCookie = $cookieStore.get('session');
-			console.log(self.sessionCookie);
+			var sessionCookie = $cookieStore.get('session');
+			if(!sessionCookie) {
+				return;
+			}
+			// console.log(self.sessionCookie);
+			self.id = sessionCookie["id"];
+			self.username = sessionCookie["username"];
 		}
 
 		self.getUserFromUrlParams = function() {
@@ -103,6 +106,47 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.reputation = foundUser["score"];
 					// self.description = foundUser["description"];
 					self.profileUrl = foundUser["profile_url"];
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					self.errCode = -99;
+					// alert("Error.");
+					console.log("Error.");
+				}).
+				then(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					// alert("Done.");
+					console.log("Done.");
+					return;
+				});
+		}
+
+		self.getUserByUsername = function(targetUsername) {
+			// console.log(targetUsername);
+			$http.post('users/search', {username: targetUsername}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					// self.errCode = data.errCode;
+					var usersList = data["users"];
+					console.log(usersList);
+					if(usersList.length != 1) {
+						// alert("Error: User not found.");
+						console.log("Error: User not found.");
+						$location.path('/');
+						return;
+					}
+					var foundUser = usersList[0];
+					self.id = foundUser["id"];
+					var myCookie = {};
+					console.log(self.id);
+					myCookie["id"] = self.id;
+					myCookie["username"] = self.username;
+					$cookieStore.put('session', myCookie);
+					self.sessionCookie = $cookieStore.get('session');
+					console.log(self.sessionCookie);
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
@@ -207,6 +251,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 						alert("Login succeeded.");
 						console.log("Login succeeded.");
 						self.password = "";
+						self.getUserByUsername(self.username);
 					}
 				}).
 				error(function(data, status, headers, config) {

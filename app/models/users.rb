@@ -93,7 +93,11 @@ class Users < ActiveRecord::Base
 	end
 
 	def self.search(options)
-		return Users.where({id: options[:id]})
+		if options[:id]
+			return Users.where({id: options[:id]})
+		elsif options[:username]
+			return Users.where({username: options[:username]})
+		end
 	end
 
 	def self.delete_user(username)
