@@ -185,6 +185,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 
 		self.addUser = function() {
 			// alert("YO DAWG"); //Only called once even when things go awry
+			$scope.message = "";
 			$http.post('users/add', {username: self.username, password: self.password, real_name: self.realName, 
 				available_hours: self.availableHours, current_city: self.currentCity, current_location: self.currentLocation, 
 				profile_url: self.profileUrl}).
@@ -192,7 +193,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				// this callback will be called asynchronously
 				// when the response is available
 					self.errCode = data.errCode;
-					$scope.message = "";
 					if(self.errCode == -2) {
 						// alert("Error: This username already exists.");
 						console.log("Error: This username already exists.");
@@ -224,6 +224,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
 					self.errCode = -99;
+					$scope.message = "The server appears to be having issues. Please try again later.";
 					// alert("Error.");
 					console.log("Error.");
 				}).
@@ -261,6 +262,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		self.makeIter(5);
 
 		self.login = function(name, pw) {
+			$scope.message = "";
 			$http.post('login', {username: name, password: pw}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
@@ -270,6 +272,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					if(self.errCode == -1) {
 						// alert("Login failed.");
 						console.log("Login failed.");
+						$scope.message = "The username and password do not match.";
 					}
 					else {
 						// alert("Login succeeded.");
@@ -282,7 +285,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
 					self.errCode = -99;
-					alert("Error.");
+					$scope.message = "The server appears to be having issues. Please try again later.";
 					console.log("Error.");
 				}).
 				then(function(data, status, headers, config) {
