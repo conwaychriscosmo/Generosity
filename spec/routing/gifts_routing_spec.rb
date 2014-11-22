@@ -3,13 +3,6 @@ require "spec_helper"
 describe GiftsController do
   describe "routing" do
 
-    post 'gifts/:id/rate', to: 'gifts#rate'
-  post 'gifts/:id/review', to: 'gifts#review'
-  post 'gifts/:id/deliver', to: 'gifts#deliver'
-  post 'gifts/:id/delete', to: 'gifts#delete'
-  post 'challenge/:id/delete', to: 'challenges#delete'
-  get 'gifts/:id/view', to: 'gifts#view'
-
     it "routes to #rate" do
       post("/gifts/1/rate").should route_to("gifts#rate", :id => "1")
     end
