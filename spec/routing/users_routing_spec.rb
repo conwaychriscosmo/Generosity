@@ -3,9 +3,6 @@ require "spec_helper"
 describe UsersController do
   describe "users routing" do
 
-    post 'TEST/users/unitTests', to: 'users#runUnitTests'
-  post 'TEST/resetFixture', to: 'users#resetFixture'
-
     it "routes to #welcome" do
       get("/").should route_to("user/#welcome") #note that this is USER not USERS
     end
