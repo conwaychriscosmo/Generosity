@@ -30,6 +30,14 @@ describe ChallengesController do
   # ChallengesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+   describe "POST delete" do
+    it "deletes the challenge with the given id" do
+      challenge = Challenge.create! valid_attributes
+      post :delete, id: challenge.id, valid_session
+      assigns(:challenges).should eq([challenge])
+    end
+  end
+
   describe "GET index" do
     it "assigns all challenges as @challenges" do
       challenge = Challenge.create! valid_attributes
