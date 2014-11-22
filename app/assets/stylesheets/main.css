@@ -6,6 +6,10 @@ li {
 	font-size: 13px;
 }
 
+a {
+	color: white;
+}
+
 #over {
 	z-index: 10;
 }
@@ -18,7 +22,8 @@ li {
 }
 
 body{
-	background:url(http://i.imgur.com/lGjlXUF.gif)no-repeat;
+	/*background:url(http://i.imgur.com/lGjlXUF.gif)no-repeat;*/
+	background:url(http://www.wallpaperhi.com/thumbnails/detail/20130202/outer%20space%20galaxies%20black%20hole%201920x1080%20wallpaper_www.wallpaperhi.com_64.jpg)no-repeat;
 	background-size: cover;
 }
 
