@@ -71,8 +71,8 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				return;
 			}
 			// console.log(self.sessionCookie);
-			$scope.id = sessionCookie["id"];
-			$scope.username = sessionCookie["username"];
+			$rootScope.id = sessionCookie["id"];
+			$rootScope.username = sessionCookie["username"];
 		}
 
 		self.getUserFromUrlParams = function() {
@@ -321,6 +321,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 
 		self.addGift = function() {
 			var errCode;
+			$scope.message = "";
 			$http.post('gifts/create', {name: self.name, url: self.url}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
@@ -328,10 +329,10 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					var errCode = data.errCode;
 					/*We need actual error codes for this.*/
 					if(errCode == -1) {
-						alert("Error: Invalid gift.");
+						$scope.message = "Error: Invalid gift.";
 					}
 					else {
-						alert("Gift created.");						
+						console.log("Gift created.");						
 					}
 					console.log(errCode);
 					// $rootScope.errCode = data.errCode;
@@ -339,7 +340,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
-					alert("Error.");
+					$scope.message = "Error: There appears to be an issue with the server. Please try again later.";
 				});
 		};
 

@@ -75,7 +75,7 @@ class Users < ActiveRecord::Base
 			new_user.total_gifts_received = options[:total_gifts_received] ||= 0
 			new_user.level = options[:level] ||= 1
 			new_user.score = options[:score] ||= 0
-			new_user.profile_url = options[:profile_url] ||= 'http://cdn02.animenewsnetwork.com/thumbnails/max500x600/encyc/A15757-989316051.1386311773.jpg'
+			new_user.profile_url = options[:profile_url] ||= 'http://images.sodahead.com/polls/002443001/5330646328_2008_06_25_131330_puts_on_sunglasses_answer_4_xlarge.png'
 			new_user.save
 			return SUCCESS
 		else
