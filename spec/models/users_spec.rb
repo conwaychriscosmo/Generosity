@@ -5,6 +5,10 @@ RSpec.describe Users, :type => :model do
   
 	errorCodes = Users.errorCodes()
 
+	before(:each) do
+      Users.delete_all
+    end
+
 	describe "validations" do
 		it "should not allow username to be too long" do
 			user = Users.new(username: 'a'*129, password: 'password', real_name: 'bob')
