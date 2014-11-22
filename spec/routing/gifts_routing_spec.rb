@@ -3,6 +3,10 @@ require "spec_helper"
 describe GiftsController do
   describe "routing" do
 
+    it "routes to #runUnitTests" do
+      post('TEST/gifts/unitTests').should route_to("gifts#runUnitTests")
+    end
+
     it "routes to #rate" do
       post("/gifts/1/rate").should route_to("gifts#rate", :id => "1")
     end
