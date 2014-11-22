@@ -192,21 +192,26 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				// this callback will be called asynchronously
 				// when the response is available
 					self.errCode = data.errCode;
+					$scope.message = "";
 					if(self.errCode == -2) {
 						// alert("Error: This username already exists.");
 						console.log("Error: This username already exists.");
+						$scope.message = "Error: This username already exists.";
 					}
 					else if(self.errCode == -3) {
 						// alert("Error: The username is empty, too long, or has invalid characters.");
 						console.log("Error: The username is empty, too long, or has invalid characters.");
+						$scope.message = "Error: The username is empty, too long, or has invalid characters.";
 					}
 					else if(self.errCode == -4) {
 						// alert("Error: The password is empty, too long, or has invalid characters.");
-						console.log("Error: The password is empty, too long, or has invalid characters.");
+						console.log("Error: The password is empty, too long/too short, or has invalid characters.");
+						$scope.message = "Error: The password is empty, too long, or has invalid characters.";
 					}
 					else if(self.errCode == -6) {
 						// alert("Error: The real name is empty, too long, or has invalid characters.");
 						console.log("Error: The real name is empty, too long, or has invalid characters.");
+						$scope.message = "As real names are no longer required, this branch should never execute.";
 					}
 					else {
 						// alert("User created.");
