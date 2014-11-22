@@ -71,8 +71,8 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				return;
 			}
 			// console.log(self.sessionCookie);
-			$scope.id = sessionCookie["id"];
-			$scope.username = sessionCookie["username"];
+			$rootScope.id = sessionCookie["id"];
+			$rootScope.username = sessionCookie["username"];
 		}
 
 		self.getUserFromUrlParams = function() {
@@ -185,6 +185,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 
 		self.addUser = function() {
 			// alert("YO DAWG"); //Only called once even when things go awry
+			$scope.message = "";
 			$http.post('users/add', {username: self.username, password: self.password, real_name: self.realName, 
 				available_hours: self.availableHours, current_city: self.currentCity, current_location: self.currentLocation, 
 				profile_url: self.profileUrl}).
@@ -195,18 +196,22 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					if(self.errCode == -2) {
 						// alert("Error: This username already exists.");
 						console.log("Error: This username already exists.");
+						$scope.message = "Error: This username already exists.";
 					}
 					else if(self.errCode == -3) {
 						// alert("Error: The username is empty, too long, or has invalid characters.");
 						console.log("Error: The username is empty, too long, or has invalid characters.");
+						$scope.message = "Error: The username is empty, too long, or has invalid characters.";
 					}
 					else if(self.errCode == -4) {
 						// alert("Error: The password is empty, too long, or has invalid characters.");
-						console.log("Error: The password is empty, too long, or has invalid characters.");
+						console.log("Error: The password is empty, too long/too short, or has invalid characters.");
+						$scope.message = "Error: The password is empty, too long, or has invalid characters.";
 					}
 					else if(self.errCode == -6) {
 						// alert("Error: The real name is empty, too long, or has invalid characters.");
 						console.log("Error: The real name is empty, too long, or has invalid characters.");
+						$scope.message = "As real names are no longer required, this branch should never execute.";
 					}
 					else {
 						// alert("User created.");
@@ -219,6 +224,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
 					self.errCode = -99;
+					$scope.message = "The server appears to be having issues. Please try again later.";
 					// alert("Error.");
 					console.log("Error.");
 				}).
@@ -256,6 +262,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		self.makeIter(5);
 
 		self.login = function(name, pw) {
+			$scope.message = "";
 			$http.post('login', {username: name, password: pw}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
@@ -265,6 +272,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					if(self.errCode == -1) {
 						// alert("Login failed.");
 						console.log("Login failed.");
+						$scope.message = "The username and password do not match.";
 					}
 					else {
 						// alert("Login succeeded.");
@@ -277,7 +285,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
 					self.errCode = -99;
-					alert("Error.");
+					$scope.message = "The server appears to be having issues. Please try again later.";
 					console.log("Error.");
 				}).
 				then(function(data, status, headers, config) {
@@ -313,6 +321,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 
 		self.addGift = function() {
 			var errCode;
+			$scope.message = "";
 			$http.post('gifts/create', {name: self.name, url: self.url}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
@@ -320,10 +329,10 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					var errCode = data.errCode;
 					/*We need actual error codes for this.*/
 					if(errCode == -1) {
-						alert("Error: Invalid gift.");
+						$scope.message = "Error: Invalid gift.";
 					}
 					else {
-						alert("Gift created.");						
+						console.log("Gift created.");						
 					}
 					console.log(errCode);
 					// $rootScope.errCode = data.errCode;
@@ -331,7 +340,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
-					alert("Error.");
+					$scope.message = "Error: There appears to be an issue with the server. Please try again later.";
 				});
 		};
 
