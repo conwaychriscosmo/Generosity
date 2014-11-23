@@ -21,6 +21,17 @@ class Waiting < ActiveRecord::Base
     end
   end
 
+  def self.onQueue(username) #Ensure that someone can only go on the queue once.
+    targetUser = Waiting.find_by(username: username)
+    if targetUser:
+      output = { errCode: -1 }
+      return output
+    else:
+      output = { errCode: 1 }
+      return false
+    end
+  end
+
   def self.getRecipient
     pros = Waiting.first
     if pros.username.nil?

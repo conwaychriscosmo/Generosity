@@ -1,11 +1,23 @@
 class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
   
+  def joinQueue
+    @username = params[:username]
+    # @user = Users.find_by(username: @username)
+    output = Waiting.add(@username)
+    render json: output
+  end
 
+  def onQueue
+    @username = params[:username]
+    output = Waiting.onQueue(@username)
+    render json: output
+  end
   
   def match
   #built for testing to cause matches
     # @id = session[:user_id]
+    puts "swag"
     @id = params[:id]
     @user = Users.find_by(id: @id)
     output = Challenge.match(@user.username)

@@ -1,4 +1,4 @@
-<div class="container-fluid" style="margin-top: 5%;" data-ng-init="receivingUser.getChallengeForCurrentUser()">
+<div class="container-fluid" style="margin-top: 5%;" data-ng-init="receivingUser.getChallengeForCurrentUser(); receivingUser.checkIfOnQueue()">
 	<div style="width: 100%">
 	<div class="usercard" data-ng-show="receivingUser.hasCurrentChallenge">
 		<div class = "holder" style ="width: 100%; text-align: center; padding-top: 30px;">
@@ -19,9 +19,11 @@
 		About me: {{receivingUser.bio}}
 		<br>
 		<br>
-		<a href="#edit-user" data-ng-show="{{canEdit}}"><button style="background-color:teal; color:white">Edit Details</button></a>
+		<!-- <a href="#edit-user" data-ng-show="{{canEdit}}"><button style="background-color:teal; color:white">Edit Details</button></a> -->
+		{{message}}
 		</div>
 		</div>
 	</div>
 	<button data-ng-click="receivingUser.addChallenge()" data-ng-hide="receivingUser.hasCurrentChallenge" style="background-color:teal; color:white">Get a Challenge</button>
+	<button data-ng-click="receivingUser.joinQueue()" data-ng-hide="receivingUser.onQueue" style="background-color:teal; color:white">Join Queue</button>
 </div>

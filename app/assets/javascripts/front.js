@@ -474,6 +474,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 
 		self.giverId;
 		self.hasCurrentChallenge;
+		self.onQueue;
 
 		self.giver;
 		self.recipient;
@@ -521,32 +522,89 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				self.hasCurrentChallenge = true;
 				return;
 			}
-			else {
-				self.giverId = $rootScope.id;
-				$http.get('challenge/getCurrentChallenge', { id: self.giverId }).
-					success(function(data, status, headers, config) {
-					// this callback will be called asynchronously
-					// when the response is available
-						var errCode = data.errCode;
-						/*We need actual error codes for this.*/
-						if(errCode == -1) {
-							//This should later be changed to put this person on a queue.
-							$scope.message = "You currently do not have a challenge.";
-						}
-						else {
-							console.log("Challenge created.");	
-							$scope.message = "";
-							self.hasCurrentChallenge = true;					
-						}
-						console.log(errCode);
-						// $rootScope.errCode = data.errCode;
-					}).
-					error(function(data, status, headers, config) {
-					// called asynchronously if an error occurs
-					// or server returns response with an error status.
-						$scope.message = "Error: There appears to be an issue with the server. Please try again later.";
-					});
+			self.giverId = $rootScope.id;
+			$http.get('challenge/getCurrentChallenge', { id: self.giverId }).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					var errCode = data.errCode;
+					/*We need actual error codes for this.*/
+					if(errCode == -1) {
+						//This should later be changed to put this person on a queue.
+						$scope.message = "You currently do not have a challenge.";
+					}
+					else {
+						console.log("Challenge created.");	
+						$scope.message = "";
+						self.hasCurrentChallenge = true;					
+					}
+					console.log(errCode);
+					// $rootScope.errCode = data.errCode;
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					$scope.message = "Error: There appears to be an issue with the server. Please try again later.";
+				});
+		}
+
+		self.checkIfOnQueue = function() { //Check to see if the logged in user is currently a receiver candidate.
+			self.receiverUsername = $rootScope.username;
+			$http.get('challenge/onQueue', { username: self.receiverUsername }).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					var errCode = data.errCode;
+					/*We need actual error codes for this.*/
+					if(errCode == -1) {
+						//This should later be changed to put this person on a queue.
+						$scope.message = "You are currently on the queue.";
+						self.onQueue = true;
+					}
+					else {
+						console.log("You are currently not on the queue.");	
+						$scope.message = "";
+						self.onQueue = false;					
+					}
+					console.log(errCode);
+					// $rootScope.errCode = data.errCode;
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					$scope.message = "Error: There appears to be an issue with the server. Please try again later.";
+				});
+		}
+
+		self.joinQueue = function() {
+			if(self.onQueue) {
+				$scope.message = "You are already on the queue.";
+				return;
 			}
+			self.receiverId = $rootScope.id;
+			$http.post('challenge/joinQueue', { id: self.receiverId }).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					var errCode = data.errCode;
+					/*We need actual error codes for this.*/
+					if(errCode == -1) {
+						//This should later be changed to put this person on a queue.
+						$scope.message = "You currently do not have a challenge.";
+					}
+					else {
+						console.log("Challenge created.");	
+						$scope.message = "You are currently on the queue.";
+						self.hasCurrentChallenge = true;					
+					}
+					console.log(errCode);
+					// $rootScope.errCode = data.errCode;
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					$scope.message = "Error: There appears to be an issue with the server. Please try again later.";
+				});
 		}
 
 		self.createDummyChallenge = function() {
