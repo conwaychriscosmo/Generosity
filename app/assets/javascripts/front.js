@@ -558,9 +558,10 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		}
 
 		self.checkIfOnQueue = function() { //Check to see if the logged in user is currently a receiver candidate.
-			self.receiverUsername = $rootScope.username;
+			self.recipient = $rootScope.username;
+			console.log("foo " + self.recipient);
 			// $scope.queueMessage = "";
-			$http.get('challenge/onQueue', { username: self.receiverUsername }).
+			$http.get('challenge/onQueue', { username: self.recipient }).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
@@ -597,7 +598,8 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				return;
 			}
 			self.receiverId = $rootScope.id;
-			$http.post('challenge/joinQueue', { id: self.receiverId }).
+			self.recipient = $rootScope.username;
+			$http.post('challenge/joinQueue', { username: self.recipient }).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
@@ -610,7 +612,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					else {
 						console.log("Queue joined.");	
 						$scope.queueMessage = "You are currently on the queue.";
-						self.hasCurrentChallenge = true;					
+						self.onQueue = true;					
 					}
 					console.log(errCode);
 					// $rootScope.errCode = data.errCode;
