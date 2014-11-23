@@ -25,12 +25,27 @@ describe SessionsHelper do
 
         it "logs a dfferent user into the session" do
             helper.login("Joe")
-            expect(session[:user_id]).to eq("Joe")
+            helper.login("Bob")
+            expect(session[:user_id]).to eq("Bob")
         end
     end
 
     describe "logout" do
+        it "logs the user after logging in" do
+            helper.login("Joe")
+            helper.logout()
+            expect(session[:user_id]).to eq(nil)
+        end
+
         it "logs the user out by making the id = nil" do
+            helper.logout()
+            expect(session[:user_id]).to eq(nil)
+        end
+
+        it "logs the user out after multiple calls" do
+            helper.login("Joe")
+            helper.logout()
+            helper.login("Chris")
             helper.logout()
             expect(session[:user_id]).to eq(nil)
         end

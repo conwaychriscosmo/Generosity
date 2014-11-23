@@ -13,8 +13,9 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 	        		templateUrl: "gift.html",
 	        		controller: 'GiftsController as profiledGift'
 	      		}).
-	      		when('/challenge', {
-	      			templateUrl: "challenge.html"
+	      		when('/challenge/:code', {
+	      			templateUrl: "challenge.html",
+	      			controller: 'ChallengesController as receivingUser'
 	      		}).
 	      		when('/map', {
 	      			redirectTo: function() {
@@ -468,6 +469,60 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		};
 	}])
 	
+	.controller('ChallengesController', ['$scope', '$http', '$rootScope', '$routeParams', function($scope, $http, $rootScope, $routeParams) {
+		var self = this;
+
+		self.giver;
+		self.recipient;
+		self.description;
+		self.availableHours; //How should this be styled?
+		self.currentCity;
+		self.currentLocation;
+
+		// self.addChallenge = function() {
+		// 	var errCode;
+		// 	$scope.message = "";
+		// 	$http.post('gifts/create', {name: self.name, url: self.url}).
+		// 		success(function(data, status, headers, config) {
+		// 		// this callback will be called asynchronously
+		// 		// when the response is available
+		// 			var errCode = data.errCode;
+		// 			/*We need actual error codes for this.*/
+		// 			if(errCode == -1) {
+		// 				$scope.message = "Error: Invalid gift.";
+		// 			}
+		// 			else {
+		// 				console.log("Gift created.");						
+		// 			}
+		// 			console.log(errCode);
+		// 			// $rootScope.errCode = data.errCode;
+		// 		}).
+		// 		error(function(data, status, headers, config) {
+		// 		// called asynchronously if an error occurs
+		// 		// or server returns response with an error status.
+		// 			$scope.message = "Error: There appears to be an issue with the server. Please try again later.";
+		// 		});
+		// };
+
+		self.getChallengeForCurrentUser = function() {
+			// console.log(self.id);
+			self.code = $routeParams.code;
+			console.log("foo");
+			if(self.code == -1) {
+				self.createDummyChallenge();
+			}
+		}
+
+		self.createDummyChallenge = function() {
+			self.giver = "LordChristopher";
+			self.recipient = "LordKittenz";
+			self.description = "lul ok qq";
+			self.availableHours = "6pm-6am"; 
+			self.currentCity = "Berkeley, California";
+			self.currentLocation = "Nowhere";
+		};
+	}])
+
 	.directive('navbar', function() {
 		return {
 			restrict: 'E',
