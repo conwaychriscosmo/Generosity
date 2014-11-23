@@ -5,6 +5,7 @@
 	
 	<%= javascript_include_tag "spec/users-spec"%>
 	<%= javascript_include_tag "spec/gifts-spec"%>
+	<%= javascript_include_tag "spec/challenges-spec"%>
 
 		<title> Generosity </title>
 
@@ -25,6 +26,7 @@
 
 				<users-tests data-ng-if="template==99"></users-tests>
 				<gifts-tests data-ng-if="template==99"></gifts-tests>
+				<challenges-tests data-ng-if="template==99"></challenges-tests>
 
 			<%end%>
 

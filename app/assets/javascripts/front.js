@@ -539,6 +539,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 						self.hasCurrentChallenge = true;					
 					}
 					console.log(errCode);
+					console.log($scope.message);
 					// $rootScope.errCode = data.errCode;
 				}).
 				error(function(data, status, headers, config) {
@@ -649,6 +650,16 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 
 			},
 			templateUrl: "gifts-tests.html"
+		};
+	})
+
+	.directive('challengesTests', function() {
+		return {
+			restrict: 'E',
+			scope: {
+
+			},
+			templateUrl: "challenges-tests.html"
 		};
 	})
 	

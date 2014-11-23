@@ -44,6 +44,7 @@ class Challenge < ActiveRecord::Base
     output = {errCode: 1}
     return output
   end
+  
   def self.current(challenge_id)
     @challenge = Challenge.find_by(id: challenge_id)
     output = { errCode: -1 }
