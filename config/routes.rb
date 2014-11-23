@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post 'gifts/create' => 'gifts#create'  
   post 'gifts/destroy' => 'gifts#destroy'
   post 'challenge/complete' => 'challenges#complete'
+  post 'challenge/match' => 'challenges#match'
   get 'challenge/:id/current' => 'challenges#getCurrentChallenge'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
