@@ -1,6 +1,6 @@
 <div class="container-fluid" style="margin-top: 5%;" data-ng-init="receivingUser.getChallengeForCurrentUser()">
 	<div style="width: 100%">
-	<div class="usercard">
+	<div class="usercard" data-ng-show="receivingUser.hasCurrentChallenge">
 		<div class = "holder" style ="width: 100%; text-align: center; padding-top: 30px;">
 		<img class="circlemage" src="http://images.clipartpanda.com/question-question_mark_blue.png" >
 		<br>
@@ -23,4 +23,5 @@
 		</div>
 		</div>
 	</div>
+	<button data-ng-click="receivingUser.addChallenge()" data-ng-hide="receivingUser.hasCurrentChallenge" style="background-color:teal; color:white">Get a Challenge</button>
 </div>

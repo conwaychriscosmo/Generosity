@@ -472,6 +472,9 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 	.controller('ChallengesController', ['$scope', '$http', '$rootScope', '$routeParams', function($scope, $http, $rootScope, $routeParams) {
 		var self = this;
 
+		self.giverId;
+		self.hasCurrentChallenge;
+
 		self.giver;
 		self.recipient;
 		self.description;
@@ -479,44 +482,78 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		self.currentCity;
 		self.currentLocation;
 
-		// self.addChallenge = function() {
-		// 	var errCode;
-		// 	$scope.message = "";
-		// 	$http.post('gifts/create', {name: self.name, url: self.url}).
-		// 		success(function(data, status, headers, config) {
-		// 		// this callback will be called asynchronously
-		// 		// when the response is available
-		// 			var errCode = data.errCode;
-		// 			/*We need actual error codes for this.*/
-		// 			if(errCode == -1) {
-		// 				$scope.message = "Error: Invalid gift.";
-		// 			}
-		// 			else {
-		// 				console.log("Gift created.");						
-		// 			}
-		// 			console.log(errCode);
-		// 			// $rootScope.errCode = data.errCode;
-		// 		}).
-		// 		error(function(data, status, headers, config) {
-		// 		// called asynchronously if an error occurs
-		// 		// or server returns response with an error status.
-		// 			$scope.message = "Error: There appears to be an issue with the server. Please try again later.";
-		// 		});
-		// };
+		self.addChallenge = function() {
+			var errCode;
+			$scope.message = "";
+			self.giverId = $rootScope.id;
+			$http.post('challenge/match', { id: self.giverId }).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					var errCode = data.errCode;
+					/*We need actual error codes for this.*/
+					if(errCode == -1) {
+						//This should later be changed to put this person on a queue.
+						$scope.message = "Error: There is currently no one available. Please try again later.";
+					}
+					else {
+						console.log("Challenge created.");	
+						self.hasCurrentChallenge = true;					
+					}
+					console.log(errCode);
+					// $rootScope.errCode = data.errCode;
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					$scope.message = "Error: There appears to be an issue with the server. Please try again later.";
+				});
+		};
 
 		self.getChallengeForCurrentUser = function() {
 			// console.log(self.id);
 			self.code = $routeParams.code;
 			console.log("foo");
+			self.hasCurrentChallenge = false;
+			$scope.message = "";
 			if(self.code == -1) {
 				self.createDummyChallenge();
+				self.hasCurrentChallenge = true;
+				return;
+			}
+			else {
+				self.giverId = $rootScope.id;
+				$http.get('challenge/getCurrentChallenge', { id: self.giverId }).
+					success(function(data, status, headers, config) {
+					// this callback will be called asynchronously
+					// when the response is available
+						var errCode = data.errCode;
+						/*We need actual error codes for this.*/
+						if(errCode == -1) {
+							//This should later be changed to put this person on a queue.
+							$scope.message = "You currently do not have a challenge.";
+						}
+						else {
+							console.log("Challenge created.");	
+							$scope.message = "";
+							self.hasCurrentChallenge = true;					
+						}
+						console.log(errCode);
+						// $rootScope.errCode = data.errCode;
+					}).
+					error(function(data, status, headers, config) {
+					// called asynchronously if an error occurs
+					// or server returns response with an error status.
+						$scope.message = "Error: There appears to be an issue with the server. Please try again later.";
+					});
 			}
 		}
 
 		self.createDummyChallenge = function() {
 			self.giver = "LordChristopher";
 			self.recipient = "LordKittenz";
-			self.description = "lul ok qq";
+			self.reputation = 13
+			self.bio = "lul ok qq";
 			self.availableHours = "6pm-6am"; 
 			self.currentCity = "Berkeley, California";
 			self.currentLocation = "Nowhere";
