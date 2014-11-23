@@ -270,7 +270,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 			$scope.message = "";
 			$http.post('users/edit', {username: self.username, password: self.password, real_name: self.realName, 
 				available_hours: self.availableHours, current_city: self.currentCity, current_location: self.currentLocation, 
-				profile_url: self.profileUrl}).
+				description: self.bio, profile_url: self.profileUrl}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available

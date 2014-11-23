@@ -46,6 +46,7 @@ class Users < ActiveRecord::Base
     		user.total_gifts_given = options[:total_gifts_given] ||= user.total_gifts_given
     		user.total_gifts_received = options[:total_gifts_received] ||= user.total_gifts_received
     		user.score = options[:score] ||= user.score
+			user.description = options[:description]
 
     		user.save(:validate => false)
     		return SUCCESS
