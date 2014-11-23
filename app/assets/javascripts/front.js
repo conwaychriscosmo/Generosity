@@ -56,6 +56,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 
 		$scope.id;			//Top secret! Don't use these variables without the dictator's permission!
 		$scope.username;
+		$scope.canEdit;
 
 		self.id;
 		self.username;
@@ -80,6 +81,10 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 			// console.log(self.sessionCookie);
 			$rootScope.id = sessionCookie["id"];
 			$rootScope.username = sessionCookie["username"];
+		}
+
+		self.checkIfLoggedInUser = function() {
+			$scope.canEdit = self.id == $rootScope.id;
 		}
 
 		self.getCurrentScopeUserFromCookie = function() {

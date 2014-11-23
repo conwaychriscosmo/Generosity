@@ -1,4 +1,4 @@
-<div class="container-fluid" style="margin-top: 5%;" data-ng-init="profiledUser.getUserFromUrlParams()">
+<div class="container-fluid" style="margin-top: 5%;" data-ng-init="profiledUser.getUserFromUrlParams(); profiledUser.checkIfLoggedInUser()">
 	<div style="width: 100%">
 	<div class="usercard">
 		<div class = "holder" style ="width: 100%; text-align: center; padding-top: 30px;">
@@ -22,7 +22,8 @@
 		<br>
 		About me: {{profiledUser.bio}}
 		<br>
-		<a href="#edit-user">Edit Details</a>
+		<br>
+		<a href="#edit-user" data-ng-show="{{canEdit}}"><button style="background-color:teal; color:white">Edit Details</button></a>
 		</div>
 		</div>
 	</div>
