@@ -35,7 +35,8 @@ class Users < ActiveRecord::Base
 	end
 
 
-    def self.edit(user, options)
+    def self.edit(options)
+    	user = Users.find_by(username: options[:username])
     	if user
     		user.profile_url = options[:profile_url] ||= user.profile_url
     		user.current_city = options[:current_city] ||= user.current_city
@@ -76,6 +77,9 @@ class Users < ActiveRecord::Base
 			new_user.level = options[:level] ||= 1
 			new_user.score = options[:score] ||= 0
 			new_user.profile_url = options[:profile_url] ||= 'http://images.sodahead.com/polls/002443001/5330646328_2008_06_25_131330_puts_on_sunglasses_answer_4_xlarge.png'
+			new_user.description = options[:description]
+			puts options
+			puts "LKADKAGFKGJFAHAKJEHLKQWHABKHJAGFKAJ<SHFLKASHLGK"
 			new_user.save
 			return SUCCESS
 		else

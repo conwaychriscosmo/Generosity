@@ -1,19 +1,30 @@
-<div class="container-fluid" style="margin-top:-.2%" data-ng-init="profiledUser.getUserFromUrlParams()">
-	<span class="profile-pic">
-		<img style="height:200px; width:200px" src="{{profiledUser.profileUrl}}"></img>	
-		<div>
-			{{profiledUser.username}}
+<div class="container-fluid" style="margin-top: 5%;" data-ng-init="profiledUser.getUserFromUrlParams(); profiledUser.checkIfLoggedInUser()">
+	<div style="width: 100%">
+	<div class="usercard">
+		<div class = "holder" style ="width: 100%; text-align: center; padding-top: 30px;">
+		<img class="circlemage" src="{{profiledUser.profileUrl}}" >
+		<br>
+		{{profiledUser.username}}
 		</div>
-	</span>
-	<span class="profile-info">
-		<span class="tag">Real name: </span>{{profiledUser.realName}}
+		<div class = "profile_info">
 		<br>
-		<span class="tag">Best timeframe: </span>{{profiledUser.availableHours}}
+		Real name: {{profiledUser.realName}}
 		<br>
-		<span class="tag">Current city: </span>{{profiledUser.currentCity}}
 		<br>
-		<span class="tag">Reputation: </span>{{profiledUser.reputation}}
+		Best timeframe: {{profiledUser.availableHours}}
+		<br> 
 		<br>
-		<span class="tag">About me: </span>{{profiledUser.description}}
-	</span>
+		Current city: {{profiledUser.currentCity}}
+		<br>
+		<br>
+		Reputation: {{profiledUser.reputation}}
+		<br>
+		<br>
+		About me: {{profiledUser.bio}}
+		<br>
+		<br>
+		<a href="#edit-user" data-ng-show="{{canEdit}}"><button style="background-color:teal; color:white">Edit Details</button></a>
+		</div>
+		</div>
+	</div>
 </div>

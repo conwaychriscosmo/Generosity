@@ -8,9 +8,14 @@ class Challenge < ActiveRecord::Base
     end
     @challenge = Challenge.new
     @challenge.Giver = username
-    offset = rand(Users.count)
+    count = Users.count
+    offset = rand(count)
     @rand_user = Users.offset(offset).first
     if @rand_user.blank? and Users.count>1
+      output = Challenge.match(username)
+      return output
+    end
+    if Challenge.find_by(Recipient: @rand_user) and count % 2 == 0
       output = Challenge.match(username)
       return output
     end
