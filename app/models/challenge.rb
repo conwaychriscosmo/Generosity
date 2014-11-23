@@ -1,5 +1,5 @@
 class Challenge < ActiveRecord::Base
-  @@id = 1
+  #@@id = 1
   def self.match(username)
   #pick a random user from the database to match with username
     @challenge = Challenge.new
@@ -26,11 +26,11 @@ class Challenge < ActiveRecord::Base
       end
     end
     if @challenge.valid?
-      @challenge.id = @@id
+      #@challenge.id = @@id
       p 'the id is'
-      p @challenge.id
+      #p @challenge.id
       p '*'*50
-      @@id = @@id + 1
+      #@@id = @@id + 1
       @challenge.save
       output = { errCode: 1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }
     else
@@ -45,12 +45,12 @@ class Challenge < ActiveRecord::Base
     return output
   end
   
-  def self.current(challenge_id)
-    @challenge = Challenge.find_by(id: challenge_id)
+  def self.current(giver)
+    @challenge = Challenge.find_by(Giver: giver)
     output = { errCode: -1 }
     if @challenge.nil?
       p 'challenge is nil'
-      p challenge_id
+      # challenge_id
       p '*'*50
       return output
     end
@@ -96,8 +96,8 @@ class Challenge < ActiveRecord::Base
       end
     end
     if @challenge.valid?
-      @challenge.id = @@id
-      @@id = @@id + 1
+      #@challenge.id = @@id
+      #@@id = @@id + 1
       @challenge.save
       chall.destroy
       output = { errCode: -1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }

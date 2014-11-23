@@ -1,7 +1,7 @@
 class Gift < ActiveRecord::Base
   validates :name, length: { maximum: 128 }, presence: true
   validates :url, presence: true 
-  @@id = 1
+  #@@id = 1
   def self.resetFixture
     Users.delete_all
     Challenge.delete_all
@@ -87,7 +87,7 @@ class Gift < ActiveRecord::Base
   def self.create(name, url, username)
     @gift = Gift.new
     @gift.name = name
-    @gift.id = @@id
+    #@gift.id = @@id
     @gift.url = url
     @gift.giver = username
     @gift.delivered = false
@@ -113,7 +113,7 @@ class Gift < ActiveRecord::Base
     if @gift.valid?
       #@gift.id = @@id
       if @gift.save
-        @@id = @@id + 1
+        #@@id = @@id + 1
         output = { errCode: 1, name: name, url: url }
       end
     else

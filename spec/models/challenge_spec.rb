@@ -63,7 +63,7 @@ RSpec.describe Challenge, :type => :model  do
         Users.add({ username: 'fred', password: 'iloveme' })
         Users.add({ username: 'george', password: 'notfromharrypotter' })
         output = Challenge.match('george')
-        challenge = Challenge.current(Challenge.find_by(Giver: 'george').id)
+        challenge = Challenge.current('george')
         expect(challenge[:Giver]).to eq 'george'
       end
     end
@@ -75,7 +75,7 @@ RSpec.describe Challenge, :type => :model  do
         Users.add({username: 'fred', password: 'iloveme'})
         Users.add({username: 'george', password: 'iloveme'})
         output = Challenge.match('george')
-        challenge = Challenge.current(Challenge.find_by(Giver: 'george').id)
+        challenge = Challenge.current('george')
         hsh = { errCode: 1, Giver: 'george', Recipient: 'fred' }
         expect(challenge).to eq hsh
       end
@@ -102,7 +102,7 @@ RSpec.describe Challenge, :type => :model  do
         Users.add({username: 'will', password: 'iloveme'})
         Challenge.match('bill')
         chl = Challenge.find_by(Giver: 'bill')
-        output = Challenge.current(chl.id)
+        output = Challenge.current('bill')
         giverfromdb = Challenge.find_by(Giver: 'bill')
         outgoal = { errCode: 1, Giver: giverfromdb.Giver, Recipient: giverfromdb.Recipient }
         expect(output).to eq outgoal

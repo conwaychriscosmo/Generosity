@@ -42,7 +42,8 @@ class ChallengesController < ApplicationController
   def getCurrentChallenge
     #@username = params[:session][:username]
     @id = params[:id]
-    output = Challenge.current(@id)
+    @user = Users.find_by(id: @id)
+    output = Challenge.current(@user.name)
     render json:  output
   end
 
