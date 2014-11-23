@@ -1,4 +1,4 @@
-<form name="editUsersForm" style="margin-left: 3%;" data-ng-init="editedUser.getUserById(getUserFromCookie())" data-ng-submit="editedUser.editUser()" novalidate>
+<form name="editUsersForm" style="margin-left: 3%;" data-ng-init="editedUser.getCurrentScopeUserFromCookie(); editedUser.getUserById(editedUser.id)" data-ng-submit="editedUser.editUser()" novalidate>
 <div class="form">
       <div class="input-group" style="margin-bottom:1%">
         <table width="100%">

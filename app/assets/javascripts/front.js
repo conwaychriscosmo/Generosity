@@ -79,6 +79,17 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 			$rootScope.username = sessionCookie["username"];
 		}
 
+		self.getCurrentScopeUserFromCookie = function() {
+			var sessionCookie = $cookieStore.get('session');
+			console.log("YOLO");
+			if(!sessionCookie) {
+				return;
+			}
+			// console.log(self.sessionCookie);
+			self.id = sessionCookie["id"];
+			self.username = sessionCookie["username"];
+		}
+
 		self.getUserFromUrlParams = function() {
 			self.id = $routeParams.id;
 			// console.log(self.id);
