@@ -1,6 +1,6 @@
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
-var DIST_THRESH = 2000;
+var DIST_THRESH = 2835000;
 var pos = "berkeley, ca"; // Default in case geolocation doesn't work
 var goal = "san francisco, ca";
 var dist = 1000;
@@ -145,7 +145,7 @@ function deleteOverlays() {
 }
 
 function checkDist() {
-  console.log(dist);
+  console.log("dist is:" + dist + ", thresh is: " + DIST_THRESH);
   if (dist > DIST_THRESH) {
     document.getElementById('map-canvas').style.display = 'none';
     document.getElementById('directions-panel').style.width = '100%';
