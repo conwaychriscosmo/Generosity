@@ -13,16 +13,10 @@ class Gift < ActiveRecord::Base
   def self.rate(rating, gift_id, username)
     @gift = Gift.find_by(id: gift_id)
     if @gift.recipient == username
-      @gift.rating = rating
-      if @gift.save
-        output = {errCode: 1}
-        return output
-      else
-        output = { errCode: -1 }
-      end
+      @gift.update_columns(rating: rating)
+      output = {errCode: 1}
     else
-      @gift.rating = -1.1
-      @gift.save
+      @gift.update_columns(rating: -1.1)
       output = { errCode: -1 }
     end
     return output
@@ -30,6 +24,10 @@ class Gift < ActiveRecord::Base
 
   def self.deliver(gift_id)
     @gift = Gift.find_by(id: gift_id)
+    if @gift.blank?
+      output = { errCode: -1 }
+      return output
+    end
     @gift.delivered = true
     output = { errCode: -1 }
     if @gift.save

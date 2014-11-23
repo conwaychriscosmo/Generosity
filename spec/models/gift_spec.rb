@@ -89,7 +89,7 @@ RSpec.describe Gift, :type => :model  do
       it "should return the errCode: 1" do       
         Gift.create('togeorge', 'google.com', 'greg')
         @gift = Gift.find_by(giver: 'greg')
-        output = Gift.rate(5, @gift.id, 'george')
+        output = Gift.rate(5, @gift.id, @gift.recipient)
         hsh = { errCode: 1 }
         expect(output).to eq hsh
       end
@@ -99,6 +99,7 @@ RSpec.describe Gift, :type => :model  do
         @gift = Gift.find_by(giver: 'greg')
         Gift.rate(5, @gift.id, 'george')
         rating = 5
+        @gift = Gift.find_by(id: @gift.id)
         expect(@gift.rating).to eq rating
       end
 
