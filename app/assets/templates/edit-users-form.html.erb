@@ -1,5 +1,7 @@
 <form name="editUsersForm" style="margin-left: 3%;" data-ng-init="editedUser.getCurrentScopeUserFromCookie(); editedUser.getUserById(editedUser.id)" data-ng-submit="editedUser.editUser()" novalidate>
-<div class="form">
+<div style="width: 100%; margin-top: 30px;">
+<div class="usercard">
+  <div class="centerer" style = "text-align: center; margin-top: 30px;">
       <div class="input-group" style="margin-bottom:1%">
         <table width="100%">
           <tr>
@@ -64,6 +66,8 @@
 
       <div class="error">{{message}}</div>
 
-      <button class="btn btn-default" style="margin-left:170px;margin-top:30px;">Submit</button>
+      <button class="btn btn-default" style="margin-top:30px;margin-bottom:30px;">Submit</button>
+  </div>
+</div>
 </div>
 </form>

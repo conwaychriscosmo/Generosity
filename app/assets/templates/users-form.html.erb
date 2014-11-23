@@ -1,7 +1,7 @@
 <form name="usersForm" style="margin-left: 3%;" data-ng-submit="newUser.addUser()" novalidate>
-<div class="form">
+<div class="usercard">
   
-      <div class="input-group" style="margin-bottom:1%">
+      <div class="input-group" style="padding-top: 30px; text-align: center">
         <table width="100%">
           <tr>
             <td width="200px;">
@@ -87,10 +87,16 @@
           </tr>
         </table>
       </div>
-      Your avatar: <img style="width:100px; height:100px; margin-left:18%" src="{{newUser.profileUrl}}">
+      <div class="input-group" style="margin-bottom:1%">
+        <div>
+          Your avatar: <img style="display: inline-block; width:100px; height:100px;" src="{{newUser.profileUrl}}">
+        </div>
+      </div>
 
       <div class="error">{{message}}</div>
-
-      <button class="btn btn-default" style="margin-left:170px;margin-top:30px;">Create Account</button>
+      <div class="input-group" style="margin-bottom:1%">
+      <button class="btn btn-default">Create Account</button>
+      </div>
+      <div style="height: 30px;"> </div>
 </div>
 </form>

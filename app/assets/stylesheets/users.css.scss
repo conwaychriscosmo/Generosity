@@ -1,8 +1,20 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.input-group{
+	margin: 0 auto;
+
+}
+
+.input-group-addon{
+	color: #417C7C !important;
+	font-family: ‘Trebuchet MS’, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
 .usercard{
-	height: 500px;
+	font-family: ‘Trebuchet MS’, Helvetica, sans-serif;
 	background-color: #757473;
 	margin: 0 auto;
 	color: #417C7C;
@@ -32,7 +44,7 @@
 }
 
 .profile_info{
-	font-family: proxima-nova, sans-serif;
+	font-family: ‘Trebuchet MS’, Helvetica, sans-serif;
 	padding-top: 30px;
 	margin: 0 auto;
 	width: 300px;
