@@ -32,12 +32,19 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 	        		templateUrl: "login-form.html",
 	        		controller: 'UsersController as loginUser'
 	      		}).
+	      		when('/edit-user', {
+	        		templateUrl: "edit-users-form.html",
+	        		controller: 'UsersController as editedUser'
+	      		}).
 	      		when('/gifts-form', {
 	        		templateUrl: "gift-form.html",
 	        		controller: 'GiftsController as newGift'
 	      		}).
 	      		when('/about', {
 	      			templateUrl: "about.html"
+	      		}).
+	      		when('/contact', {
+	      			templateUrl: "contact.html"
 	      		}).
 	      		otherwise({
 	        		redirectTo: '/'
@@ -73,6 +80,17 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 			// console.log(self.sessionCookie);
 			$rootScope.id = sessionCookie["id"];
 			$rootScope.username = sessionCookie["username"];
+		}
+
+		self.getCurrentScopeUserFromCookie = function() {
+			var sessionCookie = $cookieStore.get('session');
+			console.log("YOLO");
+			if(!sessionCookie) {
+				return;
+			}
+			// console.log(self.sessionCookie);
+			self.id = sessionCookie["id"];
+			self.username = sessionCookie["username"];
 		}
 
 		self.getUserFromUrlParams = function() {
@@ -209,6 +227,45 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 						$scope.message = "Error: The password is empty, too long, or has invalid characters.";
 					}
 					else if(self.errCode == -6) {
+						// alert("Error: The real name is empty, too long, or has invalid characters.");
+						console.log("Error: The real name is empty, too long, or has invalid characters.");
+						$scope.message = "As real names are no longer required, this branch should never execute.";
+					}
+					else {
+						// alert("User created.");
+						console.log("User created.");	
+						self.loadUserData(self.username, 'login');
+					}
+					console.log(self.errCode);
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					self.errCode = -99;
+					$scope.message = "The server appears to be having issues. Please try again later.";
+					// alert("Error.");
+					console.log("Error.");
+				}).
+				then(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					// alert("Done.");
+					console.log("Done.");
+					return;
+				});
+		}
+
+		self.editUser = function() {
+			// alert("YO DAWG"); //Only called once even when things go awry
+			$scope.message = "";
+			$http.post('users/edit', {username: self.username, password: self.password, real_name: self.realName, 
+				available_hours: self.availableHours, current_city: self.currentCity, current_location: self.currentLocation, 
+				profile_url: self.profileUrl}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					self.errCode = data.errCode;
+					if(self.errCode == -6) {
 						// alert("Error: The real name is empty, too long, or has invalid characters.");
 						console.log("Error: The real name is empty, too long, or has invalid characters.");
 						$scope.message = "As real names are no longer required, this branch should never execute.";
