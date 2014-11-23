@@ -39,6 +39,7 @@ class Users < ActiveRecord::Base
     	user = Users.find_by(username: options[:username])
     	if user
     		user.profile_url = options[:profile_url] ||= user.profile_url
+    		user.real_name = options[:real_name] ||= user.real_name
     		user.current_city = options[:current_city] ||= user.current_city
     		user.available_hours = options[:available_hours] ||= user.available_hours
     		user.level = options[:level] ||= user.level

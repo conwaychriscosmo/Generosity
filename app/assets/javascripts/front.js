@@ -282,7 +282,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					}
 					else {
 						// alert("User created.");
-						console.log("User created.");	
+						console.log("User edited.");	
 						self.loadUserData(self.username, 'login');
 					}
 					console.log(self.errCode);
