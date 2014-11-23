@@ -531,7 +531,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 			}
 			self.giverId = $rootScope.id;
 			self.giver = $rootScope.username;
-			$http.get('challenge/getCurrentChallenge', { id: self.giverId }).
+			$http.post('challenge/getCurrentChallenge', { id: self.giverId, username: self.giver }).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
