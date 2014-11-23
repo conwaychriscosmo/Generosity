@@ -19,6 +19,14 @@ describe ChallengesController do
       post("/challenges/complete").should route_to("challenges#complete")
     end
 
+    it "routes to #joinQueue" do
+      post("/challenges/joinQueue").should route_to("challenges#joinQueue")
+    end
+
+    it "routes to #onQueue" do
+      post("/challenges/onQueue").should route_to("challenges#onQueue")
+    end
+
     it "routes to #show" do
       get("/challenges/1").should route_to("challenges#show", :id => "1")
     end

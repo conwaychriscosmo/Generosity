@@ -20,10 +20,13 @@
 		<br>
 		<br>
 		<!-- <a href="#edit-user" data-ng-show="{{canEdit}}"><button style="background-color:teal; color:white">Edit Details</button></a> -->
-        <div class="error">{{message}}</div>
 		</div>
 		</div>
 	</div>
+
+    <div class="error">{{queueMessage}}</div>
+    <div class="error">{{challengeMessage}}</div>
+
 	<button data-ng-click="receivingUser.addChallenge()" data-ng-hide="receivingUser.hasCurrentChallenge" style="background-color:teal; color:white">Get a Challenge</button>
 	<button data-ng-click="receivingUser.joinQueue()" data-ng-hide="receivingUser.onQueue" style="background-color:teal; color:white">Join Queue</button>
 </div>

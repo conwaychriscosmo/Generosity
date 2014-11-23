@@ -50,6 +50,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 	      		when('/tests', {
 	      			templateUrl: "tests.html"
 	      		}).
+
 	      		otherwise({
 	        		redirectTo: '/'
 	      		});
@@ -269,7 +270,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 			$scope.message = "";
 			$http.post('users/edit', {username: self.username, password: self.password, real_name: self.realName, 
 				available_hours: self.availableHours, current_city: self.currentCity, current_location: self.currentLocation, 
-				profile_url: self.profileUrl}).
+				description: self.bio, profile_url: self.profileUrl}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
@@ -281,7 +282,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					}
 					else {
 						// alert("User created.");
-						console.log("User created.");	
+						console.log("User edited.");	
 						self.loadUserData(self.username, 'login');
 					}
 					console.log(self.errCode);
@@ -475,6 +476,9 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 	.controller('ChallengesController', ['$scope', '$http', '$rootScope', '$routeParams', function($scope, $http, $rootScope, $routeParams) {
 		var self = this;
 
+		$scope.queueMessage;
+		$scope.challengeMessage;
+
 		self.giverId;
 		self.hasCurrentChallenge;
 		self.onQueue;
@@ -488,7 +492,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 
 		self.addChallenge = function() {
 			var errCode;
-			$scope.message = "";
+			// $scope.challengeMessage = "";
 			self.giverId = $rootScope.id;
 			$http.post('challenge/match', { id: self.giverId }).
 				success(function(data, status, headers, config) {
@@ -498,7 +502,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					/*We need actual error codes for this.*/
 					if(errCode == -1) {
 						//This should later be changed to put this person on a queue.
-						$scope.message = "Error: There is currently no one available. Please try again later.";
+						$scope.challengeMessage = "Challenge Error: There is currently no one available. Please try again later.";
 					}
 					else {
 						console.log("Challenge created.");	
@@ -510,7 +514,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
-					$scope.message = "Error: There appears to be an issue with the server. Please try again later.";
+					$scope.challengeMessage = "Challenge Error: There appears to be an issue with the server. Please try again later.";
 				});
 		};
 
@@ -519,13 +523,14 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 			self.code = $routeParams.code;
 			console.log("foo");
 			self.hasCurrentChallenge = false;
-			$scope.message = "";
+			$scope.challengeMessage = "";
 			if(self.code == -1) {
 				self.createDummyChallenge();
 				self.hasCurrentChallenge = true;
 				return;
 			}
 			self.giverId = $rootScope.id;
+			self.giver = $rootScope.username;
 			$http.get('challenge/getCurrentChallenge', { id: self.giverId }).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
@@ -534,27 +539,29 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					/*We need actual error codes for this.*/
 					if(errCode == -1) {
 						//This should later be changed to put this person on a queue.
-						$scope.message = "You currently do not have a challenge.";
+						$scope.challengeMessage = "You currently do not have a challenge.";
 					}
 					else {
-						console.log("Challenge created.");	
-						$scope.message = "";
+						console.log("Challenge retrieved.");	
+						$scope.challengeMessage = "";
 						self.hasCurrentChallenge = true;					
 					}
 					console.log(errCode);
-					console.log($scope.message);
+					console.log($scope.challengeMessage);
 					// $rootScope.errCode = data.errCode;
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
-					$scope.message = "Error: There appears to be an issue with the server. Please try again later.";
+					$scope.challengeMessage = "Challenge Error: There appears to be an issue with the server. Please try again later.";
 				});
 		}
 
 		self.checkIfOnQueue = function() { //Check to see if the logged in user is currently a receiver candidate.
-			self.receiverUsername = $rootScope.username;
-			$http.get('challenge/onQueue', { username: self.receiverUsername }).
+			self.recipient = $rootScope.username;
+			console.log("foo " + self.recipient);
+			// $scope.queueMessage = "";
+			$http.post('challenge/onQueue', { username: self.recipient }).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
@@ -562,12 +569,12 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					/*We need actual error codes for this.*/
 					if(errCode == -1) {
 						//This should later be changed to put this person on a queue.
-						$scope.message = "You are currently on the queue.";
+						$scope.queueMessage = "You are currently on the queue.";
 						self.onQueue = true;
 					}
 					else {
 						console.log("You are currently not on the queue.");	
-						$scope.message = "";
+						$scope.queueMessage = "You are currently not on the queue.";
 						self.onQueue = false;					
 					}
 					console.log(errCode);
@@ -576,17 +583,23 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
-					$scope.message = "Error: There appears to be an issue with the server. Please try again later.";
+					$scope.queueMessage = "Queue Error: There appears to be an issue with the server. Please try again later.";
 				});
 		}
 
 		self.joinQueue = function() {
+			if(!self.giver) {
+				$scope.queueMessage = "You need to be logged in to join the queue."
+				console.log("HERE");
+				return;
+			}
 			if(self.onQueue) {
-				$scope.message = "You are already on the queue.";
+				$scope.queueMessage = "You are already on the queue.";
 				return;
 			}
 			self.receiverId = $rootScope.id;
-			$http.post('challenge/joinQueue', { id: self.receiverId }).
+			self.recipient = $rootScope.username;
+			$http.post('challenge/joinQueue', { username: self.recipient }).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
@@ -594,12 +607,12 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					/*We need actual error codes for this.*/
 					if(errCode == -1) {
 						//This should later be changed to put this person on a queue.
-						$scope.message = "You currently do not have a challenge.";
+						$scope.queueMessage = "You currently do not have a challenge.";
 					}
 					else {
-						console.log("Challenge created.");	
-						$scope.message = "You are currently on the queue.";
-						self.hasCurrentChallenge = true;					
+						console.log("Queue joined.");	
+						$scope.queueMessage = "You are currently on the queue.";
+						self.onQueue = true;					
 					}
 					console.log(errCode);
 					// $rootScope.errCode = data.errCode;
@@ -607,7 +620,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
-					$scope.message = "Error: There appears to be an issue with the server. Please try again later.";
+					$scope.queueMessage = "Queue Error: There appears to be an issue with the server. Please try again later.";
 				});
 		}
 

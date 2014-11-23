@@ -39,12 +39,14 @@ class Users < ActiveRecord::Base
     	user = Users.find_by(username: options[:username])
     	if user
     		user.profile_url = options[:profile_url] ||= user.profile_url
+    		user.real_name = options[:real_name] ||= user.real_name
     		user.current_city = options[:current_city] ||= user.current_city
     		user.available_hours = options[:available_hours] ||= user.available_hours
     		user.level = options[:level] ||= user.level
     		user.total_gifts_given = options[:total_gifts_given] ||= user.total_gifts_given
     		user.total_gifts_received = options[:total_gifts_received] ||= user.total_gifts_received
     		user.score = options[:score] ||= user.score
+			user.description = options[:description]
 
     		user.save(:validate => false)
     		return SUCCESS
