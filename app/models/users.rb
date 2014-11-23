@@ -81,6 +81,7 @@ class Users < ActiveRecord::Base
 			puts options
 			puts "LKADKAGFKGJFAHAKJEHLKQWHABKHJAGFKAJ<SHFLKASHLGK"
 			new_user.save
+      Waiting.add(username)
 			return SUCCESS
 		else
 			case

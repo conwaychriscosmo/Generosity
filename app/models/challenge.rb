@@ -2,32 +2,25 @@ class Challenge < ActiveRecord::Base
   @@id = 1
   def self.match(username)
   #pick a random user from the database to match with username
-    if Users.count == 1
-      output= {errCode: 1, Giver: 'None', Recipient: 'None'}
-      return output
-    end
     @challenge = Challenge.new
     @challenge.Giver = username
-    count = Users.count
-    offset = rand(count)
-    @rand_user = Users.offset(offset).first
-    if @rand_user.blank? and Users.count>1
-      output = Challenge.match(username)
+    rec = Waiting.getRecipient
+    count = Waiting.count
+    if rec[:errCode] != 1
+      output = rec
       return output
     end
-    if Challenge.find_by(Recipient: @rand_user) and count % 2 == 0
-      output = Challenge.match(username)
-      return output
-    end
-    #@recip_user = Users.first(:order => "RANDOM()")
-    @challenge.Recipient = @rand_user.username
+    @challenge.Recipient = rec[:username]
     #check to see if matched with self
     if @challenge.Recipient == @challenge.Giver
       #if matched with self and more than one user, try again, else error
-      if Users.count > 1
+      if Waiting.count > 0
+        Waiting.add(@challenge.Recipient)
         output = Challenge.match(username)
         return output
       else
+        #the giver will have to wait for a new recipient and to recieve a gift
+        Waiting.add(@challenge.Recipient)
         output = { errCode: -1 }
         return output
       end
@@ -116,19 +109,19 @@ class Challenge < ActiveRecord::Base
   def self.complete(username)
     @challenge = Challenge.find_by(Giver: username)
     #updates the user fields
-    Challenge.destroy_all(:Giver => username)
     giverName = @challenge.Giver
     recipientName = @challenge.Recipient
     giver = Users.find_by(username: giverName)
     recipient = Users.find_by(username: recipientName)
     if recipient.nil?
-      output = Challenge.match(username)
+      output = {errCode: -2}
       return output
     end
     if giver.nil?
-      output = Challenge.rematch(@challenge,0)
+      output = {errCode: -3}
       return output
     end
+    q_output = Waiting.add(recipientName)
     given = giver.total_gifts_given
     given = given + 1
     giver.update_columns(total_gifts_given: given)
@@ -136,7 +129,8 @@ class Challenge < ActiveRecord::Base
     received = received + 1
     recipient.update_columns(total_gifts_received: received)
     #delete current challenge and set up a new one
-    output = Challenge.match(giverName)
+    Challenge.destroy_all(:Giver => username)
+    output[:errCode] = q_output[:errCode]
     return output
   #close the last challenge and start the next one by calling
   #match with the username of the currently logged in user
