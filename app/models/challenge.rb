@@ -110,6 +110,11 @@ class Challenge < ActiveRecord::Base
   def self.complete(username)
     @challenge = Challenge.find_by(Giver: username)
     #updates the user fields
+    output = { errCode: 1 }
+    if @challenge.blank?
+      output = {errCode: -1}
+      return output
+    end
     giverName = @challenge.Giver
     recipientName = @challenge.Recipient
     giver = Users.find_by(username: giverName)
@@ -129,8 +134,8 @@ class Challenge < ActiveRecord::Base
     received = recipient.total_gifts_received
     received = received + 1
     recipient.update_columns(total_gifts_received: received)
-    #delete current challenge and set up a new one
-    Challenge.destroy_all(:Giver => username)
+    #delete current challenge
+    Challenge.destroy_all(:Giver => giverName)
     output[:errCode] = q_output[:errCode]
     return output
   #close the last challenge and start the next one by calling

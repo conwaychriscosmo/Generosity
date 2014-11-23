@@ -10,6 +10,7 @@ RSpec.describe Challenge, :type => :model  do
       Gift.delete_all
       Users.delete_all
       Challenge.delete_all
+      Waiting.delete_all
     end
 
     describe "match" do 
@@ -111,30 +112,18 @@ RSpec.describe Challenge, :type => :model  do
 
     describe "complete" do
 
-      it "should complete the challenge and make a new match" do
+      it "should complete the challenge and add the recipien to waiting" do
         Users.add({username: 'fred', password: 'iloveme'})
         Users.add({username: 'george', password: 'iloveme'})
         Challenge.match('george') #George -> Fred
         Users.add({username: 'michael', password: 'iloveme'})
-        output = Challenge.complete('george') 
-        challenge = Challenge.current(Challenge.find_by(Giver: 'george').id)
-        expect(challenge[:Giver]).to eq 'george'
-        expect(challenge[:Recipient]).to eq('michael').or eq('fred')
+        output = Challenge.complete('george')
+        hsh = {errCode: 1}
+        expect(output).to eq hsh
       end
 
-      it "should match with the other user if the recipient is deleted" do
-        Users.add({username: 'fred', password: 'iloveme'})
-        Users.add({username: 'george', password: 'iloveme'})
-        Challenge.match('george') #George -> Fred
-        Users.add({username: 'michael', password: 'iloveme'})
-        Users.destroy_all(:username => 'fred')
-        output = Challenge.complete('george') 
-        challenge = Challenge.current(Challenge.find_by(Giver: 'george').id)
-        expect(challenge[:Giver]).to eq 'george'
-        expect(challenge[:Recipient]).to eq('michael')
-      end
 
-      it "should return an errCode of -1 if the giver is deleted" do
+      it "should return an errCode of -3 if the giver is deleted" do
         Users.add({username: 'fred', password: 'iloveme'})
         Users.add({username: 'george', password: 'iloveme'})
         Challenge.match('george') #George -> Fred
@@ -142,7 +131,7 @@ RSpec.describe Challenge, :type => :model  do
         Users.destroy_all(:username => 'george')
         output = Challenge.complete('george')
         output1 = { errCode: output[:errCode] }
-        hsh = { errCode: -1 }
+        hsh = { errCode: -3 }
         expect(output1).to eq(hsh)
       end
 

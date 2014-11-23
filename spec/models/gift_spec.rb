@@ -8,6 +8,7 @@ RSpec.describe Gift, :type => :model  do
       Challenge.delete_all
       Users.delete_all
       Gift.delete_all
+      Waiting.delete_all
       us1 = { username: 'george', password: 'PASSWORDZ69'}
       us2 = { username: 'greg', password: 'PASSWORDZ69'}
       Users.add(us1)

@@ -7,6 +7,7 @@ RSpec.describe Users, :type => :model do
 
 	before(:each) do
       Users.delete_all
+      Waiting.delete_all
     end
 
 	describe "validations" do
