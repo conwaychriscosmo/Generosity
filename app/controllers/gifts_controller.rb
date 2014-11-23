@@ -39,6 +39,21 @@ class GiftsController < ApplicationController
     render json: output
   end
 
+  def resetGift
+    output = Gift.resetGift
+    render json: output
+  end
+
+  def resetChallenge
+    output = Gift.resetChallenge
+    render json: output
+  end
+
+  def resetWaiting
+    output = Gift.resetWaiting
+    render json: output
+  end
+
   def review
     @id = session[:user_id]
     @user = Users.find_by(id: @id)

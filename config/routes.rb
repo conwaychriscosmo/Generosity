@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :gifts, :users
   post 'challenges/complete' => 'challenge#complete', as: :complete
-  post 'gifts/create' => 'gifts#create'  
+  post 'gifts/create' => 'gifts#create'
   post 'gifts/destroy' => 'gifts#destroy'
   post 'challenge/complete' => 'challenges#complete'
   post 'challenge/joinQueue' => 'challenges#joinQueue'
@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   post 'TEST/gifts/unitTests' => 'gifts#runUnitTests'
+  #delete all the things
+  post 'challenges/reset' => 'gifts#resetChallenge'
+  post 'gifts/reset' => 'gifts#resetGift'
+  post 'waiting/rest' => 'gifts#resetWaiting'
   # You can have the root of your site routed with "root"
   root :to => 'user#welcome'
   get '/', to: 'user#welcome'

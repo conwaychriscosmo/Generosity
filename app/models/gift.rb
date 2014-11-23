@@ -2,11 +2,30 @@ class Gift < ActiveRecord::Base
   validates :name, length: { maximum: 128 }, presence: true
   validates :url, presence: true 
   @@id = 1
-  def resetFixture
+  def self.resetFixture
     Users.delete_all
     Challenge.delete_all
     Gift.delete_all
+    Waiting.delete_all
     output =  { errCode: 1 }
+    return output
+  end
+
+  def self.resetGift
+    Gift.delete_all
+    output = {errCode: 1}
+    return output
+  end
+
+  def self.resetChallenge
+    Challenge.delete_all
+    output = { errCode: 1}
+    return output
+  end
+
+  def self.resetWaiting
+    Waiting.delete_all
+    output = { errCode: 1}
     return output
   end
 
