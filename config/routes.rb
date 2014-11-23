@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post 'gifts/destroy' => 'gifts#destroy'
   post 'challenge/complete' => 'challenges#complete'
   post 'challenge/joinQueue' => 'challenges#joinQueue'
-  get 'challenge/onQueue' => 'challenges#onQueue'
+  post 'challenge/onQueue' => 'challenges#onQueue'
   post 'challenge/match' => 'challenges#match'
   get 'challenge/getCurrentChallenge' => 'challenges#getCurrentChallenge'
   # The priority is based upon order of creation: first created -> highest priority.

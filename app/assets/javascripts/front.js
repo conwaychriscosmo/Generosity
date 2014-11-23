@@ -561,7 +561,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 			self.recipient = $rootScope.username;
 			console.log("foo " + self.recipient);
 			// $scope.queueMessage = "";
-			$http.get('challenge/onQueue', { username: self.recipient }).
+			$http.post('challenge/onQueue', { username: self.recipient }).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available

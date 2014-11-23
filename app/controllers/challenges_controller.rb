@@ -10,6 +10,8 @@ class ChallengesController < ApplicationController
 
   def onQueue
     @username = params[:username]
+    puts "yololololololo"
+    puts params
     output = Waiting.onQueue(@username)
     render json: output
   end
