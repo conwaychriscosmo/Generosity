@@ -47,6 +47,9 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 	      		when('/contact', {
 	      			templateUrl: "contact.html"
 	      		}).
+	      		when('/tests', {
+	      			templateUrl: "tests.html"
+	      		}).
 	      		otherwise({
 	        		redirectTo: '/'
 	      		});

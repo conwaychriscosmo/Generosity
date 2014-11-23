@@ -18,24 +18,15 @@
 			<% if Rails.env == "development" %>
 				Template: {{template}}
 			
-				<button data-ng-click="template=99" style="background-color:teal">Run Unit Tests</button>
-				<a href="#profile/-13" data-ng-click="template=7"><button style="background-color:teal; color:white">Show Sample Profile</button></a>
-				<a href="#gift/0" data-ng-click="template=8"><button style="background-color:teal; color:white">Show Sample Gift</button></a>
-				<a href="#gifts-form" data-ng-click="template=9"><button style="background-color:teal; color:white">Show Gift Form</button></a>
-				<a href="#challenge/-1" data-ng-click="template=10"><button style="background-color:teal; color:white">Show Sample Challenge</button></a>
-
-				<users-tests data-ng-if="template==99"></users-tests>
-				<gifts-tests data-ng-if="template==99"></gifts-tests>
-				<challenges-tests data-ng-if="template==99"></challenges-tests>
+				<a href="#tests"><button style="background-color:teal; color:white">Run Unit Tests</button></a>
+				<a href="#profile/-13"><button style="background-color:teal; color:white">Show Sample Profile</button></a>
+				<a href="#gift/0"><button style="background-color:teal; color:white">Show Sample Gift</button></a>
+				<a href="#gifts-form"><button style="background-color:teal; color:white">Show Gift Form</button></a>
+				<a href="#challenge/-1"><button style="background-color:teal; color:white">Show Sample Challenge</button></a>
 
 			<%end%>
 
 			<div ng-view></div>
-
-			<gift-form data-ng-show="template==9"></gift-form>
-			<div data-ng-controller="GiftsController as testGift" data-ng-init="testGift.createDummyGift()">
-				<gift data-ng-show="template ==8" name="{{testGift.name}}" giver="{{testGift.giver}}" recipient="{{testGift.recipient}}" rating="{{testGift.rating}}" description="{{testGift.description}}"></gift>
-			</div>
 		</div>
 
 		<footbar></footbar>
