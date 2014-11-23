@@ -1,0 +1,69 @@
+<form name="editUsersForm" style="margin-left: 3%;" data-ng-init="editedUser.getUserById(getUserFromCookie())" data-ng-submit="editedUser.editUser()" novalidate>
+<div class="form">
+      <div class="input-group" style="margin-bottom:1%">
+        <table width="100%">
+          <tr>
+            <td width="200px;">
+              <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Password:  </span>
+            </td>
+            <td width="200px;">
+              <input type="password" class="form-control" placeholder="Password" data-ng-model="editedUser.password" style="" required>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="input-group" style="margin-bottom:1%">
+        <table width="100%">
+          <tr>
+            <td width="200px;">
+              <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Real Name:  </span>
+            </td>
+            <td width="200px;">
+              <input type="text" class="form-control" placeholder="Real Name" data-ng-model="editedUser.realName" style="" required>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="input-group" style="margin-bottom:1%">
+        <table width="100%">
+          <tr>
+            <td width="200px;">
+              <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Available Hours:  </span>
+            </td>
+            <td width="200px;">
+              <input type="text" class="form-control" placeholder="6pm-6am" data-ng-model="editedUser.availableHours" style="" required>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="input-group" style="margin-bottom:1%">
+        <table width="100%">
+          <tr>
+            <td width="200px;">
+              <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Current City:  </span>
+            </td>
+            <td width="200px;">
+              <input type="text" class="form-control" placeholder="Berkeley, California" data-ng-model="editedUser.currentCity" style="" required>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="input-group" style="margin-bottom:1%">
+        <table width="100%">
+          <tr>
+            <td width="200px;">
+              <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Avatar URL:  </span>
+            </td>
+            <td width="200px;">
+              <input type="text" class="form-control" placeholder="trollface.jpg" data-ng-model="editedUser.profileUrl" style="" required>
+            </td>
+          </tr>
+        </table>
+      </div>
+      Your avatar: <img style="width:100px; height:100px; margin-left:18%" src="{{editedUser.profileUrl}}">
+
+      <div class="error">{{message}}</div>
+
+      <button class="btn btn-default" style="margin-left:170px;margin-top:30px;">Edit Info</button>
+</div>
+</form>
