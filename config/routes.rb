@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   #delete all the things
   post 'challenges/reset' => 'gifts#resetChallenge'
   post 'gifts/reset' => 'gifts#resetGift'
-  post 'waiting/rest' => 'gifts#resetWaiting'
+  post 'waiting/reset' => 'gifts#resetWaiting'
   # You can have the root of your site routed with "root"
   root :to => 'user#welcome'
   get '/', to: 'user#welcome'

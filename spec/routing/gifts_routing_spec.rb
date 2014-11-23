@@ -44,6 +44,10 @@ describe GiftsController do
       post("/gifts").should route_to("gifts#create")
     end
 
+    it "routes to #resetGift" do
+      post("/gifts/reset").should route_to("gifts#resetGift")
+    end
+
     it "routes to #update" do
       put("/gifts/1").should route_to("gifts#update", :id => "1")
     end

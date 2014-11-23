@@ -39,6 +39,10 @@ describe ChallengesController do
       post("/challenges").should route_to("challenges#create")
     end
 
+    it "routes to #resetChallenge" do
+      post("/challenges/reset").should route_to("challenges#resetChallenge")
+    end
+
     it "routes to #delete" do
       post("/challenges/1/delete").should route_to("challenges#delete", :id => "1")
     end
