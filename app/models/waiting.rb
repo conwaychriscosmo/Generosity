@@ -28,7 +28,7 @@ class Waiting < ActiveRecord::Base
       return output
     else:
       output = { errCode: 1 }
-      return false
+      return output
     end
   end
 
