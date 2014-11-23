@@ -1,3 +1,39 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.usercard{
+	height: 500px;
+	background-color: #757473;
+	margin: 0 auto;
+	color: black;
+	width: 600px;
+	border-radius: 29px 29px 8px 8px;
+	-moz-border-radius: 29px 29px 8px 8px;
+	-webkit-border-radius: 29px 29px 8px 8px;
+	border: 3px solid #ffffff;
+	background: rgba(235,247,250,1);
+	background: -moz-linear-gradient(top, rgba(235,247,250,1) 0%, rgba(235,247,250,1) 16%, rgba(167,194,201,1) 55%, rgba(167,194,201,1) 86%, rgba(138,172,181,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(235,247,250,1)), color-stop(16%, rgba(235,247,250,1)), color-stop(55%, rgba(167,194,201,1)), color-stop(86%, rgba(167,194,201,1)), color-stop(100%, rgba(138,172,181,1)));
+	background: -webkit-linear-gradient(top, rgba(235,247,250,1) 0%, rgba(235,247,250,1) 16%, rgba(167,194,201,1) 55%, rgba(167,194,201,1) 86%, rgba(138,172,181,1) 100%);
+	background: -o-linear-gradient(top, rgba(235,247,250,1) 0%, rgba(235,247,250,1) 16%, rgba(167,194,201,1) 55%, rgba(167,194,201,1) 86%, rgba(138,172,181,1) 100%);
+	background: -ms-linear-gradient(top, rgba(235,247,250,1) 0%, rgba(235,247,250,1) 16%, rgba(167,194,201,1) 55%, rgba(167,194,201,1) 86%, rgba(138,172,181,1) 100%);
+	background: linear-gradient(to bottom, rgba(235,247,250,1) 0%, rgba(235,247,250,1) 16%, rgba(167,194,201,1) 55%, rgba(167,194,201,1) 86%, rgba(138,172,181,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf7fa', endColorstr='#8aacb5', GradientType=0 );
+}
+.circlemage {
+		color: black;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+.profile_info{
+	font-family: proxima-nova, sans-serif;
+	padding-top: 30px;
+	margin: 0 auto;
+	width: 300px;
+}

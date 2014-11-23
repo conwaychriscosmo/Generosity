@@ -108,7 +108,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.currentCity = foundUser["current_city"];
 					self.currentLocation = foundUser["current_location"];
 					self.reputation = foundUser["score"];
-					// self.description = foundUser["description"];
+					self.bio = foundUser["description"];
 					self.profileUrl = foundUser["profile_url"];
 				}).
 				error(function(data, status, headers, config) {
@@ -188,7 +188,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 			$scope.message = "";
 			$http.post('users/add', {username: self.username, password: self.password, real_name: self.realName, 
 				available_hours: self.availableHours, current_city: self.currentCity, current_location: self.currentLocation, 
-				profile_url: self.profileUrl}).
+				description: self.bio, sprofile_url: self.profileUrl}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available

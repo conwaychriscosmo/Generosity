@@ -1,19 +1,29 @@
-<div class="container-fluid" style="margin-top:-.2%" data-ng-init="profiledUser.getUserFromUrlParams()">
-	<span class="profile-pic">
-		<img style="height:200px; width:200px" src="{{profiledUser.profileUrl}}"></img>	
-		<div>
-			{{profiledUser.username}}
+<div class="container-fluid" style="margin-top: 5%;" data-ng-init="profiledUser.getUserFromUrlParams()">
+	<div style="width: 100%">
+	<div class="usercard">
+		<div class = "holder" style ="width: 100%; text-align: center; padding-top: 30px;">
+		<img class="circlemage" src="{{profiledUser.profileUrl}}" >
+		<br>
+		{{profiledUser.username}}
 		</div>
+	<div class = "profile_info">
+		<br>
+		Real name: {{profiledUser.realName}}
+		<br>
+		<br>
+		Best timeframe: {{profiledUser.availableHours}}
+		<br> 
+		<br>
+		Current city: {{profiledUser.currentCity}}
+		<br>
+		<br>
+		Reputation: {{profiledUser.reputation}}
+		<br>
+		<br>
+		About me: {{profiledUser.bio}}
+	</div>
 	</span>
-	<span class="profile-info">
-		<span class="tag">Real name: </span>{{profiledUser.realName}}
-		<br>
-		<span class="tag">Best timeframe: </span>{{profiledUser.availableHours}}
-		<br>
-		<span class="tag">Current city: </span>{{profiledUser.currentCity}}
-		<br>
-		<span class="tag">Reputation: </span>{{profiledUser.reputation}}
-		<br>
-		<span class="tag">About me: </span>{{profiledUser.description}}
-	</span>
+	</div>
+	</div>
+
 </div>
