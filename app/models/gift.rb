@@ -1,3 +1,4 @@
+require 'json'
 class Gift < ActiveRecord::Base
   validates :name, length: { maximum: 128 }, presence: true
   validates :url, presence: true 
@@ -120,6 +121,13 @@ class Gift < ActiveRecord::Base
       output = { errCode: -1 }
     end
     return output
+  end
+
+  def self.find_gift(gift_id)
+    gift = Gift.find(gift_id.to_i)
+    if gift.present?
+      return gift.to_json
+    end
   end
 
   #Destroys the gift from the database
