@@ -27,12 +27,20 @@
 		</div>
 		</div>
 	</div>
+
 	<br>
 	Given Gifts:
 	<br>
 	
 	<div data-ng-repeat="aGift in profiledUser.givenGifts">
 		<gift-list-element></gift-list-element>		
+	</div>
 
+	<br>
+	Received Gifts:
+	<br>
+
+	<div data-ng-repeat="aGift in profiledUser.receivedGifts">
+		<gift-list-element></gift-list-element>		
 	</div>
 </div>

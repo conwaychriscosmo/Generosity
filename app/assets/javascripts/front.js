@@ -141,6 +141,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.bio = foundUser["description"];
 					self.profileUrl = foundUser["profile_url"];
 					self.getAllGiftsByGiverUsername();
+					self.getAllGiftsByRecipientUsername();
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
@@ -329,12 +330,58 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				// when the response is available
 					// self.errCode = data.errCode;
 					if(data['errCode'] == -1) {
-						console.log("This user has no gifts.");
+						console.log("This user has given no gifts.");
 						return;
 					}
 					console.log("data below");
 					console.log(data);
 					self.givenGifts = data;
+					// var foundGift = data["gifts"];
+					// var foundGift = data;
+					// // console.log(giftsList);
+					// if(!foundGift) {
+					// 	// alert("Error: User not found.");
+					// 	console.log("Error: Gift not found.");
+					// 	// $location.path('/');
+					// 	return;
+					// }
+					// self.name = foundGift.name;
+					// self.giver = foundGift.giver;
+					// self.recipient = foundGift.recipient;
+					// self.description = foundGift.description;
+					// self.rating = foundGift.rating;
+					// self.imageUrl = foundGift.url;
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					self.errCode = -99;
+					// alert("Error.");
+					console.log("Error.");
+				}).
+				then(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					// alert("Done.");
+					console.log("Done.");
+					return;
+				});
+		}
+
+		self.getAllGiftsByRecipientUsername = function() {
+			// console.log(targetId);
+			$http.post('gifts/find_all_gifts_by_recipient', {username: self.username}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					// self.errCode = data.errCode;
+					if(data['errCode'] == -1) {
+						console.log("This user has no received gifts.");
+						return;
+					}
+					console.log("data below");
+					console.log(data);
+					self.receivedGifts = data;
 					// var foundGift = data["gifts"];
 					// var foundGift = data;
 					// // console.log(giftsList);
@@ -604,7 +651,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				});
 		}
 
-		self.checkIfOnQueue = function() { //Check to see if the logged in user is currently a receiver candidate.
+		self.checkIfOnQueue = function() { //Check to see if the logged in user is currently a recipient candidate.
 			self.recipient = $rootScope.username;
 			console.log("foo " + self.recipient);
 			// $scope.queueMessage = "";
@@ -644,7 +691,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				$scope.queueMessage = "You are already on the queue.";
 				return;
 			}
-			self.receiverId = $rootScope.id;
+			self.recipientId = $rootScope.id;
 			self.recipient = $rootScope.username;
 			$http.post('challenge/joinQueue', { username: self.recipient }).
 				success(function(data, status, headers, config) {
