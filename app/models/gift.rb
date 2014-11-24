@@ -12,6 +12,7 @@ class Gift < ActiveRecord::Base
     return output
   end
 
+
   def self.resetGift
     Gift.delete_all
     output = {errCode: 1}
@@ -143,7 +144,20 @@ class Gift < ActiveRecord::Base
     else
       output = { errCode: -1 }
     end
-    return output
+    if output[:errCode] != 1
+      return output
+    else
+      reciever = Users.find_by(username: @gift.recipient)
+      giver = Users.find_by(username: @gift.giver)
+      score = reciever.score
+      score = score + 10
+      reciever.update_columns(score: score, level: score/100)
+      score = giver.score
+      score = score + 10
+      giver.update_columns(score: score, level: score/100)
+      return output
+
+    end
   end
 
   def self.find_gift(gift_id)
