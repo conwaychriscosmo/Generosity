@@ -489,6 +489,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		self.availableHours; //How should this be styled?
 		self.currentCity;
 		self.currentLocation;
+		self.reputation;
 
 		self.addChallenge = function() {
 			var errCode;
@@ -544,7 +545,15 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					else {
 						console.log("Challenge retrieved.");	
 						$scope.challengeMessage = "";
-						self.hasCurrentChallenge = true;					
+						self.hasCurrentChallenge = true;	
+						console.log(data);
+						console.log(data.Giver);
+						console.log(data.Recipient);
+						self.description = data.description;
+						self.availableHours = data.availableHours;
+						self.currentCity = data.currentCity;
+						self.currentLocation = data.currentLocation;
+						self.reputation = data.reputation;
 					}
 					console.log(errCode);
 					console.log($scope.challengeMessage);

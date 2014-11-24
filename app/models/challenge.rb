@@ -55,7 +55,8 @@ class Challenge < ActiveRecord::Base
       return output
     end
     if @challenge
-      output = { errCode: 1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }
+      recipientUser = Users.find_by(username: @challenge.Recipient)
+      output = { errCode: 1, Giver: @challenge.Giver, Recipient: @challenge.Recipient, description: recipientUser.description, availableHours: recipientUser.available_hours, currentCity: recipientUser.current_city, currentLocation: recipientUser.current_location, reputation: recipientUser.score }
     end
     return output
   end
