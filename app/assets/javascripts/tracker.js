@@ -13,6 +13,9 @@ var originIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=
 var recipientId;
 function initialize() {
   directionsDisplay = new google.maps.DirectionsRenderer();
+  //challenge/recipient_id    [userid]
+  //users/setLocation         [userid, location]
+  //users/getLocation         [userid]
   var mapOptions = {
     zoom: 13
   };
