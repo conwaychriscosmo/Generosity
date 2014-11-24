@@ -49,3 +49,36 @@
 	margin: 0 auto;
 	width: 300px;
 }
+
+@-webkit-keyframes pulse_animation {
+	0% { -webkit-transform: scale(1); }
+	30% { -webkit-transform: scale(1); }
+	40% { -webkit-transform: scale(1.08); }
+	50% { -webkit-transform: scale(1); }
+	60% { -webkit-transform: scale(1); }
+	70% { -webkit-transform: scale(1.05); }
+	80% { -webkit-transform: scale(1); }
+	100% { -webkit-transform: scale(1); }
+}
+
+.challenge_button{
+	font-size: 30px;
+	line-height: 40px;
+	font-family: Impact, Haettenschweiler, 'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat', 'Bitstream Vera Sans Bold', 'Arial Black', 'sans serif';
+	color: #417C7C ;
+	padding: 30px;
+	text-align: center;
+	background-color: transparent;
+	width: 30%;
+	margin: 0 auto;
+	border-radius: 10px 10px 10px 10px;
+	margin-bottom: 30px;
+}
+
+.pulse {
+	-webkit-animation-name: 'pulse_animation';
+	-webkit-animation-duration: 2000ms;
+	-webkit-transform-origin:70% 70%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
