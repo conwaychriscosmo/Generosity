@@ -509,6 +509,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					}
 					else {
 						console.log("Challenge created.");	
+						self.getChallengeForCurrentUser();
 						self.hasCurrentChallenge = true;					
 					}
 					console.log(errCode);
