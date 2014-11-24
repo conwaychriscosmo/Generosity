@@ -30,22 +30,23 @@ class Gift < ActiveRecord::Base
     return output
   end
 
-  def self.update_reputation(user)
-    if user.blank?
-      output = { errCode: -25}
-      return output
-    end
 
-  end
   def self.rate(rating, gift_id, username)
     @gift = Gift.find_by(id: gift_id)
     if @gift.recipient == username
       @gift.update_columns(rating: rating)
       @giver = Users.find_by(username: @gift.giver)
       @recipient = Users.find_by(username: @gift.recipient)
+      if @recipient.blank?
+        output = { errCode: -17 }
+        return output
+      end
+
       if @giver.blank?
         output = { errCode: -20 }
-        Gift.update_reputation(@recipient)
+        score = @recipient.score
+        score = score + 10
+        @recipient.update_columns(score: score)
         return output
       end
       curscore = @giver.score
@@ -53,6 +54,9 @@ class Gift < ActiveRecord::Base
       @giver.update_columns(score: newscore)
       lvl = newscore%100
       @giver.update_columns(level: lvl)
+      score = @recipient.score
+      score = score + 10
+      @recipient.update_columns(score: score)
 
       output = {errCode: 1}
     else

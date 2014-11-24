@@ -67,10 +67,15 @@ class GiftsController < ApplicationController
     output = Gift.rate(params[:gift][:rating],params[:id],@user.username)
     render json: output
   end
-  
+  def find_gift
+    @id = params[:gift][:id]
+    output = Gift.find_gift(@id)
+    render json: output
+
+  end
   #the giver delivers the gift
   def deliver
-    output = Gift.deliver(params[:id])
+    output = Gift.deliver(params[:gift][:id])
     render json: output
   end
   # POST /gifts
