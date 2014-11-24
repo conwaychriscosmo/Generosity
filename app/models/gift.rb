@@ -1,6 +1,6 @@
 class Gift < ActiveRecord::Base
   validates :name, length: { maximum: 128 }, presence: true
-  validates :url, presence: true 
+  #validates :url, presence: true
   #@@id = 1
   def self.resetFixture
     Users.delete_all
@@ -29,10 +29,30 @@ class Gift < ActiveRecord::Base
     return output
   end
 
+  def self.update_reputation(user)
+    if user.blank?
+      output = { errCode: -25}
+      return output
+    end
+
+  end
   def self.rate(rating, gift_id, username)
     @gift = Gift.find_by(id: gift_id)
     if @gift.recipient == username
       @gift.update_columns(rating: rating)
+      @giver = Users.find_by(username: @gift.giver)
+      @recipient = Users.find_by(username: @gift.recipient)
+      if @giver.blank?
+        output = { errCode: -20 }
+        Gift.update_reputation(@recipient)
+        return output
+      end
+      curscore = @giver.score
+      newscore = curscore + 10*rating
+      @giver.update_columns(score: newscore)
+      lvl = newscore%100
+      @giver.update_columns(level: lvl)
+
       output = {errCode: 1}
     else
       @gift.update_columns(rating: -1.1)
@@ -47,13 +67,11 @@ class Gift < ActiveRecord::Base
       output = { errCode: -1 }
       return output
     end
-    @gift.delivered = true
+    @gift.update_columns(delivered: true)
     output = { errCode: -1 }
-    if @gift.save
-      comp = Challenge.complete(@gift.giver)
-      if comp[:errCode] == 1
-        output = { errCode: 1 }
-      end
+    comp = Challenge.complete(@gift.giver)
+    if comp[:errCode] == 1
+      output = { errCode: 1 }
     end
     return output
   end
@@ -70,13 +88,13 @@ class Gift < ActiveRecord::Base
       return output
     end
     if @gift.recipient == username
-      @gift.review = review
-      if @gift.save
-        output = { errCode: 1 }
-      end
+      @gift.update_columns(review: review)
+      @gift.save
+      output = { errCode: 1 }
     else
       review = "something is seriously wrong"
-      @gift.review = review
+      @gift.update_columns(review: review)
+      output = { errCode: -7 }
     end
     return output
   end
@@ -112,6 +130,7 @@ class Gift < ActiveRecord::Base
     end
     if @gift.valid?
       #@gift.id = @@id
+      output = {errCode: -7}
       if @gift.save
         #@@id = @@id + 1
         output = { errCode: 1, name: name, url: url }

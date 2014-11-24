@@ -46,7 +46,7 @@ RSpec.describe Gift, :type => :model  do
         @gift = Gift.find_by(giver: 'greg')
         review = 'I really loved this gift'
         output = Gift.review(review, @gift.id, 'greg')
-        hsh = { errCode: -1 }
+        hsh = { errCode: -7 }
         expect(output).to eq hsh
       end
 
