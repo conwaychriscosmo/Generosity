@@ -10,6 +10,11 @@ class UsersController < ApplicationController
         render json: {errCode: errCode}
     end
 
+    def setLocation
+        errCode = Users.setLocation(params[:username], params[:location])
+        render json: {errCode: errCode}
+    end
+
   	def add()
 		code = Users.add(params)
 		data = {}
