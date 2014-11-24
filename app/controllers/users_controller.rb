@@ -28,21 +28,13 @@ class UsersController < ApplicationController
             username = params[:username]
 			user = Users.find_by(username: username)
 			login(user)
-			# challenge = Challenge.match(username)
-			# challengeCode = challenge[:errCode]
-			# data[:challengeCode] = challengeCode
 		end
 		render json: data
 	end
 
     def search()
-        userInfo = params[:user]
-        sanitizedUserInfo = params.except[:session] 
-        # puts params
-        # puts userInfo
-        # puts sanitizedUserInfo
-        users = Users.search(userInfo)
-        render json: {users: users}
+        user_ids = Users.search(params)
+        render json: {user_ids: user_ids}
     end
 
 

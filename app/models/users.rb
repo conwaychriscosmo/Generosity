@@ -19,7 +19,6 @@ class Users < ActiveRecord::Base
 	validates :username, uniqueness: true
 	validates :username, presence: true
 
-	#validates :real_name, presence: true
 	validates :real_name, length: {maximum: MAX_REAL_NAME_LENGTH}
 
 	has_secure_password
@@ -79,7 +78,6 @@ class Users < ActiveRecord::Base
 
         username = options[:username]
         password = options[:password]
-        # real_name = options[:real_name]
 
 		new_user = Users.new(username: username, password: password)
 		if new_user.valid?
@@ -92,10 +90,8 @@ class Users < ActiveRecord::Base
 			new_user.score = options[:score] ||= 0
 			new_user.profile_url = options[:profile_url] ||= 'http://images.sodahead.com/polls/002443001/5330646328_2008_06_25_131330_puts_on_sunglasses_answer_4_xlarge.png'
 			new_user.description = options[:description]
-			puts options
-			puts "LKADKAGFKGJFAHAKJEHLKQWHABKHJAGFKAJ<SHFLKASHLGK"
 			new_user.save
-      Waiting.add(username)
+      		Waiting.add(username)
 			return SUCCESS
 		else
 			case
@@ -103,8 +99,6 @@ class Users < ActiveRecord::Base
 				return ERR_BAD_USERNAME
 			when Users.where(username: username).all.size == 1
 				return ERR_USER_EXISTS
-			# when !new_user[:real_name].present? || new_user[:real_name].size > MAX_REAL_NAME_LENGTH
-			# 	return ERR_REAL_NAME
 			when !new_user[:password].present? || new_user[:password].size > MAX_PASSWORD_LENGTH || new_user[:password].size < MIN_PASSWORD_LENGTH
 				return ERR_BAD_PASSWORD
 			end
@@ -112,11 +106,12 @@ class Users < ActiveRecord::Base
 	end
 
 	def self.search(options)
-		if options[:id]
-			return Users.where({id: options[:id]})
-		elsif options[:username]
-			return Users.where({username: options[:username]})
+		arr = []
+		users = Users.where(options.slice(:username, :id, :real_name, :current_city, :current_location, :level))
+		users.each do |user|
+			arr.push(user.id)
 		end
+		return arr
 	end
 
 	def self.delete_user(username)
@@ -133,17 +128,6 @@ class Users < ActiveRecord::Base
 		Gift.delete_all
 		return SUCCESS
 	end
-
-
-    def salt
-    	@salt ||= BCrypt::Password.new(password_digest).salt
-    end
-
-	def Users.digest(string)
-        cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                      BCrypt::Engine.cost
-        BCrypt::Password.create(string, cost: cost)
-    end
 
 
 	def self.runUnitTests()

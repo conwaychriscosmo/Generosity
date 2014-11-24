@@ -38,10 +38,25 @@ describe UsersController do
           post :create, {:user => valid_attributes}, valid_session
         }.to change(Users, :count).by(1)
       end
-
     end
-
-
   end
+
+
+  describe "POST create" do
+    describe "with valid params" do
+      it "creates a new User" do
+        expect {
+          post :add, {:user => valid_attributes}, valid_session
+        }.to change(Users, :count).by(1)
+      end
+
+      it "assigns a newly created user as @user" do
+        post :create, {:gift => valid_attributes}, valid_session
+        assigns(:gift).should be_a(Gift)
+        assigns(:gift).should be_persisted
+      end
+    end
+  end
+
 
 end
