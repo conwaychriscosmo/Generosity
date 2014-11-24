@@ -55,11 +55,14 @@ class Users < ActiveRecord::Base
     	end
     end
 
-    def self.set_current_location(user, location)
+    def self.setLocation(username, location)
+    	user = Users.find_by(username: username)
     	if user
     		user.current_location = location
     		user.save(:validate => false)
+    		return SUCCESS
     	end
+    	return ERR_USER_DOES_NOT_EXIST
     end
 
 	
@@ -122,6 +125,10 @@ class Users < ActiveRecord::Base
 		return SUCCESS
 	end
 
+
+    def salt
+    	@salt ||= BCrypt::Password.new(password_digest).salt
+    end
 
 	def Users.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
