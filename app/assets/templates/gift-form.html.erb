@@ -1,7 +1,7 @@
 <!--Still need to add something like data-ng-init="recipient=$parent.username."-->
 <form name="gifsForm" style="margin-left: 3%;" data-ng-submit="newGift.addGift()" novalidate>
-<div class="form">
-      <div class="input-group" style="margin-bottom:1%">
+<div class="usercard">
+      <div class="input-group" style="margin-bottom:1%; margin-top: 30px;text-align: center;">
         <table width="100%">
           <tr>
             <td width="200px;">
@@ -37,8 +37,10 @@
           </tr>
         </table>
       </div>
-      Your gift: <img style="width:100px; height:100px; margin-left:24%" src="{{newGift.imageUrl}}">
+      <div class="input-group" style="margin-bottom:1%">
+      Your gift: <img style="width:100px; height:100px;" src="{{newGift.imageUrl}}">
       <div class="error">{{message}}</div>
-      <button class="btn btn-default" style="margin-left:170px;margin-top:30px;">Create Gift</button>
+      <button class="btn btn-default" style="margin-top:70px;">Create Gift</button>
+      </div>
 </div>
 </form>

@@ -42,11 +42,6 @@ RSpec.describe Users, :type => :model do
 			expect(user.errors[:real_name].size).to eq 1
 		end
 
-		it "should not allow real name to be empty" do
-			user = Users.new(username: 'bob', password: 'password')
-			user.valid?
-			expect(user.errors[:real_name].size).to eq 1
-		end
 	end
 
 	describe "error codes" do
@@ -71,9 +66,6 @@ RSpec.describe Users, :type => :model do
 	    	expect(Users.add({username: 'blah', password: 'abc', real_name: 'bob'})).to eq errorCodes[:badPassword]
 	    end
 
-	    it "should have correct error code for bad real name" do
-	    	expect(Users.add({username: 'bobby', password: 'password', real_name: ''})).to eq errorCodes[:badRealName]
-	    end
 	end
 
 	describe "Users.add options" do
@@ -97,15 +89,6 @@ RSpec.describe Users, :type => :model do
 			expect(Users.find_by(username: 'greg').available_hours).to eq '12am - 6am'
 		end
 
-		it "should allow us to set total_gifts_given" do
-			Users.add({username: 'greg', password: 'password', real_name: 'greg', total_gifts_given: 5})
-			expect(Users.find_by(username: 'greg').total_gifts_given).to eq 5
-		end
-
-		it "should allow us to set total_gifts_received" do
-			Users.add({username: 'greg', password: 'password', real_name: 'greg', total_gifts_received: 6})
-			expect(Users.find_by(username: 'greg').total_gifts_received).to eq 6
-		end
 
 		it "should allow us to set profile picture url" do
 			Users.add({username: 'greg', password: 'password', real_name: 'greg', profile_url: 'hi.org'})
@@ -117,50 +100,50 @@ RSpec.describe Users, :type => :model do
 	describe "Users edit options" do
 		it "should successfully edit profile_url" do
 			Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-			user = Users.find_by(username: 'greg')
 			Users.edit({username: 'greg', profile_url: 'hi.edu'})
+			user = Users.find_by(username: 'greg')
 			expect(user.profile_url).to eq 'hi.edu'
 		end
 
 		it "should successfully edit current_city" do
 			Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-			user = Users.find_by(username: 'greg')
 			Users.edit({username: 'greg', current_city: 'Seattle'})
+			user = Users.find_by(username: 'greg')
 			expect(user.current_city).to eq 'Seattle'
 		end
 
 		it "should successfully edit available_hours" do
 			Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-			user = Users.find_by(username: 'greg')
 			Users.edit({username: 'greg', available_hours: '9 to 8'})
+			user = Users.find_by(username: 'greg')
 			expect(user.available_hours).to eq '9 to 8'
 		end
 
 		it "should successfully edit level" do
 			Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-			user = Users.find_by(username: 'greg')
 			Users.edit({username: 'greg', level: 5})
+			user = Users.find_by(username: 'greg')
 			expect(user.level).to eq 5
 		end
 
 		it "should successfully edit total_gifts_received" do
 			Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-			user = Users.find_by(username: 'greg')
 			Users.edit({username: 'greg', total_gifts_received: 11})
+			user = Users.find_by(username: 'greg')
 			expect(user.total_gifts_received).to eq 11
 		end
 
 		it "should successfully edit total_gifts_given" do
 			Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-			user = Users.find_by(username: 'greg')
 			Users.edit({username: 'greg', total_gifts_given: 11})
+			user = Users.find_by(username: 'greg')
 			expect(user.total_gifts_given).to eq 11
 		end
 
 		it "should successfully edit score" do
 			Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-			user = Users.find_by(username: 'greg')
 			Users.edit({username: 'greg', score: 500})
+			user = Users.find_by(username: 'greg')
 			expect(user.score).to eq 500
 		end
 
