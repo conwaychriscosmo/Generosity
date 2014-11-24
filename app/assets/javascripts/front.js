@@ -86,6 +86,8 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 			// console.log(self.sessionCookie);
 			$rootScope.id = sessionCookie["id"];
 			$rootScope.username = sessionCookie["username"];
+			document.cookie="user_id=" + sessionCookie["id"]
+			console.log(document.cookie)
 		}
 
 		self.checkIfLoggedInUser = function() {
@@ -389,7 +391,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		self.addGift = function() {
 			var errCode;
 			$scope.message = "";
-			$http.post('gifts/create', {name: self.name, url: self.url}).
+			$http.post('gifts/create', {name: self.name, url: self.imageUrl}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available

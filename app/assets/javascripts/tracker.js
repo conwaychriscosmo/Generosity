@@ -8,11 +8,11 @@ var markersArray = [];
 var bounds = new google.maps.LatLngBounds();
 var geocoder;
 var map;
-
 var destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=O|FFFF00|000000';
 var originIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=O|FFFF00|000000';
 
 function initialize() {
+  console.log(document.cookie)
   directionsDisplay = new google.maps.DirectionsRenderer();
   var mapOptions = {
     zoom: 13
