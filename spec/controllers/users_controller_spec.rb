@@ -134,7 +134,8 @@ describe UsersController do
     end
 
     it "should get location correctly" do
-      Users.create!(id: 1, username: 'greg', password: 'password', real_name: 'greg', current_location: 'Mountain View')
+      Users.add({username: 'greg', password: 'password'})
+      Users.setLocation(1, 'Mountain View')
       post :getLocation, {user_id: 1}, valid_session
       resp = response_body
       expect(resp[:location]).to eq 'Mountain View'
