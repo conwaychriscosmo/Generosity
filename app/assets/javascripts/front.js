@@ -328,8 +328,13 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				// this callback will be called asynchronously
 				// when the response is available
 					// self.errCode = data.errCode;
+					if(data['errCode'] == -1) {
+						console.log("This user has no gifts.");
+						return;
+					}
 					console.log("data below");
-					console.log(data[0]);
+					console.log(data);
+					self.givenGifts = data;
 					// var foundGift = data["gifts"];
 					// var foundGift = data;
 					// // console.log(giftsList);
@@ -688,6 +693,13 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		return {
 			restrict: 'E',
 			templateUrl: "footbar.html"
+		};
+	})
+
+	.directive('giftListElement', function() {
+		return {
+			restrict: 'E',
+			templateUrl: "gift-list-element.html"
 		};
 	})
 
