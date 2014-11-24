@@ -55,14 +55,23 @@ class Users < ActiveRecord::Base
     	end
     end
 
-    def self.setLocation(username, location)
-    	user = Users.find_by(username: username)
+    def self.setLocation(user_id, location)
+    	user = Users.find_by(id: user_id)
     	if user
     		user.current_location = location
     		user.save(:validate => false)
     		return SUCCESS
     	end
     	return ERR_USER_DOES_NOT_EXIST
+    end
+
+    def self.getLocation(user_id)
+    	user = Users.find_by(id: user_id)
+    	if user
+    		return user.current_location
+    	else
+    		return ERR_USER_DOES_NOT_EXIST
+    	end
     end
 
 	

@@ -154,13 +154,23 @@ RSpec.describe Users, :type => :model do
 
 		it "should successfully set current_location" do
 			Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-			Users.setLocation('greg', 'Soda Hall')
+			Users.setLocation(1, 'Soda Hall')
 			user = Users.find_by(username: 'greg')
 			expect(user.current_location).to eq 'Soda Hall'
 		end
 
 	end
 
+	describe "Users getLocation" do
+
+		it "should successfully get location" do
+			Users.add({username: 'greg', password: 'password', real_name: 'greg'})
+			Users.setLocation(1, 'Soda Hall')
+			user = Users.find_by(username: 'greg')
+			location = Users.getLocation(1)
+			expect(location).to eq 'Soda Hall'
+		end
+	end
 
 
 end

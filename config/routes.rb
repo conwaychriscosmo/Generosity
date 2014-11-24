@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   post 'users/search', to: 'users#search'
   post 'users/delete', to: 'users#delete'
   post 'users/setLocation', to: 'users#setLocation'
+  get 'users/getLocation', to: 'users#getLocation'
 
   post 'TEST/users/unitTests', to: 'users#runUnitTests'
   post 'TEST/resetFixture', to: 'users#resetFixture'
