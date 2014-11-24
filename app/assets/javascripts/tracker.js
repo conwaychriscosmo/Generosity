@@ -1,4 +1,4 @@
-var directionsDisplay;
+/*var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var DIST_THRESH = 2835000;
 var pos = "berkeley, ca"; // Default in case geolocation doesn't work
@@ -129,7 +129,7 @@ function addMarker(location, isDestination) {
         position: results[0].geometry.location,
         icon: icon
       });
-      markersArray.push(marker);*/
+      markersArray.push(marker);*
     } else {
       alert('Geocode was not successful for the following reason: '
         + status);
@@ -155,4 +155,4 @@ function checkDist() {
   }
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addDomListener(window, 'load', initialize);*/
