@@ -99,9 +99,8 @@ class GiftsController < ApplicationController
   def create
     #@gift = Gift.new(gift_params)
     #create(giftname, gifturl, username)
-    @id = session[:user_id]
+    @id = gift_params[:giver]
     @user = Users.find_by(id: @id)
-    p @id
     output = Gift.create(gift_params[:name], gift_params[:url], @user.username)
     render json: output
  #   respond_to do |format|
