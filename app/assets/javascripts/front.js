@@ -485,7 +485,9 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 						$scope.message = "Error: Invalid gift.";
 					}
 					else {
-						console.log("Gift created.");						
+						alert("Gift Created!")
+						var rUrl = '/profile/' + $rootScope.id;
+						$location.path(rUrl);
 					}
 					console.log(errCode);
 					// $rootScope.errCode = data.errCode;
