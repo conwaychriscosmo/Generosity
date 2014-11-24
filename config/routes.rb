@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   post 'challenge/onQueue' => 'challenges#onQueue'
   post 'challenge/match' => 'challenges#match'
   post 'challenge/getCurrentChallenge' => 'challenges#getCurrentChallenge'
+  #get the recipients id based on the giver user id
+  post 'challenge/recipient_id' => 'challenges#recipient_id'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   post 'TEST/gifts/unitTests' => 'gifts#runUnitTests'

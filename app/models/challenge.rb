@@ -44,7 +44,28 @@ class Challenge < ActiveRecord::Base
     output = {errCode: 1}
     return output
   end
-  
+
+  def self.recipient_by_giver_id(userid)
+    @giver = Users.find_by(id: userid)
+    if @giver.blank?
+      return { errCode: -42 }
+    end
+    if @giver.username.blank?
+      return { errCode: -43 }
+    end
+    @challenge = Challenge.find_by(Giver: @giver.username)
+    if @challenge.blank?
+      return { errCode: -44 }
+    end
+    if @challenge.Recipient.blank?
+      return { errCode: -45 }
+    end
+    @recipient = Users.find_by(username: @challenge.Recipient)
+    return @recipient.to_json
+
+
+  end
+
   def self.current(giver)
     @challenge = Challenge.find_by(Giver: giver)
     output = { errCode: -1 }

@@ -15,7 +15,11 @@ class ChallengesController < ApplicationController
     output = Waiting.onQueue(@username)
     render json: output
   end
-  
+  def recipient_id
+    @id = params[:id]
+    output = Challenge.recipient_by_giver_id(@id)
+    render json: output
+  end
   def match
   #built for testing to cause matches
     # @id = session[:user_id]
