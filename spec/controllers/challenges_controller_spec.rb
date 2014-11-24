@@ -33,7 +33,7 @@ describe ChallengesController do
    describe "POST delete" do
     it "deletes the challenge with the given id" do
       challenge = Challenge.create! valid_attributes
-      post :delete, id: challenge.id, valid_session
+      post :delete, {id: challenge.id}, valid_session
       assigns(:challenges).should eq([challenge])
     end
   end

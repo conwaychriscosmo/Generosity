@@ -6,11 +6,16 @@ Rails.application.routes.draw do
   post 'challenges/complete' => 'challenge#complete', as: :complete
   post 'gifts/create' => 'gifts#create'
   post 'gifts/destroy' => 'gifts#destroy'
+  post 'gifts/find_gift' => 'gifts#find_gift'
+  post 'gifts/find_all_gifts_by_giver' => 'gifts#find_all_gifts_by_giver'
+  post 'gifts/find_all_gifts_by_recipient' => 'gifts#find_all_gifts_by_recipient'
   post 'challenge/complete' => 'challenges#complete'
   post 'challenge/joinQueue' => 'challenges#joinQueue'
   post 'challenge/onQueue' => 'challenges#onQueue'
   post 'challenge/match' => 'challenges#match'
   post 'challenge/getCurrentChallenge' => 'challenges#getCurrentChallenge'
+  #get the recipients id based on the giver user id
+  post 'challenge/recipient_id' => 'challenges#recipient_id'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   post 'TEST/gifts/unitTests' => 'gifts#runUnitTests'
@@ -25,19 +30,22 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   #rate, review, deliver, and view  gifts
   post 'gifts/:id/rate', to: 'gifts#rate'
+  post 'gifts/rate', to: 'gifts#rate'
   post 'gifts/:id/review', to: 'gifts#review'
+  post 'gifts/review', to: 'gifts#review'
   post 'gifts/:id/deliver', to: 'gifts#deliver'
+  post 'gifts/deliver', to: 'gifts#deliver'
   post 'gifts/:id/delete', to: 'gifts#delete'
   post 'challenge/:id/delete', to: 'challenges#delete'
   get 'gifts/:id/view', to: 'gifts#view'
 
-  get 'users/add', to: 'users#new'
   post 'users/add', to: 'users#add'
   post 'users/edit', to: 'users#edit'
   post 'users/search', to: 'users#search'
   post 'users/delete', to: 'users#delete'
+  post 'users/setLocation', to: 'users#setLocation'
+  post 'users/getLocation', to: 'users#getLocation'
 
-  post 'TEST/users/unitTests', to: 'users#runUnitTests'
   post 'TEST/resetFixture', to: 'users#resetFixture'
 
   # Example of regular route:

@@ -1,26 +1,27 @@
-<div class="container-fluid" style="margin-top:-.2%" data-ng-init="profiledGift.getGiftFromUrlParams()">
+<div class="container-fluid" style="margin-top:-.2%">
 	<div class = "usercard" style="padding: 30px;">
 		<div class="input-group" style="margin-bottom:1%">
-		<img style="height:200px; width:200px" src="{{profiledGift.imageUrl}}"/>
+		<img style="height:200px; width:200px" src="{{aGift.url}}"/>
 		</div>
 		<div class="input-group" style="margin-bottom:1%">
-			{{profiledGift.name}}
+			{{aGiftname}}
 		</div>
 		<div class="input-group" style="margin-bottom:1%">
-		Giver: {{profiledGift.giver}}
+			Giver: {{aGift.giver}}
 		</div>
 		<br>
 		<div class="input-group" style="margin-bottom:1%">
-		Recipient: {{profiledGift.recipient}}
+			Recipient: {{aGift.recipient}}
 		</div>
 		<br>
 		<div class="input-group" style="margin-bottom:1%">
-				Rating: {{profiledGift.rating}}/5
+			Rating: {{aGift.rating}}/5
 		</div>
 		<br>
 		<div class="input-group" style="margin-bottom:1%">
-		Description: {{profiledGift.description}}
+			Description: {{aGift.description}}
 		</div>
+		<a href="#gift/{{aGift.id}}" data-ng-show="{{canEdit}}" style="margin-left: 35%"><button style="background-color:teal; color:white; margin-bottom: 30px;">Show Details</button></a>
 		<br>
 	</div>
 </div>

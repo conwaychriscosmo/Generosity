@@ -2,10 +2,14 @@
 	<div style="width: 100%">
 	<div class="usercard" data-ng-show="receivingUser.hasCurrentChallenge">
 		<div class = "holder" style ="width: 100%; text-align: center; padding-top: 30px;">
+
+		
+		<div class= "challenge_button pulse">A Challenge Approaches!</div>
+
 		<img class="circlemage" src="http://images.clipartpanda.com/question-question_mark_blue.png" >
 		<br>
-		</div>
-		<div class = "profile_info">
+		
+		<div class = "profile_info" style = "padding-bottom: 30px;">
 		<br>
 		Best timeframe: {{receivingUser.availableHours}}
 		<br> 
@@ -20,8 +24,11 @@
 		<br>
 		<br>
 		<!-- <a href="#edit-user" data-ng-show="{{canEdit}}"><button style="background-color:teal; color:white">Edit Details</button></a> -->
+	    <a data-ng-hide="receivingUser.code == -1" href="#gifts-form"><button style="background-color:teal; color:white;">Choose Gift!</button></a>
+	  </div>
 		</div>
 		</div>
+
 	</div>
 
     <div class="error">{{queueMessage}}</div>

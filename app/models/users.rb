@@ -19,7 +19,6 @@ class Users < ActiveRecord::Base
 	validates :username, uniqueness: true
 	validates :username, presence: true
 
-	#validates :real_name, presence: true
 	validates :real_name, length: {maximum: MAX_REAL_NAME_LENGTH}
 
 	has_secure_password
@@ -46,7 +45,7 @@ class Users < ActiveRecord::Base
     		user.total_gifts_given = options[:total_gifts_given] ||= user.total_gifts_given
     		user.total_gifts_received = options[:total_gifts_received] ||= user.total_gifts_received
     		user.score = options[:score] ||= user.score
-			user.description = options[:description]
+			user.description = options[:description] ||= user.description
 
     		user.save(:validate => false)
     		return SUCCESS
@@ -55,10 +54,22 @@ class Users < ActiveRecord::Base
     	end
     end
 
-    def self.set_current_location(user, location)
+    def self.setLocation(user_id, location)
+    	user = Users.find_by(id: user_id)
     	if user
     		user.current_location = location
     		user.save(:validate => false)
+    		return SUCCESS
+    	end
+    	return ERR_USER_DOES_NOT_EXIST
+    end
+
+    def self.getLocation(user_id)
+    	user = Users.find_by(id: user_id)
+    	if user
+    		return user.current_location
+    	else
+    		return ERR_USER_DOES_NOT_EXIST
     	end
     end
 
@@ -67,7 +78,6 @@ class Users < ActiveRecord::Base
 
         username = options[:username]
         password = options[:password]
-        # real_name = options[:real_name]
 
 		new_user = Users.new(username: username, password: password)
 		if new_user.valid?
@@ -80,10 +90,8 @@ class Users < ActiveRecord::Base
 			new_user.score = options[:score] ||= 0
 			new_user.profile_url = options[:profile_url] ||= 'http://images.sodahead.com/polls/002443001/5330646328_2008_06_25_131330_puts_on_sunglasses_answer_4_xlarge.png'
 			new_user.description = options[:description]
-			puts options
-			puts "LKADKAGFKGJFAHAKJEHLKQWHABKHJAGFKAJ<SHFLKASHLGK"
 			new_user.save
-      Waiting.add(username)
+      		Waiting.add(username)
 			return SUCCESS
 		else
 			case
@@ -91,8 +99,6 @@ class Users < ActiveRecord::Base
 				return ERR_BAD_USERNAME
 			when Users.where(username: username).all.size == 1
 				return ERR_USER_EXISTS
-			# when !new_user[:real_name].present? || new_user[:real_name].size > MAX_REAL_NAME_LENGTH
-			# 	return ERR_REAL_NAME
 			when !new_user[:password].present? || new_user[:password].size > MAX_PASSWORD_LENGTH || new_user[:password].size < MIN_PASSWORD_LENGTH
 				return ERR_BAD_PASSWORD
 			end
@@ -105,6 +111,7 @@ class Users < ActiveRecord::Base
 		elsif options[:username]
 			return Users.where({username: options[:username]})
 		end
+			
 	end
 
 	def self.delete_user(username)
@@ -123,15 +130,5 @@ class Users < ActiveRecord::Base
 	end
 
 
-	def Users.digest(string)
-        cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                      BCrypt::Engine.cost
-        BCrypt::Password.create(string, cost: cost)
-    end
-
-
-	def self.runUnitTests()
-		return %x[rspec spec/models/users_spec.rb]
-	end
 
 end

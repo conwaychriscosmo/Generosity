@@ -6,6 +6,14 @@ require 'capybara/rspec'
 require 'capybara/rails'
 require 'factory_girl'
 
+require 'simplecov'
+
+SimpleCov.start do
+    add_filter '/spec/'
+    add_filter 'config'
+    add_filter '/lib'
+    add_filter '/vendor'
+end
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -18,6 +26,10 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
+
+def response_body
+    JSON.parse(response.body)
+end
 
 RSpec.configure do |config|
   # ## Mock Framework

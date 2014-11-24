@@ -86,6 +86,8 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 			// console.log(self.sessionCookie);
 			$rootScope.id = sessionCookie["id"];
 			$rootScope.username = sessionCookie["username"];
+			document.cookie="user_id=" + sessionCookie["id"]
+			console.log(document.cookie)
 		}
 
 		self.checkIfLoggedInUser = function() {
@@ -138,6 +140,8 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.reputation = foundUser["score"];
 					self.bio = foundUser["description"];
 					self.profileUrl = foundUser["profile_url"];
+					self.getAllGiftsByGiverUsername();
+					self.getAllGiftsByRecipientUsername();
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
@@ -317,16 +321,98 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 			self.profileUrl = "http://static.tumblr.com/isuwdsr/EBVlzsy8r/chris_redfield_avatar_by_ryann1220-d36hj2c.jpg";
 		};
 
-		self.makeIter = function(l) {
-			var f = [];
-			var i;
-			for(i = 0; i < l; i++) {
-				f[i] = i;
-			}
-			self.iter = f;
-		};
 
-		self.makeIter(5);
+	self.getAllGiftsByGiverUsername = function() {
+			// console.log(targetId);
+			$http.post('gifts/find_all_gifts_by_giver', {username: self.username}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					// self.errCode = data.errCode;
+					if(data['errCode'] == -1) {
+						console.log("This user has given no gifts.");
+						return;
+					}
+					console.log("data below");
+					console.log(data);
+					self.givenGifts = data;
+					// var foundGift = data["gifts"];
+					// var foundGift = data;
+					// // console.log(giftsList);
+					// if(!foundGift) {
+					// 	// alert("Error: User not found.");
+					// 	console.log("Error: Gift not found.");
+					// 	// $location.path('/');
+					// 	return;
+					// }
+					// self.name = foundGift.name;
+					// self.giver = foundGift.giver;
+					// self.recipient = foundGift.recipient;
+					// self.description = foundGift.description;
+					// self.rating = foundGift.rating;
+					// self.imageUrl = foundGift.url;
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					self.errCode = -99;
+					// alert("Error.");
+					console.log("Error.");
+				}).
+				then(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					// alert("Done.");
+					console.log("Done.");
+					return;
+				});
+		}
+
+		self.getAllGiftsByRecipientUsername = function() {
+			// console.log(targetId);
+			$http.post('gifts/find_all_gifts_by_recipient', {username: self.username}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					// self.errCode = data.errCode;
+					if(data['errCode'] == -1) {
+						console.log("This user has no received gifts.");
+						return;
+					}
+					console.log("data below");
+					console.log(data);
+					self.receivedGifts = data;
+					// var foundGift = data["gifts"];
+					// var foundGift = data;
+					// // console.log(giftsList);
+					// if(!foundGift) {
+					// 	// alert("Error: User not found.");
+					// 	console.log("Error: Gift not found.");
+					// 	// $location.path('/');
+					// 	return;
+					// }
+					// self.name = foundGift.name;
+					// self.giver = foundGift.giver;
+					// self.recipient = foundGift.recipient;
+					// self.description = foundGift.description;
+					// self.rating = foundGift.rating;
+					// self.imageUrl = foundGift.url;
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					self.errCode = -99;
+					// alert("Error.");
+					console.log("Error.");
+				}).
+				then(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					// alert("Done.");
+					console.log("Done.");
+					return;
+				});
+		}
 
 		self.login = function(name, pw) {
 			$scope.message = "";
@@ -376,7 +462,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		};
 	}])
 
-	.controller('GiftsController', ['$scope', '$http', '$rootScope', '$routeParams', function($scope, $http, $rootScope, $routeParams) {
+	.controller('GiftsController', ['$scope', '$http', '$rootScope', '$routeParams', '$location', function($scope, $http, $rootScope, $routeParams, $location) {
 		var self = this;
 
 		self.name;
@@ -389,7 +475,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		self.addGift = function() {
 			var errCode;
 			$scope.message = "";
-			$http.post('gifts/create', {name: self.name, url: self.url}).
+			$http.post('gifts/create', {name: self.name, url: self.imageUrl}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
@@ -423,44 +509,42 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				self.createDummyGift();
 				return;
 			}
-			// $http.post('users/search', {id: targetId}).
-			// 	success(function(data, status, headers, config) {
-			// 	// this callback will be called asynchronously
-			// 	// when the response is available
-			// 		// self.errCode = data.errCode;
-			// 		var usersList = data["users"];
-			// 		console.log(usersList);
-			// 		if(usersList.length != 1) {
-			// 			// alert("Error: User not found.");
-			// 			console.log("Error: User not found.");
-			// 			$location.path('/');
-			// 			return;
-			// 		}
-			// 		var foundUser = usersList[0];
-			// 		console.log(foundUser["username"]);
-			// 		self.username = foundUser["username"];
-			// 		self.realName = foundUser["real_name"];
-			// 		self.availableHours = foundUser["available_hours"];
-			// 		self.currentCity = foundUser["current_city"];
-			// 		self.currentLocation = foundUser["current_location"];
-			// 		self.reputation = foundUser["score"];
-			// 		// self.description = foundUser["description"];
-			// 		self.profileUrl = foundUser["profile_url"];
-			// 	}).
-			// 	error(function(data, status, headers, config) {
-			// 	// called asynchronously if an error occurs
-			// 	// or server returns response with an error status.
-			// 		self.errCode = -99;
-			// 		// alert("Error.");
-			// 		console.log("Error.");
-			// 	}).
-			// 	then(function(data, status, headers, config) {
-			// 	// called asynchronously if an error occurs
-			// 	// or server returns response with an error status.
-			// 		// alert("Done.");
-			// 		console.log("Done.");
-			// 		return;
-			// 	});
+			$http.post('gifts/find_gift', {id: targetId}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					// self.errCode = data.errCode;
+					console.log(data);
+					// var foundGift = data["gifts"];
+					var foundGift = data;
+					// console.log(giftsList);
+					if(!foundGift) {
+						// alert("Error: User not found.");
+						console.log("Error: Gift not found.");
+						// $location.path('/');
+						return;
+					}
+					self.name = foundGift.name;
+					self.giver = foundGift.giver;
+					self.recipient = foundGift.recipient;
+					self.description = foundGift.description;
+					self.rating = foundGift.rating;
+					self.imageUrl = foundGift.url;
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					self.errCode = -99;
+					// alert("Error.");
+					console.log("Error.");
+				}).
+				then(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					// alert("Done.");
+					console.log("Done.");
+					return;
+				});
 		}
 
 		self.createDummyGift = function() {
@@ -489,6 +573,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		self.availableHours; //How should this be styled?
 		self.currentCity;
 		self.currentLocation;
+		self.reputation;
 
 		self.addChallenge = function() {
 			var errCode;
@@ -506,6 +591,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					}
 					else {
 						console.log("Challenge created.");	
+						self.getChallengeForCurrentUser();
 						self.hasCurrentChallenge = true;					
 					}
 					console.log(errCode);
@@ -521,7 +607,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		self.getChallengeForCurrentUser = function() {
 			// console.log(self.id);
 			self.code = $routeParams.code;
-			console.log("foo");
+			console.log(self.code);
 			self.hasCurrentChallenge = false;
 			$scope.challengeMessage = "";
 			if(self.code == -1) {
@@ -544,7 +630,15 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					else {
 						console.log("Challenge retrieved.");	
 						$scope.challengeMessage = "";
-						self.hasCurrentChallenge = true;					
+						self.hasCurrentChallenge = true;	
+						console.log(data);
+						console.log(data.Giver);
+						console.log(data.Recipient);
+						self.description = data.description;
+						self.availableHours = data.availableHours;
+						self.currentCity = data.currentCity;
+						self.currentLocation = data.currentLocation;
+						self.reputation = data.reputation;
 					}
 					console.log(errCode);
 					console.log($scope.challengeMessage);
@@ -557,7 +651,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				});
 		}
 
-		self.checkIfOnQueue = function() { //Check to see if the logged in user is currently a receiver candidate.
+		self.checkIfOnQueue = function() { //Check to see if the logged in user is currently a recipient candidate.
 			self.recipient = $rootScope.username;
 			console.log("foo " + self.recipient);
 			// $scope.queueMessage = "";
@@ -597,7 +691,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				$scope.queueMessage = "You are already on the queue.";
 				return;
 			}
-			self.receiverId = $rootScope.id;
+			self.recipientId = $rootScope.id;
 			self.recipient = $rootScope.username;
 			$http.post('challenge/joinQueue', { username: self.recipient }).
 				success(function(data, status, headers, config) {
@@ -646,6 +740,13 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		return {
 			restrict: 'E',
 			templateUrl: "footbar.html"
+		};
+	})
+
+	.directive('giftListElement', function() {
+		return {
+			restrict: 'E',
+			templateUrl: "gift-list-element.html"
 		};
 	})
 

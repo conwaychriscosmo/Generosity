@@ -1,7 +1,7 @@
-<form name="usersForm" style="margin-left: 3%;" data-ng-submit="loginUser.login(loginUser.username, loginUser.password)" novalidate>
-<div class="form">
+<form name="usersForm" style="margin-left: 3%;padding-top: 30px;" data-ng-submit="loginUser.login(loginUser.username, loginUser.password)" novalidate>
+<div class="usercard">
   
-      <div class="input-group" style="margin-bottom:1%">
+      <div class="input-group" style="padding-top: 40px; margin-bottom:1%">
         <table width="100%">
           <tr>
             <td width="200px;">
@@ -26,6 +26,8 @@
         </table>
       </div>
       <div class="error">{{message}}</div>
-      <button class="btn btn-default" style="margin-left:170px;margin-top:30px;">Log in</button>
+      <div class="input-group" style="margin-bottom:1%; padding-bottom: 30px;">
+      <button class="btn btn-default" style="margin-top:30px;">Log in</button>
+      </div>
 </div>
 </form>
