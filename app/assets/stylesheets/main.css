@@ -2,6 +2,13 @@ head {
 	width: 100%;
 }
 
+.footbar{
+	text-align: left;
+	position: fixed;
+	bottom: 0;
+	left:0
+}
+
 li {
 	font-size: 13px;
 }
