@@ -86,8 +86,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 			// console.log(self.sessionCookie);
 			$rootScope.id = sessionCookie["id"];
 			$rootScope.username = sessionCookie["username"];
-			document.cookie="user_id=" + sessionCookie["id"]
-			console.log(document.cookie)
 		}
 
 		self.checkIfLoggedInUser = function() {
@@ -190,6 +188,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					sessionCookie = $cookieStore.get('session');
 					// $rootScope.getUserFromCookie();
 					$rootScope.id = sessionCookie["id"];
+					document.cookie = "user_id=" + $rootScope.id
 					$rootScope.username = sessionCookie["username"];
 					console.log(sessionCookie);
 					if(purpose === 'login') {
@@ -432,6 +431,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 						console.log("Login succeeded.");
 						self.password = "";
 						self.loadUserData(self.username, 'login');
+
 					}
 				}).
 				error(function(data, status, headers, config) {
