@@ -11,8 +11,8 @@ describe ChallengesController do
       get("/challenges/new").should route_to("challenges#new")
     end
 
-    it "routes to #current" do
-      get("/challenges/1/current").should route_to("challenges#getCurrentChallenge", :id => "1")
+    it "routes to #getCurrentChallenge" do
+      get("/challenges/getCurrentChallenge").should route_to("challenges#getCurrentChallenge")
     end
 
     it "routes to #complete" do
