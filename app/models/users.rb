@@ -106,13 +106,12 @@ class Users < ActiveRecord::Base
 	end
 
 	def self.search(options)
-		arr = []
-		newOptions = options.slice(:username, :id, :real_name, :current_city, :level)
-		users = Users.where(newOptions)
-		users.each do |user|
-			arr.push(user.id)
+		if options[:id]
+			return Users.where({id: options[:id]})
+		elsif options[:username]
+			return Users.where({username: options[:username]})
 		end
-		return arr
+			
 	end
 
 	def self.delete_user(username)

@@ -106,17 +106,17 @@ describe UsersController do
 
 
 
-    describe "POST search" do
+    # describe "POST search" do
 
-      it "returns ids of queried users" do
-        Users.create!(username: 'greg', password: 'password', real_name: 'greg')
-        Users.create!(username: 'notgreg', password: 'password', real_name: 'notgreg')
-        Users.create!(username: 'greg1', password: 'password', real_name: 'greg')
-        post :search, {real_name: 'greg'}, valid_session
-        arr = response_body["user_ids"]
-        expect(arr).to eq [1, 3]
-      end
-    end
+    #   it "returns ids of queried users" do
+    #     Users.create!(username: 'greg', password: 'password', real_name: 'greg')
+    #     Users.create!(username: 'notgreg', password: 'password', real_name: 'notgreg')
+    #     Users.create!(username: 'greg1', password: 'password', real_name: 'greg')
+    #     post :search, {real_name: 'greg'}, valid_session
+    #     arr = response_body["user_ids"]
+    #     expect(arr).to eq [1, 3]
+    #   end
+    # end
 
 
 

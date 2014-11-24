@@ -33,8 +33,8 @@ class UsersController < ApplicationController
 	end
 
     def search()
-        user_ids = Users.search(user_params)
-        render json: {user_ids: user_ids}
+        users = Users.search(params[:user])
+        render json: {users: users}
     end
 
 
