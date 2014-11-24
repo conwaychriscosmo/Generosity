@@ -60,6 +60,7 @@ class GiftsController < ApplicationController
     output = Gift.review(params[:gift][:review],params[:id],@user.username)
     render json: output
   end  
+  
   #the recipient rates the gift
   def rate
     @id = session[:user_id]
@@ -67,11 +68,13 @@ class GiftsController < ApplicationController
     output = Gift.rate(params[:gift][:rating],params[:id],@user.username)
     render json: output
   end
+
   def find_gift
     @id = params[:gift][:id]
     output = Gift.find_gift(@id)
     render json: output
   end
+
   #the giver delivers the gift
   def deliver
     output = Gift.deliver(params[:gift][:id])

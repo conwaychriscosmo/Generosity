@@ -378,7 +378,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		};
 	}])
 
-	.controller('GiftsController', ['$scope', '$http', '$rootScope', '$routeParams', function($scope, $http, $rootScope, $routeParams) {
+	.controller('GiftsController', ['$scope', '$http', '$rootScope', '$routeParams', '$location', function($scope, $http, $rootScope, $routeParams, $location) {
 		var self = this;
 
 		self.name;
@@ -425,44 +425,42 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				self.createDummyGift();
 				return;
 			}
-			// $http.post('users/search', {id: targetId}).
-			// 	success(function(data, status, headers, config) {
-			// 	// this callback will be called asynchronously
-			// 	// when the response is available
-			// 		// self.errCode = data.errCode;
-			// 		var usersList = data["users"];
-			// 		console.log(usersList);
-			// 		if(usersList.length != 1) {
-			// 			// alert("Error: User not found.");
-			// 			console.log("Error: User not found.");
-			// 			$location.path('/');
-			// 			return;
-			// 		}
-			// 		var foundUser = usersList[0];
-			// 		console.log(foundUser["username"]);
-			// 		self.username = foundUser["username"];
-			// 		self.realName = foundUser["real_name"];
-			// 		self.availableHours = foundUser["available_hours"];
-			// 		self.currentCity = foundUser["current_city"];
-			// 		self.currentLocation = foundUser["current_location"];
-			// 		self.reputation = foundUser["score"];
-			// 		// self.description = foundUser["description"];
-			// 		self.profileUrl = foundUser["profile_url"];
-			// 	}).
-			// 	error(function(data, status, headers, config) {
-			// 	// called asynchronously if an error occurs
-			// 	// or server returns response with an error status.
-			// 		self.errCode = -99;
-			// 		// alert("Error.");
-			// 		console.log("Error.");
-			// 	}).
-			// 	then(function(data, status, headers, config) {
-			// 	// called asynchronously if an error occurs
-			// 	// or server returns response with an error status.
-			// 		// alert("Done.");
-			// 		console.log("Done.");
-			// 		return;
-			// 	});
+			$http.post('gifts/find_gift', {id: targetId}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					// self.errCode = data.errCode;
+					console.log(data);
+					// var foundGift = data["gifts"];
+					var foundGift = data;
+					// console.log(giftsList);
+					if(!foundGift) {
+						// alert("Error: User not found.");
+						console.log("Error: Gift not found.");
+						// $location.path('/');
+						return;
+					}
+					self.name = foundGift.name;
+					self.giver = foundGift.giver;
+					self.recipient = foundGift.recipient;
+					self.description = foundGift.description;
+					self.rating = foundGift.rating;
+					self.imageUrl = foundGift.url;
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					self.errCode = -99;
+					// alert("Error.");
+					console.log("Error.");
+				}).
+				then(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					// alert("Done.");
+					console.log("Done.");
+					return;
+				});
 		}
 
 		self.createDummyGift = function() {
