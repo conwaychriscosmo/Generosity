@@ -172,29 +172,6 @@ RSpec.describe Users, :type => :model do
 		end
 	end
 
-	# describe "Users search" do
-
-	# 	it "should return correct search results for no match" do
-	# 		Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-	# 		Users.add({username: 'jenna', password: 'password', real_name: 'jenna'})
-	# 		search_result = Users.search({real_name: 'joseph'})
-	# 		expect(search_result).to eq []
-	# 	end
-
-	# 	it "should return correct search results for single match" do
-	# 		Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-	# 		Users.add({username: 'jenna', password: 'password', real_name: 'jenna'})
-	# 		search_result = Users.search({username: 'greg', real_name: 'greg'})
-	# 		expect(search_result).to eq [1]
-	# 	end
-
-	# 	it "should return correct search results for multiple match" do
-	# 		Users.add({username: 'greg', password: 'password', real_name: 'greg'})
-	# 		Users.add({username: 'jenna', password: 'password', real_name: 'greg'})
-	# 		search_result = Users.search({real_name: 'greg'})
-	# 		expect(search_result).to eq [1, 2]
-	# 	end
-	# end
 
 
 

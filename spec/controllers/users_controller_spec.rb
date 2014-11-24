@@ -105,39 +105,41 @@ describe UsersController do
     end
 
 
-
-    # describe "POST search" do
-
-    #   it "returns ids of queried users" do
-    #     Users.create!(username: 'greg', password: 'password', real_name: 'greg')
-    #     Users.create!(username: 'notgreg', password: 'password', real_name: 'notgreg')
-    #     Users.create!(username: 'greg1', password: 'password', real_name: 'greg')
-    #     post :search, {real_name: 'greg'}, valid_session
-    #     arr = response_body["user_ids"]
-    #     expect(arr).to eq [1, 3]
-    #   end
-    # end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   end
 
 
+  describe "POST search" do
 
+    it "returns correct user from query on username" do
+      Users.create!(username: 'greg', password: 'password', real_name: 'greg')
+      post :search, {user: {username: 'greg'}}, valid_session
+      users = response_body
+      expect(users.size).to eq 1
+    end
 
+    it "returns correct user from query on id" do
+      Users.create!(username: 'greg', password: 'password', real_name: 'greg')
+      post :search, {user: {id: 1}}, valid_session
+      users = response_body
+      expect(users.size).to eq 1
+    end
+  end
 
+  describe "POST setLocation/getLocation" do
+    it "should set location correctly" do
+      Users.create!(username: 'greg', password: 'password', real_name: 'greg')
+      post :setLocation, {user_id: 1, location: 'Mountain View'}, valid_session
+      user = Users.find_by(username: 'greg')
+      expect(user.current_location).to eq 'Mountain View'
+    end
+
+    it "should get location correctly" do
+      Users.create!(id: 1, username: 'greg', password: 'password', real_name: 'greg', current_location: 'Mountain View')
+      post :getLocation, {user_id: 1}, valid_session
+      resp = response_body
+      expect(resp[:location]).to eq 'Mountain View'
+    end
+  end
 
 
 

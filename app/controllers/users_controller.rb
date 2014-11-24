@@ -1,10 +1,6 @@
 class UsersController < ApplicationController
 
 
-    def show()
-    	render 'show'
-    end
-
     def edit
         errCode = Users.edit(params)
         render json: {errCode: errCode}
