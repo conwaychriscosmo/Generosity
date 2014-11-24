@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post 'challenges/complete' => 'challenge#complete', as: :complete
   post 'gifts/create' => 'gifts#create'
   post 'gifts/destroy' => 'gifts#destroy'
-  post 'gifts/find_user' => 'gifts#find_user'
+  post 'gifts/find_gift' => 'gifts#find_gift'
   post 'challenge/complete' => 'challenges#complete'
   post 'challenge/joinQueue' => 'challenges#joinQueue'
   post 'challenge/onQueue' => 'challenges#onQueue'

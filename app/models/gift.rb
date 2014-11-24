@@ -147,7 +147,7 @@ class Gift < ActiveRecord::Base
   end
 
   def self.find_gift(gift_id)
-    gift = Gift.find_by_id(gift_id.to_i)
+    gift = Gift.find_by_id(gift_id)
     if gift.present?
       return gift.to_json
     else
