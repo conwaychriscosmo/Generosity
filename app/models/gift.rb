@@ -169,7 +169,7 @@ class Gift < ActiveRecord::Base
     end
   end
 
-  def find_all_gifts_by_giver(giver_username)
+  def self.find_all_gifts_by_giver(giver_username)
     gifts = Gift.where(giver: giver_username)
     if gifts.present?
       return gifts.to_json

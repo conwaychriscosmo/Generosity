@@ -328,7 +328,8 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				// this callback will be called asynchronously
 				// when the response is available
 					// self.errCode = data.errCode;
-					console.log(data);
+					console.log("data below");
+					console.log(data[0]);
 					// var foundGift = data["gifts"];
 					// var foundGift = data;
 					// // console.log(giftsList);
