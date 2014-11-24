@@ -19,6 +19,10 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+def response_body
+    JSON.parse(response.body)
+end
+
 RSpec.configure do |config|
   # ## Mock Framework
   #

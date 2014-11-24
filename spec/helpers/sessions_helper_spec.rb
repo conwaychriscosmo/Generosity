@@ -92,6 +92,7 @@ describe SessionsHelper do
             helper.logout()
             expect(helper.current_user()).to eq(false)
         end
+    end
 
     describe "logged_in?" do
         it "returns true when user is logged in" do
@@ -115,5 +116,7 @@ describe SessionsHelper do
             helper.login("Bob")
             expect(helper.logged_in?).to eq(true)
         end
+
+    end
 
 end

@@ -107,7 +107,8 @@ class Users < ActiveRecord::Base
 
 	def self.search(options)
 		arr = []
-		users = Users.where(options.slice(:username, :id, :real_name, :current_city, :current_location, :level))
+		newOptions = options.slice(:username, :id, :real_name, :current_city, :level)
+		users = Users.where(newOptions)
 		users.each do |user|
 			arr.push(user.id)
 		end
@@ -130,8 +131,5 @@ class Users < ActiveRecord::Base
 	end
 
 
-	def self.runUnitTests()
-		return %x[rspec spec/models/users_spec.rb]
-	end
 
 end

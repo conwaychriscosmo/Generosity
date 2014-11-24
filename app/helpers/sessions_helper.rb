@@ -5,7 +5,8 @@ module SessionsHelper
   end
 
   def logout()
-  	@current_user = cookies.permanent.signed[:user_id] = nil
+  	@current_user = nil
+    cookies.delete[:user_id]
   end
 
 

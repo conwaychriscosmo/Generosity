@@ -20,43 +20,133 @@ require 'spec_helper'
 
 describe UsersController do
 
+  before(:each) do
+    Users.delete_all
+  end
+
   # This should return the minimal set of attributes required to create a valid
   # Gift. As you add validations to Gift, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "username" => "username", "password" => "password", "real_name" => "greg" } }
+  let(:valid_attributes) { { "username" => "username", "password" => "password" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # GiftsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-
-  describe "POST users/add" do
-    describe "with valid params" do
-      it "creates a new user" do
-        expect {
-          post :create, {:user => valid_attributes}, valid_session
-        }.to change(Users, :count).by(1)
-      end
-    end
-  end
-
-
-  describe "POST create" do
+  describe "POST add" do
     describe "with valid params" do
       it "creates a new User" do
         expect {
-          post :add, {:user => valid_attributes}, valid_session
+          post :add, {username: 'greg', password: 'password'}, valid_session
         }.to change(Users, :count).by(1)
       end
 
-      it "assigns a newly created user as @user" do
-        post :create, {:gift => valid_attributes}, valid_session
-        assigns(:gift).should be_a(Gift)
-        assigns(:gift).should be_persisted
+      it "returns SUCCESS error code" do
+        post :add, {username: 'greg', password: 'password'}, valid_session
+        errCode = response_body["errCode"]
+        expect(errCode).to eq 1
       end
     end
+
+    describe "with invalid params" do
+      it "returns -4 for bad password" do
+        post :add, {username: 'greg', password: ''}, valid_session
+        errCode = response_body["errCode"]
+        expect(errCode).to eq -4
+      end
+
+      it "returns -3 for bad username" do
+        post :add, {username: 'a'*129, password: 'password'}, valid_session
+        errCode = response_body["errCode"]
+        expect(errCode).to eq -3
+      end
+
+      it "returns -2 when user already exists" do
+        Users.create!(username: 'greg', password: 'password')
+        post :add, {username: 'greg', password: 'password'}, valid_session
+        errCode = response_body["errCode"]
+        expect(errCode).to eq -2
+      end
+
+    end
   end
+
+  
+  describe "POST edit" do
+
+    describe "with valid params" do
+
+      it "successfully edits fields in database" do
+        Users.create!(username: 'greg', password: 'password')
+        post :edit, {username: 'greg', current_city: 'Mountain View'}, valid_session
+        user = Users.find_by(username: 'greg')
+        expect(user.current_city).to eq 'Mountain View'
+      end
+
+      it "returns correct error code for successful edit" do
+        Users.create!(username: 'greg', password: 'password')
+        post :edit, {username: 'greg', current_city: 'Mountain View'}, valid_session
+        errCode = response_body["errCode"]
+        expect(errCode).to eq 1
+      end
+
+    end
+
+    describe "with invalid params" do
+
+      it "returns error code of -5 when unauthorized user tries to edit" do
+        Users.create!(username: 'greg', password: 'password')
+        post :edit, {current_city: 'Mountain View'}, valid_session
+        errCode = response_body["errCode"]
+        expect(errCode).to eq -5
+      end
+
+    end
+
+
+
+    describe "POST search" do
+
+      it "returns ids of queried users" do
+        Users.create!(username: 'greg', password: 'password', real_name: 'greg')
+        Users.create!(username: 'notgreg', password: 'password', real_name: 'notgreg')
+        Users.create!(username: 'greg1', password: 'password', real_name: 'greg')
+        post :search, {real_name: 'greg'}, valid_session
+        arr = response_body["user_ids"]
+        expect(arr).to eq [1, 3]
+      end
+    end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 end

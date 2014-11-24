@@ -45,7 +45,6 @@ Rails.application.routes.draw do
   post 'users/setLocation', to: 'users#setLocation'
   post 'users/getLocation', to: 'users#getLocation'
 
-  post 'TEST/users/unitTests', to: 'users#runUnitTests'
   post 'TEST/resetFixture', to: 'users#resetFixture'
 
   # Example of regular route:

@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 	end
 
     def search()
-        user_ids = Users.search(params)
+        user_ids = Users.search(user_params)
         render json: {user_ids: user_ids}
     end
 
@@ -56,13 +56,9 @@ class UsersController < ApplicationController
         render json: {errCode: errCode}
     end
 
-	def runUnitTests()
-    output = User.runUnitTests()
-    last_line = output.lines.last
-    last_line_captured = /(?<totalTests>\d+) examples, (?<nrFailed>\d+) failures/.match(last_line)
-    totalTests = last_line_captured[:totalTests].to_i
-    nrFailed = last_line_captured[:nrFailed].to_i
-    render json: {nrFailed: nrFailed, output: output, totalTests: totalTests}
-  end
+    private
+      def user_params
+        params.permit(:id, :username, :password, :real_name, :level, :current_city, :available_hours, :total_gifts_given, :total_gifts_received, :score, :profile_url, :description)
+      end
 
 end
