@@ -169,6 +169,15 @@ class Gift < ActiveRecord::Base
     end
   end
 
+  def find_all_gifts_by_giver(giver_username)
+    gifts = Gift.where(giver: giver_username)
+    if gifts.present?
+      return gifts.to_json
+    else
+      return {errCode: -1}
+    end
+  end
+
   #Destroys the gift from the database
   def self.destroy()
     if self.valid?

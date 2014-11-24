@@ -75,6 +75,12 @@ class GiftsController < ApplicationController
     render json: output
   end
 
+  def find_all_gifts_by_giver
+    @username = params[:username]
+    output = Gift.find_all_gifts_by_giver(@username)
+    render json: output
+  end
+
   #the giver delivers the gift
   def deliver
     output = Gift.deliver(params[:gift][:id])

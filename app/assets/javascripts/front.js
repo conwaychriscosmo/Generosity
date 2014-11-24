@@ -140,6 +140,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.reputation = foundUser["score"];
 					self.bio = foundUser["description"];
 					self.profileUrl = foundUser["profile_url"];
+					self.getAllGiftsByGiverUsername();
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
@@ -319,16 +320,46 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 			self.profileUrl = "http://static.tumblr.com/isuwdsr/EBVlzsy8r/chris_redfield_avatar_by_ryann1220-d36hj2c.jpg";
 		};
 
-		self.makeIter = function(l) {
-			var f = [];
-			var i;
-			for(i = 0; i < l; i++) {
-				f[i] = i;
-			}
-			self.iter = f;
-		};
 
-		self.makeIter(5);
+	self.getAllGiftsByGiverUsername = function() {
+			// console.log(targetId);
+			$http.post('gifts/find_all_gifts_by_giver', {username: self.username}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					// self.errCode = data.errCode;
+					console.log(data);
+					// var foundGift = data["gifts"];
+					// var foundGift = data;
+					// // console.log(giftsList);
+					// if(!foundGift) {
+					// 	// alert("Error: User not found.");
+					// 	console.log("Error: Gift not found.");
+					// 	// $location.path('/');
+					// 	return;
+					// }
+					// self.name = foundGift.name;
+					// self.giver = foundGift.giver;
+					// self.recipient = foundGift.recipient;
+					// self.description = foundGift.description;
+					// self.rating = foundGift.rating;
+					// self.imageUrl = foundGift.url;
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					self.errCode = -99;
+					// alert("Error.");
+					console.log("Error.");
+				}).
+				then(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					// alert("Done.");
+					console.log("Done.");
+					return;
+				});
+		}
 
 		self.login = function(name, pw) {
 			$scope.message = "";
