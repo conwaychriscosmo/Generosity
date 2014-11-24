@@ -16,7 +16,6 @@ class SessionsController < ApplicationController
 
   def destroy
   	logout
-    #redirect_to root_url
     render json: {errCode: 1}
   end
 end
