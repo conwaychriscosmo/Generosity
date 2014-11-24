@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post 'gifts/create' => 'gifts#create'
   post 'gifts/destroy' => 'gifts#destroy'
   post 'gifts/find_gift' => 'gifts#find_gift'
+  post 'gifts/find_all_gifts_by_giver' => 'gifts#find_all_gifts_by_giver'
   post 'challenge/complete' => 'challenges#complete'
   post 'challenge/joinQueue' => 'challenges#joinQueue'
   post 'challenge/onQueue' => 'challenges#onQueue'
