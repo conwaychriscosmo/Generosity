@@ -525,7 +525,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		self.getChallengeForCurrentUser = function() {
 			// console.log(self.id);
 			self.code = $routeParams.code;
-			console.log("foo");
+			console.log(self.code);
 			self.hasCurrentChallenge = false;
 			$scope.challengeMessage = "";
 			if(self.code == -1) {
