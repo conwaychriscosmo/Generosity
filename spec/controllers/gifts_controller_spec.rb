@@ -29,10 +29,17 @@ describe GiftsController do
   # in order to pass any filters (e.g. authentication) defined in
   # GiftsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+ 
+  before(:each) do 
+    Gift.delete_all
+    Users.delete_all
+    Users.add({username: "Nick", password: "foo"})
+    Users.add({username: "John", password: "foo"})
+  end
 
   describe "GET index" do
     it "assigns all gifts as @gifts" do
-      gift = Gift.create! valid_attributes
+      gift = Gift.create("myGift", "www.google.com", "Nick")
       get :index, {}, valid_session
       assigns(:gifts).should eq([gift])
     end
@@ -40,7 +47,7 @@ describe GiftsController do
 
   describe "GET show" do
     it "assigns the requested gift as @gift" do
-      gift = Gift.create! valid_attributes
+      gift = Gift.create("myGift", "www.google.com", "Nick")
       get :show, {:id => gift.to_param}, valid_session
       assigns(:gift).should eq(gift)
     end
@@ -55,7 +62,7 @@ describe GiftsController do
 
   describe "GET edit" do
     it "assigns the requested gift as @gift" do
-      gift = Gift.create! valid_attributes
+      gift = Gift.create("myGift", "www.google.com", "Nick")
       get :edit, {:id => gift.to_param}, valid_session
       assigns(:gift).should eq(gift)
     end
@@ -101,7 +108,7 @@ describe GiftsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested gift" do
-        gift = Gift.create! valid_attributes
+        gift = Gift.create("myGift", "www.google.com", "Nick")
         # Assuming there are no other gifts in the database, this
         # specifies that the Gift created on the previous line
         # receives the :update_attributes message with whatever params are
@@ -111,13 +118,13 @@ describe GiftsController do
       end
 
       it "assigns the requested gift as @gift" do
-        gift = Gift.create! valid_attributes
+        gift = Gift.create("myGift", "www.google.com", "Nick")
         put :update, {:id => gift.to_param, :gift => valid_attributes}, valid_session
         assigns(:gift).should eq(gift)
       end
 
       it "redirects to the gift" do
-        gift = Gift.create! valid_attributes
+        gift = Gift.create("myGift", "www.google.com", "Nick")
         put :update, {:id => gift.to_param, :gift => valid_attributes}, valid_session
         response.should redirect_to(gift)
       end
@@ -125,7 +132,7 @@ describe GiftsController do
 
     describe "with invalid params" do
       it "assigns the gift as @gift" do
-        gift = Gift.create! valid_attributes
+        gift = Gift.create("myGift", "www.google.com", "Nick")
         # Trigger the behavior that occurs when invalid params are submitted
         Gift.any_instance.stub(:save).and_return(false)
         put :update, {:id => gift.to_param, :gift => {  }}, valid_session
@@ -133,7 +140,7 @@ describe GiftsController do
       end
 
       it "re-renders the 'edit' template" do
-        gift = Gift.create! valid_attributes
+        gift = Gift.create("myGift", "www.google.com", "Nick")
         # Trigger the behavior that occurs when invalid params are submitted
         Gift.any_instance.stub(:save).and_return(false)
         put :update, {:id => gift.to_param, :gift => {  }}, valid_session
@@ -144,14 +151,14 @@ describe GiftsController do
 
   describe "DELETE destroy" do
     it "destroys the requested gift" do
-      gift = Gift.create! valid_attributes
+      gift = Gift.create("myGift", "www.google.com", "Nick")
       expect {
         delete :destroy, {:id => gift.to_param}, valid_session
       }.to change(Gift, :count).by(-1)
     end
 
     it "redirects to the gifts list" do
-      gift = Gift.create! valid_attributes
+      gift = Gift.create("myGift", "www.google.com", "Nick")
       delete :destroy, {:id => gift.to_param}, valid_session
       response.should redirect_to(gifts_url)
     end
