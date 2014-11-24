@@ -71,7 +71,6 @@ class GiftsController < ApplicationController
     @id = params[:gift][:id]
     output = Gift.find_gift(@id)
     render json: output
-
   end
   #the giver delivers the gift
   def deliver

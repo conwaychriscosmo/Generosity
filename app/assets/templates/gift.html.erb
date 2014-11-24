@@ -1,18 +1,13 @@
 <div class="container-fluid" style="margin-top:-.2%" data-ng-init="profiledGift.getGiftFromUrlParams()">
-	<span class="profile-pic">
+	<div class = "usercard">
 		<img style="height:200px; width:200px" src="{{profiledGift.imageUrl}}"/>
-		<div>
 			{{profiledGift.name}}
-		</div>
-	</span>
-	<span class="profile-info">
-		<span class="tag">Giver: </span>{{profiledGift.giver}}
+		Giver: {{profiledGift.giver}}
 		<br>
-		<span class="tag">Recipient: </span>{{profiledGift.recipient}}
+		Recipient: {{profiledGift.recipient}}
 		<br>
-		<span class="tag">Rating: </span>{{profiledGift.rating}}/5
+				Rating: {{profiledGift.rating}}/5
+		<br>Description: {{profiledGift.description}}
 		<br>
-		<span class="tag">Description: </span>{{profiledGift.description}}
-		<br>
-	</span>
+	</div>
 </div>
