@@ -150,6 +150,17 @@ RSpec.describe Users, :type => :model do
 
 	end
 
+	describe "Users setLocation" do
+
+		it "should successfully set current_location" do
+			Users.add({username: 'greg', password: 'password', real_name: 'greg'})
+			Users.setLocation('greg', 'Soda Hall')
+			user = Users.find_by(username: 'greg')
+			expect(user.current_location).to eq 'Soda Hall'
+		end
+
+	end
+
 
 
 end

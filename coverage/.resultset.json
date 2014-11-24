@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/spec/spec_helper.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/spec/spec_helper.rb": [
         null,
         1,
         1,
@@ -67,14 +67,14 @@
         1,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/environment.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/application.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/config/application.rb": [
         1,
         null,
         1,
@@ -103,13 +103,13 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/boot.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/config/boot.rb": [
         null,
         1,
         null,
         1
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/environments/test.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/config/environments/test.rb": [
         1,
         null,
         null,
@@ -150,7 +150,7 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/initializers/assets.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/config/initializers/assets.rb": [
         null,
         null,
         null,
@@ -164,7 +164,7 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/initializers/backtrace_silencers.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -173,18 +173,18 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/initializers/cookies_serializer.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/config/initializers/cookies_serializer.rb": [
         null,
         null,
         1
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/initializers/filter_parameter_logging.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
         null,
         1
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/initializers/inflections.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/config/initializers/inflections.rb": [
         null,
         null,
         null,
@@ -202,18 +202,18 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/initializers/mime_types.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/config/initializers/mime_types.rb": [
         null,
         null,
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/initializers/session_store.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/config/initializers/session_store.rb": [
         null,
         null,
         1
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/initializers/wrap_parameters.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -229,7 +229,7 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/spec/factories/challenges.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/spec/factories/challenges.rb": [
         1,
         1,
         1,
@@ -238,7 +238,7 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/spec/factories/gifts.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/spec/factories/gifts.rb": [
         null,
         null,
         1,
@@ -246,7 +246,7 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/spec/factories/restaurants.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/spec/factories/restaurants.rb": [
         null,
         null,
         1,
@@ -255,7 +255,7 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/spec/factories/users.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/spec/factories/users.rb": [
         null,
         null,
         1,
@@ -266,7 +266,7 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/spec/factories/waitings.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/spec/factories/waitings.rb": [
         1,
         1,
         1,
@@ -274,7 +274,7 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/config/routes.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/config/routes.rb": [
         1,
         1,
         1,
@@ -288,6 +288,8 @@
         1,
         1,
         1,
+        1,
+        null,
         1,
         null,
         null,
@@ -373,19 +375,19 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/helpers/application_helper.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/helpers/challenges_helper.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/app/helpers/challenges_helper.rb": [
         1,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/helpers/gifts_helper.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/app/helpers/gifts_helper.rb": [
         1,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/helpers/sessions_helper.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/app/helpers/sessions_helper.rb": [
         1,
         null,
         1,
@@ -409,19 +411,19 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/helpers/tracker_helper.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/app/helpers/tracker_helper.rb": [
         1,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/helpers/user_helper.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/app/helpers/user_helper.rb": [
         1,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/helpers/users_helper.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/app/helpers/users_helper.rb": [
         1,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/models/users.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/app/models/users.rb": [
         1,
         null,
         1,
@@ -480,35 +482,38 @@
         null,
         null,
         1,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
+        0,
         null,
         null,
         null,
         1,
         null,
-        70,
-        70,
+        71,
+        71,
         null,
         null,
-        70,
-        70,
-        65,
-        65,
-        65,
-        65,
-        65,
-        65,
-        65,
-        65,
-        65,
-        65,
-        65,
-        65,
-        65,
-        65,
+        71,
+        71,
+        66,
+        66,
+        66,
+        66,
+        66,
+        66,
+        66,
+        66,
+        66,
+        66,
+        66,
+        66,
+        66,
+        66,
         null,
         null,
         null,
@@ -560,7 +565,7 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/models/challenge.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/app/models/challenge.rb": [
         1,
         null,
         1,
@@ -609,6 +614,27 @@
         null,
         null,
         1,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        1,
         5,
         5,
         5,
@@ -717,7 +743,7 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/spec/models/gift_spec.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/spec/models/gift_spec.rb": [
         1,
         null,
         1,
@@ -835,7 +861,7 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/models/gift.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/app/models/gift.rb": [
         1,
         1,
         1,
@@ -1020,7 +1046,7 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/spec/models/users_spec.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/spec/models/users_spec.rb": [
         null,
         1,
         null,
@@ -1029,15 +1055,8 @@
         1,
         null,
         1,
-        22,
-        22,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
+        23,
+        23,
         null,
         null,
         1,
@@ -1047,6 +1066,7 @@
         1,
         null,
         null,
+        1,
         1,
         1,
         1,
@@ -1065,6 +1085,12 @@
         1,
         null,
         null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
         null,
         null,
         1,
@@ -1121,13 +1147,6 @@
         null,
         null,
         1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
         1,
         1,
         1,
@@ -1169,6 +1188,24 @@
         1,
         1,
         null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
         null,
         null,
@@ -1177,7 +1214,7 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/spec/models/waiting_spec.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/spec/models/waiting_spec.rb": [
         1,
         null,
         1,
@@ -1268,18 +1305,18 @@
         null,
         null
       ],
-      "/Users/8man/iOS/potential-adventure/rails_projects/GenerosityEngine/app/models/waiting.rb": [
+      "/Users/gregorymonson/Desktop/CS169/Generosity/app/models/waiting.rb": [
         1,
         1,
         1,
         null,
         1,
-        84,
-        84,
-        84,
-        84,
+        85,
+        85,
+        85,
+        85,
         null,
-        84,
+        85,
         null,
         null,
         1,
@@ -1322,6 +1359,6 @@
         null
       ]
     },
-    "timestamp": 1416811369
+    "timestamp": 1416817569
   }
 }
