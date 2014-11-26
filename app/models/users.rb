@@ -25,8 +25,6 @@ class Users < ActiveRecord::Base
 	validates :password, length: {maximum: MAX_PASSWORD_LENGTH}
 	validates :password, length: {minimum: MIN_PASSWORD_LENGTH}
 
-
-
 	def self.errorCodes()
 		return {success: SUCCESS, badPassword: ERR_BAD_PASSWORD, badUsername: ERR_BAD_USERNAME,
 			userExists: ERR_USER_EXISTS, failedEdit: ERR_ACTION_NOT_AUTHORIZED, badRealName: ERR_REAL_NAME,

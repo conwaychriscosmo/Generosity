@@ -2,30 +2,120 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.input-group{
-	margin: 0 auto;
 
+
+h2{
+	font-family: Zapf Chancery, cursive;
+	font-size: 50px;
 }
 
+.input-group{
+	margin: 0 auto;
+	font-family: lato, sans-serif;
+
+}
 .input-group-addon{
-	color: #417C7C !important;
-	font-family: ‘Trebuchet MS’, Helvetica, sans-serif;
+	color: white !important;
+	font-family: lato, sans-serif;
 	font-size: 14px;
 }
 
 .usercard{
-	font-family: ‘Trebuchet MS’, Helvetica, sans-serif;
-	background-color: #757473;
+	padding: 30px;
+	box-shadow: rgba(58,69,94, .1) 0px 0px 1em inset, rgba(58,69,94, .1) 0px 0px 1em inset, rgba(58,69,94, .1) 0px 0px 1em inset, rgba(58,69,94, .1) 0px 0px 1em inset;
+	font-family: lato, sans-serif;
+	background-color: #1B1B28;
 	margin: 0 auto;
-	color: white;
+	color: white !important;
 	width: 600px;
-	border-radius: 29px 29px 8px 8px;
-	-moz-border-radius: 29px 29px 8px 8px;
-	-webkit-border-radius: 29px 29px 8px 8px;
-	border: 3px solid #ffffff;
-	background: rgba(58,69,94,.9);
+	background: rgba(27,27,40,.9);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf7fa', endColorstr='#8aacb5', GradientType=0 );
 }
+
+.panel {
+    width: 300px;
+    height: 500px;
+    margin: auto;
+    position: relative;
+}
+.card {
+    width: 100%;
+    height: 100%;
+    -o-transition: all .5s;
+    -ms-transition: all .5s;
+    -moz-transition: all .5s;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+    -webkit-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    top: 0px;
+    left: 0px;
+}
+.gift-front {
+		font-size: 35px;
+		line-height: 37px;
+		color: white;
+		padding: 30px;
+		width: 300px;
+		height: 500px;
+		background: rgba(27,27,40,.9);
+		position: absolute;
+    z-index: 2;
+     -webkit-backface-visibility: hidden;
+}
+.gift-back {
+		color: white;
+		font-size: 35px;
+		line-height: 37px;
+		font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+		padding: 30px;
+		width: 300px;
+		height: 500px;
+		background: rgba(27,27,40,.9);
+		position: absolute;
+    z-index: 1;
+    -webkit-transform: rotateX(-180deg);
+    -ms-transform: rotateX(-180deg);
+    -moz-transform: rotateX(-180deg);  
+    transform: rotateX(-180deg);  
+    -webkit-backface-visibility: hidden;
+}
+.panel:hover .gift-front {
+    z-index: 1;
+    -webkit-transform: rotateX(180deg);
+    -ms-transform: rotateX(180deg);
+    -moz-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+}
+
+.panel:hover .gift-back {
+    z-index: 2;   
+    -webkit-transform: rotateX(0deg);
+    -ms-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+}
+
+.giftholder {
+	opacity:0.9;
+	border-radius: 20px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding;
+	background-clip: padding-box;
+	-webkit-border-image: url("http://i.imgur.com/fPHajMl.jpg") 30 30 stretch;
+	color: black !important;
+	margin: 0 auto;
+	width: 60%;
+	text-align: center;
+	font-family: lato, sans-serif;
+	margin-top: 30px;
+	padding: 30px;
+	padding-bottom: 120px;
+	background-color: white;
+}
+
 .circlemage {
 		color: black;
     background-position: 50% 50%;
@@ -38,7 +128,7 @@
 }
 
 .profile_info{
-	font-family: ‘Trebuchet MS’, Helvetica, sans-serif;
+	font-family: lato, sans-serif;
 	padding-top: 30px;
 	margin: 0 auto;
 	width: 300px;
