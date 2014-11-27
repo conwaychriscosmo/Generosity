@@ -47,9 +47,16 @@ angular.module('generosity').controller('UserTestController', ['$scope', '$http'
 		}
 
 		self.testAPICalls = function() {
+			self.testErrCodes();
+			setTimeout(function() {
+				self.testAPIQueries();
+			}, 12000);
+		}
+
+		self.testErrCodes = function() {
 			var $scope = {};
 			self.sectionTests = 0;
-			self.messages.push("Running UsersController API call tests...");
+			self.messages.push("Running UsersController errCode tests...");
 			var userTestController = $controller('UsersController', { $scope: $scope });
 			userTestController.testing = true;
 			userTestController.createDummyUser();
@@ -59,7 +66,7 @@ angular.module('generosity').controller('UserTestController', ['$scope', '$http'
 			/*Add code to delete this user beforehand.*/
 			// errCode = $scope.err;
 			setTimeout(function() {
-				self.assert(userTestController.errCode === 1, "Error code is " + userTestController.errCode + ", but it should have been 1 (successful creation).");
+				self.assert(userTestController.errCode === 1, "Error code is " + userTestController.errCode + ", and it should have been 1 (successful creation).");
 				userTestController.addUser();
 			}, 2000);
 			setTimeout(function() {
@@ -75,9 +82,36 @@ angular.module('generosity').controller('UserTestController', ['$scope', '$http'
 			}, 7000);
 			setTimeout(function() {
 				console.log("YOLO");
-				self.assert(userTestController.errCode === -4, "Error code is " + userTestController.errCode + ", and it should be -4 (bad password). Password is " + userTestController.password + ", but it should be blank.");
-				userTestController.logout();
-				userTestController.deleteAll();
+				self.assert(userTestController.errCode === -4, "Error code is " + userTestController.errCode + ", and it should be -4 (bad password). Password is " + userTestController.password + ", and it should be blank.");
+				userTestController.logout();	//Teardown part 1
+				userTestController.deleteAll();	//Teardown part 2
 			}, 10000);
+		}
+
+		self.testAPIQueries = function() {
+			var $scope = {};
+			self.sectionTests = 0;
+			self.messages.push("Running UsersController API query tests...");
+			var userTestController = $controller('UsersController', { $scope: $scope });
+			userTestController.testing = true;
+			userTestController.createDummyUser();
+			userTestController.addUser();
+			var loadedUserTestController = $controller('UsersController', { $scope: $scope });			
+			$scope = {};
+			loadedUserTestController.testing = true;
+			setTimeout(function() {
+				self.assert(userTestController.errCode === 1, "Error code is " + userTestController.errCode + ", and it should be 1 (successful creation).");
+			}, 2000);
+			setTimeout(function() {
+				loadedUserTestController.getUserByUsername('LordChristopher');
+			}, 4000);
+			setTimeout(function() {
+				self.assert(loadedUserTestController.username === "LordChristopher", "Username is " + loadedUserTestController.username + ", and should be equal to 'LordChristopher'.");
+				self.assert(loadedUserTestController.realName === "Lord Christopher", "Real name is " + loadedUserTestController.realName + ", and should be equal to 'Lord Christopher'.");
+				self.assert(loadedUserTestController.availableHours === "6 to 11 pm", "Available hours are " + loadedUserTestController.availableHours + ", and should be equal to '6 to 11 pm'.");
+				self.assert(loadedUserTestController.currentCity === "Berkeley", "Current location is " + loadedUserTestController.currentCity + ", and should be equal to 'Berkeley'.");
+				loadedUserTestController.logout();	//Teardown part 1
+				loadedUserTestController.deleteAll();	//Teardown part 2
+			}, 7000);
 		}
 	}]);
