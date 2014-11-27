@@ -1,4 +1,23 @@
 class Challenge < ActiveRecord::Base
+
+  SUCCESS = 1
+  ERR_CHALLENGE_NOT_VALID = -101
+  ERR_GIVER_USERNAME_BLANK = -102
+  ERR_CHALLENGE_RECIPIENT_BLANK = -103
+  ERR_TOO_MANY_ATTEMPTS = -104
+  ERR_RECIPIENT_NOT_FOUND = -105
+  ERR_GIVER_NOT_FOUND = -106
+  ERR_NOT_SURE_WHAT_ERROR = -107
+  ERR_CHALLENGE_NOT_VALID_2 = -108
+  ERR_NOT_ENOUGH_USERS_TO_MATCH = -109
+  ERR_CHALLENGE_NOT_FOUND_BY_ID = -110
+  ERR_CHALLENGE_NOT_FOUND_BY_GIVER = -111
+  ERR_CHALLENGE_NOT_FOUND_BY_GIVER_2 = -112
+  ERR_NOT_ENOUGH_USERS_TO_MATCH_2 = -113
+  ERR_CHALLENGE_NOT_FOUND_BY_GIVER_3 = -114
+
+
+
   #@@id = 1
   def self.match(username)
   #pick a random user from the database to match with username
@@ -6,7 +25,7 @@ class Challenge < ActiveRecord::Base
     @challenge.Giver = username
     rec = Waiting.getRecipient
     count = Waiting.count
-    if rec[:errCode] != 1
+    if rec[:errCode] != SUCCESS
       output = rec
       return output
     end
@@ -21,7 +40,7 @@ class Challenge < ActiveRecord::Base
       else
         #the giver will have to wait for a new recipient and to recieve a gift
         Waiting.add(@challenge.Recipient)
-        output = { errCode: -1 }
+        output = { errCode: ERR_NOT_ENOUGH_USERS_TO_MATCH }
         return output
       end
     end
@@ -32,33 +51,33 @@ class Challenge < ActiveRecord::Base
       p '*'*50
       #@@id = @@id + 1
       @challenge.save
-      output = { errCode: 1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }
+      output = { errCode: SUCCESS, Giver: @challenge.Giver, Recipient: @challenge.Recipient }
     else
-      output = { errCode: -1 }
+      output = { errCode: ERR_CHALLENGE_NOT_VALID }
     end
     return output
   end
 
   def delete(challenge_id)
     Challenge.destroy_all(id: challenge_id)
-    output = {errCode: 1}
+    output = {errCode: SUCCESS}
     return output
   end
 
   def self.recipient_by_giver_id(userid)
     @giver = Users.find_by(id: userid)
     if @giver.blank?
-      return { errCode: -42 }
+      return { errCode: ERR_CHALLENGE_NOT_FOUND_BY_ID }
     end
     if @giver.username.blank?
-      return { errCode: -43 }
+      return { errCode: ERR_GIVER_USERNAME_BLANK }
     end
     @challenge = Challenge.find_by(Giver: @giver.username)
     if @challenge.blank?
-      return { errCode: -44 }
+      return { errCode: ERR_CHALLENGE_NOT_FOUND_BY_GIVER }
     end
     if @challenge.Recipient.blank?
-      return { errCode: -45 }
+      return { errCode: ERR_CHALLENGE_RECIPIENT_BLANK }
     end
     @recipient = Users.find_by(username: @challenge.Recipient)
     return @recipient.to_json
@@ -68,16 +87,15 @@ class Challenge < ActiveRecord::Base
 
   def self.current(giver)
     @challenge = Challenge.find_by(Giver: giver)
-    output = { errCode: -1 }
     if @challenge.nil?
       p 'challenge is nil'
       # challenge_id
       p '*'*50
-      return output
+      return { errCode: ERR_CHALLENGE_NOT_FOUND_BY_GIVER_2}
     end
     if @challenge
       recipientUser = Users.find_by(username: @challenge.Recipient)
-      output = { errCode: 1, Giver: @challenge.Giver, Recipient: @challenge.Recipient, description: recipientUser.description, availableHours: recipientUser.available_hours, currentCity: recipientUser.current_city, currentLocation: recipientUser.current_location, reputation: recipientUser.score }
+      output = { errCode: SUCCESS, Giver: @challenge.Giver, Recipient: @challenge.Recipient, description: recipientUser.description, availableHours: recipientUser.available_hours, currentCity: recipientUser.current_city, currentLocation: recipientUser.current_location, reputation: recipientUser.score }
     end
     return output
   end
@@ -89,16 +107,14 @@ class Challenge < ActiveRecord::Base
   #if a giver deletes their account, the recipient should be given a new giver in challenges, that is what rematch does
   def self.rematch(chall,attempts)
     if attempts > 50
-      output = {errCode: -2}
-      return output
+      return {errCode: ERR_TOO_MANY_ATTEMPTS}
     end
     @challenge = Challenge.new
     @challenge.Recipient = chall.Recipient
     offset = rand(Users.count)
     @rand_user = Users.offset(offset).first
     if @rand_user.blank?
-      output = Challenge.rematch(chall, attempts+1)
-      return output
+      return Challenge.rematch(chall, attempts+1)
     end
     goat = Challenge.find_by(Giver: @rand_user.username)
     if goat.nil?
@@ -110,11 +126,9 @@ class Challenge < ActiveRecord::Base
     if @challenge.Recipient == @challenge.Giver
       #if matched with self and more than one user, try again, else error
       if Users.count > 1
-        output = Challenge.rematch(chall, attempts+1)
-        return output
+        return Challenge.rematch(chall, attempts+1)
       else
-        output = { errCode: -2 }
-        return output
+        return { errCode: ERR_NOT_ENOUGH_USERS_TO_MATCH_2 }
       end
     end
     if @challenge.valid?
@@ -122,32 +136,28 @@ class Challenge < ActiveRecord::Base
       #@@id = @@id + 1
       @challenge.save
       chall.destroy
-      output = { errCode: -1, Giver: @challenge.Giver, Recipient: @challenge.Recipient }
+      return { errCode: ERR_NOT_SURE_WHAT_ERROR, Giver: @challenge.Giver, Recipient: @challenge.Recipient }
     else
-      output = { errCode: -2 }
+      return { errCode: ERR_CHALLENGE_NOT_VALID_2 }
     end
-    return output
   end
 
   def self.complete(username)
     @challenge = Challenge.find_by(Giver: username)
     #updates the user fields
-    output = { errCode: 1 }
+    output = { errCode: SUCCESS }
     if @challenge.blank?
-      output = {errCode: -1}
-      return output
+      return {errCode: ERR_CHALLENGE_NOT_FOUND_BY_GIVER_3}
     end
     giverName = @challenge.Giver
     recipientName = @challenge.Recipient
     giver = Users.find_by(username: giverName)
     recipient = Users.find_by(username: recipientName)
     if recipient.nil?
-      output = {errCode: -2}
-      return output
+      return {errCode: ERR_RECIPIENT_NOT_FOUND}
     end
     if giver.nil?
-      output = {errCode: -3}
-      return output
+      return {errCode: ERR_GIVER_NOT_FOUND}
     end
     q_output = Waiting.add(recipientName)
     given = giver.total_gifts_given
