@@ -101,7 +101,7 @@ class GiftsController < ApplicationController
     #create(giftname, gifturl, username)
     @id = gift_params[:giver]
     @user = Users.find_by(id: @id)
-    output = Gift.create(gift_params[:name], gift_params[:url], @user.username)
+    output = Gift.create(gift_params[:name], gift_params[:url], @user.username, gift_params[:bio])
     render json: output
  #   respond_to do |format|
   #    if @gift.save

@@ -108,11 +108,12 @@ class Gift < ActiveRecord::Base
   def self.runUnitTests()
     return %x[rspec spec/models/users_spec.rb]
   end
-  def self.create(name, url, username)
+  def self.create(name, url, username, description)
     @gift = Gift.new
     @gift.name = name
     #@gift.id = @@id
     @gift.url = url
+    @gift.description = description
     @gift.giver = username
     @gift.delivered = false
     @challenge = Challenge.find_by(Giver: username)

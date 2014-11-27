@@ -475,7 +475,8 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		self.addGift = function() {
 			var errCode;
 			$scope.message = "";
-			$http.post('gifts/create', {name: self.name, url: self.imageUrl, giver: $rootScope.id}).
+			
+			$http.post('gifts/create', {name: self.name1, url: self.imageUrl, bio: self.bio, giver: $rootScope.id}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
