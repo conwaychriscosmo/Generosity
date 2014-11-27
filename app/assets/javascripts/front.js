@@ -335,21 +335,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					console.log("data below");
 					console.log(data);
 					self.givenGifts = data;
-					// var foundGift = data["gifts"];
-					// var foundGift = data;
-					// // console.log(giftsList);
-					// if(!foundGift) {
-					// 	// alert("Error: User not found.");
-					// 	console.log("Error: Gift not found.");
-					// 	// $location.path('/');
-					// 	return;
-					// }
-					// self.name = foundGift.name;
-					// self.giver = foundGift.giver;
-					// self.recipient = foundGift.recipient;
-					// self.description = foundGift.description;
-					// self.rating = foundGift.rating;
-					// self.imageUrl = foundGift.url;
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
@@ -381,21 +366,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					console.log("data below");
 					console.log(data);
 					self.receivedGifts = data;
-					// var foundGift = data["gifts"];
-					// var foundGift = data;
-					// // console.log(giftsList);
-					// if(!foundGift) {
-					// 	// alert("Error: User not found.");
-					// 	console.log("Error: Gift not found.");
-					// 	// $location.path('/');
-					// 	return;
-					// }
-					// self.name = foundGift.name;
-					// self.giver = foundGift.giver;
-					// self.recipient = foundGift.recipient;
-					// self.description = foundGift.description;
-					// self.rating = foundGift.rating;
-					// self.imageUrl = foundGift.url;
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
@@ -468,7 +438,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		self.name;
 		self.giver;
 		self.recipient;
-		self.description;
+		self.bio;
 		self.rating;
 		self.imageUrl;
 
@@ -476,7 +446,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 			var errCode;
 			$scope.message = "";
 			
-			$http.post('gifts/create', {name: self.name1, url: self.imageUrl, bio: self.bio, giver: $rootScope.id}).
+			$http.post('gifts/create', {name: self.name, url: self.imageUrl, bio: self.bio, giver: $rootScope.id}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
@@ -530,7 +500,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.name = foundGift.name;
 					self.giver = foundGift.giver;
 					self.recipient = foundGift.recipient;
-					self.description = foundGift.description;
+					self.bio = foundGift.bio;
 					self.rating = foundGift.rating;
 					self.imageUrl = foundGift.url;
 				}).
@@ -554,7 +524,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 			self.name = "Shin Megami Tensei x Fire Emblem";
 			self.giver = "Atlus and Intelligent Systems";
 			self.recipient = "LordChristopher";
-			self.description = "Such hype. Must play. Wow.";
+			self.bio = "Such hype. Must play. Wow.";
 			self.rating = 5.0;
 			self.imageUrl="http://i1290.photobucket.com/albums/b531/orangepikmin333/shittypaintjob_zpscbf470a8.jpg";
 		};
