@@ -138,6 +138,9 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.reputation = foundUser["score"];
 					self.bio = foundUser["description"];
 					self.profileUrl = foundUser["profile_url"];
+					if(self.testing) {
+						return;
+					}
 					self.getAllGiftsByGiverUsername();
 					self.getAllGiftsByRecipientUsername();
 				}).
@@ -147,13 +150,47 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.errCode = -99;
 					// alert("Error.");
 					console.log("Error.");
+				});
+		}
+
+		self.getUserByUsername = function(targetUsername) {
+			// console.log(targetId);
+			$http.post('users/search', {username: targetUsername}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					// self.errCode = data.errCode;
+					var usersList = data["users"];
+					console.log(usersList);
+					if(usersList.length != 1) {
+						// alert("Error: User not found.");
+						console.log("Error: User not found.");
+						$location.path('/');
+						return;
+					}
+					var foundUser = usersList[0];
+					console.log(foundUser["username"]);
+					self.id = foundUser["id"];
+					self.username = foundUser["username"];
+					self.realName = foundUser["real_name"];
+					self.availableHours = foundUser["available_hours"];
+					self.currentCity = foundUser["current_city"];
+					self.currentLocation = foundUser["current_location"];
+					self.reputation = foundUser["score"];
+					self.bio = foundUser["description"];
+					self.profileUrl = foundUser["profile_url"];
+					if(self.testing) {
+						return;
+					}
+					self.getAllGiftsByGiverUsername();
+					self.getAllGiftsByRecipientUsername();
 				}).
-				then(function(data, status, headers, config) {
+				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
-					// alert("Done.");
-					console.log("Done.");
-					return;
+					self.errCode = -99;
+					// alert("Error.");
+					console.log("Error.");
 				});
 		}
 
