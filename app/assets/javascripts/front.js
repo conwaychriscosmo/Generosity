@@ -79,11 +79,9 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 
 		self.getUserFromCookie = function() {
 			var sessionCookie = $cookieStore.get('session');
-			console.log("YOLO");
 			if(!sessionCookie) {
 				return;
 			}
-			// console.log(self.sessionCookie);
 			$rootScope.id = sessionCookie["id"];
 			$rootScope.username = sessionCookie["username"];
 		}
@@ -94,23 +92,19 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 
 		self.getCurrentScopeUserFromCookie = function() {
 			var sessionCookie = $cookieStore.get('session');
-			console.log("YOLO");
 			if(!sessionCookie) {
 				return;
 			}
-			// console.log(self.sessionCookie);
 			self.id = sessionCookie["id"];
 			self.username = sessionCookie["username"];
 		}
 
 		self.getUserFromUrlParams = function() {
 			self.id = $routeParams.id;
-			// console.log(self.id);
 			self.getUserById(self.id);
 		}
 
 		self.getUserById = function(targetId) {
-			// console.log(targetId);
 			if(targetId == -13) { //Use a user spoof
 				self.createDummyUser();
 				return;
@@ -121,7 +115,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				// when the response is available
 					// self.errCode = data.errCode;
 					var usersList = data["users"];
-					console.log(usersList);
 					if(usersList.length != 1) {
 						// alert("Error: User not found.");
 						console.log("Error: User not found.");
@@ -129,7 +122,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 						return;
 					}
 					var foundUser = usersList[0];
-					console.log(foundUser["username"]);
 					self.username = foundUser["username"];
 					self.realName = foundUser["real_name"];
 					self.availableHours = foundUser["available_hours"];
@@ -154,14 +146,12 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		}
 
 		self.getUserByUsername = function(targetUsername) {
-			// console.log(targetId);
 			$http.post('users/search', {username: targetUsername}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
 					// self.errCode = data.errCode;
 					var usersList = data["users"];
-					console.log(usersList);
 					if(usersList.length != 1) {
 						// alert("Error: User not found.");
 						console.log("Error: User not found.");
@@ -169,7 +159,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 						return;
 					}
 					var foundUser = usersList[0];
-					console.log(foundUser["username"]);
 					self.id = foundUser["id"];
 					self.username = foundUser["username"];
 					self.realName = foundUser["real_name"];
@@ -202,14 +191,12 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		}
 
 		self.loadUserData = function(targetUsername, purpose) {
-			// console.log(targetUsername);
 			$http.post('users/search', {username: targetUsername}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
 					// self.errCode = data.errCode;
 					var usersList = data["users"];
-					console.log(usersList);
 					if(usersList.length != 1) {
 						// alert("Error: User not found.");
 						console.log("Error: User not found.");
@@ -220,21 +207,17 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.id = foundUser["id"];
 					self.username = foundUser["username"]; //Technically redundant
 					self.makeCookie(self.id, self.name);
-					console.log(self.id);
 
 					sessionCookie = $cookieStore.get('session');
 					// $rootScope.getUserFromCookie();
 					$rootScope.id = sessionCookie["id"];
 					document.cookie = "user_id=" + $rootScope.id
 					$rootScope.username = sessionCookie["username"];
-					console.log(sessionCookie);
 					if(purpose === 'login') {
 						if(self.testing) {
 							return;
 						}
 						rUrl = '/profile/' + $rootScope.id;
-						console.log(rUrl);
-						console.log($rootScope.id);
 						$location.path(rUrl);
 					}
 				}).
@@ -259,22 +242,18 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.errCode = data.errCode;
 					if(self.errCode == -2) {
 						// alert("Error: This username already exists.");
-						console.log("Error: This username already exists.");
 						$scope.message = "Error: This username already exists.";
 					}
 					else if(self.errCode == -3) {
 						// alert("Error: The username is empty, too long, or has invalid characters.");
-						console.log("Error: The username is empty, too long, or has invalid characters.");
 						$scope.message = "Error: The username is empty, too long, or has invalid characters.";
 					}
 					else if(self.errCode == -4) {
 						// alert("Error: The password is empty, too long, or has invalid characters.");
-						console.log("Error: The password is empty, too long/too short, or has invalid characters.");
 						$scope.message = "Error: The password is empty, too long, or has invalid characters.";
 					}
 					else if(self.errCode == -6) {
 						// alert("Error: The real name is empty, too long, or has invalid characters.");
-						console.log("Error: The real name is empty, too long, or has invalid characters.");
 						$scope.message = "As real names are no longer required, this branch should never execute.";
 					}
 					else {
@@ -290,7 +269,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.errCode = -99;
 					$scope.message = "The server appears to be having issues. Please try again later.";
 					// alert("Error.");
-					console.log("Error.");
 				});
 		}
 
@@ -306,7 +284,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.errCode = data.errCode;
 					if(self.errCode == -6) {
 						// alert("Error: The real name is empty, too long, or has invalid characters.");
-						console.log("Error: The real name is empty, too long, or has invalid characters.");
 						$scope.message = "As real names are no longer required, this branch should never execute.";
 					}
 					else {
@@ -341,7 +318,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 
 
 	self.getAllGiftsByGiverUsername = function() {
-			// console.log(targetId);
 			$http.post('gifts/find_all_gifts_by_giver', {username: self.username}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
@@ -365,7 +341,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		}
 
 		self.getAllGiftsByRecipientUsername = function() {
-			// console.log(targetId);
 			$http.post('gifts/find_all_gifts_by_recipient', {username: self.username}).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
@@ -383,7 +358,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
 					self.errCode = -99;
-					// alert("Error.");
 					console.log("Error.");
 				});
 		}
@@ -397,12 +371,9 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					// self.errCode = data.errCode;
 					self.errCode = data.errCode;
 					if(self.errCode == -1) {
-						// alert("Login failed.");
-						console.log("Login failed.");
 						$scope.message = "The username and password do not match.";
 					}
 					else {
-						// alert("Login succeeded.");
 						console.log("Login succeeded.");
 						self.password = "";
 						self.loadUserData(self.username, 'login');
@@ -414,7 +385,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				// or server returns response with an error status.
 					self.errCode = -99;
 					$scope.message = "The server appears to be having issues. Please try again later.";
-					console.log("Error.");
 				});
 		};
 
@@ -594,9 +564,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		};
 
 		self.getChallengeForCurrentUser = function() {
-			// console.log(self.id);
 			self.code = $routeParams.code;
-			console.log(self.code);
 			self.hasCurrentChallenge = false;
 			$scope.challengeMessage = "";
 			if(self.code == -1) {
@@ -620,18 +588,12 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 						console.log("Challenge retrieved.");	
 						$scope.challengeMessage = "";
 						self.hasCurrentChallenge = true;	
-						console.log(data);
-						console.log(data.Giver);
-						console.log(data.Recipient);
 						self.description = data.description;
 						self.availableHours = data.availableHours;
 						self.currentCity = data.currentCity;
 						self.currentLocation = data.currentLocation;
 						self.reputation = data.reputation;
 					}
-					console.log(errCode);
-					console.log($scope.challengeMessage);
-					// $rootScope.errCode = data.errCode;
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
@@ -656,7 +618,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 						self.onQueue = true;
 					}
 					else {
-						console.log("You are currently not on the queue.");	
 						$scope.queueMessage = "You are currently not on the queue.";
 						self.onQueue = false;					
 					}
