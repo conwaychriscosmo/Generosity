@@ -35,8 +35,7 @@ class Challenge < ActiveRecord::Base
       #if matched with self and more than one user, try again, else error
       if Waiting.count > 0
         Waiting.add(@challenge.Recipient)
-        output = Challenge.match(username)
-        return output
+        return Challenge.match(username)
       else
         #the giver will have to wait for a new recipient and to recieve a gift
         Waiting.add(@challenge.Recipient)
@@ -95,9 +94,8 @@ class Challenge < ActiveRecord::Base
     end
     if @challenge
       recipientUser = Users.find_by(username: @challenge.Recipient)
-      output = { errCode: SUCCESS, Giver: @challenge.Giver, Recipient: @challenge.Recipient, description: recipientUser.description, availableHours: recipientUser.available_hours, currentCity: recipientUser.current_city, currentLocation: recipientUser.current_location, reputation: recipientUser.score }
+      return { errCode: SUCCESS, Giver: @challenge.Giver, Recipient: @challenge.Recipient, description: recipientUser.description, availableHours: recipientUser.available_hours, currentCity: recipientUser.current_city, currentLocation: recipientUser.current_location, reputation: recipientUser.score }
     end
-    return output
   end
 
   #returns the current challenge if there is one for this user

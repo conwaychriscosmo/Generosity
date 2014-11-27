@@ -26,7 +26,7 @@ RSpec.describe Challenge, :type => :model  do
       it "should throw an error given no users" do
         Users.add({username: 'greg', password: 'iloveme'})
         output = Challenge.match('greg')
-        hsh = {errCode: -1 }
+        hsh = {errCode: -109 }
         expect(output).to eq hsh
       end
 
@@ -83,7 +83,7 @@ RSpec.describe Challenge, :type => :model  do
       it "should return the error json because there is no current challenge" do
         Users.add({username: 'fred', password: 'iloveme'})
         challenge = Challenge.current('fred')
-        hsh = { errCode: -1 }
+        hsh = { errCode: -112 }
         expect(challenge).to eq(hsh)
       end
 
@@ -92,7 +92,7 @@ RSpec.describe Challenge, :type => :model  do
         Users.add({username: 'joe', password: 'iloveme'})
         Challenge.match('fred')
         challenge = Challenge.current('joe')
-        hsh = { errCode: -1 }
+        hsh = { errCode: -112 }
         expect(challenge).to eq(hsh)
       end
 
@@ -123,7 +123,7 @@ RSpec.describe Challenge, :type => :model  do
       end
 
 
-      it "should return an errCode of -3 if the giver is deleted" do
+      it "should return an errCode of -106 if the giver is deleted" do
         Users.add({username: 'fred', password: 'iloveme'})
         Users.add({username: 'george', password: 'iloveme'})
         Challenge.match('george') #George -> Fred
@@ -131,7 +131,7 @@ RSpec.describe Challenge, :type => :model  do
         Users.destroy_all(:username => 'george')
         output = Challenge.complete('george')
         output1 = { errCode: output[:errCode] }
-        hsh = { errCode: -3 }
+        hsh = { errCode: -106 }
         expect(output1).to eq(hsh)
       end
 
