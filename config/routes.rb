@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   post 'users/edit', to: 'users#edit'
   post 'users/search', to: 'users#search'
   post 'users/delete', to: 'users#delete'
+  post 'users/purge', to: 'users#purge'
   post 'users/setLocation', to: 'users#setLocation'
   post 'users/getLocation', to: 'users#getLocation'
 

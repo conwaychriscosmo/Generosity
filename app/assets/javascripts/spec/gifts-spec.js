@@ -40,7 +40,7 @@ angular.module('generosity').controller('GiftTestController', ['$scope', '$http'
 			self.assert(giftTestController.name === "Shin Megami Tensei x Fire Emblem", "Name is " + giftTestController.name + ", and should be equal to 'Shin Megami Tensei x Fire Emblem'.");
 			self.assert(giftTestController.giver === "Atlus and Intelligent Systems", "Giver is " + giftTestController.giver + ", and should be equal to 'Atlus and Intelligent Systems'.");
 			self.assert(giftTestController.recipient === "LordChristopher", "Recipient is " + giftTestController.recipient + ", and should be equal to 'LordChristopher'.");
-			self.assert(giftTestController.description === "Such hype. Must play. Wow.", "Description is " + giftTestController.description + ", and should be equal to 'Such hype. Must play. Wow.'.");
+			self.assert(giftTestController.bio === "Such hype. Must play. Wow.", "Bio is " + giftTestController.bio + ", and should be equal to 'Such hype. Must play. Wow.'.");
 			self.assert(giftTestController.rating === 5.0, "Rating is " + giftTestController.rating + ", and should be equal to 5.0.");
 		}
 

@@ -44,9 +44,6 @@ angular.module('generosity').controller('UserTestController', ['$scope', '$http'
 			self.assert(userTestController.currentCity === "Berkeley", "Current location is " + userTestController.currentCity + ", and should be equal to 'Berkeley'.");
 			self.assert(userTestController.currentLocation === "Nowhere", "Current location is " + userTestController.currentLocation + ", and should be not equal to 'Nowhere'.");
 			self.assert(userTestController.recipient === "He whose name shall not be spoken", "Recipient is " + userTestController.recipient + ", and should be equal to 'He whose name shall not be spoken'.");
-			setTimeout(function() {
-				console.log("Testing timeouts.");
-			}, 2000);
 		}
 
 		self.testAPICalls = function() {
@@ -54,6 +51,7 @@ angular.module('generosity').controller('UserTestController', ['$scope', '$http'
 			self.sectionTests = 0;
 			self.messages.push("Running UsersController API call tests...");
 			var userTestController = $controller('UsersController', { $scope: $scope });
+			userTestController.testing = true;
 			userTestController.createDummyUser();
 			userTestController.addUser();
 			// console.log("yolo");
@@ -78,6 +76,8 @@ angular.module('generosity').controller('UserTestController', ['$scope', '$http'
 			setTimeout(function() {
 				console.log("YOLO");
 				self.assert(userTestController.errCode === -4, "Error code is " + userTestController.errCode + ", and it should be -4 (bad password). Password is " + userTestController.password + ", but it should be blank.");
+				userTestController.logout();
+				userTestController.deleteAll();
 			}, 10000);
 		}
 	}]);

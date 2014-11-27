@@ -43,6 +43,15 @@ class UsersController < ApplicationController
         render json: {errCode: errCode}
     end
 
+    def purge()
+        if Rails.env == "development"
+            errCode = Users.all.delete_all
+        else
+            errCode = Users.errorCodes()[:notTestingMode]
+        end
+        render json: {errCode: errCode}
+    end
+
     def resetFixture()
         if TESTING
             errCode = Users.resetFixture

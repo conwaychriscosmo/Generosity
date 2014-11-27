@@ -192,6 +192,9 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					$rootScope.username = sessionCookie["username"];
 					console.log(sessionCookie);
 					if(purpose === 'login') {
+						if(self.testing) {
+							return;
+						}
 						rUrl = '/profile/' + $rootScope.id;
 						console.log(rUrl);
 						console.log($rootScope.id);
@@ -428,7 +431,32 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		};
 
 		self.deleteAll = function() {
-
+			$scope.message = "";
+			$http.post('users/purge', {}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					// self.errCode = data.errCode;
+					self.errCode = data.errCode;
+					if(self.errCode < 0) {
+						// alert("Login failed.");
+						console.log("Purge failed.");
+						$scope.message = "The purge has failed.";
+					}
+					else {
+						// alert("Login succeeded.");
+						console.log("No signs of life remain.");
+						$scope.message = "No signs of life remain.";
+					}
+					console.log("Purge errCode: "+ self.errCode);
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					self.errCode = -99;
+					$scope.message = "The server appears to be having issues. Please try again later.";
+					console.log("Error.");
+				});
 		};
 	}])
 
