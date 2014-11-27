@@ -244,13 +244,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.errCode = -99;
 					// alert("Error.");
 					console.log("Error.");
-				}).
-				then(function(data, status, headers, config) {
-				// called asynchronously if an error occurs
-				// or server returns response with an error status.
-					// alert("Done.");
-					console.log("Done.");
-					return;
 				});
 		}
 
@@ -298,13 +291,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					$scope.message = "The server appears to be having issues. Please try again later.";
 					// alert("Error.");
 					console.log("Error.");
-				}).
-				then(function(data, status, headers, config) {
-				// called asynchronously if an error occurs
-				// or server returns response with an error status.
-					// alert("Done.");
-					console.log("Done.");
-					return;
 				});
 		}
 
@@ -337,13 +323,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					$scope.message = "The server appears to be having issues. Please try again later.";
 					// alert("Error.");
 					console.log("Error.");
-				}).
-				then(function(data, status, headers, config) {
-				// called asynchronously if an error occurs
-				// or server returns response with an error status.
-					// alert("Done.");
-					console.log("Done.");
-					return;
 				});
 		}
 
@@ -382,13 +361,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.errCode = -99;
 					// alert("Error.");
 					console.log("Error.");
-				}).
-				then(function(data, status, headers, config) {
-				// called asynchronously if an error occurs
-				// or server returns response with an error status.
-					// alert("Done.");
-					console.log("Done.");
-					return;
 				});
 		}
 
@@ -413,13 +385,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.errCode = -99;
 					// alert("Error.");
 					console.log("Error.");
-				}).
-				then(function(data, status, headers, config) {
-				// called asynchronously if an error occurs
-				// or server returns response with an error status.
-					// alert("Done.");
-					console.log("Done.");
-					return;
 				});
 		}
 
@@ -450,13 +415,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.errCode = -99;
 					$scope.message = "The server appears to be having issues. Please try again later.";
 					console.log("Error.");
-				}).
-				then(function(data, status, headers, config) {
-				// called asynchronously if an error occurs
-				// or server returns response with an error status.
-					// alert("Done.");
-					console.log("Done.");
-					return;
 				});
 		};
 
@@ -575,13 +533,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.errCode = -99;
 					// alert("Error.");
 					console.log("Error.");
-				}).
-				then(function(data, status, headers, config) {
-				// called asynchronously if an error occurs
-				// or server returns response with an error status.
-					// alert("Done.");
-					console.log("Done.");
-					return;
 				});
 		}
 
