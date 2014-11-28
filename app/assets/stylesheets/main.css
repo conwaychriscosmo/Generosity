@@ -27,11 +27,35 @@ a {
 	width: 100%;
 	height: 100%;
 }
+@media (min-width: 1700px) {
+  .title{
+	color: aliceblue;
+	margin-top: 15%;
+	margin-left: 25%;
+	width: 100%;
+	text-align: center;
+	font-family: lato, sans-serif;
+	font-weight: 200;
+	font-size: 200px;
+}
+}
+
+@media (max-width: 1700px) {
+  .title{
+	color: aliceblue;
+	margin-top: 15%;
+	width: 100%;
+	text-align: center;
+	font-family: lato, sans-serif;
+	font-weight: 200;
+	font-size: 200px;
+}
+}
 
 body{
 	/*background:url(http://i.imgur.com/lGjlXUF.gif)no-repeat;*/
-	background:url(http://i.imgur.com/xOxiA6m.gif);
-	background-size: 2000px 1500px;
+	background:url(http://i.imgur.com/AU8lTBE.gif) fixed right top;
+	background-size: cover;
 }
 
 .main-content {

@@ -21,6 +21,11 @@ h2{
 }
 
 .usercard{
+	-webkit-transition: all 3s ease;
+  -moz-transition: all 3s ease;
+  -ms-transition: all 3s ease;
+  -o-transition: all 3s ease;
+  transition: all 3s ease;
 	padding: 30px;
 	box-shadow: rgba(58,69,94, .1) 0px 0px 1em inset, rgba(58,69,94, .1) 0px 0px 1em inset, rgba(58,69,94, .1) 0px 0px 1em inset, rgba(58,69,94, .1) 0px 0px 1em inset;
 	font-family: lato, sans-serif;
