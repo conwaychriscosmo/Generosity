@@ -20,12 +20,26 @@ h2{
 	font-size: 14px;
 }
 
+@-webkit-keyframes fade {
+  0% {
+      opacity: 0;
+  }
+  
+  10% {
+      opacity: 1;
+  }
+  
+  90% {
+      opacity: 1;
+  }
+  
+  100% {
+      opacity: 1;
+  }
+}
 .usercard{
-	-webkit-transition: all 3s ease;
-  -moz-transition: all 3s ease;
-  -ms-transition: all 3s ease;
-  -o-transition: all 3s ease;
-  transition: all 3s ease;
+	-webkit-animation: fade 6s;
+  -webkit-animation-fill-mode: both;
 	padding: 30px;
 	box-shadow: rgba(58,69,94, .1) 0px 0px 1em inset, rgba(58,69,94, .1) 0px 0px 1em inset, rgba(58,69,94, .1) 0px 0px 1em inset, rgba(58,69,94, .1) 0px 0px 1em inset;
 	font-family: lato, sans-serif;
@@ -38,6 +52,8 @@ h2{
 }
 
 .panel {
+		-webkit-animation: fade 6s;
+  	-webkit-animation-fill-mode: both;
     width: 300px;
     height: 500px;
     margin: auto;
@@ -104,6 +120,8 @@ h2{
 }
 
 .giftholder {
+	-webkit-animation: fade 6s;
+  -webkit-animation-fill-mode: both;
 	opacity:0.9;
 	border-radius: 20px;
 	-moz-background-clip: padding;
@@ -116,7 +134,7 @@ h2{
 	text-align: center;
 	font-family: lato, sans-serif;
 	margin-top: 30px;
-	padding: 30px;
+	padding-top:100px;
 	padding-bottom: 120px;
 	background-color: white;
 }
