@@ -445,8 +445,32 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				// when the response is available
 					var errCode = data.errCode;
 					/*We need actual error codes for this.*/
-					if(errCode == -1) {
-						$scope.message = "Error: Invalid gift.";
+					if(errCode == -2) {
+						$scope.message = "Error: There is no giver.";
+					}
+					else if(errCode == -3) {
+						$scope.message = "Error: The gift is blank.";
+					}
+					else if(errCode == -4) {
+						$scope.message = "Error: There is an issue with completing the challenge.";
+					}
+					else if(errCode == -5) {
+						$scope.message = "Error: The gift is nil.";
+					}
+					else if(errCode == -6) {
+						$scope.message = "Error: There is no recipient.";
+					}
+					else if(errCode == -7) {
+						$scope.message = "Error: You don't have a challenge.";
+					}
+					else if(errCode == -8) {
+						$scope.message = "Error: You need to give the gift a name!";
+					}
+					else if(errCode == -9) {
+						$scope.message = "Error: The gift failed to save.";
+					}
+					else if(errCode == -10) {
+						$scope.message = "Error: The gift is invalid.";
 					}
 					else {
 						alert("Gift Created!")
