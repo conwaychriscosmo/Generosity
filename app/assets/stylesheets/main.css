@@ -125,6 +125,7 @@ body{
 
 
 .navbar-default {
+	max-height: 100px;
 	position: fixed;
 	padding-left: 30px;
 	padding-right: 30px;

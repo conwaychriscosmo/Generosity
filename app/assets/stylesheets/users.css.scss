@@ -38,6 +38,8 @@ h2{
   }
 }
 .usercard{
+	border-radius: 25px;
+	-webkit-border-image: url("http://www.clipartbest.com/cliparts/dc7/odz/dc7odzRc9.png") 10 10 stretch;
 	-webkit-animation: fade 6s;
   -webkit-animation-fill-mode: both;
 	padding: 30px;

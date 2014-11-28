@@ -580,7 +580,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				// when the response is available
 					var errCode = data.errCode;
 					/*We need actual error codes for this.*/
-					if(errCode == -1) {
+					if(errCode != 1) {
 						//This should later be changed to put this person on a queue.
 						$scope.challengeMessage = "You currently do not have a challenge.";
 					}
