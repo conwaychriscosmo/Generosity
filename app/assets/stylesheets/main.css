@@ -14,7 +14,7 @@ li {
 }
 
 a {
-	color: white;
+	color: aliceblue !important;
 }
 
 #over {
@@ -55,15 +55,21 @@ a {
 body{
 	/*background:url(http://i.imgur.com/lGjlXUF.gif)no-repeat;*/
 	background:url(http://i.imgur.com/AU8lTBE.gif) fixed right top;
-	background-size: cover;
 }
+
+@media (max-width: 1400px) {
+	body{
+	background-size: cover !important;
+}
+}
+
 
 .main-content {
 	padding-top:5%;
 }
 
 .input-group-addon{
-	color: white;
+	color: black;
 	font-family: Arial, Helvetica, sans-serif;
 	line-height: 18px;
 	font-weight: bold;
@@ -136,7 +142,7 @@ body{
 }
 
 .navbar-brand {
-	color: white;
+	color: aliceblue !important;
 }
 
 .navbar-nav {

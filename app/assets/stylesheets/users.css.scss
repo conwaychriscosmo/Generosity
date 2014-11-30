@@ -5,18 +5,18 @@
 
 
 h2{
-	font-family: Zapf Chancery, cursive;
+	font-family: raleway;
 	font-size: 50px;
 }
 
 .input-group{
 	margin: 0 auto;
-	font-family: lato, sans-serif;
+	font-family: raleway, sans-serif;
 
 }
 .input-group-addon{
-	color: white !important;
-	font-family: lato, sans-serif;
+	color: black !important;
+	font-family: raleway, sans-serif;
 	font-size: 14px;
 }
 
@@ -38,19 +38,18 @@ h2{
   }
 }
 .usercard{
-	border-radius: 25px;
-	-webkit-border-image: url("http://www.clipartbest.com/cliparts/dc7/odz/dc7odzRc9.png") 10 10 stretch;
+	padding: 30px;
 	-webkit-animation: fade 6s;
   -webkit-animation-fill-mode: both;
-	padding: 30px;
-	box-shadow: rgba(58,69,94, .1) 0px 0px 1em inset, rgba(58,69,94, .1) 0px 0px 1em inset, rgba(58,69,94, .1) 0px 0px 1em inset, rgba(58,69,94, .1) 0px 0px 1em inset;
-	font-family: lato, sans-serif;
-	background-color: #1B1B28;
+	-webkit-box-shadow: 0px 2px 11px 0px rgba(39, 50, 50, 1);
+	-moz-box-shadow:    0px 2px 11px 0px rgba(39, 50, 50, 1);
+	box-shadow:         0px 2px 11px 0px rgba(39, 50, 50, 1);
+	font-family: raleway, sans-serif;
+	background-color: rgba(240, 248, 255, .97);
 	margin: 0 auto;
-	color: white !important;
+	color: black !important;
 	width: 600px;
-	background: rgba(27,27,40,.9);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf7fa', endColorstr='#8aacb5', GradientType=0 );
+	opacity: .8 !important;
 }
 
 .panel {
@@ -60,8 +59,10 @@ h2{
     height: 500px;
     margin: auto;
     position: relative;
+    background-color: rgba(240, 248, 255, .97);
 }
 .card {
+		background-color: rgba(240, 248, 255, .97);
     width: 100%;
     height: 100%;
     -o-transition: all .5s;
@@ -77,6 +78,10 @@ h2{
     left: 0px;
 }
 .gift-front {
+			-webkit-box-shadow: 0px 2px 11px 0px rgba(39, 50, 50, 1);
+	-moz-box-shadow:    0px 2px 11px 0px rgba(39, 50, 50, 1);
+	box-shadow:         0px 2px 11px 0px rgba(39, 50, 50, 1);
+		background-color: rgba(240, 248, 255, .97);
 		font-size: 35px;
 		line-height: 37px;
 		color: white;
@@ -89,6 +94,9 @@ h2{
      -webkit-backface-visibility: hidden;
 }
 .gift-back {
+		-webkit-box-shadow: 0px 2px 11px 0px rgba(39, 50, 50, 1);
+	-moz-box-shadow:    0px 2px 11px 0px rgba(39, 50, 50, 1);
+	box-shadow:         0px 2px 11px 0px rgba(39, 50, 50, 1);
 		color: white;
 		font-size: 35px;
 		line-height: 37px;
@@ -122,6 +130,10 @@ h2{
 }
 
 .giftholder {
+		-webkit-box-shadow: 0px 2px 11px 0px rgba(39, 50, 50, 1);
+	-moz-box-shadow:    0px 2px 11px 0px rgba(39, 50, 50, 1);
+	box-shadow:         0px 2px 11px 0px rgba(39, 50, 50, 1);
+	display: inline-block;
 	-webkit-animation: fade 6s;
   -webkit-animation-fill-mode: both;
 	opacity:0.9;
@@ -129,16 +141,16 @@ h2{
 	-moz-background-clip: padding;
 	-webkit-background-clip: padding;
 	background-clip: padding-box;
-	-webkit-border-image: url("http://i.imgur.com/fPHajMl.jpg") 30 30 stretch;
 	color: black !important;
 	margin: 0 auto;
-	width: 60%;
+	width: 49%;
+	min-width: 600px;
 	text-align: center;
-	font-family: lato, sans-serif;
+	font-family: raleway, sans-serif;
 	margin-top: 30px;
 	padding-top:100px;
 	padding-bottom: 120px;
-	background-color: white;
+	background-color: rgba(240, 248, 255, .93);
 }
 
 .circlemage {
@@ -153,7 +165,7 @@ h2{
 }
 
 .profile_info{
-	font-family: lato, sans-serif;
+	font-family: raleway, sans-serif;
 	padding-top: 30px;
 	margin: 0 auto;
 	width: 300px;
