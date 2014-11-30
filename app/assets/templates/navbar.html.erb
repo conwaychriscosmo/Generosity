@@ -22,7 +22,7 @@
 		      	</ul>
 		     	<form class="navbar-form navbar-left" role="search">
 		        	<div class="form-group">
-		         		<input type="text" class="form-control" placeholder="Search users">
+		         		<input type="text" data-ng-model="searchUser" class="form-control" placeholder="Search users">
 		        	</div>
 		        	<button type="submit" class="btn btn-default">Search</button>
 		     	</form>
@@ -48,4 +48,11 @@
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 	</nav>	
+</div>
+
+<div data-ng-if="searchUser == 'really feeling it'" data-ng-show="false">
+	<iframe width="560" height="315" src="//www.youtube.com/embed/V4vCEHpv6Hg?autoplay=1&loop=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<div data-ng-if="searchUser == 'time to tip the scales'" data-ng-show="false">
+	<iframe width="560" height="315" src="//www.youtube.com/embed/Bio99hoZVYI?autoplay=1&loop=1" frameborder="0" allowfullscreen></iframe>
 </div>
