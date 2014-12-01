@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201094052) do
+ActiveRecord::Schema.define(version: 20141201191100) do
 
   create_table "challenges", force: true do |t|
     t.string   "Giver"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20141201094052) do
     t.text     "review"
     t.boolean  "delivered"
     t.string   "description"
+    t.boolean  "reviewed?",   default: false
   end
 
   create_table "users", force: true do |t|
