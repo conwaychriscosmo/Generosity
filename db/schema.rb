@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127012756) do
+ActiveRecord::Schema.define(version: 20141201094052) do
 
   create_table "challenges", force: true do |t|
     t.string   "Giver"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20141127012756) do
     t.string   "profile_url"
     t.boolean  "is_available"
     t.string   "current_city"
-    t.text     "available_hours",      default: "--- []\n"
+    t.string   "available_hours",      default: "--- []\n"
     t.integer  "level"
     t.integer  "total_gifts_given"
     t.integer  "score"
