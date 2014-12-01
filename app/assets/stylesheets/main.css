@@ -55,11 +55,20 @@ a {
 body{
 	/*background:url(http://i.imgur.com/lGjlXUF.gif)no-repeat;*/
 	background:url(http://i.imgur.com/AU8lTBE.gif) fixed right top;
+
 }
 
 @media (max-width: 1400px) {
 	body{
 	background-size: cover !important;
+}
+}
+@media (min-width: 1400px){
+	body{
+	/*background:url(http://i.imgur.com/lGjlXUF.gif)no-repeat;*/
+	background:url(http://i.imgur.com/AU8lTBE.gif) fixed right top;
+	background-size: 1000px 1500px;
+
 }
 }
 
@@ -100,7 +109,6 @@ body{
 .profile-pic {
 	box-shadow: rgba(0,0,0,0.2) 0px 2px 3px, inset rgba(0,0,0,0.2) 0px -1px 2px;
 	border-radius: 25px;
-	/*background: url(http://i.imgur.com/VJeDMMe.jpg) no-repeat fixed;*/
 	float: left;
 	word-wrap: break-word;
 	/*margin-left: 27%;*/
@@ -130,6 +138,12 @@ body{
 }
 
 
+@media (max-width: 300px){
+	.navbar-default{
+		display: none;
+	}
+}
+
 .navbar-default {
 	max-height: 100px;
 	position: fixed;
@@ -138,7 +152,7 @@ body{
 	background: linear-gradient(to bottom, rgba(35, 33, 51, 1),  rgba(12, 133, 200, 0));
 	color: white;
 	z-index: 100;
-	/*position: fixed;*/
+	position: fixed;
 }
 
 .navbar-brand {
