@@ -363,6 +363,30 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 		}
 
 		self.login = function(name, pw) {
+			$http.post('gifts/find_all_gifts_by_recipient', {username: self.username}).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					// self.errCode = data.errCode;
+					if(data['errCode'] == -1) {
+						console.log("This user has no received gifts.");
+						return;
+					}
+					console.log("data below");
+					console.log(data);
+					self.receivedGifts = data;
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					self.errCode = -99;
+					console.log("Error.");
+				});
+			console.log("loggin in")
+			console.log(navigator.geolocation.getCurrentPosition(showPosition))
+			function showPosition(position) {
+    		console.log (position.coords) 
+			}
 			$scope.message = "";
 			$http.post('login', {username: name, password: pw}).
 				success(function(data, status, headers, config) {
