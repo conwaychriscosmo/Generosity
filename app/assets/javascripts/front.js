@@ -143,6 +143,8 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					}
 					self.getAllGiftsByGiverUsername();
 					self.getAllGiftsByRecipientUsername();
+					// console.log(self.givenGifts);
+					// console.log(self.receivedGifts);
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
@@ -331,7 +333,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				// this callback will be called asynchronously
 				// when the response is available
 					// self.errCode = data.errCode;
-					if(data['errCode'] == -1) {
+					if(data['errCode'] == -16) {
 						console.log("This user has given no gifts.");
 						return;
 					}
@@ -354,7 +356,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				// this callback will be called asynchronously
 				// when the response is available
 					// self.errCode = data.errCode;
-					if(data['errCode'] == -1) {
+					if(data['errCode'] == -17) {
 						console.log("This user has no received gifts.");
 						return;
 					}
