@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
   resources :challenges
 
-  resources :gifts, :users
+  resources :gifts
   post 'challenges/complete' => 'challenge#complete', as: :complete
   post 'gifts/create' => 'gifts#create'
   post 'gifts/destroy' => 'gifts#destroy'
@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   post 'users/purge', to: 'users#purge'
   post 'users/setLocation', to: 'users#setLocation'
   post 'users/getLocation', to: 'users#getLocation'
+  get 'users/getLocation', to: 'users#getLocation'
 
   post 'TEST/resetFixture', to: 'users#resetFixture'
 

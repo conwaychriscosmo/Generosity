@@ -10,9 +10,8 @@ var geocoder;
 var map;
 var destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=O|FFFF00|000000';
 var originIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=O|FFFF00|000000';
-
+var recipientId;
 function initialize() {
-  console.log(document.cookie)
   directionsDisplay = new google.maps.DirectionsRenderer();
   var mapOptions = {
     zoom: 13
@@ -40,14 +39,29 @@ function initialize() {
   else {
     handleNoGeoLocation(false);
   }
+
+  //parsing the javascript cookie for the recipient id.
+  if (document.cookie.match("user_id=") != null) {
+    var holder = ""
+    for (i = document.cookie.search("user_id=") + 8; i < document.cookie.length; i ++){
+      if(document.cookie.charAt(i) == ';'){
+        break;
+      }
+      holder += document.cookie.charAt(i);
+    }
+    recipientId = holder
+    console.log(recipientId)
+  }
 }
 
 function changeTargetOne() {
-  goal = "san francisco, ca";
+  jQuery.getJSON( "users/getLocation", {user_id: recipientId}, function success(data){
+    goal = data.location
+  })
 }
 
 function changeTargetTwo() {
-  goal = "uc berkeley";
+  goal = "37.9651675 -122.0805453";
 }
 
 function calcAll() {

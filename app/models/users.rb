@@ -53,7 +53,7 @@ class Users < ActiveRecord::Base
     end
 
     def self.setLocation(user_id, location)
-    	user = Users.find_by(id: user_id)
+    	user = Users.find_by(id: user_id.to_i)
     	if user
     		user.current_location = location
     		user.save(:validate => false)
@@ -63,7 +63,11 @@ class Users < ActiveRecord::Base
     end
 
     def self.getLocation(user_id)
-    	user = Users.find_by(id: user_id)
+    	puts "putsing"
+    	puts user_id
+    	user = Users.find_by(id: user_id.to_i)
+    	puts user.inspect
+    	puts "helloooo"
     	if user
     		return user.current_location
     	else

@@ -88,6 +88,14 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 
 		self.checkIfLoggedInUser = function() {
 			$scope.canEdit = self.id == $rootScope.id;
+			if ($rootScope.id != null) {
+				console.log("Asicled")
+				navigator.geolocation.getCurrentPosition(showPosition)
+				function showPosition(position) {
+    			var loc = position.coords.latitude + " " + position.coords.longitude
+    			$http.post('users/setLocation', {user_id: $rootScope.id, location: loc})
+			}
+			}
 		}
 
 		self.getCurrentScopeUserFromCookie = function() {
@@ -382,11 +390,6 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.errCode = -99;
 					console.log("Error.");
 				});
-			console.log("loggin in")
-			console.log(navigator.geolocation.getCurrentPosition(showPosition))
-			function showPosition(position) {
-    		console.log (position.coords) 
-			}
 			$scope.message = "";
 			$http.post('login', {username: name, password: pw}).
 				success(function(data, status, headers, config) {

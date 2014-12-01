@@ -129,8 +129,56 @@ h2{
     transform: rotateX(0deg);
 }
 
-.giftholder {
+
+.fleft{
+		float: left !important;
+	}
+
+.fright {
+		float: right !important; 
+	}
+
+@media (max-width: 600px){
+	.usercard{
+	padding: 30px;
+	-webkit-animation: fade 6s;
+  -webkit-animation-fill-mode: both;
+	-webkit-box-shadow: 0px 2px 11px 0px rgba(39, 50, 50, 1);
+	-moz-box-shadow:    0px 2px 11px 0px rgba(39, 50, 50, 1);
+	box-shadow:         0px 2px 11px 0px rgba(39, 50, 50, 1);
+	font-family: raleway, sans-serif;
+	background-color: rgba(240, 248, 255, .9);
+	margin: 0 auto;
+	color: black !important;
+	width: 100%;
+	opacity: .8 !important;
+	}
+	.giftholder {
+		width: 100% !important;
 		-webkit-box-shadow: 0px 2px 11px 0px rgba(39, 50, 50, 1);
+		-moz-box-shadow:    0px 2px 11px 0px rgba(39, 50, 50, 1);
+		box-shadow:         0px 2px 11px 0px rgba(39, 50, 50, 1);
+		display: inline-block;
+		-webkit-animation: fade 6s;
+	  -webkit-animation-fill-mode: both;
+		opacity:0.9;
+		border-radius: 20px;
+		-moz-background-clip: padding;
+		-webkit-background-clip: padding;
+		background-clip: padding-box;
+		color: black !important;
+		margin: 0 auto;
+		text-align: center;
+		font-family: raleway, sans-serif;
+		margin-top: 30px;
+		padding-top:100px;
+		padding-bottom: 120px;
+		background-color: rgba(240, 248, 255, .93);
+	}
+}
+@media (min-width: 600px){
+.giftholder {
+	-webkit-box-shadow: 0px 2px 11px 0px rgba(39, 50, 50, 1);
 	-moz-box-shadow:    0px 2px 11px 0px rgba(39, 50, 50, 1);
 	box-shadow:         0px 2px 11px 0px rgba(39, 50, 50, 1);
 	display: inline-block;
@@ -151,6 +199,7 @@ h2{
 	padding-top:100px;
 	padding-bottom: 120px;
 	background-color: rgba(240, 248, 255, .93);
+}
 }
 
 .circlemage {

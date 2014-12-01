@@ -28,7 +28,7 @@
 		</div>
 	</div>
 
-	<div class= "giftholder" style="float: right;">
+	<div class= "giftholder fleft">
 	<h2>Given Gifts:</h2>
 		
 	
@@ -37,10 +37,10 @@
 	</div>
 	</div>
 
-	<div class= "giftholder" style="float: left;">
+	<div class= "giftholder fright">
 	<h2>Received Gifts:</h2>
 
-	<div data-ng-repeat="aGift in profiledUser.receivedGifts">
+	<div data-ng-repeat="aGift in profiledUser.receivedGifts" style="display: inline-block; margin: 10px;">
 		<gift-list-element></gift-list-element>		
 	</div>
 	</div>

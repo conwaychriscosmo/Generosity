@@ -7,11 +7,14 @@ class UsersController < ApplicationController
     end
 
     def setLocation
+        puts "HAHA"
+        puts params
         errCode = Users.setLocation(params[:user_id], params[:location])
         render json: {errCode: errCode}
     end
 
     def getLocation
+        puts "Halleju!"
         location = Users.getLocation(params[:user_id])
         render json: {location: location}
     end
