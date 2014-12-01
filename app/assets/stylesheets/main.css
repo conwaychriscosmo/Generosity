@@ -54,22 +54,8 @@ a {
 
 body{
 	/*background:url(http://i.imgur.com/lGjlXUF.gif)no-repeat;*/
-	background:url(http://i.imgur.com/AU8lTBE.gif) fixed right top;
-
-}
-
-@media (max-width: 1400px) {
-	body{
-	background-size: cover !important;
-}
-}
-@media (min-width: 1400px){
-	body{
-	/*background:url(http://i.imgur.com/lGjlXUF.gif)no-repeat;*/
-	background:url(http://i.imgur.com/AU8lTBE.gif) fixed right top;
-	background-size: 1000px 1500px;
-
-}
+	background:url(http://i.imgur.com/AU8lTBE.gif) fixed right top no-repeat;
+	background-size: cover;
 }
 
 
@@ -145,6 +131,7 @@ body{
 }
 
 .navbar-default {
+	width: 102% !important;
 	max-height: 100px;
 	position: fixed;
 	padding-left: 30px;
