@@ -31,11 +31,11 @@ function initialize() {
       pos = new google.maps.LatLng(position.coords.latitude,
                                    position.coords.longitude);
       console.log('OR HERE!');
-      var infowindow = new google.maps.InfoWindow({
+      /*var infowindow = new google.maps.InfoWindow({
         map: map,
         position: pos,
         content: 'You are here'
-      });
+      });*/
       directionsDisplay.setMap(map);
       directionsDisplay.setPanel(document.getElementById('directions-panel'));
       //calcRoute();
