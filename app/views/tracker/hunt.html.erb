@@ -8,6 +8,7 @@
       margin: 0;
       padding: 0;
       color: #aaa;
+      overflow: hidden;
     }
 
     #map-canvas, #directions-panel {
@@ -28,18 +29,25 @@
       float: right;
       background-color: #fff;
     }
+
+    #deliver {
+      height: 10%;
+      display: inline-block;
+      width: 100%;
+    }
     </style>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZJutoonZK2nW2NP65j6A-_JNvop8ndco&libraries=geometry"></script>
     <%= javascript_include_tag "tracker.js" %>
   </head>
   <body>
-      <div>Target 1 is SF, Target 2 is UC Berkeley</div>
+      <!--<div>Target 1 is SF, Target 2 is UC Berkeley</div>
       <div id="output"></div>
       <div id="heading"></div>
       <input id="Target 1" type="button" value="Target 1" onclick="changeTargetOne();calcAll();"/>
       <input id="Target 2" type="button" value="Target 2" onclick="changeTargetTwo();calcAll();"/>
-      <br/>
+      <br/>-->
       <div id="map-canvas"></div>
       <div id="directions-panel"></div>
+      <input id="deliver" type="button" value="Gift Delivered" onclick="deliverGift()"/>
   </body>
 </html>

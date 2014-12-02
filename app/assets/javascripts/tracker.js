@@ -1,18 +1,21 @@
 var directionsDisplay;
-var directionsService = new google.maps.DirectionsService();
+var directionsService;
 var DIST_THRESH = 2000;
 var pos = "berkeley, ca"; // Default in case geolocation doesn't work
 var goal = "san francisco, ca";
 var dist = 1000;
 var markersArray = [];
-var bounds = new google.maps.LatLngBounds();
+var bounds;
 var geocoder;
 var map;
+var user_id = '';
+var target_id;
 var destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=O|FFFF00|000000';
 var originIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=O|FFFF00|000000';
-var recipientId;
 function initialize() {
   directionsDisplay = new google.maps.DirectionsRenderer();
+  directionsService = new google.maps.DirectionsService();
+  bounds = new google.maps.LatLngBounds();
   //challenge/recipient_id    [userid]
   //users/setLocation         [userid, location]
   //users/getLocation         [userid]
@@ -24,8 +27,10 @@ function initialize() {
   geocoder = new google.maps.Geocoder();
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
+      console.log('OR HERE?');
       pos = new google.maps.LatLng(position.coords.latitude,
                                    position.coords.longitude);
+      console.log('OR HERE!');
       var infowindow = new google.maps.InfoWindow({
         map: map,
         position: pos,
@@ -33,7 +38,8 @@ function initialize() {
       });
       directionsDisplay.setMap(map);
       directionsDisplay.setPanel(document.getElementById('directions-panel'));
-      calcRoute();
+      //calcRoute();
+      setInterval(calcAll(), 10000);
       map.setCenter(pos);
     }, function() {
       handleNoGeoLocation(true);
@@ -44,23 +50,27 @@ function initialize() {
   }
 
   //parsing the javascript cookie for the recipient id.
+  console.log(document.cookie);
   if (document.cookie.match("user_id=") != null) {
-    var holder = ""
-    for (i = document.cookie.search("user_id=") + 8; i < document.cookie.length; i ++){
+    for (i = document.cookie.search(" user_id=") + 9; i < document.cookie.length; i ++){
       if(document.cookie.charAt(i) == ';'){
         break;
       }
-      holder += document.cookie.charAt(i);
+      user_id += document.cookie.charAt(i);
+      console.log(user_id);
     }
-    recipientId = holder
-    console.log(recipientId)
+    setTimeout(function() {
+      $.post( "challenge/recipient_id", {userid: user_id}, function success(data) {
+        console.log(data);
+      });
+    }, 200);
   }
 }
 
 function changeTargetOne() {
-  jQuery.getJSON( "users/getLocation", {user_id: recipientId}, function success(data){
+  jQuery.getJSON( "users/getLocation", {user_id: target_id}, function success(data){
     goal = data.location
-  })
+  });
 }
 
 function changeTargetTwo() {
@@ -68,16 +78,22 @@ function changeTargetTwo() {
 }
 
 function calcAll() {
-  calcRoute();
-  calcDistance();
-  checkDist();
+  jQuery.getJSON( "users/getLocation", {user_id: user_id}, function success(data){
+    console.log('target is ' + data.location);
+    goal = data.location;
+    setTimeout(calcRoute(), 100);
+  });
 }
 
 function calcRoute() {
   if (navigator.geolocation) {
+    console.log('hello 1');
     navigator.geolocation.getCurrentPosition(function(position) {
+      console.log('HERE?!?!?!');
+      console.log(position);
       pos = new google.maps.LatLng(position.coords.latitude,
                                    position.coords.longitude);
+      console.log('hello 2');
     }, function() {
       handleNoGeoLocation(true);
     });
@@ -93,12 +109,14 @@ function calcRoute() {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
     }
+    console.log('hello 3');
     calcDistance();
   });
 }
 
 function calcDistance() {
   var service = new google.maps.DistanceMatrixService();
+  console.log('hello 4');
   service.getDistanceMatrix({
     origins: [pos],
     destinations: [goal],
@@ -110,17 +128,18 @@ function calcDistance() {
     if (status != google.maps.DistanceMatrixStatus.OK) {
       alert('Error was: ' + status);
     } else {
+      console.log('hello 5');
       var origins = response.originAddresses;
       var destinations = response.destinationAddresses;
-      var outputDiv = document.getElementById('output');
-      outputDiv.innerHTML = '';
+      /*var outputDiv = document.getElementById('output');
+      outputDiv.innerHTML = '';*/
       deleteOverlays();
       for (var i = 0; i < origins.length; i++) {
         var results = response.rows[i].elements;
         for (var j = 0; j < results.length; j++) {
-          outputDiv.innerHTML += origins[i] + ' to ' + destinations[j]
+          /*outputDiv.innerHTML += origins[i] + ' to ' + destinations[j]
               + ': ' + results[j].distance.text + ' in '
-              + results[j].duration.text + '<br>';
+              + results[j].duration.text + '<br>';*/
           dist = results[j].distance.value;
           console.log(results[j]);
           checkDist();
@@ -166,10 +185,18 @@ function checkDist() {
   if (dist > DIST_THRESH) {
     document.getElementById('map-canvas').style.display = 'none';
     document.getElementById('directions-panel').style.width = '100%';
+    document.getElementById('deliver').style.display = 'none';
   } else {
     document.getElementById('map-canvas').style.display = 'block';
     document.getElementById('directions-panel').style.width = '40%';
+    document.getElementById('deliver').style.display = 'inline-block';
   }
+}
+
+function deliverGift() {
+  console.log("Yay a gift was delivered");
+  window.location.href="../";
+  console.log("Redirecting...");
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
