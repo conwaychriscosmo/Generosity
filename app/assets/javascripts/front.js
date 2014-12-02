@@ -601,7 +601,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				// when the response is available
 					var errCode = data.errCode;
 					/*We need actual error codes for this.*/
-					if(errCode == -1) {
+					if(errCode != 1) {
 						//This should later be changed to put this person on a queue.
 						$scope.challengeMessage = "Challenge Error: There is currently no one available. Please try again later.";
 					}
@@ -642,11 +642,11 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 						$scope.challengeMessage = "You currently do not have a challenge.";
 					}
 					else {
-
 						console.log("Challenge retrieved.");
-						console.log(data);	
+						console.log(data);
 						$scope.challengeMessage = "";
-						self.recipient = data.recipient;
+						self.reciever = data.Recipient;
+						self.imageUrl = data.imageUrl
 						self.hasCurrentChallenge = true;	
 						self.description = data.description;
 						self.availableHours = data.availableHours;
