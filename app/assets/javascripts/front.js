@@ -363,6 +363,10 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					console.log("data below");
 					console.log(data);
 					self.receivedGifts = data;
+					for(var i=0; i<self.receivedGifts.length; i++) {
+						self.receivedGifts[i].receiving = true;
+					}
+					console.log(data);
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
@@ -638,6 +642,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 						$scope.challengeMessage = "You currently do not have a challenge.";
 					}
 					else {
+
 						console.log("Challenge retrieved.");	
 						$scope.challengeMessage = "";
 						self.hasCurrentChallenge = true;	
