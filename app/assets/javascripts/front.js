@@ -576,9 +576,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					var errCode = data[errCode];
 					// console.log(giftsList);
 					if(errCode == 1) {
-						// alert("Error: User not found.");
-						console.log("Error: Gift not found.");
-						// $location.path('/');
+						self.reviewed = true;
 						return;
 					}
 
