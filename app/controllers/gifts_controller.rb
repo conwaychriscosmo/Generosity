@@ -55,10 +55,13 @@ class GiftsController < ApplicationController
   end
 
   def rateReview
-    reviewtext = params[:gift][:review]
+    puts params
+    puts "HEE1"
+    reviewtext = params[:review]
+    reviewtext ||= ""
     @user = Users.find(params[:user_id])
     reviewtext += "\n --by #{@user.username}"
-    output = Gift.rateReview(reviewtext, rating, params[:gift_id], @user.username)
+    output = Gift.rateReview(reviewtext, params[:rating], params[:gift_id], @user.username)
     render json: output
   end
 
