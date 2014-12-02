@@ -16,7 +16,7 @@ function initialize() {
   directionsDisplay = new google.maps.DirectionsRenderer();
   directionsService = new google.maps.DirectionsService();
   bounds = new google.maps.LatLngBounds();
-  //challenge/recipient_id    [userid]
+  //challenge/recipient_id    [id]
   //users/setLocation         [userid, location]
   //users/getLocation         [userid]
   var mapOptions = {
@@ -27,10 +27,8 @@ function initialize() {
   geocoder = new google.maps.Geocoder();
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      console.log('OR HERE?');
       pos = new google.maps.LatLng(position.coords.latitude,
                                    position.coords.longitude);
-      console.log('OR HERE!');
       /*var infowindow = new google.maps.InfoWindow({
         map: map,
         position: pos,
@@ -60,10 +58,12 @@ function initialize() {
       console.log(user_id);
     }
     setTimeout(function() {
-      $.post( "challenge/recipient_id", {userid: user_id}, function success(data) {
+      console.log("getting recipient");
+      $.post( "challenge/recipient_id", {id: user_id}, function success(data) {
         console.log(data);
+        target_id = data.id;
       });
-    }, 200);
+    }, 20);
   }
 }
 
@@ -78,7 +78,7 @@ function changeTargetTwo() {
 }
 
 function calcAll() {
-  jQuery.getJSON( "users/getLocation", {user_id: user_id}, function success(data){
+  jQuery.getJSON( "users/getLocation", {user_id: target_id}, function success(data){
     console.log('target is ' + data.location);
     goal = data.location;
     setTimeout(calcRoute(), 100);
@@ -87,13 +87,10 @@ function calcAll() {
 
 function calcRoute() {
   if (navigator.geolocation) {
-    console.log('hello 1');
     navigator.geolocation.getCurrentPosition(function(position) {
-      console.log('HERE?!?!?!');
       console.log(position);
       pos = new google.maps.LatLng(position.coords.latitude,
                                    position.coords.longitude);
-      console.log('hello 2');
     }, function() {
       handleNoGeoLocation(true);
     });
@@ -109,14 +106,12 @@ function calcRoute() {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
     }
-    console.log('hello 3');
     calcDistance();
   });
 }
 
 function calcDistance() {
   var service = new google.maps.DistanceMatrixService();
-  console.log('hello 4');
   service.getDistanceMatrix({
     origins: [pos],
     destinations: [goal],
@@ -128,7 +123,6 @@ function calcDistance() {
     if (status != google.maps.DistanceMatrixStatus.OK) {
       alert('Error was: ' + status);
     } else {
-      console.log('hello 5');
       var origins = response.originAddresses;
       var destinations = response.destinationAddresses;
       /*var outputDiv = document.getElementById('output');
