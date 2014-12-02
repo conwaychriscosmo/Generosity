@@ -64,7 +64,7 @@ function changeTargetOne() {
 }
 
 function changeTargetTwo() {
-  goal = "37.9651675 -122.0805453";
+  goal = "Soda Hall, Berkeley, CA 94704";
 }
 
 function calcAll() {
@@ -166,6 +166,8 @@ function checkDist() {
   if (dist > DIST_THRESH) {
     document.getElementById('map-canvas').style.display = 'none';
     document.getElementById('directions-panel').style.width = '100%';
+    document.getElementById('directions-panel').style.height = '190%';
+    document.getElementById('directions-panel').style.opacity = '.9';
   } else {
     document.getElementById('map-canvas').style.display = 'block';
     document.getElementById('directions-panel').style.width = '40%';
