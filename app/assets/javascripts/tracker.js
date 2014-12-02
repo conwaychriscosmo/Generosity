@@ -60,7 +60,7 @@ function initialize() {
       console.log(user_id);
     }
     setTimeout(function() {
-      $.post( "challenge/recipient_id", {userid: user_id}, function success(data) {
+      $.post( "challenge/recipient_id", {id: user_id}, function success(data) {
         console.log(data);
       });
     }, 200);
