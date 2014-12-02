@@ -108,13 +108,13 @@ class Gift < ActiveRecord::Base
     return output
   end
 
-  def self.rateReview(reviewtext, gift_id, username)
+  def self.rateReview(reviewtext, rating, gift_id, username)
     @gift = Gift.find_by(id: gift_id)
     if @gift.nil?
       return { errCode: ERR_NIL_GIFT}
     end
     if @gift.recipient == username
-      @gift.update_columns(review: reviewtext)
+      @gift.update_columns(review: reviewtext, rating: rating)
       @gift.save
       return { errCode: SUCCESS }
     else

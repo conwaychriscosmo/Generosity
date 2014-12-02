@@ -58,7 +58,7 @@ class GiftsController < ApplicationController
     reviewtext = params[:gift][:review]
     @user = Users.find(params[:user_id])
     reviewtext += "\n --by #{@user.username}"
-    output = Gift.rateReview(reviewtext, params[:gift_id], @user.username)
+    output = Gift.rateReview(reviewtext, rating, params[:gift_id], @user.username)
     render json: output
   end
 
