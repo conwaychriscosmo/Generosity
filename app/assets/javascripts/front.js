@@ -565,7 +565,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 
 		self.writeReview = function() {
 			// console.log(targetId);
-			$http.post('gifts/rateReview', {user_id: $rootScope.id, review: self.review, rating: self.rating }).
+			$http.post('gifts/rateReview', {user_id: $rootScope.id, gift_id: self.id, review: self.review, rating: self.rating }).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
@@ -581,7 +581,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 						return;
 					}
 
-					self.imageUrl = foundGift.url;
+					// self.imageUrl = foundGift.url;
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
