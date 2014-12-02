@@ -563,6 +563,35 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 				});
 		}
 
+		self.writeReview = function() {
+			// console.log(targetId);
+			$http.post('gifts/review', {id: $rootScope.id, review: self.review }).
+				success(function(data, status, headers, config) {
+				// this callback will be called asynchronously
+				// when the response is available
+					// self.errCode = data.errCode;
+					console.log(data);
+					// var foundGift = data["gifts"];
+					var foundGift = data;
+					// console.log(giftsList);
+					if(!foundGift) {
+						// alert("Error: User not found.");
+						console.log("Error: Gift not found.");
+						// $location.path('/');
+						return;
+					}
+
+					self.imageUrl = foundGift.url;
+				}).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+					self.errCode = -99;
+					// alert("Error.");
+					console.log("Error.");
+				});
+		}
+
 		self.createDummyGift = function() {
 			self.name = "Shin Megami Tensei x Fire Emblem";
 			self.giver = "Atlus and Intelligent Systems";
