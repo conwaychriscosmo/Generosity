@@ -114,7 +114,7 @@ class Gift < ActiveRecord::Base
       return { errCode: ERR_NIL_GIFT}
     end
     if @gift.recipient == username
-      @gift.update_columns(review: reviewtext, rating: rating, reviewed?: true)
+      @gift.update_columns(review: reviewtext, rating: rating, reviewed: true)
       @gift.save
       return { errCode: SUCCESS }
     else
