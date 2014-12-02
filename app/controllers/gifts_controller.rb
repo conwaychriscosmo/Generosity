@@ -54,18 +54,11 @@ class GiftsController < ApplicationController
     render json: output
   end
 
-  def review
-    @id = session[:user_id]
-    @user = Users.find_by(id: @id)
-    output = Gift.review(params[:gift][:review],params[:id],@user.username)
-    render json: output
-  end  
-  
-  #the recipient rates the gift
-  def rate
-    @id = session[:user_id]
-    @user = Users.find_by(id: @id)
-    output = Gift.rate(params[:gift][:rating],params[:id],@user.username)
+  def rateReview
+    reviewtext = params[:gift][:review]
+    @user = Users.find(params[:user_id])
+    reviewtext += "\n --by #{@user.username}"
+    output = Gift.rateReview(reviewtext, params[:gift_id], @user.username)
     render json: output
   end
 
