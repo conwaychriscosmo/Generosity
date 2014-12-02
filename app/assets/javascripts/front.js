@@ -581,7 +581,7 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 						return;
 					}
 
-					self.imageUrl = foundGift.url;
+					// self.imageUrl = foundGift.url;
 				}).
 				error(function(data, status, headers, config) {
 				// called asynchronously if an error occurs
