@@ -565,16 +565,16 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 
 		self.writeReview = function() {
 			// console.log(targetId);
-			$http.post('gifts/review', {id: $rootScope.id, review: self.review }).
+			$http.post('gifts/rateReview', {user_id: $rootScope.id, review: self.review, rating: self.rating }).
 				success(function(data, status, headers, config) {
 				// this callback will be called asynchronously
 				// when the response is available
 					// self.errCode = data.errCode;
 					console.log(data);
 					// var foundGift = data["gifts"];
-					var foundGift = data;
+					var errCode = data[errCode];
 					// console.log(giftsList);
-					if(!foundGift) {
+					if(errCode == 1) {
 						// alert("Error: User not found.");
 						console.log("Error: Gift not found.");
 						// $location.path('/');

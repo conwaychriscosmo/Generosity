@@ -26,13 +26,27 @@
 			Description: {{aGift.description}}
 		</div>
 		<br>
-		<form name="reviewForm" data-ng-show="aGift.receiving" data-ng-submit="giftElement.writeReview()" class="input-group" style="margin-bottom:1%" novalidate>
-		    <td width="200px;">
-		      <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Review:  </span>
-		    </td>
-		    <td width="200px;">
-		      <input type="text" class="form-control" placeholder="Review" data-ng-model="giftElement.review" style="" required>
-		    </td>
+		<form name="reviewForm" data-ng-if="aGift.receiving && !aGift.reviewed" data-ng-submit="giftElement.writeReview()" class="input-group" style="margin-bottom:1%" novalidate>
+	    	<div class="input-group" style="padding-top: 40px; margin-bottom:1%">
+        		<table width="100%">
+				    <td width="200px;">
+				      <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Review:  </span>
+				    </td>
+				    <td width="200px;">
+				      <input type="text" class="form-control" placeholder="Review" data-ng-model="giftElement.review" style="" required>
+				    </td>
+				</table>
+			</div>
+	    	<div class="input-group" style="padding-top: 40px; margin-bottom:1%">
+        		<table width="100%">
+				    <td width="200px;">
+				    <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Rating:  </span>
+				    </td>
+				    <td width="200px;">
+				      <input type="text" class="form-control" placeholder="Rating" data-ng-model="giftElement.rating" style="" required>
+				    </td>
+				</table>
+			</div>
 		    <button class="btn btn-default" style="marin-top:30px;">Submit Review</button>
 	    </form>
 		<div class="input-group" style="margin-bottom:1%">
