@@ -643,8 +643,10 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					}
 					else {
 
-						console.log("Challenge retrieved.");	
+						console.log("Challenge retrieved.");
+						console.log(data);	
 						$scope.challengeMessage = "";
+						self.recipient = data.recipient;
 						self.hasCurrentChallenge = true;	
 						self.description = data.description;
 						self.availableHours = data.availableHours;

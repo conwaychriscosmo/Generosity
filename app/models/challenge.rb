@@ -94,7 +94,7 @@ class Challenge < ActiveRecord::Base
     end
     if @challenge
       recipientUser = Users.find_by(username: @challenge.Recipient)
-      return { errCode: SUCCESS, Giver: @challenge.Giver, Recipient: @challenge.Recipient, description: recipientUser.description, availableHours: recipientUser.available_hours, currentCity: recipientUser.current_city, currentLocation: recipientUser.current_location, reputation: recipientUser.score }
+      return { errCode: SUCCESS, Giver: @challenge.Giver, Recipient: @challenge.Recipient, description: recipientUser.description, availableHours: recipientUser.available_hours, currentCity: recipientUser.current_city, currentLocation: recipientUser.current_location, reputation: recipientUser.score, imageUrl: recipientUser.profile_url }
     end
   end
 
