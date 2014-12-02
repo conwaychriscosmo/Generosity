@@ -550,7 +550,8 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					self.name = foundGift.name;
 					self.giver = foundGift.giver;
 					self.recipient = foundGift.recipient;
-					self.bio = foundGift.bio;
+					self.bio = foundGift.description;
+					self.review = foundGift.review;
 					self.rating = foundGift.rating;
 					self.imageUrl = foundGift.url;
 				}).
