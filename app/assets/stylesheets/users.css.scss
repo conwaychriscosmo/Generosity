@@ -9,6 +9,11 @@ h2{
 	font-size: 50px;
 }
 
+.btn-default{
+	font-size: 20px;
+	color: black !important;
+}
+
 .input-group{
 	margin: 0 auto;
 	font-family: raleway, sans-serif;
@@ -102,7 +107,7 @@ h2{
 		font-size: 35px;
 		line-height: 37px;
 		font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
-		padding: 30px;
+		padding: 1px;
 		width: 300px;
 		height: 500px;
 		background: rgba(27,27,40,.9);
@@ -144,9 +149,9 @@ h2{
 	padding: 30px;
 	-webkit-animation: fade 6s;
   -webkit-animation-fill-mode: both;
-	-webkit-box-shadow: 0px 2px 11px 0px rgba(39, 50, 50, 1);
-	-moz-box-shadow:    0px 2px 11px 0px rgba(39, 50, 50, 1);
-	box-shadow:         0px 2px 11px 0px rgba(39, 50, 50, 1);
+	-webkit-box-shadow: 10px 2px 11px 10px rgba(39, 50, 50, 1);
+	-moz-box-shadow:    10px 2px 11px 10px rgba(39, 50, 50, 1);
+	box-shadow:         10px 2px 11px 10px rgba(39, 50, 50, 1);
 	font-family: raleway, sans-serif;
 	background-color: rgba(240, 248, 255, .9);
 	margin: 0 auto;
@@ -170,7 +175,7 @@ h2{
 		margin: 0 auto;
 		text-align: center;
 		font-family: raleway, sans-serif;
-		margin-top: .02%;
+		margin-top: 2px;
 		padding-top:100px;
 		padding-bottom: 120px;
 		background-color: rgba(240, 248, 255, .93);
@@ -178,9 +183,9 @@ h2{
 }
 @media (min-width: 1000px){
 .giftholder {
-	-webkit-box-shadow: 0px 2px 11px 0px rgba(39, 50, 50, 1);
-	-moz-box-shadow:    0px 2px 11px 0px rgba(39, 50, 50, 1);
-	box-shadow:         0px 2px 11px 0px rgba(39, 50, 50, 1);
+	-webkit-box-shadow: 0px 2px 0px 0px rgba(39, 50, 50, 1);
+	-moz-box-shadow:    0px 2px 0px 0px rgba(39, 50, 50, 1);
+	box-shadow:         0px 2px 0px 0px rgba(39, 50, 50, 1);
 	display: inline-block;
 	-webkit-animation: fade 6s;
   -webkit-animation-fill-mode: both;
@@ -194,7 +199,7 @@ h2{
 	min-width: 600px;
 	text-align: center;
 	font-family: raleway, sans-serif;
-	margin-top: .02%;
+	margin-top: 2px;
 	padding-top:100px;
 	padding-bottom: 120px;
 	background-color: rgba(240, 248, 255, .93);
@@ -202,6 +207,7 @@ h2{
 }
 
 .circlemage {
+		padding-bottom: 20px;
 		color: black;
     background-position: 50% 50%;
     background-repeat: no-repeat;

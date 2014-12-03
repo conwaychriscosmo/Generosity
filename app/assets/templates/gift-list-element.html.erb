@@ -1,3 +1,4 @@
+
 <div data-ng-controller="GiftsController as giftElement" data-ng-init="giftElement.name = aGift.name; giftElement.id = aGift.id">
 	<div class = "panel">
 		<div class="gift-front card">
@@ -6,51 +7,55 @@
 		</div>
 		<div class="input-group" style="margin-bottom:1%">
 			<h1>{{aGift.name}}</h1>
+			<div data-ng-if="aGift.receiving">
+			<br>
+			Given to you by: {{aGift.giver}}
+			</div>
+			<div data-ng-if="aGift.receiving == null">
+			<br>
+			You gave this to: {{aGift.recipient}}
+			</div>
 		</div>
 		</div>
 		<h1>
 		<div class="gift-back card">
-		<div class="input-group" style="margin-bottom:1%">
-			Giver: {{aGift.giver}}
+		<div class="info" data-ng-if="aGift.reviewed || aGift.receiving == null">
+			<br>
+			<div class="input-group" style="margin-bottom:1%">
+				Rating: {{aGift.rating}}/5
+			</div>
+			<br>
+			<div class="input-group" style="margin-bottom:1%">
+				Description: {{aGift.description}}
+			</div>
+			<br>
 		</div>
-		<br>
-		<div class="input-group" style="margin-bottom:1%">
-			Recipient: {{aGift.recipient}}
-		</div>
-		<br>
-		<div class="input-group" style="margin-bottom:1%">
-			Rating: {{aGift.rating}}/5
-		</div>
-		<br>
-		<div class="input-group" style="margin-bottom:1%">
-			Description: {{aGift.description}}
-		</div>
-		<br>
 		<form name="reviewForm" data-ng-if="aGift.receiving && !aGift.reviewed" data-ng-submit="giftElement.writeReview()" class="input-group" style="margin-bottom:1%" novalidate>
-	    	<div class="input-group" style="padding-top: 40px; margin-bottom:1%">
-        		<table width="100%">
-				    <td width="200px;">
-				      <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Review:  </span>
-				    </td>
-				    <td width="200px;">
-				      <input type="text" class="form-control" placeholder="Review" data-ng-model="giftElement.review" style="" required>
-				    </td>
-				</table>
+	    	<div class="input-group">
+		      <h1>Review:  </h1>
+		      <textarea class="form-control" placeholder="Review" data-ng-model="giftElement.review" style="font-size: 30px; height: 4em;" required>
+		      </textarea>
 			</div>
-	    	<div class="input-group" style="padding-top: 40px; margin-bottom:1%">
-        		<table width="100%">
-				    <td width="200px;">
-				    <span class="input-group-addon" style="background-color: transparent; padding-right:5em; border-style:none">Rating:  </span>
-				    </td>
-				    <td width="200px;">
-				      <input type="text" class="form-control" placeholder="Rating" data-ng-model="giftElement.rating" style="" required>
-				    </td>
-				</table>
+	    	<div class="input-group" style=" position: relative;padding-top: 40px; margin-bottom:1%">
+				    <h1> Rating:  </h1>
+				    	<select autocomplete="off" style="color: black !important; font-size: 17px;"name="stars" placeholder="RATE ME!"data-ng-model="giftElement.rating" class="form-control" required>
+							<option value=1 selected >1 Star--Terrible Gift!</option>
+							<option value=2>2 Stars--Not the Worst...</option>
+							<option value=3>3 Stars--A good try!</option>
+							<option value=4>4 Stars--I liked it!</option>
+							<option value=5>5 Stars--HOT DAMN</option>
+							</select>
 			</div>
-		    <button class="btn btn-default" style="marin-top:30px;">Submit Review</button>
+		    <button class="btn btn-default" style="margin-top: 30px;">Submit Review</button>
 	    </form>
 		<div class="input-group" style="margin-bottom:1%">
-		<a href="#gift/{{aGift.id}}" data-ng-show="{{canEdit}}"><button style="background-color:teal; color:white; margin-bottom: 30px;">Show Details</button></a>
+
+		<div data-ng-if="!aGift.receiving" style="padding: 0px 30px; text-align: left">
+		{{aGift.review}}
+		</div>
+	<!--
+		<a style="color: black!important;"class="btn btn-default"href="#gift/{{aGift.id}}" data-ng-if="!aGift.receiving" data-ng-show="{{canEdit}}">Show Review</a>
+	-->
 
 		</div>
 		</div>
