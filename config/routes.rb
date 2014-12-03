@@ -10,10 +10,12 @@ Rails.application.routes.draw do
   post 'gifts/find_all_gifts_by_giver' => 'gifts#find_all_gifts_by_giver'
   post 'gifts/find_all_gifts_by_recipient' => 'gifts#find_all_gifts_by_recipient'
   post 'challenge/complete' => 'challenges#complete'
+  get 'challenge/complete' => 'challenges#complete'
   post 'challenge/joinQueue' => 'challenges#joinQueue'
   post 'challenge/onQueue' => 'challenges#onQueue'
   post 'challenge/match' => 'challenges#match'
   post 'challenge/getCurrentChallenge' => 'challenges#getCurrentChallenge'
+  get 'challenge/getCurrentChallenge' => 'challenges#getCurrentChallenge'
   #get the recipients id based on the giver user id
   post 'challenge/recipient_id' => 'challenges#recipient_id'
   # The priority is based upon order of creation: first created -> highest priority.

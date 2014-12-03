@@ -65,6 +65,12 @@ function initialize() {
       });
     }, 20);
   }
+  console.log("init")
+  jQuery.getJSON( "challenge/getCurrentChallenge", {id: user_id}, function success(data){
+    if (data.errCode == -112){
+      $("body").append("<div id='heyyy' style='width: 200%; z-index: 99999;position:fixed;  margin: 0 auto; top: 50%; color:red;font-size:6vw;'>YOU DON'T HAVE A CHALLENGE</div>")
+    }
+  });
 }
 
 function changeTargetOne() {
@@ -189,8 +195,13 @@ function checkDist() {
 
 function deliverGift() {
   console.log("Yay a gift was delivered");
-  window.location.href="../";
+  jQuery.getJSON( "challenge/complete", {user_id: user_id}, function success(data){
+    console.log(data)
+  });
+  console.log("calling")
+  window.location.href="../#/profile/" + user_id;
   console.log("Redirecting...");
+
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);

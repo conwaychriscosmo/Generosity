@@ -37,7 +37,7 @@ class ChallengesController < ApplicationController
 
   def complete
   #called when a challenge is completed
-    @id = session[:user_id]
+    @id = params[:user_id]
     @user = Users.find_by(id: @id)
     output = Challenge.complete(@user.username)
     render json: output
