@@ -1,5 +1,5 @@
 
-<div data-ng-controller="GiftsController as giftElement" data-ng-init="giftElement.name = aGift.name; giftElement.id = aGift.id">
+<div data-ng-controller="GiftsController as giftElement" data-ng-init="giftElement.name = aGift.name; giftElement.id = aGift.id; giftElement.reviewed = aGift.reviewed">
 	<div class = "panel">
 		<div class="gift-front card">
 		<div class="input-group" style="margin-bottom:1%">
@@ -19,7 +19,7 @@
 		</div>
 		<h1>
 		<div class="gift-back card">
-		<div class="info" data-ng-if="aGift.reviewed || aGift.receiving == null">
+		<div class="info" data-ng-if="giftElement.reviewed || aGift.receiving == null">
 			<br>
 			<div class="input-group" style="margin-bottom:1%">
 				Rating: {{aGift.rating}}/5
@@ -29,8 +29,12 @@
 				Description: {{aGift.description}}
 			</div>
 			<br>
+			<div class="input-group" style="margin-bottom:1%; color:green">
+				{{giftElement.message}}
+			</div>
+			<br>
 		</div>
-		<form name="reviewForm" data-ng-if="aGift.receiving && !aGift.reviewed" data-ng-submit="giftElement.writeReview()" class="input-group" style="margin-bottom:1%" novalidate>
+		<form name="reviewForm" data-ng-if="aGift.receiving && !giftElement.reviewed" data-ng-submit="giftElement.writeReview()" class="input-group" style="margin-bottom:1%" novalidate>
 	    	<div class="input-group">
 		      <h1>Review:  </h1>
 		      <textarea class="form-control" placeholder="Review" data-ng-model="giftElement.review" style="font-size: 30px; height: 4em;" required>
@@ -45,6 +49,9 @@
 							<option value=4>4 Stars--I liked it!</option>
 							<option value=5>5 Stars--HOT DAMN</option>
 							</select>
+			</div>
+			<div class="input-group" style="margin-bottom:1%; color:red">
+				{{giftElement.message}}
 			</div>
 		    <button class="btn btn-default" style="margin-top: 30px;">Submit Review</button>
 	    </form>

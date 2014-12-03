@@ -573,11 +573,16 @@ angular.module('generosity', ['ngRoute', 'ngCookies', 'templates'])
 					// self.errCode = data.errCode;
 					console.log(data);
 					// var foundGift = data["gifts"];
-					var errCode = data[errCode];
+					var errCode = data.errCode;
 					// console.log(giftsList);
 					if(errCode == 1) {
+						console.log("wtf");
 						self.reviewed = true;
+						self.message = "Gift successfully rated!";
 						return;
+					}
+					else {
+						self.message = "Both fields are required.";
 					}
 
 					// self.imageUrl = foundGift.url;
