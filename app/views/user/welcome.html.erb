@@ -13,9 +13,9 @@
 
 	<body data-ng-app = 'generosity' data-ng-controller = "UsersController as user" data-ng-init="user.getUserFromCookie(); template=0" style="height: 100%">
 		<navbar></navbar>
-		<div class="main-content">
+		<div class="main-content" style="padding-top: -200px;">
 
-			<% if Rails.env == "development" %>
+			<% if Rails.env == "production" %>
 				Template: {{template}}
 			
 				<a href="#tests"><button style="background-color:teal; color:white">Run Unit Tests</button></a>

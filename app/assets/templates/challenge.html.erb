@@ -1,6 +1,7 @@
-<div class="container-fluid" style="margin-top: 5%;" data-ng-init="receivingUser.getChallengeForCurrentUser(); receivingUser.checkIfOnQueue()">
+<div class="container-fluid" style="margin-top: -1%;" data-ng-init="receivingUser.getChallengeForCurrentUser(); receivingUser.checkIfOnQueue()">
 	<div style="width: 100%">
-	<div class="usercard" data-ng-show="receivingUser.hasCurrentChallenge">
+	<div class="usercard">
+	<div data-ng-show="receivingUser.hasCurrentChallenge">
 		<div class = "holder" style ="width: 100%; text-align: center; padding-top: 30px;">
 
 		
@@ -27,16 +28,20 @@
 		<br>
 		<br>
 		<!-- <a href="#edit-user" data-ng-show="{{canEdit}}"><button style="background-color:teal; color:white">Edit Details</button></a> -->
-	    <a class="btn btn-default"data-ng-hide="receivingUser.code == -1" href="#gifts-form">Choose Gift!</a>
+	   	<a class="btn btn-default"data-ng-hide="receivingUser.code == -1" href="#gifts-form">Choose Gift!</a>
 	  </div>
 		</div>
 		</div>
 
+		<div style="text-align: center">
+		<div class="error">{{queueMessage}}</div>
+	  <div class="error">{{challengeMessage}}</div>
+		<button class="btn btn-default" data-ng-click="receivingUser.addChallenge()" data-ng-hide="receivingUser.hasCurrentChallenge" style="">Get a Challenge</button>
+		<button class="btn btn-default"data-ng-click="receivingUser.joinQueue()" data-ng-hide="receivingUser.onQueue" >Join Queue</button>
+		</div>
+
+	</div>
 	</div>
 
-    <div class="error">{{queueMessage}}</div>
-    <div class="error">{{challengeMessage}}</div>
-
-	<button data-ng-click="receivingUser.addChallenge()" data-ng-hide="receivingUser.hasCurrentChallenge" style="background-color:teal; color:white">Get a Challenge</button>
-	<button data-ng-click="receivingUser.joinQueue()" data-ng-hide="receivingUser.onQueue" style="background-color:teal; color:white">Join Queue</button>
+    
 </div>

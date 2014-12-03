@@ -73,16 +73,6 @@ function initialize() {
   });
 }
 
-function changeTargetOne() {
-  jQuery.getJSON( "users/getLocation", {user_id: target_id}, function success(data){
-    goal = data.location
-  });
-}
-
-function changeTargetTwo() {
-  goal = "37.9651675 -122.0805453";
-}
-
 function calcAll() {
   jQuery.getJSON( "users/getLocation", {user_id: target_id}, function success(data){
     console.log('target is ' + data.location);
